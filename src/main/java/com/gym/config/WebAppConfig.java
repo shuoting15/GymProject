@@ -17,7 +17,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.view.ContentNegotiatingViewResolver;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.springframework.web.servlet.view.json.MappingJackson2JsonView;
-@Configuration @EnableWebMvc @ComponentScan("com.web.store")
+@Configuration @EnableWebMvc @ComponentScan("com.gym")
 public class WebAppConfig implements WebMvcConfigurer {
 	@Bean
 	public ViewResolver internalResourceViewResolver() {
