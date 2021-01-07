@@ -36,8 +36,12 @@ public class WebAppConfig implements WebMvcConfigurer {
 	public void addResourceHandlers(ResourceHandlerRegistry registry) {
 		registry.addResourceHandler("/css/**")
 		.addResourceLocations("/WEB-INF/views/css/");
-		registry.addResourceHandler("/image/**")
-		.addResourceLocations("/WEB-INF/views/image/");
+		registry.addResourceHandler("/images/**")
+		.addResourceLocations("/WEB-INF/views/images/");
+		registry.addResourceHandler("/js/**")
+		.addResourceLocations("/WEB-INF/views/js/");
+		registry.addResourceHandler("/fonts/**")
+		.addResourceLocations("/WEB-INF/views/fonts/");
 	}
 	@Bean
 	public CommonsMultipartResolver multipartResolver() {
