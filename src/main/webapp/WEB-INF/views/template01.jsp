@@ -1,233 +1,155 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
-<!-- Bootstrap -->
-<link rel="stylesheet"
-	href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
-	integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
-	crossorigin="anonymous">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
 
-<!-- Google Font -->
 <link
-	href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;900&display=swap"
+	href="https://fonts.googleapis.com/css?family=Rajdhani:300,400,500,600,700&display=swap"
+	rel="stylesheet">
+<link
+	href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,600,600i,700,700i&display=swap"
 	rel="stylesheet">
 
-<!-- Css Styles -->
-<link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
-<link rel="stylesheet" href="css/font-awesome.min.css"
-	type="text/css">
-<link rel="stylesheet" href="css/elegant-icons.css" type="text/css">
-<link rel="stylesheet" href="css/nice-select.css" type="text/css">
-<link rel="stylesheet" href="css/jquery-ui.min.css" type="text/css">
-<link rel="stylesheet" href="css/owl.carousel.min.css"
-	type="text/css">
-<link rel="stylesheet" href="css/slicknav.min.css" type="text/css">
-<link rel="stylesheet" href="css/style.css" type="text/css">
+<link rel="stylesheet"
+	href="http://cdn.bootstrapmb.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<link rel="stylesheet" href="css/all.min.css">
+<link rel="stylesheet" href="css/animate.css">
+<link rel="stylesheet" href="css/lightcase.css">
+<link rel="stylesheet" href="css/flaticon.css">
+<link rel="stylesheet" href="css/swiper.min.css">
+
+<link rel="shortcut icon" href="images/trainers/favicon.png"
+	type="image/x-icon">
+<link rel="stylesheet" href="css/stylecoach.css">
+
+<title>預約課程</title>
 </head>
 <body>
-<!-- 引入共同的頁首 -->
+	<!-- 引入共同的頁首 -->
 	<jsp:include page="/fragment/top.jsp" />
-	
-	 <!-- Blog Section Begin -->
-    <section class="blog spad">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-4 col-md-5">
-                    <div class="blog__sidebar">
-                        <div class="blog__sidebar__search">
-                            <form action="#">
-                                <input type="text" placeholder="Search...">
-                                <button type="submit"><span class="icon_search"></span></button>
-                            </form>
-                        </div>
-                        <div class="blog__sidebar__item">
-                            <h4>Categories</h4>
-                            <ul>
-                                <li><a href="#">All</a></li>
-                                <li><a href="#">Beauty (20)</a></li>
-                                <li><a href="#">Food (5)</a></li>
-                                <li><a href="#">Life Style (9)</a></li>
-                                <li><a href="#">Travel (10)</a></li>
-                            </ul>
-                        </div>
-                        <div class="blog__sidebar__item">
-                            <h4>Recent News</h4>
-                            <div class="blog__sidebar__recent">
-                                <a href="#" class="blog__sidebar__recent__item">
-                                    <div class="blog__sidebar__recent__item__pic">
-                                        <img src="img/blog/sidebar/sr-1.jpg" alt="">
-                                    </div>
-                                    <div class="blog__sidebar__recent__item__text">
-                                        <h6>09 Kinds Of Vegetables<br /> Protect The Liver</h6>
-                                        <span>MAR 05, 2019</span>
-                                    </div>
-                                </a>
-                                <a href="#" class="blog__sidebar__recent__item">
-                                    <div class="blog__sidebar__recent__item__pic">
-                                        <img src="img/blog/sidebar/sr-2.jpg" alt="">
-                                    </div>
-                                    <div class="blog__sidebar__recent__item__text">
-                                        <h6>Tips You To Balance<br /> Nutrition Meal Day</h6>
-                                        <span>MAR 05, 2019</span>
-                                    </div>
-                                </a>
-                                <a href="#" class="blog__sidebar__recent__item">
-                                    <div class="blog__sidebar__recent__item__pic">
-                                        <img src="img/blog/sidebar/sr-3.jpg" alt="">
-                                    </div>
-                                    <div class="blog__sidebar__recent__item__text">
-                                        <h6>4 Principles Help You Lose <br />Weight With Vegetables</h6>
-                                        <span>MAR 05, 2019</span>
-                                    </div>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="blog__sidebar__item">
-                            <h4>Search By</h4>
-                            <div class="blog__sidebar__item__tags">
-                                <a href="#">Apple</a>
-                                <a href="#">Beauty</a>
-                                <a href="#">Vegetables</a>
-                                <a href="#">Fruit</a>
-                                <a href="#">Healthy Food</a>
-                                <a href="#">Lifestyle</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-8 col-md-7">
-                    <div class="row">
-                        <div class="col-lg-6 col-md-6 col-sm-6">
-                            <div class="blog__item">
-                                <div class="blog__item__pic">
-                                    <img src="img/blog/blog-2.jpg" alt="">
-                                </div>
-                                <div class="blog__item__text">
-                                    <ul>
-                                        <li><i class="fa fa-calendar-o"></i> May 4,2019</li>
-                                        <li><i class="fa fa-comment-o"></i> 5</li>
-                                    </ul>
-                                    <h5><a href="#">6 ways to prepare breakfast for 30</a></h5>
-                                    <p>Sed quia non numquam modi tempora indunt ut labore et dolore magnam aliquam
-                                        quaerat </p>
-                                    <a href="#" class="blog__btn">READ MORE <span class="arrow_right"></span></a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-6 col-md-6 col-sm-6">
-                            <div class="blog__item">
-                                <div class="blog__item__pic">
-                                    <img src="img/blog/blog-3.jpg" alt="">
-                                </div>
-                                <div class="blog__item__text">
-                                    <ul>
-                                        <li><i class="fa fa-calendar-o"></i> May 4,2019</li>
-                                        <li><i class="fa fa-comment-o"></i> 5</li>
-                                    </ul>
-                                    <h5><a href="#">Visit the clean farm in the US</a></h5>
-                                    <p>Sed quia non numquam modi tempora indunt ut labore et dolore magnam aliquam
-                                        quaerat </p>
-                                    <a href="#" class="blog__btn">READ MORE <span class="arrow_right"></span></a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-6 col-md-6 col-sm-6">
-                            <div class="blog__item">
-                                <div class="blog__item__pic">
-                                    <img src="img/blog/blog-1.jpg" alt="">
-                                </div>
-                                <div class="blog__item__text">
-                                    <ul>
-                                        <li><i class="fa fa-calendar-o"></i> May 4,2019</li>
-                                        <li><i class="fa fa-comment-o"></i> 5</li>
-                                    </ul>
-                                    <h5><a href="#">Cooking tips make cooking simple</a></h5>
-                                    <p>Sed quia non numquam modi tempora indunt ut labore et dolore magnam aliquam
-                                        quaerat </p>
-                                    <a href="#" class="blog__btn">READ MORE <span class="arrow_right"></span></a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-6 col-md-6 col-sm-6">
-                            <div class="blog__item">
-                                <div class="blog__item__pic">
-                                    <img src="img/blog/blog-4.jpg" alt="">
-                                </div>
-                                <div class="blog__item__text">
-                                    <ul>
-                                        <li><i class="fa fa-calendar-o"></i> May 4,2019</li>
-                                        <li><i class="fa fa-comment-o"></i> 5</li>
-                                    </ul>
-                                    <h5><a href="#">Cooking tips make cooking simple</a></h5>
-                                    <p>Sed quia non numquam modi tempora indunt ut labore et dolore magnam aliquam
-                                        quaerat </p>
-                                    <a href="#" class="blog__btn">READ MORE <span class="arrow_right"></span></a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-6 col-md-6 col-sm-6">
-                            <div class="blog__item">
-                                <div class="blog__item__pic">
-                                    <img src="img/blog/blog-4.jpg" alt="">
-                                </div>
-                                <div class="blog__item__text">
-                                    <ul>
-                                        <li><i class="fa fa-calendar-o"></i> May 4,2019</li>
-                                        <li><i class="fa fa-comment-o"></i> 5</li>
-                                    </ul>
-                                    <h5><a href="#">The Moment You Need To Remove Garlic From The Menu</a></h5>
-                                    <p>Sed quia non numquam modi tempora indunt ut labore et dolore magnam aliquam
-                                        quaerat </p>
-                                    <a href="#" class="blog__btn">READ MORE <span class="arrow_right"></span></a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-6 col-md-6 col-sm-6">
-                            <div class="blog__item">
-                                <div class="blog__item__pic">
-                                    <img src="img/blog/blog-6.jpg" alt="">
-                                </div>
-                                <div class="blog__item__text">
-                                    <ul>
-                                        <li><i class="fa fa-calendar-o"></i> May 4,2019</li>
-                                        <li><i class="fa fa-comment-o"></i> 5</li>
-                                    </ul>
-                                    <h5><a href="#">Cooking tips make cooking simple</a></h5>
-                                    <p>Sed quia non numquam modi tempora indunt ut labore et dolore magnam aliquam
-                                        quaerat </p>
-                                    <a href="#" class="blog__btn">READ MORE <span class="arrow_right"></span></a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-12">
-                            <div class="product__pagination blog__pagination">
-                                <a href="#">1</a>
-                                <a href="#">2</a>
-                                <a href="#">3</a>
-                                <a href="#"><i class="fa fa-long-arrow-right"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- Blog Section End -->
-    
-    	<!-- Js Plugins -->
+
+	<!-- Blog Section Begin -->
+	<section class="expert-trainers padding-bottom padding-top">
+		<div class="container">
+			<div class="expert-item-area">
+				<div class="expert-item">
+					<div class="expert-thumb">
+						<a href="trainer-details.html"><img
+							src="images/trainers/01.jpg" alt="trainers"></a>
+					</div>
+					<div class="expert-content">
+						<div class="expert-info">
+							<h4 class="sub-title">
+								<a href="trainer-details.html">kintaniya judu</a>
+							</h4>
+							<span>weight expert</span>
+						</div>
+						<a class="expert-link" href="#0"> <i class="fas fa-link"></i>
+						</a>
+					</div>
+				</div>
+				<div class="expert-item">
+					<div class="expert-thumb">
+						<a href="trainer-details.html"><img
+							src="images/trainers/02.jpg" alt="trainers"></a>
+					</div>
+					<div class="expert-content">
+						<div class="expert-info">
+							<h4 class="sub-title">
+								<a href="trainer-details.html">martin hook</a>
+							</h4>
+							<span>weight expert</span>
+						</div>
+						<a class="expert-link" href="#0"> <i class="fas fa-link"></i>
+						</a>
+					</div>
+				</div>
+				<div class="expert-item">
+					<div class="expert-thumb">
+						<a href="trainer-details.html"><img
+							src="images/trainers/03.jpg" alt="trainers"></a>
+					</div>
+					<div class="expert-content">
+						<div class="expert-info">
+							<h4 class="sub-title">
+								<a href="trainer-details.html">soshin misla</a>
+							</h4>
+							<span>weight expert</span>
+						</div>
+						<a class="expert-link" href="#0"> <i class="fas fa-link"></i>
+						</a>
+					</div>
+				</div>
+				<div class="expert-item">
+					<div class="expert-thumb">
+						<a href="trainer-details.html"><img
+							src="images/trainers/04.jpg" alt="trainers"></a>
+					</div>
+					<div class="expert-content">
+						<div class="expert-info">
+							<h4 class="sub-title">
+								<a href="trainer-details.html">nihari ka</a>
+							</h4>
+							<span>weight expert</span>
+						</div>
+						<a class="expert-link" href="#0"> <i class="fas fa-link"></i>
+						</a>
+					</div>
+				</div>
+				<div class="expert-item">
+					<div class="expert-thumb">
+						<a href="trainer-details.html"><img
+							src="images/trainers/05.jpg" alt="trainers"></a>
+					</div>
+					<div class="expert-content">
+						<div class="expert-info">
+							<h4 class="sub-title">
+								<a href="trainer-details.html">Thisa Khan</a>
+							</h4>
+							<span>weight expert</span>
+						</div>
+						<a class="expert-link" href="#0"> <i class="fas fa-link"></i>
+						</a>
+					</div>
+				</div>
+				<div class="expert-item">
+					<div class="expert-thumb">
+						<a href="trainer-details.html"><img
+							src="images/trainers/06.jpg" alt="trainers"></a>
+					</div>
+					<div class="expert-content">
+						<div class="expert-info">
+							<h4 class="sub-title">
+								<a href="trainer-details.html">robat hit</a>
+							</h4>
+							<span>weight expert</span>
+						</div>
+						<a class="expert-link" href="#0"> <i class="fas fa-link"></i>
+						</a>
+					</div>
+				</div>
+			</div>
+	</section>
+	<!-- Blog Section End -->
+
+	<!-- Js Plugins -->
 	<script src="js/jquery-3.3.1.min.js"></script>
-	<script src="js/bootstrap.min.js"></script>
-	<script src="js/jquery.nice-select.min.js"></script>
-	<script src="js/jquery-ui.min.js"></script>
-	<script src="js/jquery.slicknav.js"></script>
-	<script src="js/mixitup.min.js"></script>
-	<script src="js/owl.carousel.min.js"></script>
-	<script src="js/main.js"></script>
-    
+	<script src="js/modernizr-3.6.0.min.js"></script>
+	<script src="js/plugins.js"></script>
+	<script
+		src="http://cdn.bootstrapmb.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+	<script src="js/isotope.pkgd.min.js"></script>
+	<script src="js/swiper.min.js"></script>
+	<script src="js/waypoint.js"></script>
+	<script src="js/counterup.min.js"></script>
+	<script src="js/lightcase.js"></script>
+	<script src="js/wow.min.js"></script>
+	<script src="js/maincoach.js"></script>
+
 
 </body>
 </html>

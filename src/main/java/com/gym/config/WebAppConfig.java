@@ -42,6 +42,8 @@ public class WebAppConfig implements WebMvcConfigurer {
 		.addResourceLocations("/WEB-INF/views/js/");
 		registry.addResourceHandler("/fonts/**")
 		.addResourceLocations("/WEB-INF/views/fonts/");
+		registry.addResourceHandler("/webfonts/**")
+		.addResourceLocations("/WEB-INF/views/webfonts/");
 	}
 	@Bean
 	public CommonsMultipartResolver multipartResolver() {
