@@ -1,4 +1,4 @@
-package com.web.store.config;
+package com.gym.config;
 
 import java.util.ArrayList;
 

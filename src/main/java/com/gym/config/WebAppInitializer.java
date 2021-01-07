@@ -1,4 +1,4 @@
-package com.web.store.config;
+package com.gym.config;
 
 import javax.servlet.Filter;
 
