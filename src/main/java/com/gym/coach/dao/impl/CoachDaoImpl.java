@@ -14,6 +14,8 @@ import com.gym.coach.model.CoachBean;
 public class CoachDaoImpl implements CoachDao {
 	@Autowired
 	SessionFactory sessionFactory;
+	
+	
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<CoachBean> getAllCoachs() {
@@ -37,4 +39,41 @@ public class CoachDaoImpl implements CoachDao {
 
 	}
 
+	@Override
+	public int updateCoach(CoachBean bean, long sizeInBytes) {
+		int n = 0;
+		if (sizeInBytes == -1) { // 不修改圖片
+            n = updateCoach(bean);
+            return n;
+        }
+        Session session = sessionFactory.getCurrentSession();
+        session.saveOrUpdate(bean);
+        n++;
+
+		return n;
+	}
+	public int updateCoach(CoachBean bean) {
+		int n = 0;
+		CoachBean b0 = null;
+        Session session = sessionFactory.getCurrentSession();
+        b0 = session.get(CoachBean.class, bean.getCoachId());
+        bean.setCoachRating(b0.getCoachRating());
+        bean.setCoachPhoto(b0.getCoachPhoto());
+        bean.setFileName(b0.getFileName());
+        session.evict(b0);
+        session.saveOrUpdate(bean);
+        n++;
+        return n;
+	}
+
+	@Override
+	public int deleteCoach(int coachId) {
+		int n = 0;
+        Session session = sessionFactory.getCurrentSession();
+        CoachBean bb = new CoachBean();
+        bb.setCoachId(coachId);
+        session.delete(bb);
+        n++;
+        return n;
+	}
 }

@@ -21,14 +21,14 @@
 		<tr height="52" bgcolor="lightblue" align="center">
 
 			<td width="350"><p align="left" /> <a
-				href='<c:url value="/products" />'>查詢所有產品資料</a><BR></td>
+				href='<c:url value="/coachs" />'>查詢所有產品資料</a><BR></td>
 			<td width="350"><p align="left" /> <a
 				href='<c:url value="/update/stock" />'>更新多筆產品數量</a><BR></td>
 		</tr>
 		<tr height="52" bgcolor="lightblue" align="center">
 			<td width="350"><p align="left" /> <a href='<c:url value="/queryByCategory" />'>分類查詢</a><BR>
 			</td>  
-			<td width="350"><p align="left" /> <a href='<c:url value="/products/add" />'>新增商品資料</a><BR></td>
+			<td width="350"><p align="left" /> <a href='<c:url value="/coachs/add" />'>新增商品資料</a><BR></td>
 		</tr>
 				<tr height="52" bgcolor="lightblue" align="center">
 			<td width="350"><p align="left" /> 

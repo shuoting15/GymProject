@@ -10,4 +10,8 @@ public interface CoachService {
 	CoachBean getCoachById(int coachId);
 
 	void addCoach(CoachBean coach);
+	
+	int updateCoach(CoachBean bean, long sizeInBytes) ;
+	
+	int deleteCoach(int coachId);
 }

@@ -16,36 +16,22 @@
 	<section>
 		<div>
 			<div class="container" style="text-align: center">
-				<h2>產品資料</h2>
+				<h2>教練資料</h2>
 			</div>
 		</div>
 	</section>
 	<section class="container">
 		<div class="row">
 			<img width='100' height='150'
-				src="<c:url value='/getPicture/${product.bookId}'/>" />
+				src="<c:url value='/getPicture/${coach.coachId}'/>" />
 			<div class="col-md-5">
-				<h3>${product.title}</h3>
-				<p>作者: ${product.author}</p>
-				<p>單價: ${product.price}</p>
-				<c:choose>
-					<c:when test='${product.discount != 1.0 }'>
-						<p>
-							折扣: ${product.discountStr} &nbsp;&nbsp; 實售: <font color='red'>${product.price*product.discount}元</font>
-						</p>
-					</c:when>
-					<c:otherwise>
-						<p>&nbsp;</p>
-					</c:otherwise>
-				</c:choose>
-				<p>書商: ${product.companyBean.name}</p>
-				<p>書籍分類: ${product.category}</p>
+				<h3>${coach.coachName}</h3>
+				<p>性別: ${coach.coachGender}</p>
+				<p>專長: ${coach.coachExpertise}</p>
+				<p>評價: ${coach.coachRating}</p>
+				<p>教練介紹: ${coach.coachIntroduction}</p>
 				<p>
-					<strong>商品編號: </strong> <span class='label label-warning'>
-						${product.bookId} </span>
-				</p>
-				<p>
-					<a href="<spring:url value='/products' />" class="btn btn-default">
+					<a href="<spring:url value='/coachs' />" class="btn btn-default">
 						<span class="glyphicon-hand-left glyphicon"></span>返回
 					</a> <a href='#' class='btn btn-warning btn-large'> <span
 						class='glyphicon-shopping-cart glyphicon'></span>加入購物車

@@ -18,23 +18,41 @@ public class CoachBean implements Serializable {
 	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)	
-	private Integer 	coachID ;
+	private Integer 	coachId ;
 	private String  	coachName;
+	private String  	coachExpertise;
 	private String  	coachGender;
 	private Double  	coachRating;
-	private Blob    	coachPhoto;	
+	private Blob    	coachPhoto;
+	private String      coachIntroduction;
+	public String getCoachIntroduction() {
+		return coachIntroduction;
+	}
+
+	public void setCoachIntroduction(String coachIntroduction) {
+		this.coachIntroduction = coachIntroduction;
+	}
+
+	public String getCoachExpertise() {
+		return coachExpertise;
+	}
+
+	public void setCoachExpertise(String coachExpertise) {
+		this.coachExpertise = coachExpertise;
+	}
+
 	private String  	fileName;
 	@Transient
 	private MultipartFile	coachImage;
 
 	public CoachBean() {}
 
-	public Integer getCoachID() {
-		return coachID;
+	public Integer getCoachId() {
+		return coachId;
 	}
 
-	public void setCoachID(Integer coachID) {
-		this.coachID = coachID;
+	public void setCoachId(Integer coachId) {
+		this.coachId = coachId;
 	}
 
 	public String getCoachName() {
