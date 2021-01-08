@@ -1934,7 +1934,8 @@ template {
   .expert-item .expert-thumb a {
     display: block; }
     .expert-item .expert-thumb a img {
-      width: 100%; }
+      width: 250px; 
+      height:300px;}
   .expert-item .expert-content {
     display: flex;
     flex-wrap: wrap;

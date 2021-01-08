@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -36,102 +38,24 @@
 	<section class="expert-trainers padding-bottom padding-top">
 		<div class="container">
 			<div class="expert-item-area">
-				<div class="expert-item">
-					<div class="expert-thumb">
-						<a href="trainer-details.html"><img
-							src="images/trainers/01.jpg" alt="trainers"></a>
-					</div>
-					<div class="expert-content">
-						<div class="expert-info">
-							<h4 class="sub-title">
-								<a href="trainer-details.html">kintaniya judu</a>
-							</h4>
-							<span>weight expert</span>
+				<c:forEach var='coach' items='${coachs}'>
+					<div class="expert-item">
+						<div class="expert-thumb">
+							<a href="<c:url value='coach?id=${coach.coachId}'/>"><img
+								src="<c:url value='/getPicture/${coach.coachId}'/>" alt="trainers"></a>
 						</div>
-						<a class="expert-link" href="#0"> <i class="fas fa-link"></i>
-						</a>
-					</div>
-				</div>
-				<div class="expert-item">
-					<div class="expert-thumb">
-						<a href="trainer-details.html"><img
-							src="images/trainers/02.jpg" alt="trainers"></a>
-					</div>
-					<div class="expert-content">
-						<div class="expert-info">
-							<h4 class="sub-title">
-								<a href="trainer-details.html">martin hook</a>
-							</h4>
-							<span>weight expert</span>
+						<div class="expert-content">
+							<div class="expert-info">
+								<h4 class="sub-title">
+									<a href="<c:url value='coach?id=${coach.coachId}'/>">${coach.coachName}</a>
+								</h4>
+								<span>${coach.coachExpertise}</span>
+							</div>
+							<a class="expert-link" href="#0"> <i class="fas fa-link"></i>
+							</a>
 						</div>
-						<a class="expert-link" href="#0"> <i class="fas fa-link"></i>
-						</a>
 					</div>
-				</div>
-				<div class="expert-item">
-					<div class="expert-thumb">
-						<a href="trainer-details.html"><img
-							src="images/trainers/03.jpg" alt="trainers"></a>
-					</div>
-					<div class="expert-content">
-						<div class="expert-info">
-							<h4 class="sub-title">
-								<a href="trainer-details.html">soshin misla</a>
-							</h4>
-							<span>weight expert</span>
-						</div>
-						<a class="expert-link" href="#0"> <i class="fas fa-link"></i>
-						</a>
-					</div>
-				</div>
-				<div class="expert-item">
-					<div class="expert-thumb">
-						<a href="trainer-details.html"><img
-							src="images/trainers/04.jpg" alt="trainers"></a>
-					</div>
-					<div class="expert-content">
-						<div class="expert-info">
-							<h4 class="sub-title">
-								<a href="trainer-details.html">nihari ka</a>
-							</h4>
-							<span>weight expert</span>
-						</div>
-						<a class="expert-link" href="#0"> <i class="fas fa-link"></i>
-						</a>
-					</div>
-				</div>
-				<div class="expert-item">
-					<div class="expert-thumb">
-						<a href="trainer-details.html"><img
-							src="images/trainers/05.jpg" alt="trainers"></a>
-					</div>
-					<div class="expert-content">
-						<div class="expert-info">
-							<h4 class="sub-title">
-								<a href="trainer-details.html">Thisa Khan</a>
-							</h4>
-							<span>weight expert</span>
-						</div>
-						<a class="expert-link" href="#0"> <i class="fas fa-link"></i>
-						</a>
-					</div>
-				</div>
-				<div class="expert-item">
-					<div class="expert-thumb">
-						<a href="trainer-details.html"><img
-							src="images/trainers/06.jpg" alt="trainers"></a>
-					</div>
-					<div class="expert-content">
-						<div class="expert-info">
-							<h4 class="sub-title">
-								<a href="trainer-details.html">robat hit</a>
-							</h4>
-							<span>weight expert</span>
-						</div>
-						<a class="expert-link" href="#0"> <i class="fas fa-link"></i>
-						</a>
-					</div>
-				</div>
+				</c:forEach>
 			</div>
 	</section>
 	<!-- Blog Section End -->
