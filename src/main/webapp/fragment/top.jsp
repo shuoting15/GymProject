@@ -75,7 +75,7 @@
 								<li><a href="./checkout.html">我的訂單</a></li>
 								<li><a href="./blog-details.html">Blog Details</a></li>
 							</ul></li>
-						<li><a href="./blog.html">預約教練</a></li>
+						<li><a href="<c:url value="/coachs" />">預約教練</a></li>
 						<li><a href="./blog.html">團體課程</a>
 							<ul class="header__menu__dropdown">
 								<li><a href="./shop-details.html">實體</a></li>
@@ -93,7 +93,7 @@
 								<li><a href="./shop-details.html">會員</a></li>
 								<li><a href="<c:url value='/productMaintain/productAll' />">商品</a></li>
 								<li><a href="<c:url value='/productMaintain/productAll' />">訂單</a></li>
-								<li><a href="./shoping-cart.html">教練</a></li>
+								<li><a href="<c:url value='/coachMaintain' />">教練</a></li>
 								<li><a href="./shoping-cart.html">團課</a></li>
 								<li><a href="./shoping-cart.html">健身餐</a></li>
 								<li><a href="./shoping-cart.html">教學區</a></li>

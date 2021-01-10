@@ -44,5 +44,11 @@ public class CoachServiceImpl implements com.gym.coach.service.CoachService {
           n = dao.deleteCoach(coachId);
       return n;
 	}
+	@Transactional
+	@Override
+	public List<String> getAllExpertise() {
+
+		return dao.getAllExpertise();
+	}
 
 }

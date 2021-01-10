@@ -60,7 +60,7 @@
 								<li><a href="./checkout.html">Check Out</a></li>
 								<li><a href="./blog-details.html">Blog Details</a></li>
 							</ul></li>
-						<li><a href="./blog.html">預約教練</a></li>
+						<li><a href="<c:url value="/coachs" />">預約教練</a></li>
 						<li><a href="./blog.html">團體課程</a>
 							<ul class="header__menu__dropdown">
 								<li><a href="./shop-details.html">實體</a></li>

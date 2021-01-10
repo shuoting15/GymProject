@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.sql.Blob;
 import java.sql.SQLException;
+import java.util.List;
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletResponse;
@@ -43,13 +44,18 @@ public class CoachController {
 
 	@Autowired
 	ServletContext context;
-
+	//教練展示
 	@GetMapping("/coachs")
 	public String list(Model model) {
 		model.addAttribute("coachs", service.getAllCoachs());
 		return "coach/coachs";
 	}
-
+	//後臺教練展示
+	@GetMapping("/coachMaintain")
+	public String Maintainlist(Model model) {
+		model.addAttribute("coachs", service.getAllCoachs());
+		return "coach/coachsMaintain";
+	}
 
 	@GetMapping(value = "/coach")
 	public String getCoachById(@RequestParam("id") int id, Model model) {
@@ -174,7 +180,7 @@ public class CoachController {
 	@PostMapping("/coachDelete/{coachId}")
 	public String deleteBook(@PathVariable Integer coachId) {
 		service.deleteCoach(coachId);
-		return "redirect:/coachs";
+		return "redirect:/coachMaintain";
 	}
 	@PostMapping("coachUpdate/{coachId}")
 	public String updateForm(@ModelAttribute CoachBean bean,  
@@ -207,6 +213,10 @@ public class CoachController {
 		}
 		service.updateCoach(bean, sizeInBytes);
 		redirectAttributes.addFlashAttribute("SUCCESS", "修改成功!!!");
-		return "redirect:/coachs";
+		return "redirect:/coachMaintain";
+	}
+	@ModelAttribute("expertiseList")
+	public List<String> getExpertiseList() {
+		return service.getAllExpertise();
 	}
 }

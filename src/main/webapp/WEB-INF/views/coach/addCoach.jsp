@@ -8,7 +8,9 @@
 
 <meta charset="UTF-8">
 <link rel="stylesheet"
-	href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+	data-integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+	data-crossorigin="anonymous">
 <style type="text/css">
 fieldset {
 	border: 1px solid rgb(255, 232, 57);
@@ -37,61 +39,101 @@ fieldset {
 		<!--       三個地方要完全一樣 -->
 		<form:form method='POST' modelAttribute="coachBean"
 			class='form-horizontal' enctype="multipart/form-data">
-			<fieldset>
-				<div class="form-group">
-					<label class="control-label col-lg-2 col-lg-2" for='coachName'>
-						<spring:message code='spring.addCoach.form.coachName.label' />
+
+			<input type='hidden' id='updateOrDelete' name='_method'>
+			<form:input id="coachRating" path="coachRating" type='hidden'
+				class='form:input-large' />
+
+			<div class="form-row">
+				<div class="form-group col-md-6" align="right">
+					<label for="coachName"> <spring:message
+							code='spring.addCoach.form.coachName.label' />
 					</label>
-					<div class="col-lg-10">
-						<form:input id="coachName" path="coachName" type='text'
-							class='form:input-large' />
-					</div>
+					<form:input id="coachName" path="coachName" type='text'
+						class='form:input-large' />
+				</div>
+				<div class="form-group col-md-6">
+					<label for="coachGender"> <spring:message
+							code='spring.addCoach.form.coachGender.label' />
+					</label>
+					<form:input id="coachGender" path="coachGender" type='text'
+						class='form:input-large' />
+				</div>
+			</div>
+
+			<div class="form-row">
+				<div class="form-group col-md-6" align="right">
+					<label for='coachHeight'> <spring:message
+							code='spring.addCoach.form.coachHeight.label' />
+					</label>
+					<form:input id="coachHeight" path="coachHeight" type='text'
+						class='form:input-large' />
+				</div>
+				<div class="form-group col-md-6">
+					<label for='coachWeight'> <spring:message
+							code='spring.addCoach.form.coachWeight.label' />
+					</label>
+					<form:input id="coachWeight" path="coachWeight" type='text'
+						class='form:input-large' />
+				</div>
+			</div>
+
+			<div class="form-row">
+				<div class="form-group col-md-6" align="right">
+					<label for="coachExpertise"> <spring:message
+							code='spring.addCoach.form.coachExpertise.label' />
+					</label>
+					<form:select path='coachExpertise'>
+						<form:option value="0" label="請挑選" />
+						<form:options items="${expertiseList}" />
+					</form:select>
 				</div>
 
-				<div class="form-group">
-					<label class="control-label col-lg-2 col-lg-2" for='coachGender'>
-						<spring:message code='spring.addCoach.form.coachGender.label' />
+				<div class="form-group col-md-6">
+					<label for="coachExpertiseOne"> <spring:message
+							code='spring.addCoach.form.coachExpertiseOne.label' />
 					</label>
-					<div class="col-lg-10">
-						<form:input id="coachGender" path="coachGender" type='text'
-							class='form:input-large' />
-					</div>
+					<form:input id="coachExpertiseOne" path="coachExpertiseOne"
+						type='text' class='form:input-large' />
 				</div>
-
-				<div class="form-group">
-					<label class='control-label col-lg-2 col-lg-2' for="coachExpertise">
-						<spring:message code='spring.addCoach.form.coachExpertise.label' />
+			</div>
+			<div class="form-row">
+				<div class="form-group col-md-6" align="right">
+					<label for="coachExpertiseTwo"> <spring:message
+							code='spring.addCoach.form.coachExpertiseTwo.label' />
 					</label>
-					<div class='col-lg-10'>
-						<form:input id="coachExpertise" path="coachExpertise" type='text'
-							class='form:input-large' />
-					</div>
+					<form:input id="coachExpertiseTwo" path="coachExpertiseTwo"
+						type='text' class='form:input-large' />
 				</div>
-				<div class="form-group">
-					<label class='control-label col-lg-2 col-lg-2' for="coachIntroduction">
-						<spring:message code='spring.addCoach.form.coachIntroduction.label' />
+				<div class="form-group col-md-6">
+					<label for="coachExpertiseThree"> <spring:message
+							code='spring.addCoach.form.coachExpertiseThree.label' />
 					</label>
-					<div class='col-lg-10'>
-						<form:input id="coachIntroduction" path="coachIntroduction" type='text'
-							class='form:input-large' />
-					</div>
+					<form:input id="coachExpertiseThree" path="coachExpertiseThree"
+						type='text' class='form:input-large' />
 				</div>
-				<div class="form-group">
-					<label class='control-label col-lg-2 col-lg-2' for="coachImage">
-						<spring:message code='spring.addCoach.form.image.label' />
-					</label>
-					<div class='col-lg-10'>
-						<form:input id="coachImage" path="coachImage" type='file'
-							class='form:input-large' />
-					</div>
+			</div>
+			<div class="form-group" align="center">
+				<label for="exampleFormControlTextarea1"><spring:message
+						code='spring.addCoach.form.coachIntroduction.label' /></label>
+				<form:textarea style="width: 450px" class="form-control"
+					id="coachIntroduction" rows="7" path="coachIntroduction" />
+			</div>
+			<div class="form-group" align="center">
+				<label class='control-label col-lg-2 col-lg-2' for="coachImage">
+					<spring:message code='spring.addCoach.form.image.label' />
+				</label>
+				<div class='col-lg-10'>
+					<form:input id="coachImage" path="coachImage" type='file'
+						class='form:input-large' />
 				</div>
-				<div class="form-group">
-					<div class='col-lg-offset-2 col-lg-10'>
-						<input id="btnAdd" type='submit' class='btn btn-primary'
-							value="<spring:message code='spring.addCoach.form.submit.label' />" />
-					</div>
+			</div>
+			<div class="form-group" align="center">
+				<div class='col-lg-offset-2 col-lg-10'>
+					<input id="btnAdd" type='submit' class='btn btn-primary'
+						value="<spring:message code='spring.addCoach.form.submit.label' />" />
 				</div>
-			</fieldset>
+			</div>
 		</form:form>
 	</section>
 </body>

@@ -76,4 +76,12 @@ public class CoachDaoImpl implements CoachDao {
         n++;
         return n;
 	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<String> getAllExpertise() {
+		String hql = "SELECT DISTINCT coachExpertise FROM CoachBean";
+		Session session = sessionFactory.getCurrentSession();
+		return session.createQuery(hql).getResultList();
+	}
 }

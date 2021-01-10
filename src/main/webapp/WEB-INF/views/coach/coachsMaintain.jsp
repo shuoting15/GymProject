@@ -59,6 +59,10 @@
 		</div>
 	</div>
 	<!-- Blog Section Begin -->
+	<div align="center">
+	<input class="btn btn-primary" style="width:200px" type="button" value="新增教練" 
+	onclick="window.location.href='<c:url value="/coachs/add" />';" />
+	</div>
 	<section class="expert-trainers padding-bottom padding-top">
 		<div class="container">
 			<div class="expert-item-area">
@@ -67,14 +71,14 @@
 					<!-- 						<div class="thumbnail" style="width: 500px; height: 500px"> -->
 					<div class="expert-item">
 						<div class="expert-thumb">
-							<a href="<c:url value='coach?id=${coach.coachId}'/>"> <img
+							<a href="<c:url value='coachUpdate/${coach.coachId}'/>"> <img
 								src="<c:url value='/getPicture/${coach.coachId}'/>"
 								alt="trainers"></a>
 						</div>
 						<div class="expert-content">
 							<div class="expert-info">
 								<h4 class="sub-title">
-									<a href="<c:url value='coach?id=${coach.coachId}'/>">${coach.coachName}</a>
+									<a href="<c:url value='coachUpdate/${coach.coachId}'/>">${coach.coachName}</a>
 								</h4>
 								<span>${coach.coachExpertise}</span>
 							</div>

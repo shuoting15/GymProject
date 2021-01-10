@@ -25,6 +25,51 @@ public class CoachBean implements Serializable {
 	private Double  	coachRating;
 	private Blob    	coachPhoto;
 	private String      coachIntroduction;
+	private String  	coachExpertiseOne;
+	private String  	coachExpertiseTwo;
+	private String  	coachExpertiseThree;
+	private Integer 	coachHeight ;
+	private Integer 	coachWeight ;
+	public String getCoachExpertiseOne() {
+		return coachExpertiseOne;
+	}
+
+	public void setCoachExpertiseOne(String coachExpertiseOne) {
+		this.coachExpertiseOne = coachExpertiseOne;
+	}
+
+	public String getCoachExpertiseTwo() {
+		return coachExpertiseTwo;
+	}
+
+	public void setCoachExpertiseTwo(String coachExpertiseTwo) {
+		this.coachExpertiseTwo = coachExpertiseTwo;
+	}
+
+	public String getCoachExpertiseThree() {
+		return coachExpertiseThree;
+	}
+
+	public void setCoachExpertiseThree(String coachExpertiseThree) {
+		this.coachExpertiseThree = coachExpertiseThree;
+	}
+
+	public Integer getCoachHeight() {
+		return coachHeight;
+	}
+
+	public void setCoachHeight(Integer coachHeight) {
+		this.coachHeight = coachHeight;
+	}
+
+	public Integer getCoachWeight() {
+		return coachWeight;
+	}
+
+	public void setCoachWeight(Integer coachWeight) {
+		this.coachWeight = coachWeight;
+	}
+
 	public String getCoachIntroduction() {
 		return coachIntroduction;
 	}
