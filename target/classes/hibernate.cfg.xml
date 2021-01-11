@@ -7,7 +7,7 @@
 		<property name="hibernate.connection.username">user0810</property>
 		<property name="hibernate.connection.password">user0810</property>
 		<property name="hibernate.connection.url">jdbc:sqlserver://localhost:1433;databaseName=GymProject</property>
-		<property name="hibernate.dialect">org.hibernate.dialect.SQLServer2012Dialect</property>
+<!-- 		<property name="hibernate.dialect">com.gym.config.ExtendedSQLServer2012Dialect</property> -->
 
 		<!-- 2. 其他與資料存取有關的設定 -->
 		<!-- 自動產生資料庫的Schema -->
@@ -27,6 +27,7 @@
 
 		<!-- 3. 宣告程式使用的Mapping檔 ，每個永續類別都需要定義一個Mapping檔 -->
 		<mapping class="com.gym.coach.model.CoachBean"></mapping>
-
+				<mapping class="com.gym.coach.model.CoachBean"></mapping>
+		
 	</session-factory>
 </hibernate-configuration>
