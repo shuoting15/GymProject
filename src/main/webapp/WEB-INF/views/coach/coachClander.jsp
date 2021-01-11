@@ -63,7 +63,7 @@
             },
 
             // 日曆上的事件
-            events: 'http://localhost:8080/GymProject/findall.html'
+            events: 'http://localhost:8080/GymProject/findall/${coach.coachId}.html'
         });
 
         calendar.render();

@@ -2,11 +2,14 @@
 
 import java.io.Serializable;
 import java.sql.Blob;
+import java.util.LinkedHashSet;
+import java.util.Set;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
@@ -30,6 +33,9 @@ public class CoachBean implements Serializable {
 	private String  	coachExpertiseThree;
 	private Integer 	coachHeight ;
 	private Integer 	coachWeight ;
+	@OneToMany(mappedBy="coachBean")
+	private Set<CoachOrderBean> coachOrder = new LinkedHashSet<>();
+	
 	public String getCoachExpertiseOne() {
 		return coachExpertiseOne;
 	}
@@ -146,6 +152,14 @@ public class CoachBean implements Serializable {
 
 	public void setCoachImage(MultipartFile coachImage) {
 		this.coachImage = coachImage;
+	}
+
+	public Set<CoachOrderBean> getCoachOrder() {
+		return coachOrder;
+	}
+
+	public void setCoachOrder(Set<CoachOrderBean> coachOrder) {
+		this.coachOrder = coachOrder;
 	}
 	
 }

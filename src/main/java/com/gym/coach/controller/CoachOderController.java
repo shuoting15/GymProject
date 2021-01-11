@@ -3,6 +3,7 @@ package com.gym.coach.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -16,11 +17,12 @@ public class CoachOderController  {
 	CoachOrderService service;
 	
 	
-	@GetMapping(value="/findall",produces="text/html;charset=UTF-8")
+	@GetMapping(value="/findall/{coachId}",produces="text/html;charset=UTF-8")
 	@ResponseBody
-	public String findTimeByCoachId(){
+	public String findTimeByCoachId(@PathVariable int coachId){
 		Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd HH:mm:ss").disableHtmlEscaping().create();
-		return gson.toJson(service.findTimeByCoachId());
+		System.out.println("這是教練id： "+coachId);
+		return gson.toJson(service.findTimeByCoachId(coachId));
 		
 	}
 	

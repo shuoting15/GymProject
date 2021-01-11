@@ -26,11 +26,10 @@ public class CoachOrderBean  implements Serializable {
 	private Date   orderStartTime;
 	private Date   orderEndTime;
 	private String memberId;
-	@Transient
 	private int coachId;
 	
 	@ManyToOne(cascade=CascadeType.ALL)    // javax.persistence.CascadeType;
-	@JoinColumn(name="coachId")  
+	@JoinColumn(name="FK_CoachBean_Id")  
 	private CoachBean coachBean;
 
 	public int getOrderId() {

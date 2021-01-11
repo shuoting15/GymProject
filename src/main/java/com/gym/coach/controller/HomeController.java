@@ -16,6 +16,6 @@ public class HomeController {
 	
 	@GetMapping("/")
 	public String home() {
-		return "coach/coachClander";
+		return "index";
 	}
 }

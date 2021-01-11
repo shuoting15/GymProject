@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.gym.coach.dao.CoachOrderDao;
+import com.gym.coach.model.ClanderBean;
 import com.gym.coach.model.CoachOrderBean;
 import com.gym.coach.service.CoachOrderService;
 @Service
@@ -17,9 +18,9 @@ public class CoachOrderServiceImpl implements CoachOrderService {
 	
 	@Transactional
 	@Override
-	public List<CoachOrderBean> findTimeByCoachId() {
+	public List<ClanderBean> findTimeByCoachId(int coachId) {
 		// TODO Auto-generated method stub
-		return dao.findTimeByCoachId();
+		return dao.findTimeByCoachId(coachId);
 	}
 
 }
