@@ -35,7 +35,8 @@
             editable: false,
             selectable: false,
             dayMaxEvents: true, // allow "more" link when too many events
-
+		
+			
             // 可控制日曆上只呈現幾點到幾點
             slotMinTime: '09:00:00',
             slotMaxTime: '24:00:00',
@@ -45,7 +46,15 @@
 
             // 控制每週的第一天是.. 0=Sunday 1=Monday ... 6=Saturday
             firstDay: 0,
-
+			//移入變色
+// 			var bgColor = null;
+			eventMouseEnter: function(info) {
+				bgColor = info.el.style.borderColor;
+				info.el.style.backgroundColor = '';
+										},
+			eventMouseLeave: function(info) {
+				 info.el.style.backgroundColor = bgColor;
+			},
             // 點擊某事件後...
             eventClick: function(info) {
             	if(info.event.title=="可預約"){

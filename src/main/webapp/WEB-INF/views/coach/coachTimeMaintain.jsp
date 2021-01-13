@@ -11,6 +11,7 @@
 	href="http://cdn.bootstrapmb.com/bootstrap/4.3.1/css/bootstrap.min.css">
 <meta charset='utf-8' />
 <link href='css/mainclander.css' rel='stylesheet' />
+<link rel="stylesheet" href="css/demo.css">
 <script src='js/mainclander.js'></script>
 <script>
     document.addEventListener('DOMContentLoaded', function() {
@@ -49,7 +50,15 @@
 
             // 控制每週的第一天是.. 0=Sunday 1=Monday ... 6=Saturday
             firstDay: 0,
-
+			//滑鼠移入變色
+// 			var bgColor = null;
+			eventMouseEnter: function(info) {
+				bgColor = info.el.style.borderColor;
+				info.el.style.backgroundColor = 'red';
+										},
+			eventMouseLeave: function(info) {
+				 info.el.style.backgroundColor = bgColor;
+			},
             // 點擊某事件後...
             eventClick: function(info) {
             	if(info.event.title=="可預約"){

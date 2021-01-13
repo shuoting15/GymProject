@@ -3,7 +3,7 @@
 
 .fc-not-allowed,
 .fc-not-allowed .fc-event { /* override events' custom cursors */
-  cursor: not-allowed;
+  cursor: pointer;
 }
 
 .fc-unselectable {
@@ -485,6 +485,7 @@ a.fc-event:hover {
 .fc-event .fc-event-main {
     position: relative;
     z-index: 2;
+    cursor: pointer;
   }
 /* dragging */
 /* ---------------------------------------------------------------------------------------------------- */
@@ -585,18 +586,22 @@ A HORIZONTAL event
 .fc-h-event .fc-event-main {
     color: #fff;
     color: var(--fc-event-text-color, #fff);
+    cursor: pointer;
   }
 .fc-h-event .fc-event-main-frame {
     display: flex; /* for make fc-event-title-container expand */
+    cursor: pointer;
   }
 .fc-h-event .fc-event-time {
     max-width: 100%; /* clip overflow on this element */
     overflow: hidden;
+    cursor: pointer;
   }
 .fc-h-event .fc-event-title-container { /* serves as a container for the sticky cushion */
     flex-grow: 1;
     flex-shrink: 1;
     min-width: 0; /* important for allowing to shrink all the way */
+    cursor: pointer;
   }
 .fc-h-event .fc-event-title {
     display: inline-block; /* need this to be sticky cross-browser */
@@ -605,11 +610,13 @@ A HORIZONTAL event
     right: 0; /* for sticky */
     max-width: 100%; /* clip overflow on this element */
     overflow: hidden;
+    cursor: pointer;
   }
 .fc-h-event.fc-event-selected:before {
     /* expand hit area */
     top: -10px;
     bottom: -10px;
+    cursor: pointer;
   }
 /* adjust border and border-radius (if there is any) for non-start/end */
 .fc-direction-ltr .fc-daygrid-block-event:not(.fc-event-start),
@@ -630,6 +637,7 @@ A HORIZONTAL event
   bottom: 0;
   width: 8px;
   width: var(--fc-event-resizer-thickness, 8px);
+  cursor: pointer;
 }
 .fc-direction-ltr .fc-h-event:not(.fc-event-selected) .fc-event-resizer-start,
 .fc-direction-rtl .fc-h-event:not(.fc-event-selected) .fc-event-resizer-end {
@@ -879,10 +887,12 @@ A HORIZONTAL event
 /* --- the rectangle ("block") style of event --- */
 .fc-daygrid-block-event .fc-event-time {
     font-weight: bold;
+    cursor: pointer;
   }
 .fc-daygrid-block-event .fc-event-time,
   .fc-daygrid-block-event .fc-event-title {
     padding: 1px;
+    cursor: pointer;
   }
 /* --- the dot style of event --- */
 .fc-daygrid-dot-event {
@@ -920,9 +930,11 @@ A HORIZONTAL event
 /* --- spacing between time and title --- */
 .fc-direction-ltr .fc-daygrid-event .fc-event-time {
     margin-right: 3px;
+    cursor: pointer;
   }
 .fc-direction-rtl .fc-daygrid-event .fc-event-time {
     margin-left: 3px;
+    cursor: pointer;
   }
 
 
@@ -936,6 +948,7 @@ A VERTICAL event
   border: 1px solid var(--fc-event-border-color, #3788d8);
   background-color: #3788d8;
   background-color: var(--fc-event-bg-color, #3788d8)
+  
 
 }
 
@@ -943,12 +956,14 @@ A VERTICAL event
     color: #fff;
     color: var(--fc-event-text-color, #fff);
     height: 100%;
+    cursor: pointer;
   }
 
 .fc-v-event .fc-event-main-frame {
     height: 100%;
     display: flex;
     flex-direction: column;
+    cursor: pointer;
   }
 
 .fc-v-event .fc-event-time {
@@ -956,12 +971,14 @@ A VERTICAL event
     flex-shrink: 0;
     max-height: 100%;
     overflow: hidden;
+    cursor: pointer;
   }
 
 .fc-v-event .fc-event-title-container { /* a container for the sticky cushion */
     flex-grow: 1;
     flex-shrink: 1;
     min-height: 0; /* important for allowing to shrink all the way */
+    cursor: pointer;
   }
 
 .fc-v-event .fc-event-title { /* will have fc-sticky on it */
@@ -969,42 +986,48 @@ A VERTICAL event
     bottom: 0;
     max-height: 100%; /* clip overflow */
     overflow: hidden;
+    cursor: pointer;
   }
 
 .fc-v-event:not(.fc-event-start) {
     border-top-width: 0;
     border-top-left-radius: 0;
     border-top-right-radius: 0;
+    cursor: pointer;
   }
 
 .fc-v-event:not(.fc-event-end) {
     border-bottom-width: 0;
     border-bottom-left-radius: 0;
     border-bottom-right-radius: 0;
+    cursor: pointer;
   }
 
 .fc-v-event.fc-event-selected:before {
     /* expand hit area */
     left: -10px;
     right: -10px;
+    cursor: pointer;
   }
 
 .fc-v-event {
-
+	cursor: pointer;
   /* resizer (mouse AND touch) */
 
 }
 
 .fc-v-event .fc-event-resizer-start {
     cursor: n-resize;
+    cursor: pointer;
   }
 
 .fc-v-event .fc-event-resizer-end {
     cursor: s-resize;
+    cursor: pointer;
   }
 
 .fc-v-event {
-
+cursor: pointer;
   /* resizer for MOUSE */
 
 }
@@ -1014,6 +1037,7 @@ A VERTICAL event
       height: var(--fc-event-resizer-thickness, 8px);
       left: 0;
       right: 0;
+      cursor: pointer;
     }
 
 .fc-v-event:not(.fc-event-selected) .fc-event-resizer-start {
@@ -1167,6 +1191,7 @@ A VERTICAL event
   }
 .fc-media-screen .fc-timegrid-event-harness {
     position: absolute; /* top/left/right/bottom will all be set by JS */
+    cursor: pointer;
   }
 .fc {
 
@@ -1215,34 +1240,40 @@ A VERTICAL event
 .fc-timegrid-event.fc-event-mirror {
   box-shadow: 0px 0px 0px 1px #fff;
   box-shadow: 0px 0px 0px 1px var(--fc-page-bg-color, #fff);
+  cursor: pointer;
 }
 .fc-timegrid-event { /* events need to be root */
 
   font-size: .85em;
-
+  cursor: pointer;
   font-size: var(--fc-small-font-size, .85em);
   border-radius: 3px
 
 }
 .fc-timegrid-event .fc-event-main {
     padding: 1px 1px 0;
+    cursor: pointer;
   }
 .fc-timegrid-event .fc-event-time {
     white-space: nowrap;
     font-size: .85em;
     font-size: var(--fc-small-font-size, .85em);
     margin-bottom: 1px;
+    cursor: pointer;
   }
 .fc-timegrid-event-condensed .fc-event-main-frame {
     flex-direction: row;
     overflow: hidden;
+    cursor: pointer;
   }
 .fc-timegrid-event-condensed .fc-event-time:after {
     content: '\00a0-\00a0'; /* dash surrounded by non-breaking spaces */
+    cursor: pointer;
   }
 .fc-timegrid-event-condensed .fc-event-title {
     font-size: .85em;
     font-size: var(--fc-small-font-size, .85em)
+    cursor: pointer;
   }
 .fc-media-screen .fc-timegrid-event {
     position: absolute; /* absolute WITHIN the harness */
@@ -1250,6 +1281,7 @@ A VERTICAL event
     bottom: 1px; /* stay away from bottom slot line */
     left: 0;
     right: 0;
+    cursor: pointer;
   }
 .fc {
 

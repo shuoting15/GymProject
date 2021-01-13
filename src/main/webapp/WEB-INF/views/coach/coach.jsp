@@ -111,6 +111,7 @@
 	<div align="center" style="width:1200px; margin:0 auto ">
 	<jsp:include page="coachClander.jsp" />
 	</div>
+	<link rel="stylesheet" href="css/demo.css">
 	<!-- JavaScript File Links -->
 	<script src="js/jquery-3.3.1.min.js"></script>
 	<script src="js/modernizr-3.6.0.min.js"></script>
