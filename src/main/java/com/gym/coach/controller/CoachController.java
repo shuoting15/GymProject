@@ -44,13 +44,15 @@ public class CoachController {
 
 	@Autowired
 	ServletContext context;
-	//教練展示
+
+	// 教練展示
 	@GetMapping("/coachs")
 	public String list(Model model) {
 		model.addAttribute("coachs", service.getAllCoachs());
 		return "coach/coachs";
 	}
-	//後臺教練展示
+
+	// 後臺教練展示
 	@GetMapping("/coachMaintain")
 	public String Maintainlist(Model model) {
 		model.addAttribute("coachs", service.getAllCoachs());
@@ -107,14 +109,14 @@ public class CoachController {
 		}
 		return "redirect:/coachs";
 	}
-	
+
 	@GetMapping("/coachs/add")
 	public String getAddNewProductForm(Model model) {
 		CoachBean coachBean = new CoachBean();
 		model.addAttribute("coachBean", coachBean);
 		return "coach/addCoach";
 	}
-	
+
 	@RequestMapping(value = "/getPicture/{coachId}", method = RequestMethod.GET)
 	public ResponseEntity<byte[]> getPicture(HttpServletResponse resp, @PathVariable Integer coachId) {
 		String filePath = "/resources/images/NoImage.jpg";
@@ -172,29 +174,30 @@ public class CoachController {
 		}
 		return b;
 	}
+
 	@GetMapping("coachUpdate/{coachId}")
-	public String showUpdateForm(Model model,@PathVariable Integer coachId) {
+	public String showUpdateForm(Model model, @PathVariable Integer coachId) {
 		model.addAttribute("coachBean", service.getCoachById(coachId));
 		return "coach/coachUpdate";
 	}
+
 	@PostMapping("/coachDelete/{coachId}")
 	public String deleteBook(@PathVariable Integer coachId) {
 		service.deleteCoach(coachId);
 		return "redirect:/coachMaintain";
 	}
+
 	@PostMapping("coachUpdate/{coachId}")
-	public String updateForm(@ModelAttribute CoachBean bean,  
-			Model model, BindingResult result, 
-			RedirectAttributes redirectAttributes
-			) {
+	public String updateCoach(@ModelAttribute CoachBean bean, Model model, BindingResult result,
+			RedirectAttributes redirectAttributes) {
 		long sizeInBytes = -1;
-		CoachValidator  validator = new CoachValidator(false);
+		CoachValidator validator = new CoachValidator(false);
 		validator.validate(bean, result);
 		if (result.hasErrors()) {
 			SystemUtils2018.showErrors(result);
 			return "coach/coachUpdate";
 		}
-		
+
 		if (bean.getCoachImage().getSize() == 0) {
 			sizeInBytes = -1;
 		} else {
@@ -202,11 +205,11 @@ public class CoachController {
 			// Step1
 			String imageOriginalFilename = bean.getCoachImage().getOriginalFilename();
 			bean.setFileName(imageOriginalFilename);
-			// Step2		
+			// Step2
 			Blob coachImage = null;
 			try {
 				coachImage = SystemUtils2018.convertMultipartFileToBlob(bean.getCoachImage());
-			} catch(Exception e) {
+			} catch (Exception e) {
 				e.printStackTrace();
 			}
 			bean.setCoachPhoto(coachImage);
@@ -215,6 +218,7 @@ public class CoachController {
 		redirectAttributes.addFlashAttribute("SUCCESS", "修改成功!!!");
 		return "redirect:/coachMaintain";
 	}
+
 	@ModelAttribute("expertiseList")
 	public List<String> getExpertiseList() {
 		return service.getAllExpertise();

@@ -8,7 +8,9 @@ public class ClanderBean  implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	private int groupId;
+	private int id;
 	private String title;
+	private String color;
 	private Date start;
 	private Date end;
 	public int getGroupId() {
@@ -34,6 +36,18 @@ public class ClanderBean  implements Serializable {
 	}
 	public void setEnd(Date end) {
 		this.end = end;
+	}
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
+	public String getColor() {
+		return color;
+	}
+	public void setColor(String color) {
+		this.color = color;
 	}
 
 }

@@ -1,10 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jstl/core"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <!DOCTYPE html>
 <html>
 
 <head>
+<link rel="stylesheet"
+	href="http://cdn.bootstrapmb.com/bootstrap/4.3.1/css/bootstrap.min.css">
 <meta charset='utf-8' />
 <link href='css/mainclander.css' rel='stylesheet' />
 <script src='js/mainclander.js'></script>
@@ -49,30 +53,23 @@
             // 點擊某事件後...
             eventClick: function(info) {
             	if(info.event.title=="可預約"){
-            	if(confirm("確定預約此時段?"+info.event.start)){
-            		
-             	$.ajax({
-            		url : "<c:url value='/addOrderTime'/>",
-            		type : "POST",
-            		dataType : "JSON",
-            		data : {"orderId":info.event.id, "coachId":${coach.coachId} }, 
-            		success : function (data) {
-            		console.log(data)
-            		}
-            		})
-            		
-            		
-            		
-            		
-            		alert("成功預約");
-             		calendar.refetchEvents();
-            	
-            	
-            	}else{}
-            		      }
-            	else{alert("此時段已經被預約 "); }
-            	
-   
+                	if(confirm("確定刪除此時段?"+info.event.start)){
+                		
+                 	$.ajax({
+                		url : "<c:url value='/coachDelete'/>",
+                		type : "POST",
+                		dataType : "JSON",
+                		data : {"orderId":info.event.id,"coachId":${coach.coachId}},
+                		success : function (data) {
+                		console.log(data)
+                		}
+                		})              		               		
+                		alert("成功刪除"); 
+                 	calendar.refetchEvents();
+                	}else{}
+                		      }
+                	else{alert("此時段已經被預約無法刪除 "); }
+                	
             },
 
             // 日曆上的事件
@@ -98,7 +95,25 @@ body {
 </head>
 
 <body>
+	<h1 align="center">教練時間管理: ${coach.coachName}</h1>
+	<div align="center" style="margin-top: 10px">
+		<input class="btn btn-primary" style="width: 200px;" type="button"
+			value="新增教練時間"
+			onclick="window.location.href='<c:url value="/addCoachTime/${coach.coachId}" />';" />
+	</div>
+	<h1 align="center" style="margin-top: 50px">點擊刪除可預約時段</h1>
 	<div id='calendar'></div>
+	<div class="form-group" align="center" style="margin-top: 10px">
+		<div class='col-lg-offset-2 col-lg-10' align="center">
+			<input id="backCoachsMaintain" name="backCoachsMaintain"
+				type='button' class='btn btn-primary' value="回教練管理頁面"
+				onclick="window.location.href='http://localhost:8080/GymProject/coachMaintain';" />
+		</div>
+	</div>
+	<!-- JavaScript File Links -->
+	<script src="js/jquery-3.3.1.min.js"></script>
+	<script src="js/modernizr-3.6.0.min.js"></script>
+	<script src="js/plugins.js"></script>
 </body>
 
 </html>

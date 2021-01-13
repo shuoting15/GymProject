@@ -60,8 +60,9 @@
 	</div>
 	<!-- Blog Section Begin -->
 	<div align="center">
-	<input class="btn btn-primary" style="width:200px" type="button" value="新增教練" 
-	onclick="window.location.href='<c:url value="/coachs/add" />';" />
+		<input class="btn btn-primary" style="width: 200px" type="button"
+			value="新增教練"
+			onclick="window.location.href='<c:url value="/coachs/add" />';" />
 	</div>
 	<section class="expert-trainers padding-bottom padding-top">
 		<div class="container">
@@ -85,7 +86,13 @@
 							<a class="expert-link" href="#0"> <i class="fas fa-link"></i>
 							</a>
 						</div>
+						<div align="center" style="margin-top: 10px">
+						<input class="btn btn-primary" style="width: 200px;" type="button"
+							value="教練時間管理"
+							onclick="window.location.href='<c:url value='coachTimeMaintain?id=${coach.coachId}'/>';" />
 					</div>
+					</div>
+
 					<!-- 						</div> -->
 					<!-- 					</div> -->
 				</c:forEach>
