@@ -33,6 +33,10 @@ public class CoachOrderBean  implements Serializable {
 	@ManyToOne(cascade=CascadeType.ALL)    // javax.persistence.CascadeType;
 	@JoinColumn(name="coachId")  
 	private CoachBean coachBean;
+	
+//	@ManyToOne(cascade=CascadeType.ALL)    // javax.persistence.CascadeType;
+//	@JoinColumn(name="memberId")  
+//	private  coachBean;
 
 	public int getOrderId() {
 		return orderId;

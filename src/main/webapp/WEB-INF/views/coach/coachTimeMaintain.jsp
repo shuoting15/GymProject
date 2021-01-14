@@ -14,42 +14,57 @@
 <link rel="stylesheet" href="css/demo.css">
 <script src='js/mainclander.js'></script>
 <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        var calendarEl = document.getElementById('calendar');
+//建立今天日期
+var fullDate = new Date();
+var yyyy = fullDate.getFullYear();
+var MM = (fullDate.getMonth() + 1) >= 10 ? (fullDate.getMonth() + 1) : ("0" + (fullDate.getMonth() + 1));
+var dd = fullDate.getDate() < 10 ? ("0"+fullDate.getDate()) : fullDate.getDate();
+var today = yyyy + "-" + MM + "-" + dd;
 
-        var calendar = new FullCalendar.Calendar(calendarEl, {
-            // 控制日曆最上方的按鈕
-            headerToolbar: {
-                left: 'prev,next today',
-                center: 'title',
-                // 預設： 'dayGridMonth,timeGridWeek,timeGridDay,listWeek'
-                right: 'timeGridWeek',
-            },
-            initialDate: '2021-01-10',
-            // 預設一開始渲染的View
-            initialView: 'timeGridWeek',
-            // 語言中文化
-            locale: 'zh-tw',
-            // 預設是true，改false後可禁止點擊 9/7(週一) 進入日模式
-            navLinks: false, // can click day/week names to navigate views
-            nowIndicator: true,
+//抓取星期
+var Week  = new Date().getDay()
 
-            weekNumbers: true,
-            weekNumberCalculation: 'ISO',
+document.addEventListener('DOMContentLoaded', function() {
+var calendarEl = document.getElementById('calendar');
 
-            editable: false,
-            selectable: false,
-            dayMaxEvents: true, // allow "more" link when too many events
+var calendar = new FullCalendar.Calendar(calendarEl, {
+    // 控制日曆最上方的按鈕
+    headerToolbar: {
+        left: 'prev,next today',
+        center: 'title',
+        // 預設： 'dayGridMonth,timeGridWeek,timeGridDay,listWeek'
+        right: 'timeGridWeek',
+    },
+    //預設日期
+    initialDate: today,
+    // 預設一開始渲染的View
+    initialView: 'timeGridWeek',
+    // 語言中文化
+    locale: 'zh-tw',
+    // 預設是true，改false後可禁止點擊 9/7(週一) 進入日模式
+    navLinks: false, // can click day/week names to navigate views
+    nowIndicator: true,
 
-            // 可控制日曆上只呈現幾點到幾點
-            slotMinTime: '09:00:00',
-            slotMaxTime: '24:00:00',
+    weekNumbers: true,
+    weekNumberCalculation: 'ISO',
 
-            // 是否顯示 all-day 選項
-            allDaySlot: false,
+    editable: false,
+    selectable: false,
+    dayMaxEvents: true, // allow "more" link when too many events
 
+	
+    // 可控制日曆上只呈現幾點到幾點
+    slotMinTime: '09:00:00',
+    slotMaxTime: '24:00:00',
+
+    // 是否顯示 all-day 選項
+    allDaySlot: false,
+    // 顯示範圍
+	validRange: {
+			start: today,
+			   },
             // 控制每週的第一天是.. 0=Sunday 1=Monday ... 6=Saturday
-            firstDay: 0,
+            firstDay: Week,
 			//滑鼠移入變色
 // 			var bgColor = null;
 			eventMouseEnter: function(info) {
@@ -61,7 +76,7 @@
 			},
             // 點擊某事件後...
             eventClick: function(info) {
-            	if(info.event.title=="可預約"){
+            	if(info.event.title=="可預約" ){
                 	if(confirm("確定刪除此時段?"+info.event.start)){
                 		
                  	$.ajax({

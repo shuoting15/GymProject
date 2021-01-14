@@ -87,10 +87,15 @@
 							</a>
 						</div>
 						<div align="center" style="margin-top: 10px">
-						<input class="btn btn-primary" style="width: 200px;" type="button"
-							value="教練時間管理"
-							onclick="window.location.href='<c:url value='coachTimeMaintain?id=${coach.coachId}'/>';" />
-					</div>
+							<input class="btn btn-primary" style="width: 200px;"
+								type="button" value="教練時間管理"
+								onclick="window.location.href='<c:url value='coachTimeMaintain?id=${coach.coachId}'/>';" />
+						</div>
+						<div align="center" style="margin-top: 10px">
+							<input class="btn btn-primary" style="width: 200px;"
+								type="button" value="顧客預約明細"
+								onclick="window.location.href='<c:url value='TraineeDetailForCoach?id=${coach.coachId}'/>';" />
+						</div>
 					</div>
 
 					<!-- 						</div> -->

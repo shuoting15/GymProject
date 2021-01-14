@@ -28,7 +28,7 @@ public class CoachOrderDaoImpl implements CoachOrderDao {
 //				+ "CONVERT(varchar(100), orderStartTime, 20) as start,"
 //				+ "CONVERT(varchar(100), orderEndTime, 20) as end FROM CoachOrderBean ob WHERE coachId = 8 ";
 		String hql = "SELECT ob.orderTitle as title," + " ob.orderStartTime as start," + " ob.orderEndTime as end,"
-				+ " coachBean.coachId as groupId," + " ob.orderId as id,ob.orderColor as color FROM CoachOrderBean ob WHERE coachBean.coachId = :coachId";
+				+ " coachBean.coachId as groupId," + " ob.orderId as id,ob.orderColor as color FROM CoachOrderBean ob WHERE coachBean.coachId = :coachId and ob.orderStartTime > getdate()";
 		Session session = sessionFactory.getCurrentSession();
 		list = session.createQuery(hql).setParameter("coachId", coachId)
 				.setResultTransformer(Transformers.aliasToBean(ClanderBean.class)).list();

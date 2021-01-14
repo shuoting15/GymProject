@@ -9,6 +9,16 @@
 <link href='css/mainclander.css' rel='stylesheet' />
 <script src='js/mainclander.js'></script>
 <script>
+		//建立今天日期
+		var fullDate = new Date();
+		var yyyy = fullDate.getFullYear();
+		var MM = (fullDate.getMonth() + 1) >= 10 ? (fullDate.getMonth() + 1) : ("0" + (fullDate.getMonth() + 1));
+		var dd = fullDate.getDate() < 10 ? ("0"+fullDate.getDate()) : fullDate.getDate();
+		var today = yyyy + "-" + MM + "-" + dd;
+
+		//抓取星期
+		var Week  = new Date().getDay()
+		
     document.addEventListener('DOMContentLoaded', function() {
         var calendarEl = document.getElementById('calendar');
 
@@ -20,7 +30,8 @@
                 // 預設： 'dayGridMonth,timeGridWeek,timeGridDay,listWeek'
                 right: 'timeGridWeek',
             },
-            initialDate: '2021-01-10',
+            //預設日期
+            initialDate: today,
             // 預設一開始渲染的View
             initialView: 'timeGridWeek',
             // 語言中文化
@@ -43,9 +54,14 @@
 
             // 是否顯示 all-day 選項
             allDaySlot: false,
+            // 顯示範圍
+			validRange: {
+   				start: today,
+ 				   },
+
 
             // 控制每週的第一天是.. 0=Sunday 1=Monday ... 6=Saturday
-            firstDay: 0,
+            firstDay: Week,
 			//移入變色
 // 			var bgColor = null;
 			eventMouseEnter: function(info) {
@@ -58,6 +74,7 @@
             // 點擊某事件後...
             eventClick: function(info) {
             	if(info.event.title=="可預約"){
+            		console.log(info.event.start);
             	if(confirm("確定預約此時段?"+info.event.start)){
             		
              	$.ajax({
