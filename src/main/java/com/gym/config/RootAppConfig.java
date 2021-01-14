@@ -38,7 +38,7 @@ public class RootAppConfig {
 		LocalSessionFactoryBean factory = new LocalSessionFactoryBean();
 		factory.setDataSource(dataSource());
 		factory.setPackagesToScan(new String [] {
-				"com.gym.coach.model"
+				"com.gym"
 		});
 		factory.setHibernateProperties(additionalProperties());
 		return factory;

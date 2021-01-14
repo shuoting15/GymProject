@@ -26,12 +26,13 @@
 				<div class="header__top__right__auth col-lg-6"></div>
 				<div class="header__cart col-lg-6">
 					<ul>
-						<li><a href="#">
-								<h5>
-									<i class="fa fa-user"></i>
-								</h5>
-						</a></li>
-						<li><a href="#"><i class="fa fa-heart"></i> <span>1</span></a></li>
+						<li>
+						<a href="register" class="headerButton" id="topregister">加入會員</a> 
+						<a href="login" class="headerButton" id="toplogin">會員登入</a> 
+						<a href="logout" class="headerButton logout" id="toplogout">會員登出</a>
+						</li>
+							 <li><a href="memberarea"><h5><i class="fa fa-user"></i></h5></a></li>
+						     <li><a href="#"><i class="fa fa-heart"></i> <span>1</span></a></li>
 						<c:choose>
 							<c:when test="${ShoppingCart.itemNumber > 0}">
 								<c:set var="cartContent" value="${ShoppingCart.itemNumber}" />
@@ -65,7 +66,7 @@
 			<div class="col-lg-10">
 				<nav class="header__menu">
 					<ul>
-						<li><a href="./index.html">會員</a></li>
+						<li><a href="memberarea">會員</a></li>
 						<li><a href="<c:url value='/productDisplay/productAll' />">商城</a>
 							<ul class="header__menu__dropdown">
 								<li><a href="<c:url value='/productDisplay/productAll' />">所有商品</a></li>
@@ -75,7 +76,7 @@
 								<li><a href="./blog-details.html">Blog Details</a></li>
 							</ul></li>
 						<li><a href="<c:url value="/coachs" />">個人教練預約</a>
-						<ul class="header__menu__dropdown">
+							<ul class="header__menu__dropdown">
 								<li><a href="/myOrderTime">預約查詢</a></li>
 							</ul></li>
 						<li><a href="./blog.html">團體課程</a>
@@ -130,3 +131,22 @@
 <!-- 		</div> -->
 <!-- 	</div> -->
 <!-- </div> -->
+ <script src="https://code.jquery.com/jquery-3.5.1.js" 
+   integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" 
+   crossorigin="anonymous">
+   </script>
+   <script type="text/javascript">
+		//======jQuery開始===========================
+		$(function() {
+			checkLogin = "${LoginOK}";
+			if (checkLogin == "ImLogin") {
+				$("#topregister").remove();
+				$("#toplogin").remove();
+				$("#headerBoxTop").prepend("<span style='color:#336666;font-weight:bold'>Welcome♥ ${username}</span>")
+				$("#toplogout").css("display", "initial")
+			} else {	
+			};
+		   //下一個jQuery事件可以加在這後面=======================================================
+
+		})
+	</script>
