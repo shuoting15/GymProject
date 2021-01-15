@@ -16,6 +16,7 @@
 <link rel="stylesheet" href="css/owl.carousel.min.css" type="text/css">
 <link rel="stylesheet" href="css/slicknav.min.css" type="text/css">
 <link rel="stylesheet" href="css/style.css" type="text/css">
+<link rel="stylesheet" href="css/stylemember.css" type="text/css">
 
 
 <!-- Header Section Begin -->
@@ -24,7 +25,7 @@
 		<div class="container">
 			<div class="row">
 				<div class="header__top__right__auth col-lg-6"></div>
-				<div class="header__cart col-lg-6">
+				<div class="header__cart col-lg-6" id="headerBoxTop">
 					<ul>
 						<li>
 						<a href="register" class="headerButton" id="topregister">加入會員</a> 
@@ -139,10 +140,11 @@
 		//======jQuery開始===========================
 		$(function() {
 			checkLogin = "${LoginOK}";
-			if (checkLogin == "ImLogin") {
+			console.log("${LoginOK}");
+			if (checkLogin != "") {
 				$("#topregister").remove();
 				$("#toplogin").remove();
-				$("#headerBoxTop").prepend("<span style='color:#336666;font-weight:bold'>Welcome♥ ${username}</span>")
+				$("#headerBoxTop").prepend("<span style='color:#336666;font-weight:bold'>Welcome♥ ${LoginOK.username}</span>")
 				$("#toplogout").css("display", "initial")
 			} else {	
 			};

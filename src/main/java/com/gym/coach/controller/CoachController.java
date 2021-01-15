@@ -51,8 +51,8 @@ public class CoachController {
 	// 教練展示
 	@GetMapping("/coachs")
 	public String list(Model model) {
-		String LoginOK =  (String) model.getAttribute("LoginOK");
-		if (LoginOK == null ) {
+		MemberBean memberBean =   (MemberBean) model.getAttribute("LoginOK");
+		if (memberBean == null ) {
 			return "member/login";
 		}
 		model.addAttribute("coachs", service.getAllCoachs());
@@ -62,18 +62,26 @@ public class CoachController {
 	// 後臺教練展示
 	@GetMapping("/coachMaintain")
 	public String Maintainlist(Model model) {
-		String member_type =  (String) model.getAttribute("member_type");
-		System.out.println("member_typemember_type : "+member_type);
-		if (member_type != "1" ) {
+		MemberBean memberBean =   (MemberBean) model.getAttribute("LoginOK");
+		if (memberBean == null ) {
 			return "member/login";
+		}else {
+			if(memberBean.getMember_type() != 1 ) {
+				return "member/login";
+			}
+			
 		}
+		
 		model.addAttribute("coachs", service.getAllCoachs());
 		return "coach/coachsMaintain";
 	}
 
 	@GetMapping(value = "/coach")
 	public String getCoachById(@RequestParam("id") int id, Model model) {
-		
+		MemberBean memberBean =   (MemberBean) model.getAttribute("LoginOK");
+		if (memberBean == null ) {
+			return "member/login";
+		}
 		model.addAttribute("coach", service.getCoachById(id));
 		return "coach/coach";
 	}

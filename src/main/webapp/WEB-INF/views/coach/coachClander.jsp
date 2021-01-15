@@ -82,9 +82,7 @@
             		type : "POST",
             		dataType : "JSON",
             		data : {"orderId":info.event.id, "coachId":${coach.coachId} }, 
-            		success : function (data) {
-            		console.log(data)
-            		}
+            		success : function (data) {},
             		})
             		
             		

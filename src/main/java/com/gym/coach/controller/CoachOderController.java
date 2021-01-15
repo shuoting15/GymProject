@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -26,8 +27,10 @@ import com.gym.coach.model.CoachBean;
 import com.gym.coach.model.CoachOrderBean;
 import com.gym.coach.service.CoachOrderService;
 import com.gym.coach.service.CoachService;
+import com.gym.member.model.MemberBean;
 
 @Controller
+@SessionAttributes({"LoginOK"}) 
 public class CoachOderController  {
 	@Autowired
 	CoachService coachService;
@@ -85,10 +88,15 @@ public class CoachOderController  {
 	}
 	//預約時間
 	@PostMapping(value = "/addOrderTime")
-	public String OrderCoachTime(@RequestParam int orderId,@RequestParam int coachId ) {
+	public String OrderCoachTime(@RequestParam int orderId,@RequestParam int coachId,Model model ) {
+		MemberBean memberBean =   (MemberBean) model.getAttribute("LoginOK");
+		if (memberBean == null ) {
+			return "member/login";
+		}
 		CoachOrderBean coachOrderBean = coachOrderService.getCoachTimeById(orderId);
 		coachOrderBean.setOrderTitle("已被預約");
-		coachOrderBean.setMemberId("wei@gmail.com");
+//		coachOrderBean.setMemberId("wei@gmail.com");
+		coachOrderBean.setMemberBean(memberBean);
 		coachOrderBean.setOrderStatus("x");
 		coachOrderBean.setOrderColor("");
 		coachOrderService.orderCoachTime(coachOrderBean);

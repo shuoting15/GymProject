@@ -13,6 +13,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
+import com.gym.member.model.MemberBean;
+
 @Entity
 @Table(name="CoachOrder")
 public class CoachOrderBean  implements Serializable {
@@ -26,6 +28,7 @@ public class CoachOrderBean  implements Serializable {
 	private Date   orderDate;
 	private Date   orderStartTime;
 	private Date   orderEndTime;
+	@Transient
 	private String memberId;
 	@Transient
 	private int coachId;
@@ -34,9 +37,9 @@ public class CoachOrderBean  implements Serializable {
 	@JoinColumn(name="coachId")  
 	private CoachBean coachBean;
 	
-//	@ManyToOne(cascade=CascadeType.ALL)    // javax.persistence.CascadeType;
-//	@JoinColumn(name="memberId")  
-//	private  coachBean;
+	@ManyToOne(cascade=CascadeType.ALL)    // javax.persistence.CascadeType;
+	@JoinColumn(name="memberId")  
+	private  MemberBean memberBean;
 
 	public int getOrderId() {
 		return orderId;
@@ -116,6 +119,14 @@ public class CoachOrderBean  implements Serializable {
 
 	public void setOrderColor(String orderColor) {
 		this.orderColor = orderColor;
+	}
+
+	public MemberBean getMemberBean() {
+		return memberBean;
+	}
+
+	public void setMemberBean(MemberBean memberBean) {
+		this.memberBean = memberBean;
 	}
 	
 	
