@@ -77,8 +77,8 @@
 								<li><a href="./blog-details.html">Blog Details</a></li>
 							</ul></li>
 						<li><a href="<c:url value="/coachs" />">個人教練預約</a>
-							<ul class="header__menu__dropdown">
-								<li><a href="/myOrderTime">預約查詢</a></li>
+							<ul class="header__menu__dropdown"> 
+								<li><a href="<c:url value="/showBookingList" />">預約查詢</a></li>
 							</ul></li>
 						<li><a href="./blog.html">團體課程</a>
 							<ul class="header__menu__dropdown">

@@ -81,4 +81,13 @@ public class CoachOrderDaoImpl implements CoachOrderDao {
 		
 	}
 
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<CoachOrderBean> findBookingByMemberId(String memberId) {
+		Session session = sessionFactory.getCurrentSession();
+		System.out.println(memberId);
+		String hql = "FROM CoachOrderBean ob WHERE memberBean.member_id = :memberId";
+		return session.createQuery(hql).setParameter("memberId", memberId).getResultList();
+	}
+
 }

@@ -65,6 +65,19 @@ public class LoginController{
 			request.getRequestDispatcher("/WEB-INF/views/member/login.jsp").forward(request, response);
 		} else {
 			session.setAttribute("LoginOK", memberbean);
+			session.setAttribute("member_id", memberbean.getMember_id());
+			session.setAttribute("password", memberbean.getPassword());
+			session.setAttribute("username", memberbean.getUsername());
+			session.setAttribute("member_type", memberbean.getMember_type());
+			session.setAttribute("mobile",memberbean.getMobile());
+			session.setAttribute("gender",memberbean.getGender());
+			session.setAttribute("birth",memberbean.getBirth());
+			session.setAttribute("address",memberbean.getAddress());
+			session.setAttribute("point",memberbean.getPoint());
+			session.setAttribute("facebook_account",memberbean.getFacebook_account());
+			session.setAttribute("google_account",memberbean.getGoogle_account());			
+			session.setAttribute("detail",memberbean.getDetail());
+			session.setAttribute("memberphoto", memberbean.getMemberphoto());
 			
 			//TODO 路徑要確認
 			response.sendRedirect(path);

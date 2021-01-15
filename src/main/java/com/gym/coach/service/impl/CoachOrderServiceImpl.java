@@ -47,5 +47,11 @@ public class CoachOrderServiceImpl implements CoachOrderService {
 		dao.deleteCoachTime(coachId);
 		
 	}
+	@Transactional
+	@Override
+	public List<CoachOrderBean> findBookingByMemberId(String memberId) {
+		
+		return dao.findBookingByMemberId(memberId);
+	}
 
 }

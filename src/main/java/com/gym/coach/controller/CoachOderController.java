@@ -109,4 +109,16 @@ public class CoachOderController  {
 		findTimeByCoachId(coachId);
 		return "coach/coachTimeMaintain";
 	}
+	//顧客預定查詢
+	@RequestMapping("/showBookingList")
+	public String findBookingByMemberId(Model model) {
+		MemberBean memberBean =   (MemberBean) model.getAttribute("LoginOK");
+		if (memberBean == null ) {
+			return "member/login";
+		}
+		String memberId = memberBean.getMember_id();
+		model.addAttribute("Booking",coachOrderService.findBookingByMemberId(memberId));
+		
+		return "coach/showBookingList";
+	}
 }
