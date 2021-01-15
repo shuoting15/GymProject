@@ -29,6 +29,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -36,8 +37,10 @@ import com.gym.coach.model.CoachBean;
 import com.gym.coach.service.CoachService;
 import com.gym.coach.validator.CoachValidator;
 import com.gym.init.util.SystemUtils2018;
+import com.gym.member.model.MemberBean;
 
 @Controller
+@SessionAttributes({"LoginOK"}) 
 public class CoachController {
 	@Autowired
 	CoachService service;
@@ -48,6 +51,10 @@ public class CoachController {
 	// 教練展示
 	@GetMapping("/coachs")
 	public String list(Model model) {
+		String LoginOK =  (String) model.getAttribute("LoginOK");
+		if (LoginOK == null ) {
+			return "member/login";
+		}
 		model.addAttribute("coachs", service.getAllCoachs());
 		return "coach/coachs";
 	}
@@ -55,12 +62,18 @@ public class CoachController {
 	// 後臺教練展示
 	@GetMapping("/coachMaintain")
 	public String Maintainlist(Model model) {
+		String member_type =  (String) model.getAttribute("member_type");
+		System.out.println("member_typemember_type : "+member_type);
+		if (member_type != "1" ) {
+			return "member/login";
+		}
 		model.addAttribute("coachs", service.getAllCoachs());
 		return "coach/coachsMaintain";
 	}
 
 	@GetMapping(value = "/coach")
 	public String getCoachById(@RequestParam("id") int id, Model model) {
+		
 		model.addAttribute("coach", service.getCoachById(id));
 		return "coach/coach";
 	}
