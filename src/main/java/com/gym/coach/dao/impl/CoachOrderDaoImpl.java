@@ -85,9 +85,29 @@ public class CoachOrderDaoImpl implements CoachOrderDao {
 	@Override
 	public List<CoachOrderBean> findBookingByMemberId(String memberId) {
 		Session session = sessionFactory.getCurrentSession();
-		System.out.println(memberId);
-		String hql = "FROM CoachOrderBean ob WHERE memberBean.member_id = :memberId";
+		String hql = "FROM CoachOrderBean ob WHERE memberBean.member_id = :memberId order by ob.orderEndTime DESC";
 		return session.createQuery(hql).setParameter("memberId", memberId).getResultList();
+	}
+
+	@Override
+	public void cancelBooking(CoachOrderBean coachOrderBean) {
+		Session session = sessionFactory.getCurrentSession();
+		session.saveOrUpdate(coachOrderBean);
+		
+	}
+
+	@Override
+	public void finishBooking(CoachOrderBean coachOrderBean) {
+		Session session = sessionFactory.getCurrentSession();
+		session.saveOrUpdate(coachOrderBean);
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<CoachOrderBean> findBookingByCoachId(int coachId) {
+		Session session = sessionFactory.getCurrentSession();
+		String hql = "FROM CoachOrderBean ob WHERE coachBean.coachId = :coachId and ob.orderStatus != 'o' order by ob.orderEndTime DESC";
+		return session.createQuery(hql).setParameter("coachId", coachId).getResultList();
 	}
 
 }

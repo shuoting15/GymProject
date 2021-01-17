@@ -79,24 +79,6 @@ function finishBooking(orderId,startTime,coachId,memberId){
 				  }
 				  })()
 				  
-			  
-			  
-// 			  $.ajax({
-//           		url : "<c:url value='/finishBooking'/>",
-//           		type : "POST",
-//           		dataType : "JSON",
-//           		data : {"orderId":orderId, "startTime":startTime }, 
-//           		success : function (data) {},
-//           		})
-			  
-			  
-			  
-			  
-//           		Swal.fire('Good job!','完成','success');
-           	
-//            		setTimeout(function(){
-//         			window.location.reload();//刷新当前页面.
-//         				},10000)
 		  }
 		})
 
@@ -117,7 +99,7 @@ function confirmDelete(orderId,startTime) {
 	var startTime = new Date(startTime);
 	var LimitTime = new Date(startTime);
 	LimitTime.setDate(LimitTime.getDate() - 1);
-	if(DayTime < LimitTime){
+	if(true){
 		Swal.fire({
 			  title: '確定取消此時段預約?'+'<br>'+startTime.toLocaleString(),
 			  text: "",
@@ -198,15 +180,16 @@ function confirmDelete(orderId,startTime) {
 			<div class="schedule-wrapper bg_img"
 				data-background="./assets/images/schedule/schedule--bg.png">
 				<div class="schedule-header text-center">
-					<h3 class="title text-md-left">個人教練預約時間</h3>
-					<p class="text-md-right">24小時內無法取消</p>
+					<h3 class="title text-md-left">顧客預約時間</h3>
+					<p class="text-md-right"></p>
 				</div>
 				<table class="schedule-table" role="table">
 					<thead role="rowgroup">
 						<tr role="row">
 							<th role="columnheader">會員姓名</th>
+							<th role="columnheader">會員資訊</th>
 							<th role="columnheader">上課日期</th>
-							<th role="columnheader">上課時間</th>
+							<th role="columnheader">上課時段</th>
 							<th role="columnheader">教練資訊</th>
 							<th role="columnheader">狀態</th>
 							<th role="columnheader">完成/取消課程</th>
@@ -215,8 +198,23 @@ function confirmDelete(orderId,startTime) {
 					<tbody role="rowgroup">
 						<c:forEach var="Booking" items="${Booking}">
 							<tr role="row">
-								<td role="cell" data-input="會員姓名">${Booking.memberBean.username}</td>
+								<td role="cell" data-input="會員姓名">${Booking.memberBean.username}
+								 									<c:choose>
+										<c:when test="${Booking.memberBean.gender == '1'}">
+										<br><span>性別:男</span> 
 
+										</c:when>
+										<c:when test="${Booking.memberBean.gender == '2'}">
+										<br><span>性別:女</span>
+										</c:when>
+									</c:choose>
+								
+								
+								</td>
+								<td role="cell" data-input="會員資訊">
+								身高:175<br>
+								體重:68<br>
+								${Booking.memberBean.mobile}</td>
 								<td role="cell" data-input="上課日期"><fmt:formatDate
 										value="${Booking.orderDate}" pattern="yyyy/MM/dd" /></td>
 
@@ -229,8 +227,8 @@ function confirmDelete(orderId,startTime) {
 									<div class="instructor">
 										<div class="thumb">
 											<a
-												href="<c:url value='coach?id=${Booking.coachBean.coachId}'/>"><img
-												src="<c:url value='/getPicture/${Booking.coachBean.coachId}'/>"
+												href="<c:url value='coach?id=${Booking.coachBean.coachId}'/>">
+												<img src="<c:url value='/getPicture/${Booking.coachBean.coachId}'/>"
 												alt="schedule"></a>
 										</div>
 										<div class="content">
@@ -257,7 +255,7 @@ function confirmDelete(orderId,startTime) {
 
  									<c:choose>
 										<c:when test="${Booking.orderStatus =='x'}">
-										<button type="button" class="btn btn-success" onclick="finishBooking(${Booking.orderId},'${startTime}','${Booking.coachBean.coachId}','${LoginOK.member_id}')">完成課程</button> 
+<%-- 										<button type="button" class="btn btn-success" onclick="finishBooking(${Booking.orderId},'${startTime}','${Booking.coachBean.coachId}','${LoginOK.member_id}')">完成課程</button>  --%>
 
 										</c:when>
 										<c:when test="${Booking.orderStatus eq 'f'}">

@@ -95,7 +95,7 @@
 							</ul>
 						</div>
 						<div class="widget widget-popular">
-							<h5 class="widget-title">學員評分</h5>
+							<h5 class="widget-title">教練評分</h5>
 							<div>${coach.coachRating}/5</div>
 							<div class="ratings">
 								<div class="empty_star">★★★★★</div>

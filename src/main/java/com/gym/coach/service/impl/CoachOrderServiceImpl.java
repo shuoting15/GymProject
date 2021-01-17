@@ -53,5 +53,23 @@ public class CoachOrderServiceImpl implements CoachOrderService {
 		
 		return dao.findBookingByMemberId(memberId);
 	}
+	@Transactional
+	@Override
+	public void cancelBooking(CoachOrderBean coachOrderBean) {
+		dao.cancelBooking(coachOrderBean);
+		
+	}
+	@Transactional
+	@Override
+	public void finishBooking(CoachOrderBean coachOrderBean) {
+		dao.finishBooking(coachOrderBean);
+		
+	}
+	@Transactional
+	@Override
+	public List<CoachOrderBean> findBookingByCoachId(int coachId) {
+		// TODO Auto-generated method stub
+		return dao.findBookingByCoachId(coachId);
+	}
 
 }

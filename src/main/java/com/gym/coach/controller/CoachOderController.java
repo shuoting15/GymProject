@@ -25,7 +25,9 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.gym.coach.model.CoachBean;
 import com.gym.coach.model.CoachOrderBean;
+import com.gym.coach.model.CoachRatingBean;
 import com.gym.coach.service.CoachOrderService;
+import com.gym.coach.service.CoachRatingService;
 import com.gym.coach.service.CoachService;
 import com.gym.member.model.MemberBean;
 
@@ -36,6 +38,8 @@ public class CoachOderController  {
 	CoachService coachService;
 	@Autowired
 	CoachOrderService coachOrderService;
+	@Autowired
+	CoachRatingService coachRatingService;
 	
 	//日歷JSON
 	@GetMapping(value="findall/{coachId}",produces="text/html;charset=UTF-8")
@@ -121,4 +125,54 @@ public class CoachOderController  {
 		
 		return "coach/showBookingList";
 	}
+	//取消預約
+	@PostMapping(value = "/cancelBooking")
+	public String cancelBooking(@RequestParam int orderId,Model model ) {
+		MemberBean memberBean =   (MemberBean) model.getAttribute("LoginOK");
+		if (memberBean == null ) {
+			return "member/login";
+		}
+		CoachOrderBean coachOrderBean = coachOrderService.getCoachTimeById(orderId);
+		coachOrderBean.setOrderTitle("可預約");
+		coachOrderBean.setMemberBean(null);
+		coachOrderBean.setOrderStatus("o");
+		coachOrderBean.setOrderColor("blue");
+		coachOrderService.cancelBooking(coachOrderBean);
+		return "redirect:/showBookingList"  ;
+	}
+	@PostMapping(value = "/finishBooking")
+	public String finishBooking(Model model,
+			@RequestParam("orderId") int orderId,
+			@RequestParam("rating") int rating,
+			@RequestParam("coachId") int coachId,
+			@RequestParam("memberId") String memberId
+			) {
+		CoachOrderBean coachOrderBean = coachOrderService.getCoachTimeById(orderId);
+		coachOrderBean.setOrderStatus("f");
+		coachOrderService.finishBooking(coachOrderBean);
+		//加入評分
+		CoachRatingBean coachRatingBean = new CoachRatingBean();
+		coachRatingBean.setRating(rating);
+		coachRatingBean.setCoachId(coachId);
+		coachRatingBean.setMemberId(memberId);
+		coachRatingService.addRating(coachRatingBean);
+		double avgRating = coachRatingService.countAvgRating(coachId);
+		CoachBean coachBean = coachService.getCoachById(coachId);
+		coachBean.setCoachRating(avgRating);
+		coachService.updateCoachRating(coachBean);
+		return "redirect:/showBookingList"  ;
+	}
+	@RequestMapping("/showWorkingList")
+	public String findBookingBycoachId(@RequestParam int coachId,Model model) {
+		MemberBean memberBean =   (MemberBean) model.getAttribute("LoginOK");
+		if (memberBean == null ) {
+			return "member/login";
+		}
+		model.addAttribute("Booking",coachOrderService.findBookingByCoachId(coachId));
+		
+		return "coach/showWorkingList";
+	}
+	
+	
+	
 }

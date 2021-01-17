@@ -84,4 +84,11 @@ public class CoachDaoImpl implements CoachDao {
 		Session session = sessionFactory.getCurrentSession();
 		return session.createQuery(hql).getResultList();
 	}
+
+
+	@Override
+	public void updateCoachRating(CoachBean coachBean) {
+		Session session = sessionFactory.getCurrentSession();
+		session.saveOrUpdate(coachBean);
+	}
 }

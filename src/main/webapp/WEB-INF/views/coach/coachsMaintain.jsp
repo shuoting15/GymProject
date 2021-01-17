@@ -94,7 +94,7 @@
 						<div align="center" style="margin-top: 10px">
 							<input class="btn btn-primary" style="width: 200px;"
 								type="button" value="顧客預約明細"
-								onclick="window.location.href='<c:url value='TraineeDetailForCoach?id=${coach.coachId}'/>';" />
+								onclick="window.location.href='<c:url value='showWorkingList?coachId=${coach.coachId}'/>';" />
 						</div>
 					</div>
 

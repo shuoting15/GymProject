@@ -18,4 +18,10 @@ public interface CoachOrderService {
 	void deleteCoachTime(int coachId);
 	
 	List<CoachOrderBean> findBookingByMemberId(String memberId);
+	
+	void cancelBooking(CoachOrderBean coachOrderBean);
+	
+	public void finishBooking(CoachOrderBean coachOrderBean);
+	
+	List<CoachOrderBean> findBookingByCoachId(int coachId);
 }

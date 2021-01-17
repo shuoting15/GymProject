@@ -13,6 +13,7 @@
 <link href='css/mainclander.css' rel='stylesheet' />
 <link rel="stylesheet" href="css/demo.css">
 <script src='js/mainclander.js'></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 <script>
 //建立今天日期
 var fullDate = new Date();
@@ -76,24 +77,37 @@ var calendar = new FullCalendar.Calendar(calendarEl, {
 			},
             // 點擊某事件後...
             eventClick: function(info) {
-            	if(info.event.title=="可預約" ){
-                	if(confirm("確定刪除此時段?"+info.event.start)){
-                		
-                 	$.ajax({
+            	if(info.event.title=="可預約"){
+            		Swal.fire({
+            			  title: '確定刪除此時段?'+'<br>'+info.event.start.toLocaleString(),
+            			  text: "",
+            			  icon: 'warning',
+            			  showCancelButton: true,
+            			  confirmButtonColor: '#3085d6',
+            			  cancelButtonColor: '#d33',
+            			  confirmButtonText: '確定刪除',
+            			  cancelButtonText:'取消刪除'
+            			}).then((result) => {
+            			  if (result.isConfirmed) {
+            	             	$.ajax({
                 		url : "<c:url value='/coachDelete'/>",
                 		type : "POST",
                 		dataType : "JSON",
                 		data : {"orderId":info.event.id,"coachId":${coach.coachId}},
                 		success : function (data) {
-                		console.log(data)
                 		}
-                		})              		               		
-                		alert("成功刪除"); 
-                 	calendar.refetchEvents();
-                	}else{}
-                		      }
-                	else{alert("此時段已經被預約無法刪除 "); }
-                	
+                		})              		               		       				           				              				  
+            				  
+            	            		Swal.fire('Delete Success','刪除成功','success');
+            	             		calendar.refetchEvents();
+            			    
+            			  }
+            			})
+            	
+            	}
+            	else{Swal.fire('Opps!','此時段已被預約無法刪除','error'); }
+            	
+   
             },
 
             // 日曆上的事件
