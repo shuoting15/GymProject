@@ -129,6 +129,14 @@ function updateCoach() {
 						type='text' class='form:input-large' />
 				</div>
 			</div>
+						<div class="form-row">
+				<div class="form-group col-md-6" align="right">
+					<label for="coachPrice"> 教練課價格(小時)
+					</label>
+					<form:input id="coachPrice" path="coachPrice"
+						type='text' class='form:input-large' />
+				</div>
+			</div>
 			<div class="form-group" align="center">
 				<label for="exampleFormControlTextarea1"><spring:message
 						code='spring.addCoach.form.coachIntroduction.label' /></label>

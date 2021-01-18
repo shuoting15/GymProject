@@ -144,7 +144,7 @@
 			if (checkLogin != "") {
 				$("#topregister").remove();
 				$("#toplogin").remove();
-				$("#headerBoxTop").prepend("<span style='color:#336666;font-weight:bold'>Welcome♥ ${LoginOK.username}</span>")
+				$("#headerBoxTop").prepend("<span style='color:#336666;font-weight:bold'>Welcome♥ ${LoginOK.username} 點數:${LoginOK.point}</span>")
 				$("#toplogout").css("display", "initial")
 			} else {	
 			};

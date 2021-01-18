@@ -76,7 +76,7 @@
             eventClick: function(info) {
             	if(info.event.title=="可預約"){
             		Swal.fire({
-            			  title: '確定預約此時段?'+'<br>'+info.event.start.toLocaleString(),
+            			  title: '確定預約此時段?<br>價格'+${coach.coachPrice}+' 點<br>'+info.event.start.toLocaleString(),
             			  text: "",
             			  icon: 'question',
             			  showCancelButton: true,

@@ -30,6 +30,7 @@ import com.gym.coach.service.CoachOrderService;
 import com.gym.coach.service.CoachRatingService;
 import com.gym.coach.service.CoachService;
 import com.gym.member.model.MemberBean;
+import com.gym.member.service.MemberService;
 
 @Controller
 @SessionAttributes({"LoginOK"}) 
@@ -40,7 +41,8 @@ public class CoachOderController  {
 	CoachOrderService coachOrderService;
 	@Autowired
 	CoachRatingService coachRatingService;
-	
+	@Autowired
+	MemberService memberService;
 	//日歷JSON
 	@GetMapping(value="findall/{coachId}",produces="text/html;charset=UTF-8")
 	@ResponseBody
@@ -99,7 +101,8 @@ public class CoachOderController  {
 		}
 		CoachOrderBean coachOrderBean = coachOrderService.getCoachTimeById(orderId);
 		coachOrderBean.setOrderTitle("已被預約");
-//		coachOrderBean.setMemberId("wei@gmail.com");
+		CoachBean coachBean = coachService.getCoachById(coachId);
+		memberBean.setPoint(memberBean.getPoint()-coachBean.getCoachPrice());
 		coachOrderBean.setMemberBean(memberBean);
 		coachOrderBean.setOrderStatus("x");
 		coachOrderBean.setOrderColor("");
@@ -133,6 +136,9 @@ public class CoachOderController  {
 			return "member/login";
 		}
 		CoachOrderBean coachOrderBean = coachOrderService.getCoachTimeById(orderId);
+		CoachBean coachBean = coachService.getCoachById(coachOrderBean.getCoachBean().getCoachId());
+		memberBean.setPoint(memberBean.getPoint()+coachBean.getCoachPrice());
+		memberService.updatePoint(memberBean);
 		coachOrderBean.setOrderTitle("可預約");
 		coachOrderBean.setMemberBean(null);
 		coachOrderBean.setOrderStatus("o");

@@ -12,4 +12,5 @@ public interface CoachDao {
 	int deleteCoach(int coachId);
 	List<String> getAllExpertise();
 	void updateCoachRating(CoachBean coachBean);
+	List<CoachBean> getCoachsByExpertise(String expertise);
 }

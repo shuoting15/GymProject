@@ -108,6 +108,7 @@
 			</div>
 		</div>
 	</div>
+	<h2 align="center" >教練課價格(小時):${coach.coachPrice}點</h2>
 	<div align="center" style="width:1200px; margin:0 auto ">
 	<jsp:include page="coachClander.jsp" />
 	</div>

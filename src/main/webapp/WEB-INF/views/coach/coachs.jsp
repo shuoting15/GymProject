@@ -31,6 +31,19 @@
 <title>預約課程</title>
 </head>
 <body>
+<script type="text/javascript">
+function getACoachsByExpertise(Expertise){
+// alert(Expertise);
+$.ajax({
+		url : "<c:url value='/getACoachsByExpertise'/>",
+		type : "POST",
+		dataType : "JSON",
+		data : {"coachExpertise":Expertise}, 
+		success : function (data) {},
+			          		})
+}
+</script>
+
 	<!-- 引入共同的頁首 -->
 	<div>
 		<jsp:include page="/fragment/top.jsp" />
@@ -58,13 +71,34 @@
 			</div>
 		</div>
 	</div>
+	<!-- SIDE BAR -->
+
 	<!-- Blog Section Begin -->
 	<section class="expert-trainers padding-bottom padding-top">
+				<!-- 		<div class="col-lg-4" align="left"> -->
+			<aside class="sidebar" style="width: 300px;float:left;margin-left:400px"  >
+				<div class="widget widget-search">
+					<form class="widget-form">
+						<input type="text" placeholder="Search in here"> <label
+							for="w1"><i class="fas fa-search"></i></label> <input
+							type="submit" value="Search" id="w1">
+					</form>
+				</div>
+				<div class="widget widget-category">
+					<h5 class="widget-title">教練專業</h5>
+					<ul>
+					<c:forEach var='expertiseLists' items="${expertiseList}">
+					
+						<li><a href = "javascript:void(0);" onclick ="getACoachsByExpertise('${expertiseLists}')">${expertiseLists}</a></li>
+					</c:forEach>
+					</ul>
+				</div>
+			</aside>
 		<div class="container">
-			<div class="expert-item-area">
+
+			<div class="expert-item-area"  >
+			
 				<c:forEach var='coach' items='${coachs}'>
-					<!-- 					<div class="col-sm-6 col-md-3" style="width: 2000px; height: 2000px"> -->
-					<!-- 						<div class="thumbnail" style="width: 500px; height: 500px"> -->
 					<div class="expert-item">
 						<div class="expert-thumb">
 							<a href="<c:url value='coach?id=${coach.coachId}'/>"> <img
@@ -85,6 +119,7 @@
 					<!-- 						</div> -->
 					<!-- 					</div> -->
 				</c:forEach>
+			</div>
 			</div>
 	</section>
 	<!-- Blog Section End -->

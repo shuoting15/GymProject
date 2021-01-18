@@ -3,6 +3,9 @@ package com.gym.member.dao;
 import java.sql.Blob;
 import java.sql.Date;
 import java.util.List;
+
+import org.hibernate.sql.Update;
+
 import com.gym.member.model.MemberBean;
 
 public interface MemberDao{
@@ -23,5 +26,7 @@ public interface MemberDao{
 
 	// 查全部
 	public List<MemberBean> selectAll();
+	
+	public void updatePoint(MemberBean bean);
 
 }

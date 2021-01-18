@@ -125,4 +125,11 @@ public class MemberDaoImpl implements MemberDao {
 
 	}
 
+	@Override
+	public void updatePoint(MemberBean bean) {
+		Session session = sessionFactory.getCurrentSession();
+		session.saveOrUpdate(bean);
+		
+	}
+
 }

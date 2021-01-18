@@ -18,4 +18,6 @@ public interface CoachService {
 	List<String> getAllExpertise();
 	
 	void updateCoachRating(CoachBean coachBean);
+	
+	List<CoachBean> getCoachsByExpertise(String expertise);
 }

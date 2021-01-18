@@ -29,10 +29,13 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.gym.coach.model.CoachBean;
 import com.gym.coach.service.CoachService;
 import com.gym.coach.validator.CoachValidator;
@@ -243,5 +246,16 @@ public class CoachController {
 	@ModelAttribute("expertiseList")
 	public List<String> getExpertiseList() {
 		return service.getAllExpertise();
+	}
+	@GetMapping(value="/getACoachsByExpertise",produces="text/html;charset=UTF-8")
+	@ResponseBody
+	public String getACoachsByExpertise(@RequestParam String coachExpertise){
+		Gson gson = new GsonBuilder().disableHtmlEscaping().create();
+		List<CoachBean> list = service.getCoachsByExpertise(coachExpertise);
+		for (CoachBean i:list) {
+			System.out.println(i.getCoachName());
+		}
+		return gson.toJson(service.getCoachsByExpertise(coachExpertise));
+		
 	}
 }

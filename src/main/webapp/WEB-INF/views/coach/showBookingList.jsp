@@ -139,7 +139,7 @@ function confirmDelete(orderId,startTime) {
 							},
     					})              		               		       				           				              				  
 				  
-	            		Swal.fire('Delete Success','取消成功','success');
+	            		Swal.fire('取消成功','已返還點數','已返還點數');
 	            		setTimeout(function(){
 	            		window.location.reload();//刷新当前页面.
 	            		},1000)

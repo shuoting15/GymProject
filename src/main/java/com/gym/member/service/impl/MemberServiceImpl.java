@@ -171,4 +171,10 @@ public class MemberServiceImpl implements MemberService {
 		((ConfigurableApplicationContext) context).close();
 
 	}
+
+	@Override
+	public void updatePoint(MemberBean bean) {
+		memberDao.updatePoint(bean);
+		
+	}
 }

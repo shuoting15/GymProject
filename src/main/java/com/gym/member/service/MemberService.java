@@ -13,4 +13,5 @@ public interface MemberService {
 	// 修改會員資料(不含照片)
 	public MemberBean updateMemberInfo(String member_id, String password, String username, String mobile, int gender,
 			Date birth, String address, String facebook_account, String google_account, String detail);
+	public void updatePoint(MemberBean bean);
 }
