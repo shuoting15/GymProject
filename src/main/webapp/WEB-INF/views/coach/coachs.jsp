@@ -32,16 +32,52 @@
 </head>
 <body>
 <script type="text/javascript">
-function getACoachsByExpertise(Expertise){
-// alert(Expertise);
-$.ajax({
-		url : "<c:url value='/getACoachsByExpertise'/>",
-		type : "POST",
-		dataType : "JSON",
-		data : {"coachExpertise":Expertise}, 
-		success : function (data) {},
-			          		})
-}
+	function getACoachsByExpertise(Expertise){
+	// alert(Expertise);
+		$.ajax({
+			url : "<c:url value='/getACoachsByExpertise'/>",
+			type : "POST",
+			dataType : "JSON",
+			data : {"coachExpertise":Expertise}, 
+			success : function (data) {
+				// 將呈現教練區域的子元素先清空
+				$('#container-area').empty();
+				// 解析json並迴圈append
+				var json = $.parseJSON(JSON.stringify(msg));
+				for (let key in json) {
+					var href = json[key]['href'];
+					var src = json[key]['src'];
+					var name = json[key]['name'];
+					var expertise = json[key]['expertise'];
+					$('#container-area').append(bindCoachHtml(href,src,name,expertise));
+				}
+			},
+		})
+	}
+	// 組合教練HTML
+	// PS:因為es6和jsp使用的都是${}來解析，因此在表達式外邊套一層表達式，把裡邊的表達式用雙引號引起來，讓jsp看成字符串
+	// Ex:${"${test}"}，在es6就會顯示 test 變數得值
+	function bindCoachHtml(href,src,name,expertise) {
+		return `
+			<div class="expert-item">
+				<div class="expert-thumb">
+					<a href="${"${href}"}"> 
+						<img src="${"${src}"}" alt="trainers">
+					</a>
+				</div>
+				<div class="expert-content">
+					<div class="expert-info">
+						<h4 class="sub-title">
+							<a href="${"${href}"}">${"${name}"}</a>
+						</h4>
+						<span>${"${expertise}"}</span>
+					</div>
+					<a class="expert-link" href="#0"> <i class="fas fa-link"></i>
+					</a>
+				</div>
+			</div>
+		`;
+	}
 </script>
 
 	<!-- 引入共同的頁首 -->
@@ -95,8 +131,8 @@ $.ajax({
 				</div>
 			</aside>
 		<div class="container">
-
-			<div class="expert-item-area"  >
+			<!-- 設定此區域的id -->
+			<div id="container-area" class="expert-item-area"  >
 			
 				<c:forEach var='coach' items='${coachs}'>
 					<div class="expert-item">
