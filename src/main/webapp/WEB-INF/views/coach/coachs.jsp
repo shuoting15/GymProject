@@ -43,7 +43,7 @@
 				// 將呈現教練區域的子元素先清空
 				$('#container-area').empty();
 				// 解析json並迴圈append
-				var json = $.parseJSON(JSON.stringify(msg));
+				var json = $.parseJSON(JSON.stringify(data));
 				for (let key in json) {
 					var href = json[key]['href'];
 					var src = json[key]['src'];
