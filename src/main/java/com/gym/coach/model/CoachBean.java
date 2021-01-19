@@ -24,11 +24,16 @@ import com.google.gson.annotations.Expose;
 public class CoachBean implements Serializable {
 	private static final long serialVersionUID = 1L;
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)	
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Expose
 	private Integer 	coachId ;
+	@Expose
 	private String  	coachName;
+	@Expose
 	private String  	coachExpertise;
+	@Expose
 	private String  	coachGender;
+	@Expose
 	private Double  	coachRating;
 	@JsonIgnore
 	private Blob    	coachPhoto;
@@ -38,6 +43,7 @@ public class CoachBean implements Serializable {
 	private String  	coachExpertiseThree;
 	private Integer 	coachHeight ;
 	private Integer 	coachWeight ;
+	@Expose
 	private Integer		coachPrice;
 	
 	@JsonIgnore

@@ -13,4 +13,6 @@ public interface CoachDao {
 	List<String> getAllExpertise();
 	void updateCoachRating(CoachBean coachBean);
 	List<CoachBean> getCoachsByExpertise(String expertise);
+	
+	List<CoachBean> getCoachsByFuzzySearch(String any);
 }

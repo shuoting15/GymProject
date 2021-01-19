@@ -20,4 +20,6 @@ public interface CoachService {
 	void updateCoachRating(CoachBean coachBean);
 	
 	List<CoachBean> getCoachsByExpertise(String expertise);
+	
+	List<CoachBean> getCoachsByFuzzySearch(String any);
 }

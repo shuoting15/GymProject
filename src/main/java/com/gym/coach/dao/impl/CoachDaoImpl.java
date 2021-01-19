@@ -100,4 +100,12 @@ public class CoachDaoImpl implements CoachDao {
 		String hql = "FROM CoachBean cb WHERE cb.coachExpertise = :expertise ";
 		return session.createQuery(hql).setParameter("expertise", expertise).getResultList();
 	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<CoachBean> getCoachsByFuzzySearch(String any) {
+		Session session = sessionFactory.getCurrentSession();
+		String hql = "FROM CoachBean cb WHERE (cb.coachName like :any) or (cb.coachExpertise like :any) or (coachGender like :any)";
+		return session.createQuery(hql).setParameter("any","%" + any + "%").getResultList();
+	}
 }

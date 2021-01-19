@@ -80,23 +80,6 @@ function finishBooking(orderId,startTime,coachId,memberId){
 				  })()
 				  
 			  
-			  
-// 			  $.ajax({
-//           		url : "<c:url value='/finishBooking'/>",
-//           		type : "POST",
-//           		dataType : "JSON",
-//           		data : {"orderId":orderId, "startTime":startTime }, 
-//           		success : function (data) {},
-//           		})
-			  
-			  
-			  
-			  
-//           		Swal.fire('Good job!','完成','success');
-           	
-//            		setTimeout(function(){
-//         			window.location.reload();//刷新当前页面.
-//         				},10000)
 		  }
 		})
 

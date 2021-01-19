@@ -247,15 +247,18 @@ public class CoachController {
 	public List<String> getExpertiseList() {
 		return service.getAllExpertise();
 	}
-	@GetMapping(value="/getACoachsByExpertise",produces="text/html;charset=UTF-8")
+	@PostMapping(value="/getCoachsByExpertise",produces="text/html;charset=UTF-8")
 	@ResponseBody
-	public String getACoachsByExpertise(@RequestParam String coachExpertise){
-		Gson gson = new GsonBuilder().disableHtmlEscaping().create();
-		List<CoachBean> list = service.getCoachsByExpertise(coachExpertise);
-		for (CoachBean i:list) {
-			System.out.println(i.getCoachName());
-		}
+	public String getCoachsByExpertise(@RequestParam("coachExpertise") String coachExpertise){
+		Gson gson = new GsonBuilder().disableHtmlEscaping().excludeFieldsWithoutExposeAnnotation().create();
 		return gson.toJson(service.getCoachsByExpertise(coachExpertise));
+		
+	}
+	@PostMapping(value="/getCoachsByFuzzySearch",produces="text/html;charset=UTF-8")
+	@ResponseBody
+	public String getCoachsByFuzzySearch(@RequestParam("any") String any){
+		Gson gson = new GsonBuilder().disableHtmlEscaping().excludeFieldsWithoutExposeAnnotation().create();
+		return gson.toJson(service.getCoachsByFuzzySearch(any));
 		
 	}
 }

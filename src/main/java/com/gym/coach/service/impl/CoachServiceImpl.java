@@ -62,5 +62,11 @@ public class CoachServiceImpl implements com.gym.coach.service.CoachService {
 		
 		return dao.getCoachsByExpertise(expertise);
 	}
+	@Transactional
+	@Override
+	public List<CoachBean> getCoachsByFuzzySearch(String any) {
+		// TODO Auto-generated method stub
+		return dao.getCoachsByFuzzySearch(any);
+	}
 
 }

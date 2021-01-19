@@ -212,8 +212,8 @@ function confirmDelete(orderId,startTime) {
 								
 								</td>
 								<td role="cell" data-input="會員資訊">
-								身高:175<br>
-								體重:68<br>
+								身高:${Booking.memberBean.member_height}<br>
+								體重:${Booking.memberBean.member_weight}<br>
 								${Booking.memberBean.mobile}</td>
 								<td role="cell" data-input="上課日期"><fmt:formatDate
 										value="${Booking.orderDate}" pattern="yyyy/MM/dd" /></td>

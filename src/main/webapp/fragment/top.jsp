@@ -92,7 +92,7 @@
 								<li><a href="./shoping-cart.html">影片</a></li>
 							</ul></li>
 						<li><a href="./blog.html">健身論壇</a></li>
-						<li><a href="./contact.html">後台管理</a>
+						<li><a href="./contact.html" style='display: none' id="topBackstage">後台管理</a>
 							<ul class="header__menu__dropdown">
 								<li><a href="./shop-details.html">會員</a></li>
 								<li><a href="<c:url value='/productMaintain/productAll' />">商品</a></li>
@@ -149,6 +149,10 @@
 			} else {	
 			};
 		   //下一個jQuery事件可以加在這後面=======================================================
-
+			checkBackstage = "${member_type}";
+			if (checkBackstage == 1) {				
+				$("#topBackstage").css("display", "initial")				
+			} else {	
+			};	
 		})
 	</script>

@@ -12,15 +12,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.SessionAttributes;
-
 import com.gym.member.model.MemberBean;
 import com.gym.member.service.MemberService;
 
-
 @Controller
 @RequestMapping
-@SessionAttributes({"LoginOK"}) 
 public class LoginController{
 	
 	@GetMapping("/login")
@@ -33,7 +29,8 @@ public class LoginController{
 	
 	//會員登入
 	@RequestMapping(path = "/login", method=RequestMethod.POST)
-	protected void login(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void login(HttpServletRequest request, HttpServletResponse response) 
+			throws ServletException, IOException {
 
 		// 接收資料
 		String member_id = request.getParameter("member_id");
@@ -58,29 +55,42 @@ public class LoginController{
 		}
 
 		// 轉換資料(無)
-		// 呼叫Model
-		MemberBean memberbean = memberService.login(member_id, password);
-		if (memberbean == null) {// 根據Model執行結果呼叫View
+		// 呼叫Model 判斷有無開通
+		MemberBean bean = memberService.login(member_id, password);
+		if (bean == null) {// 根據Model執行結果呼叫View
 			errors.put("loginx", "登入失敗，請重新輸入帳號密碼");
 			request.getRequestDispatcher("/WEB-INF/views/member/login.jsp").forward(request, response);
+			return;
 		} else {
-			session.setAttribute("LoginOK", memberbean);
-			session.setAttribute("member_id", memberbean.getMember_id());
-			session.setAttribute("password", memberbean.getPassword());
-			session.setAttribute("username", memberbean.getUsername());
-			session.setAttribute("member_type", memberbean.getMember_type());
-			session.setAttribute("mobile",memberbean.getMobile());
-			session.setAttribute("gender",memberbean.getGender());
-			session.setAttribute("birth",memberbean.getBirth());
-			session.setAttribute("address",memberbean.getAddress());
-			session.setAttribute("point",memberbean.getPoint());
-			session.setAttribute("facebook_account",memberbean.getFacebook_account());
-			session.setAttribute("google_account",memberbean.getGoogle_account());			
-			session.setAttribute("detail",memberbean.getDetail());
-			session.setAttribute("memberphoto", memberbean.getMemberphoto());
+			int result = bean.getActivate();
+			if (result == 0) {
+				errors.put("loginx", "帳號尚未驗證");
+				request.getRequestDispatcher("/WEB-INF/views/member/login.jsp").forward(request, response);
+				return;
+		} else {
+			session.setAttribute("LoginOK", bean);
+			session.setAttribute("member_id", bean.getMember_id());
+			session.setAttribute("password", bean.getPassword());
+			session.setAttribute("username", bean.getUsername());
+			session.setAttribute("member_type", bean.getMember_type());
+			session.setAttribute("member_height", bean.getMember_height());
+			session.setAttribute("member_weight", bean.getMember_weight());
+			session.setAttribute("mobile",bean.getMobile());
+			session.setAttribute("gender",bean.getGender());
+			session.setAttribute("birth",bean.getBirth());
+			session.setAttribute("address",bean.getAddress());
+			session.setAttribute("point",bean.getPoint());
+			session.setAttribute("facebook_account",bean.getFacebook_account());
+			session.setAttribute("google_account",bean.getGoogle_account());			
+			session.setAttribute("detail",bean.getDetail());
+			session.setAttribute("memberphoto", bean.getMemberphoto());
+			session.setAttribute("activate", bean.getActivate());
+			session.setAttribute("LoginOrN", "ImLogin");
 			
 			//TODO 路徑要確認
 			response.sendRedirect(path);
+			return;
+			}
 		}
 	}
 }

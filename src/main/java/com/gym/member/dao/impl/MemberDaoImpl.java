@@ -16,11 +16,11 @@ import com.gym.member.model.MemberBean;
 
 @Repository
 public class MemberDaoImpl implements MemberDao {
-	
+
 	@Autowired
 	SessionFactory sessionFactory;
 
-	public MemberDaoImpl() {	
+	public MemberDaoImpl() {
 	}
 
 	public Session getSession() {
@@ -39,7 +39,7 @@ public class MemberDaoImpl implements MemberDao {
 		}
 		return false;
 	}
-	
+
 	// 刪除
 	@Override
 	public boolean delete(String member_id) {
@@ -53,9 +53,9 @@ public class MemberDaoImpl implements MemberDao {
 
 	// 更新
 	@Override
-	public MemberBean update(String member_id, String password, String username, int member_type, String mobile, int gender,
-			Date birth, String address, double point, String facebook_account, String google_account, String detail,
-			Blob memberphoto) {
+	public MemberBean update(String member_id, String password, String username, int member_type, int member_height,
+			int member_weight, String mobile, int gender, Date birth, String address, double point, String facebook_account,
+			String google_account, String detail, String memberphoto, int activate, String register_num) {
 
 		MemberBean bean = this.selectByMember_id(member_id);
 		if (bean != null) {
@@ -63,6 +63,8 @@ public class MemberDaoImpl implements MemberDao {
 			bean.setPassword(password);
 			bean.setUsername(username);
 			bean.setMember_type(member_type);
+			bean.setMember_height(member_height);
+			bean.setMember_weight(member_weight);
 			bean.setMobile(mobile);
 			bean.setGender(gender);
 			bean.setBirth(birth);
@@ -72,6 +74,8 @@ public class MemberDaoImpl implements MemberDao {
 			bean.setGoogle_account(google_account);
 			bean.setDetail(detail);
 			bean.setMemberphoto(memberphoto);
+			bean.setActivate(activate);
+			bean.setRegister_num(register_num);
 		}
 		return bean;
 	}
@@ -91,13 +95,13 @@ public class MemberDaoImpl implements MemberDao {
 	public static void main(String[] args) {
 		ApplicationContext context = new ClassPathXmlApplicationContext("beans.config.xml");
 		SessionFactory sessionFacotry = (SessionFactory) context.getBean("sessionFactory");
-	
+
 		sessionFacotry.getCurrentSession().beginTransaction();
 		MemberDao memberDAO = (MemberDao) context.getBean("memberDaoImpl");
 
-		 // selectAll
-		 List<MemberBean> selects = memberDAO.selectAll();
-		 System.out.println("selects=" + selects);
+		// selectAll
+		List<MemberBean> selects = memberDAO.selectAll();
+		System.out.println("selects=" + selects);
 
 //		 //selectByMember_id
 //		 MemberBean member=memberDAO.selectByMember_id("sdx@gmail.com");
@@ -110,10 +114,10 @@ public class MemberDaoImpl implements MemberDao {
 //		 boolean yorN = memberDAO.insert(bean);
 //		 System.out.println("insert:" + yorN);
 
-//		// update
-//		 MemberBean update=memberDAO.update("test@gmail.com","111", "",0,"",0,
-//					null, "",30.25,"","","",null);
-//		 System.out.println("update="+update);
+		// update
+		MemberBean update = memberDAO.update("gymproject121@gmail.com", "eeit121", "管理者", 1, 180, 80, "0911111111", 0, null, "",
+				100.5, "", "", "願風指引你的方向", null, 1, "hu75d3");
+		System.out.println("update=" + update);
 
 //		 // delete
 //		 boolean delete = memberDAO.delete("test@gmail.com");

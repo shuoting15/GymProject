@@ -32,13 +32,16 @@
 	<jsp:include page="/fragment/top.jsp" />
 
 	<!-- Login Section Begin -->
-	<section class="loginMain">
-		<div class="container-fluid">
-			<div class="row">
-				<div class="col-md-1"></div>
-				<div class="col-md-5 loginForm">				
-					<h1>會員登入</h1>
-					<form action="login" method="post" id="loginForm">
+	<section class="loginMemberTitle">
+	<h1>會員登入</h1>
+	</section>
+	<section class="loginMemberMain">
+	<div class="container">
+		<div class="row">
+			<div class="col-sm-1"></div>
+			<div class="col-sm-10 loginForm">
+				<h3>歡迎登入GYM 會員</h3>
+				<form action="login" method="post" id="loginForm">
 						<p>
 							<label class="loginFormLabel">帳號：</label> 
 							<input type="text" name="member_id" placeholder="輸入您的電子信箱" value="" />
@@ -51,22 +54,36 @@
 						<p>
 							<input type="submit" value="登入">
 						</p>
-						<p class="forgetPassword">
-							<a href="<c:url value='/forgetpd.jsp'/>">忘記密碼</a>
-						</p>
+						<p class="forgetPassword"><a href="forgotPassword">忘記密碼</a></p>
 						<p>
 							<a href="" class="facebookAccount"><img src="images/facebook_btn.png"></a>
 							<a href="" class="googleAccount"><img src="images/google_btn.png"></a>
 						</p>
+						<p class="forgetPassword"><a href="forgotPassword">補寄驗證信</a></p>
 					</form>
-				</div>
-				<div class="col-md-3 visible-lg"></div>
-				<div class="col-md-3 loginBG visible-lg">
-					<img src="images/loginMember.png" />
-				</div>
 			</div>
+			<div class="col-sm-1"></div>
 		</div>
+	</div>
 	</section>
+	
+	
+	
+<!-- 	<section class="loginMain"> -->
+<!-- 		<div class="container-fluid"> -->
+<!-- 			<div class="row"> -->
+<!-- 				<div class="col-md-1"></div> -->
+<!-- 				<div class="col-md-5 loginForm">				 -->
+<!-- 					<h1>會員登入</h1> -->
+					
+<!-- 				</div> -->
+<!-- 				<div class="col-md-3 visible-lg"></div> -->
+<!-- 				<div class="col-md-3 loginBG visible-lg"> -->
+<!-- 					<img src="images/loginMember.png" /> -->
+<!-- 				</div> -->
+<!-- 			</div> -->
+<!-- 		</div> -->
+<!-- 	</section> -->
 	<!-- Login Section End -->
 
 	<!-- Js Plugins -->
