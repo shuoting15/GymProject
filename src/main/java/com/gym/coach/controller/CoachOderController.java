@@ -110,7 +110,7 @@ public class CoachOderController  {
 		return "redirect:/coach/?id="+coachId  ;
 	}
 	//刪除預約時間
-	@PostMapping("/coachDelete")
+	@PostMapping("/coachTimeDelete")
 	public String deleteBook(@RequestParam int orderId,@RequestParam int coachId) {
 		coachOrderService.deleteCoachTime(orderId);
 		findTimeByCoachId(coachId);

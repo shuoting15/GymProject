@@ -45,6 +45,9 @@ public class CoachBean implements Serializable {
 	private Integer 	coachWeight ;
 	@Expose
 	private Integer		coachPrice;
+	private String  	fileName;
+	@Transient
+	private MultipartFile	coachImage;
 	
 	@JsonIgnore
 	@OneToMany(mappedBy="coachBean",fetch = FetchType.EAGER)
@@ -106,9 +109,7 @@ public class CoachBean implements Serializable {
 		this.coachExpertise = coachExpertise;
 	}
 
-	private String  	fileName;
-	@Transient
-	private MultipartFile	coachImage;
+
 
 	public CoachBean() {}
 

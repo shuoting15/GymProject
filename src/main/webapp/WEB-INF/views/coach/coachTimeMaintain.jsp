@@ -90,7 +90,7 @@ var calendar = new FullCalendar.Calendar(calendarEl, {
             			}).then((result) => {
             			  if (result.isConfirmed) {
             	             	$.ajax({
-                		url : "<c:url value='/coachDelete'/>",
+                		url : "<c:url value='/coachTimeDelete'/>",
                 		type : "POST",
                 		dataType : "JSON",
                 		data : {"orderId":info.event.id,"coachId":${coach.coachId}},

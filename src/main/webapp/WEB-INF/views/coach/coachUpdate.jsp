@@ -21,18 +21,52 @@ fieldset {
 </style>
 <title>Products</title>
 <link rel="stylesheet"
-	href='${pageContext.request.contextPath}/css/styles.css'
+	href='../${pageContext.request.contextPath}/css/styles.css'
 	type="text/css">
 
-<link rel='stylesheet' href='css/styles.css' type="text/css" />
+<link rel='stylesheet' href='../css/styles.css' type="text/css" />
+<script src="../js/jquery-3.3.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 <script type="text/javascript">
+
 function confirmDelete(id) {
-	if (confirm("確定刪除此項教練資料(教練編號:${coachBean.coachId})?") ) {
-		document.forms[0].action="<c:url value='/coachDelete/${coachBean.coachId}'  />" ;
-		document.forms[0].method="POST";
-		document.forms[0].submit();
-	} else {
-	}
+	Swal.fire({
+		  title: "確定刪除此項教練資料(教練姓名:${coachBean.coachName})?",
+		  text: "",
+		  icon: 'warning',
+		  showCancelButton: true,
+		  confirmButtonColor: '#3085d6',
+		  cancelButtonColor: '#d33',
+		  confirmButtonText: '確定刪除',
+		  cancelButtonText:'取消刪除'
+		}).then((result) => {
+		  if (result.isConfirmed) {
+           	$.ajax({
+		url : "<c:url value='/coachDelete'  />",
+		type : "POST",
+		dataType : "JSON",
+		data : {"coachId":"${coachBean.coachId}"},
+		success : function (data) {
+			Swal.fire('Delete Success','刪除成功','success');
+			
+				setTimeout(function(){
+					location.href = "<c:url value='/coachMaintain'  />";//刷新当前页面.
+						},1500)
+			 
+		}
+		})              		               		       				           				              				  
+			  
+          		
+		    
+		  }
+		})
+	
+	
+	
+	
+	
+	
+	
 }
 
 function updateCoach() {
@@ -157,7 +191,7 @@ function updateCoach() {
 					<input id="btnAdd" type='button' name="update"
 						class='btn btn-primary'
 						value="<spring:message code='spring.addCoach.form.update.label' />"
-						onclick='updateCoach()' /> <input id="btnAdd" name="delete"
+						onclick='updateCoach()' /> <input id="btnAdd" name="delete" style="background-color: red;"
 						type='button' class='btn btn-primary'
 						value="<spring:message code='spring.addCoach.form.delete.label' />"
 						onclick='confirmDelete(${coahBean.coachId})' />
@@ -168,5 +202,6 @@ function updateCoach() {
 	<div id="backToCoachs" align="center">
 		<a href="<c:url value='/coachMaintain' />">回教練管理頁面</a>
 	</div>
+
 </body>
 </html>

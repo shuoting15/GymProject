@@ -91,6 +91,16 @@ public class CoachController {
 
 	@PostMapping("/coachs/add")
 	public String processAddNewProductForm(@ModelAttribute("coachBean") CoachBean bb, BindingResult result) {
+		
+		CoachValidator  validator = new CoachValidator();
+		validator.validate(bb, result);
+		if (result.hasErrors()) {
+			SystemUtils2018.showErrors(result);
+			return "coach/addCoach";
+		}
+		
+		
+		
 		String[] suppressedFields = result.getSuppressedFields();
 		if (suppressedFields.length > 0) {
 			throw new RuntimeException("嘗試輸入不允許的欄位:" + StringUtils.arrayToCommaDelimitedString(suppressedFields));
@@ -131,7 +141,7 @@ public class CoachController {
 			e.printStackTrace();
 			throw new RuntimeException("檔案上傳發生異常" + e.getMessage());
 		}
-		return "redirect:/coachs";
+		return "redirect:/coachMaintain";
 	}
 
 	@GetMapping("/coachs/add")
@@ -205,8 +215,8 @@ public class CoachController {
 		return "coach/coachUpdate";
 	}
 
-	@PostMapping("/coachDelete/{coachId}")
-	public String deleteBook(@PathVariable Integer coachId) {
+	@PostMapping("/coachDelete")
+	public String deleteBook(@RequestParam Integer coachId) {
 		service.deleteCoach(coachId);
 		return "redirect:/coachMaintain";
 	}
