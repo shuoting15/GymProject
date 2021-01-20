@@ -28,8 +28,8 @@ fieldset {
 	<section>
 		<div class="container">
 			<h1 style="text-align: center">新增教練時間</h1>
-			<h2 style="text-align: center">教練姓名:${coachBean.coachName}</h2>
-			<h2 style="text-align: center">教練編號:${coachBean.coachId}</h2>
+			<h2 style="text-align: center">教練姓名:${coach.coachName}</h2>
+			<h2 style="text-align: center">教練編號:${coach.coachId}</h2>
 
 		</div>
 	</section>
@@ -37,9 +37,7 @@ fieldset {
 		style="height: 1px; border: none; color: #333; background-color: #333;">
 	<section class="container">
 		<!--       三個地方要完全一樣 -->
-		<form
-			action="${pageContext.request.contextPath}/addCoachTime/${coachBean.coachId}"
-			method="post" class='form-horizontal'>
+
 
 			<input type='hidden' id='orderStatus' name='_method'> <input
 				id="orderStatus" name="orderStatus" type='hidden' value="o"
@@ -51,7 +49,7 @@ fieldset {
 				<div class="form-group col-md-6">
 					<label for="orderDate"> 日期 </label> <input id="orderDate"
 						name="orderDate" type="date" class='form:input-large'
-						onchange="checkEmptyTime('${coachBean.coachId}')" />
+						onchange="checkEmptyTime('${coach.coachId}')" />
 				</div>
 			</div>
 			<div class="row">
@@ -142,24 +140,12 @@ fieldset {
 				<div class="form-row">
 					<div class="form-group col-md-6">
 						<input id="'coachId'" name="coachId" type='hidden'
-							value="${coachBean.coachId}" class='form:input-large' />
-					</div>
-				</div>
-				<div class="form-group" align="center">
-					<div class='col-lg-offset-2 col-lg-10'>
-						<input id="btnAdd" type='submit' class='btn btn-primary' />
+							value="${coach.coachId}" class='form:input-large' />
 					</div>
 				</div>
 			</div>
-		</form>
+		
 	</section>
-	<div class="form-group" align="center" style="margin-top: 10px">
-		<div class='col-lg-offset-2 col-lg-10' align="center">
-			<input id="backCoachsMaintain" name="backCoachsMaintain"
-				type='button' class='btn btn-primary' value="回上一頁"
-				onclick="history.back()" />
-		</div>
-	</div>
 </body>
 <script type="text/javascript">
 function checkEmptyTime(coachId){

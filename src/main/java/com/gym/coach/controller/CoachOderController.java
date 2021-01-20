@@ -54,7 +54,7 @@ public class CoachOderController  {
 	//進入教練時間輸入表
 	@GetMapping(value="/addCoachTime/{coachId}",produces="text/html;charset=UTF-8")
 	public String addCoachTimesForm(Model model, @PathVariable Integer coachId){
-		model.addAttribute("coachBean", coachService.getCoachById(coachId));
+		model.addAttribute("coach", coachService.getCoachById(coachId));
 		return "coach/addCoachTime";
 		
 	}
@@ -69,7 +69,9 @@ public class CoachOderController  {
 		CoachOrderBean coachOrderBean = new CoachOrderBean();
 		SimpleDateFormat sd =   new SimpleDateFormat( "yyyy-MM-dd" );
 		SimpleDateFormat sdf =   new SimpleDateFormat( "yyyy-MM-dd HH:mm:ss" );
-		
+		if (orderTime == null) {
+			return "redirect:/coachTimeMaintain?id="+coachId;
+		}
 		for (int i = 0; i < orderTime.length; i++) {
 			coachOrderBean.setCoachId(coachId);
 			coachOrderBean.setOrderTitle(orderTitle);
