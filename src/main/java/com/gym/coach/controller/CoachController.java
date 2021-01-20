@@ -54,10 +54,7 @@ public class CoachController {
 	// 教練展示
 	@GetMapping("/coachs")
 	public String list(Model model) {
-		MemberBean memberBean =   (MemberBean) model.getAttribute("LoginOK");
-		if (memberBean == null ) {
-			return "member/login";
-		}
+
 		model.addAttribute("coachs", service.getAllCoachs());
 		return "coach/coachs";
 	}
@@ -65,26 +62,15 @@ public class CoachController {
 	// 後臺教練展示
 	@GetMapping("/coachMaintain")
 	public String Maintainlist(Model model) {
-		MemberBean memberBean =   (MemberBean) model.getAttribute("LoginOK");
-		if (memberBean == null ) {
-			return "member/login";
-		}else {
-			if(memberBean.getMember_type() != 1 ) {
-				return "member/login";
-			}
-			
-		}
+
 		
 		model.addAttribute("coachs", service.getAllCoachs());
 		return "coach/coachsMaintain";
 	}
 
 	@GetMapping(value = "/coach")
-	public String getCoachById(@RequestParam("id") int id, Model model) {
-		MemberBean memberBean =   (MemberBean) model.getAttribute("LoginOK");
-		if (memberBean == null ) {
-			return "member/login";
-		}
+	public String getCoachById(Model model,@RequestParam("id") int id ) {
+
 		model.addAttribute("coach", service.getCoachById(id));
 		return "coach/coach";
 	}
@@ -183,7 +169,6 @@ public class CoachController {
 		headers.setCacheControl(CacheControl.noCache().getHeaderValue());
 		String mimeType = context.getMimeType(filename); // getMimeType 會抓出副檔名的mimetype
 		MediaType mediaType = MediaType.valueOf(mimeType);
-		System.out.println("mimeType = " + mimeType + "   mediaType = " + mediaType);
 		headers.setContentType(mediaType);
 		ResponseEntity<byte[]> responseEntity = new ResponseEntity<>(media, headers, HttpStatus.OK);
 		return responseEntity;

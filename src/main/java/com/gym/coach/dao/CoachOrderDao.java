@@ -18,4 +18,5 @@ public interface CoachOrderDao {
 	void cancelBooking(CoachOrderBean coachOrderBean);
 	void finishBooking(CoachOrderBean coachOrderBean);
 	List<CoachOrderBean> findBookingByCoachId(int coachId);
+	List<CoachOrderBean> checkEmptyTime(int coachid, Date OrderDate);
 }

@@ -1,5 +1,6 @@
 package com.gym.coach.service.impl;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -70,6 +71,12 @@ public class CoachOrderServiceImpl implements CoachOrderService {
 	public List<CoachOrderBean> findBookingByCoachId(int coachId) {
 		// TODO Auto-generated method stub
 		return dao.findBookingByCoachId(coachId);
+	}
+	@Transactional
+	@Override
+	public List<CoachOrderBean> checkEmptyTime(int coachid, Date OrderDate) {
+		// TODO Auto-generated method stub
+		return dao.checkEmptyTime(coachid, OrderDate);
 	}
 
 }

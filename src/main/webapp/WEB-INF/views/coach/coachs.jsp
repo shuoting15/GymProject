@@ -12,10 +12,6 @@
 <link
 	href="https://fonts.googleapis.com/css?family=Rajdhani:300,400,500,600,700&display=swap"
 	rel="stylesheet">
-<link
-	href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,600,600i,700,700i&display=swap"
-	rel="stylesheet">
-
 <link rel="stylesheet"
 	href="http://cdn.bootstrapmb.com/bootstrap/4.3.1/css/bootstrap.min.css">
 <link rel="stylesheet" href="css/all.min.css">

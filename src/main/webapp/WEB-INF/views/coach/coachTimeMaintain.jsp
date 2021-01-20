@@ -7,9 +7,11 @@
 <html>
 
 <head>
-<link rel="stylesheet"
-	href="http://cdn.bootstrapmb.com/bootstrap/4.3.1/css/bootstrap.min.css">
 <meta charset='utf-8' />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <link href='css/mainclander.css' rel='stylesheet' />
 <link rel="stylesheet" href="css/demo.css">
 <script src='js/mainclander.js'></script>
@@ -138,6 +140,36 @@ body {
 		<input class="btn btn-primary" style="width: 200px;" type="button"
 			value="新增教練時間"
 			onclick="window.location.href='<c:url value="/addCoachTime/${coach.coachId}" />';" />
+		<!-- Button trigger modal -->
+		<button type="button" class="btn btn-primary" data-toggle="modal"
+			data-target="#exampleModal">Launch demo modal</button>
+
+		<!-- Modal -->
+		<div class="modal fade" id="exampleModal" tabindex="-1"
+			aria-labelledby="exampleModalLabel" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+						<button type="button" class="close" data-dismiss="modal"
+							aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body">
+					
+					<jsp:include page="addCoachTime.jsp"></jsp:include>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-secondary"
+							data-dismiss="modal">Close</button>
+						<button type="button" class="btn btn-primary">Save
+							changes</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	<!-- Modal -->
 	</div>
 	<h1 align="center" style="margin-top: 50px">點擊刪除可預約時段</h1>
 	<div id='calendar'></div>

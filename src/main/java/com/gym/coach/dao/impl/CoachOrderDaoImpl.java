@@ -59,6 +59,17 @@ public class CoachOrderDaoImpl implements CoachOrderDao {
 				.setParameter("OrderStartTime", OrderStartTime).getResultList();
 	}
 
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<CoachOrderBean> checkEmptyTime(int coachid, Date OrderDate) {
+		String hql = "FROM CoachOrderBean ob WHERE coachBean.coachId = :coachid and ob.orderDate = :OrderDate ";
+		Session session = sessionFactory.getCurrentSession();
+
+		return session.createQuery(hql).setParameter("coachid", coachid)
+				.setParameter("OrderDate", OrderDate).getResultList();
+	}
+	
+	
 	@Override
 	public CoachOrderBean getCoachTimeById(int orderId) {
 		Session session = sessionFactory.getCurrentSession();

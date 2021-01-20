@@ -81,14 +81,14 @@ function fuzzySearch(any){
 		return `
 			<div class="expert-item">
 				<div class="expert-thumb">
-					<a href="<c:url value='coach?id=${"${coachId}"} '/>"> 
+					<a href="<c:url value='coachUpdate/${"${coachId}"}'/>"> 
 						<img src="<c:url value='/getPicture/${"${coachId}"}'/>" alt="trainers">
 					</a>
 				</div>
 				<div class="expert-content">
 					<div class="expert-info">
 						<h4 class="sub-title">
-						<a href="<c:url value='coach?id=${"${coachId}"} '/>">${"${coachName}"}</a>
+						<a href="<c:url value='coachUpdate/${"${coachId}"}'/>">${"${coachName}"}</a>
 						</h4>
 						<span>${"${coachExpertise}"}</span>
 						<span><br>${"${coachPrice}"}點(小時)</span>

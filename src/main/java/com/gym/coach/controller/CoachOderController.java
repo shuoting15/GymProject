@@ -120,11 +120,11 @@ public class CoachOderController  {
 	@RequestMapping("/showBookingList")
 	public String findBookingByMemberId(Model model) {
 		MemberBean memberBean =   (MemberBean) model.getAttribute("LoginOK");
-		if (memberBean == null ) {
-			return "member/login";
+		if (memberBean  != null) {
+			String memberId = memberBean.getMember_id();
+			model.addAttribute("Booking",coachOrderService.findBookingByMemberId(memberId));
 		}
-		String memberId = memberBean.getMember_id();
-		model.addAttribute("Booking",coachOrderService.findBookingByMemberId(memberId));
+		
 		
 		return "coach/showBookingList";
 	}
@@ -170,15 +170,20 @@ public class CoachOderController  {
 	}
 	@RequestMapping("/showWorkingList")
 	public String findBookingBycoachId(@RequestParam int coachId,Model model) {
-		MemberBean memberBean =   (MemberBean) model.getAttribute("LoginOK");
-		if (memberBean == null ) {
-			return "member/login";
-		}
 		model.addAttribute("Booking",coachOrderService.findBookingByCoachId(coachId));
 		
 		return "coach/showWorkingList";
 	}
 	
+	@PostMapping(value="/checkEmptyTime",produces="text/html;charset=UTF-8")
+	@ResponseBody
+	public String checkEmptyTime(@RequestParam("coachId") int coachId,@RequestParam("orderDate") String orderDate) throws ParseException{
+//		 List<CoachOrderBean> list = coachOrderService.checkEmptyTime(coachId, orderDate);
+		Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd HH:mm:ss").disableHtmlEscaping().create();
+		SimpleDateFormat sd =   new SimpleDateFormat( "yyyy-MM-dd" );
+		return gson.toJson(coachOrderService.checkEmptyTime(coachId, sd.parse(orderDate)));
+		
+	}
 	
 	
 }
