@@ -2,23 +2,33 @@ package com.gym.config;
 
 import java.util.ArrayList;
 
+import org.aspectj.lang.annotation.Pointcut;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.context.support.ResourceBundleMessageSource;
 import org.springframework.web.accept.ContentNegotiationManager;
 import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 import org.springframework.web.servlet.View;
 import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.view.ContentNegotiatingViewResolver;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.springframework.web.servlet.view.json.MappingJackson2JsonView;
-@Configuration @EnableWebMvc @ComponentScan("com.web.store")
+
+import com.gym.loginInterceptor.LoginInterceptor;
+@Configuration @EnableWebMvc @ComponentScan("com.gym")  @EnableAspectJAutoProxy
 public class WebAppConfig implements WebMvcConfigurer {
+	@Autowired
+	LoginInterceptor  loginInterceptor;
+	
+	
 	@Bean
 	public ViewResolver internalResourceViewResolver() {
 		InternalResourceViewResolver resolver = new InternalResourceViewResolver();
@@ -36,8 +46,14 @@ public class WebAppConfig implements WebMvcConfigurer {
 	public void addResourceHandlers(ResourceHandlerRegistry registry) {
 		registry.addResourceHandler("/css/**")
 		.addResourceLocations("/WEB-INF/views/css/");
-		registry.addResourceHandler("/image/**")
-		.addResourceLocations("/WEB-INF/views/image/");
+		registry.addResourceHandler("/images/**")
+		.addResourceLocations("/WEB-INF/views/images/");
+		registry.addResourceHandler("/js/**")
+		.addResourceLocations("/WEB-INF/views/js/");
+		registry.addResourceHandler("/fonts/**")
+		.addResourceLocations("/WEB-INF/views/fonts/");
+		registry.addResourceHandler("/webfonts/**")
+		.addResourceLocations("/WEB-INF/views/webfonts/");
 	}
 	@Bean
 	public CommonsMultipartResolver multipartResolver() {
@@ -62,4 +78,17 @@ public class WebAppConfig implements WebMvcConfigurer {
 		resolver.setDefaultViews(views);
 		return resolver;
 	}
+	@Override
+	public void addInterceptors(InterceptorRegistry registry) {
+		// TODO Auto-generated method stub
+		WebMvcConfigurer.super.addInterceptors(registry);
+		
+		registry.addInterceptor(loginInterceptor).addPathPatterns("/*").excludePathPatterns("/login")
+		.excludePathPatterns("/register").excludePathPatterns("/forgotPassword")
+		.excludePathPatterns("/memberCheckAjex").excludePathPatterns("/memberActivate").excludePathPatterns("/")
+		.excludePathPatterns("/registerResult");
+		
+		
+	}
+	
 }

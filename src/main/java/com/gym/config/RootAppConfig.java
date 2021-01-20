@@ -28,7 +28,7 @@ public class RootAppConfig {
 		} catch (PropertyVetoException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		} ds.setJdbcUrl("jdbc:sqlserver://localhost:1433;databaseName=JSPDB");
+		} ds.setJdbcUrl("jdbc:sqlserver://localhost:1433;databaseName=GymProject");
 		ds.setInitialPoolSize(4);
 		ds.setMaxPoolSize(8);
 		return ds;
@@ -38,7 +38,7 @@ public class RootAppConfig {
 		LocalSessionFactoryBean factory = new LocalSessionFactoryBean();
 		factory.setDataSource(dataSource());
 		factory.setPackagesToScan(new String [] {
-				"com.web.store.model"
+				"com.gym"
 		});
 		factory.setHibernateProperties(additionalProperties());
 		return factory;

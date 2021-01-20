@@ -27,7 +27,8 @@
 				<div class="header__cart col-lg-6">
 					<ul>
 						<li><a href="#"><i class="fa fa-heart"></i> <span>1</span></a></li>
-						<li><a href="<c:url value='/shoppingCart/showCartContent'/>"><i class="fa fa-shopping-bag"></i> <span>3</span></a></li>
+						<li><a href="<c:url value='/shoppingCart/showCartContent'/>"><i
+								class="fa fa-shopping-bag"></i> <span>3</span></a></li>
 						<li><a href="#">
 								<h5>
 									<i class="fa fa-user"></i>
@@ -46,7 +47,7 @@
 		<div class="row">
 			<div class="col-lg-2">
 				<div class="header__logo">
-					<a href="./index.html"><img src="../images/logo5.png" alt=""></a>
+					<a href="./index.html"><img src="images/logo5.png" alt=""></a>
 				</div>
 			</div>
 			<div class="col-lg-10">
@@ -60,7 +61,10 @@
 								<li><a href="./checkout.html">Check Out</a></li>
 								<li><a href="./blog-details.html">Blog Details</a></li>
 							</ul></li>
-						<li><a href="./blog.html">預約教練</a></li>
+						<li><a href="<c:url value="/coachs" />">個人教練預約</a>
+							<ul class="header__menu__dropdown">
+								<li><a href="/myOrderTime">預約查詢</a></li>
+							</ul></li>
 						<li><a href="./blog.html">團體課程</a>
 							<ul class="header__menu__dropdown">
 								<li><a href="./shop-details.html">實體</a></li>

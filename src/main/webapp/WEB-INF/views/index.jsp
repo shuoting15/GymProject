@@ -518,7 +518,5 @@
         </div>
     </section>
     <!-- Blog Section End -->
-
-
 </body>
 </html>
