@@ -19,6 +19,7 @@
 <link rel="stylesheet" href="css/stylemember.css" type="text/css">
 
 
+
 <!-- Header Section Begin -->
 <header class="header">
 	<div class="header__top">
@@ -47,7 +48,6 @@
 						<li><a href="<c:url value='/shoppingCart/showCartContent'/>"><i
 								class="fa fa-shopping-bag"></i> <span>${cartContent}</span></a></li>
 						<li style="font-weight: 400px; color: red;">$ ${cartSubtotal}</li>
-
 					</ul>
 				</div>
 
@@ -67,6 +67,7 @@
 			<div class="col-lg-10">
 				<nav class="header__menu">
 					<ul>
+
 						<li><a href="memberarea">會員</a></li>
 						<li><a href="<c:url value='/productDisplay/productAll' />">商城</a>
 							<ul class="header__menu__dropdown">
@@ -76,6 +77,7 @@
 								<li><a href="./checkout.html">我的訂單</a></li>
 								<li><a href="./blog-details.html">Blog Details</a></li>
 							</ul></li>
+
 						<li><a href="<c:url value="/coachs" />">個人教練預約</a>
 							<ul class="header__menu__dropdown"> 
 								<li><a href="<c:url value="/showBookingList" />">預約查詢</a></li>
@@ -102,7 +104,9 @@
 								<li><a href="./shoping-cart.html">健身餐</a></li>
 								<li><a href="./shoping-cart.html">教學區</a></li>
 								<li><a href="./shoping-cart.html">論壇</a></li>
+
 							</ul></li>
+
 					</ul>
 				</nav>
 			</div>
