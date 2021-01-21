@@ -20,8 +20,9 @@ import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import com.gym.product.model.ProductBean;
 
-import product.model.ProductBean;
+
 
 public class ProductInitData {
 	

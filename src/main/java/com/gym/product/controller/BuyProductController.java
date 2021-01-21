@@ -21,6 +21,8 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.gym.product.model.ProductBean;
 import com.gym.product.service.IProductService;
+import com.gym.shoppingcart.model.OrderItemBean;
+import com.gym.shoppingcart.model.ShoppingCart;
 
 
 

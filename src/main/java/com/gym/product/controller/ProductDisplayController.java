@@ -23,8 +23,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
-import product.model.ProductBean;
-import product.service.IProductService;
+import com.gym.product.model.ProductBean;
+import com.gym.product.service.IProductService;
+
+
 
 @Controller
 @RequestMapping("productDisplay")

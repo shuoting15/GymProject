@@ -26,8 +26,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import product.model.ProductBean;
-import product.service.IProductService;
+import com.gym.product.model.ProductBean;
+import com.gym.product.service.IProductService;
+
+
 //之後要做換頁功能
 @Controller
 @RequestMapping("/productMaintain")

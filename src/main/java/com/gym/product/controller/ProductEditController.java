@@ -20,9 +20,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import _00_init.util.SystemUtils2018;
-import product.model.ProductBean;
-import product.service.IProductService;
+import com.gym.product.model.ProductBean;
+import com.gym.product.service.IProductService;
+
+
 
 @Controller
 @RequestMapping("/productMaintain")

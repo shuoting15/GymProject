@@ -19,10 +19,11 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import product.model.MyFavorite;
-import product.model.ProductBean;
-import product.service.IProductService;
-import shoppingcart.model.ShoppingCart;
+import com.gym.product.model.MyFavorite;
+import com.gym.product.model.ProductBean;
+import com.gym.product.service.IProductService;
+
+
 
 @Controller
 @SessionAttributes({ "LoginOK", "ShoppingCart", "MyFavorite" })
