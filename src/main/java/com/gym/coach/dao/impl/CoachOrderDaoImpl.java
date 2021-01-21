@@ -59,6 +59,17 @@ public class CoachOrderDaoImpl implements CoachOrderDao {
 				.setParameter("OrderStartTime", OrderStartTime).getResultList();
 	}
 
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<CoachOrderBean> checkEmptyTime(int coachid, Date OrderDate) {
+		String hql = "FROM CoachOrderBean ob WHERE coachBean.coachId = :coachid and ob.orderDate = :OrderDate ";
+		Session session = sessionFactory.getCurrentSession();
+
+		return session.createQuery(hql).setParameter("coachid", coachid)
+				.setParameter("OrderDate", OrderDate).getResultList();
+	}
+	
+	
 	@Override
 	public CoachOrderBean getCoachTimeById(int orderId) {
 		Session session = sessionFactory.getCurrentSession();
@@ -79,6 +90,35 @@ public class CoachOrderDaoImpl implements CoachOrderDao {
         bb.setOrderId(orderId);
         session.delete(bb);
 		
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<CoachOrderBean> findBookingByMemberId(String memberId) {
+		Session session = sessionFactory.getCurrentSession();
+		String hql = "FROM CoachOrderBean ob WHERE memberBean.member_id = :memberId order by ob.orderEndTime DESC";
+		return session.createQuery(hql).setParameter("memberId", memberId).getResultList();
+	}
+
+	@Override
+	public void cancelBooking(CoachOrderBean coachOrderBean) {
+		Session session = sessionFactory.getCurrentSession();
+		session.saveOrUpdate(coachOrderBean);
+		
+	}
+
+	@Override
+	public void finishBooking(CoachOrderBean coachOrderBean) {
+		Session session = sessionFactory.getCurrentSession();
+		session.saveOrUpdate(coachOrderBean);
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<CoachOrderBean> findBookingByCoachId(int coachId) {
+		Session session = sessionFactory.getCurrentSession();
+		String hql = "FROM CoachOrderBean ob WHERE coachBean.coachId = :coachId and ob.orderStatus != 'o' order by ob.orderEndTime DESC";
+		return session.createQuery(hql).setParameter("coachId", coachId).getResultList();
 	}
 
 }

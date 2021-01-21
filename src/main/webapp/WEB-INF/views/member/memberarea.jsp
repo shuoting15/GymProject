@@ -36,15 +36,15 @@
 	<div class="container">
 		<div class="col-sm-10">
 			<div class="col-sm-12">
-				<form name="Form1" id="Form1" method="POST" action="${pageContext.request.contextPath}/"enctype="multipart/form-data">
-					<input type="file" name="FILE" id="FILE" style="display: none" />
-					<input type="hidden" name="DIR" id="DIR" /> 
+				<form name="Form1" id="Form1" method="POST" action="changePhoto" enctype="multipart/form-data">
+					<input type="file" name="file" id="file" style="display: none" />
+					<input type="text" name="member_id" value="${member_id}" style="display: none">
 					<input name="btnUpload" id="btnUpload" type="submit" value="儲存" style="display: none" />
 				</form>
 				<section class="row memberAreaBody">
 					<div class="memberIntr">
 						<div class="memberIntrPic" onclick="upload()">
-							<img src="....讀圖檔" id="memberphoto" name="memberphoto" />
+							<img src="${memberphoto}" id="memberphoto" name="memberphoto" />
 <!-- 							<div class="memberIntrEdit">編輯</div> -->
 						</div>
 						<div class="memberIntrTextBox">
@@ -82,46 +82,45 @@
 	<script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
 
 	<script type="text/javascript">
-		//======以下照片更換==========================
-		function upload() {
-			$("#FILE").trigger("click");
-		}
-
-		function onload() {
-			$("#btnUpload").trigger("click");
-		}
-		//======照片更換結束===========================
-
-		//======jQuery開始===========================
-		$(function() {
-
-			//1.會員照片功能 : 當 input.upl[type=file] 發生改變的時候會觸發下面的preview方法
-			$("body").on("change", "#FILE", function() {
-				preview(this);
-				onload();
-			})
-
-			//預覽圖 @param input輸入input[type=file]的 this
-			function preview(input) {
-				// 若有選取檔案
-				if (input.files && input.files[0]) {
-					// 建立一個物件，使用 Web APIs的檔案讀取器(FileReade物件)來讀取使用者選取電腦中的檔案
-					var reader = new FileReader();
-					// 事先定義好，當讀取成功後會觸發的事情
-					reader.onload = function(e) {
-						console.log(e);
-						// 這裡看到的 e.target.result物件，是使用者的檔案被 FileReader 轉換成 base64 的字串格式，
-						// 在這裡我們選取圖檔，所以轉換出來的，會是如 『data:image/jpeg;base64,.....』這樣的字串樣式。
-						// 我們用它當作圖片路徑就對了。
-						$('#photo').attr('src', e.target.result);
-					}
-					// 因為上面定義好讀取成功的事情，所以這裡可以放心讀取檔案
-					reader.readAsDataURL(input.files[0]);
+	// 開圖檔
+	function upload() {
+		$("#file").trigger("click");
+	}
+	// 呼叫controller
+	function onload() {
+		$("#btnUpload").trigger("click");
+	}		
+	
+	//======jQuery開始===========================
+	$(function() {
+		// 會員照片功能 : 當input[type=file]發生改變的時候會觸發下面的preview方法
+		$("body").on("change", "#file", function() {
+			preview(this);
+			onload();//呼叫上面onload()
+		});
+		
+		//預覽功能
+		function preview(input) {
+			// 若有選取檔案
+			if (input.files && input.files[0]) {
+				// 建立一個物件，使用 Web APIs的檔案讀取器(FileReade物件)來讀取使用者選取電腦中的檔案
+				var reader = new FileReader();
+				// 事先定義好，當讀取成功後會觸發的事情
+				reader.onload = function(e) {
+					console.log(e);
+					// 這裡看到的 e.target.result物件，是使用者的檔案被 FileReader 轉換成 base64 的字串格式，
+					// 在這裡我們選取圖檔，所以轉換出來的，會是如 『data:image/jpeg;base64,.....』這樣的字串樣式。
+					// 我們用它當作圖片路徑就對了。
+					$('#memberphoto').attr('src', e.target.result);
 				}
+				// 因為上面定義好讀取成功的事情，所以這裡可以放心讀取檔案
+				reader.readAsDataURL(input.files[0]);
 			}
-			//下一個jQuery事件可以加在這後面=======================================================
-				
-		});//此行jQuery結束
+		}
+		//下一個jQuery事件可以加在這後面=======================================================
+		
+		
+	});//此行jQuery結束
 	</script>
 
 </body>

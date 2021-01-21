@@ -23,6 +23,8 @@ public class MemberBean implements Serializable {
 	private String password;
 	private String username;
 	private int member_type;
+	private int member_height;
+	private int member_weight;
 	private String mobile;
 	private int gender;
 	private Date birth;
@@ -31,20 +33,23 @@ public class MemberBean implements Serializable {
 	private String facebook_account;
 	private String google_account;
 	private String detail;
-	@JsonIgnore
-	private Blob memberphoto;
+	private String memberphoto;
+	private int activate;
+	private String register_num;
 
 	public MemberBean() {
 	}
 
-	public MemberBean(String member_id, String password, String username, int member_type, String mobile, int gender,
+	public MemberBean(String member_id, String password, String username, int member_type, int member_height, int member_weight, String mobile, int gender,
 			Date birth, String address, double point, String facebook_account, String google_account, String detail,
-			Blob memberphoto) {
+			String memberphoto, int activate, String register_num) {
 		super();
 		this.member_id = member_id;
 		this.password = password;
 		this.username = username;
 		this.member_type = member_type;
+		this.member_height = member_height;
+		this.member_weight = member_weight;
 		this.mobile = mobile;
 		this.gender = gender;
 		this.birth = birth;
@@ -54,15 +59,17 @@ public class MemberBean implements Serializable {
 		this.google_account = google_account;
 		this.detail = detail;
 		this.memberphoto = memberphoto;
+		this.activate = activate;
+		this.register_num = register_num;
 	}
 
 	@Override
 	public String toString() {
-		return "MemberBean [" + member_id + "," + password + "," + username + "," + member_type + "," + mobile + ","
-				+ gender + "," + birth + "," + address + "," + point + "," + facebook_account + "," + google_account
-				+ "," + detail + "," + memberphoto + "]";
+		return "MemberBean [" + member_id + "," + password + "," + username + "," + member_type + "," + member_height + ","
+				+ member_weight + "," + mobile + ","+ gender + "," + birth + "," + address + "," + point + ","
+				+ facebook_account + "," + google_account+ "," + detail + "," + memberphoto + "," + activate + ","
+				+ register_num + "]";
 	}
-
 
 	public String getMember_id() {
 		return member_id;
@@ -78,7 +85,7 @@ public class MemberBean implements Serializable {
 
 	public void setPassword(String password) {
 		this.password = password;
-	}	
+	}
 
 	public String getUsername() {
 		return username;
@@ -94,6 +101,22 @@ public class MemberBean implements Serializable {
 
 	public void setMember_type(int member_type) {
 		this.member_type = member_type;
+	}	
+
+	public int getMember_height() {
+		return member_height;
+	}
+
+	public void setMember_height(int member_height) {
+		this.member_height = member_height;
+	}
+
+	public int getMember_weight() {
+		return member_weight;
+	}
+
+	public void setMember_weight(int member_weight) {
+		this.member_weight = member_weight;
 	}
 
 	public String getMobile() {
@@ -160,12 +183,28 @@ public class MemberBean implements Serializable {
 		this.detail = detail;
 	}
 
-	public Blob getMemberphoto() {
+	public String getMemberphoto() {
 		return memberphoto;
 	}
 
-	public void setMemberphoto(Blob memberphoto) {
+	public void setMemberphoto(String memberphoto) {
 		this.memberphoto = memberphoto;
+	}
+
+	public int getActivate() {
+		return activate;
+	}
+
+	public void setActivate(int activate) {
+		this.activate = activate;
+	}
+
+	public String getRegister_num() {
+		return register_num;
+	}
+
+	public void setRegister_num(String register_num) {
+		this.register_num = register_num;
 	}
 
 	public static void main(String[] args) {

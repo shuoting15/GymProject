@@ -46,7 +46,6 @@
 						<label class="col-sm-2" for="account">◆ 帳號：</label> 
 						<input type="text" name="member_id" id="member_id" onblur="doBlur()" placeholder="輸入您的電子信箱"/> 
 						<span id="accountResult">${errors.accountx}${errors.accountexist}</span>
-						<!-- <span><img id="img" src="images/ajax-loader.gif" style="display:none"></span> -->
 					</p>
 					<p>
 						<label class="col-sm-2" for="password">◆ 密碼：</label> 
@@ -59,7 +58,7 @@
 						<span id="passwordAgainResult">${errors.confirmpwx}</span>
 					</p>
 					<p><input type="submit" id="submit" value="註冊"></p>
-					<span id="checkAll">${errors.success}</span>
+					<span id="checkAll" style="color:#97CBFF">${errors.successYN}</span>
 				</form>
 			</div>
 			<div class="col-sm-1"></div>

@@ -1,5 +1,6 @@
 package com.gym.coach.service;
 
+import java.util.Date;
 import java.util.List;
 
 import com.gym.coach.model.ClanderBean;
@@ -16,4 +17,16 @@ public interface CoachOrderService {
 	public void orderCoachTime(CoachOrderBean coachOrderBean);
 	
 	void deleteCoachTime(int coachId);
+	
+	List<CoachOrderBean> findBookingByMemberId(String memberId);
+	
+	void cancelBooking(CoachOrderBean coachOrderBean);
+	
+	public void finishBooking(CoachOrderBean coachOrderBean);
+	
+	List<CoachOrderBean> findBookingByCoachId(int coachId);
+	
+	List<CoachOrderBean> checkEmptyTime(int coachid, Date OrderDate);
+	
+	
 }

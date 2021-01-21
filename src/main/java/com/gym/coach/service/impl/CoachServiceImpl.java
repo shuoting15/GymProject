@@ -50,5 +50,23 @@ public class CoachServiceImpl implements com.gym.coach.service.CoachService {
 
 		return dao.getAllExpertise();
 	}
+	@Transactional
+	@Override
+	public void updateCoachRating(CoachBean coachBean) {
+		dao.updateCoachRating(coachBean);
+		
+	}
+	@Transactional
+	@Override
+	public List<CoachBean> getCoachsByExpertise(String expertise) {
+		
+		return dao.getCoachsByExpertise(expertise);
+	}
+	@Transactional
+	@Override
+	public List<CoachBean> getCoachsByFuzzySearch(String any) {
+		// TODO Auto-generated method stub
+		return dao.getCoachsByFuzzySearch(any);
+	}
 
 }

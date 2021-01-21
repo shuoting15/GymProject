@@ -19,6 +19,7 @@
 <link rel="stylesheet" href="css/stylemember.css" type="text/css">
 
 
+
 <!-- Header Section Begin -->
 <header class="header">
 	<div class="header__top">
@@ -47,7 +48,6 @@
 						<li><a href="<c:url value='/shoppingCart/showCartContent'/>"><i
 								class="fa fa-shopping-bag"></i> <span>${cartContent}</span></a></li>
 						<li style="font-weight: 400px; color: red;">$ ${cartSubtotal}</li>
-
 					</ul>
 				</div>
 
@@ -67,6 +67,7 @@
 			<div class="col-lg-10">
 				<nav class="header__menu">
 					<ul>
+
 						<li><a href="memberarea">會員</a></li>
 						<li><a href="<c:url value='/productDisplay/productAll' />">商城</a>
 							<ul class="header__menu__dropdown">
@@ -76,9 +77,10 @@
 								<li><a href="./checkout.html">我的訂單</a></li>
 								<li><a href="./blog-details.html">Blog Details</a></li>
 							</ul></li>
+
 						<li><a href="<c:url value="/coachs" />">個人教練預約</a>
-							<ul class="header__menu__dropdown">
-								<li><a href="/myOrderTime">預約查詢</a></li>
+							<ul class="header__menu__dropdown"> 
+								<li><a href="<c:url value="/showBookingList" />">預約查詢</a></li>
 							</ul></li>
 						<li><a href="./blog.html">團體課程</a>
 							<ul class="header__menu__dropdown">
@@ -92,7 +94,7 @@
 								<li><a href="./shoping-cart.html">影片</a></li>
 							</ul></li>
 						<li><a href="./blog.html">健身論壇</a></li>
-						<li><a href="./contact.html">後台管理</a>
+						<li><a href="./contact.html" style='display: none' id="topBackstage">後台管理</a>
 							<ul class="header__menu__dropdown">
 								<li><a href="./shop-details.html">會員</a></li>
 								<li><a href="<c:url value='/productMaintain/productAll' />">商品</a></li>
@@ -102,7 +104,9 @@
 								<li><a href="./shoping-cart.html">健身餐</a></li>
 								<li><a href="./shoping-cart.html">教學區</a></li>
 								<li><a href="./shoping-cart.html">論壇</a></li>
+
 							</ul></li>
+
 					</ul>
 				</nav>
 			</div>
@@ -144,11 +148,15 @@
 			if (checkLogin != "") {
 				$("#topregister").remove();
 				$("#toplogin").remove();
-				$("#headerBoxTop").prepend("<span style='color:#336666;font-weight:bold'>Welcome♥ ${LoginOK.username}</span>")
+				$("#headerBoxTop").prepend("<span style='color:#336666;font-weight:bold'>Welcome♥ ${LoginOK.username} 點數:${LoginOK.point}</span>")
 				$("#toplogout").css("display", "initial")
 			} else {	
 			};
 		   //下一個jQuery事件可以加在這後面=======================================================
-
+			checkBackstage = "${member_type}";
+			if (checkBackstage == 1) {				
+				$("#topBackstage").css("display", "initial")				
+			} else {	
+			};	
 		})
 	</script>

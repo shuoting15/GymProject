@@ -41,6 +41,8 @@ public class EditMemberController {
 		String member_id = request.getParameter("member_id");
 		String password = request.getParameter("password");
 		String username = request.getParameter("username");
+		String member_height = request.getParameter("member_height");
+		String member_weight = request.getParameter("member_weight");
 		String mobile = request.getParameter("mobile");
 		String gender = request.getParameter("gender");
 		String birth = request.getParameter("birth");
@@ -54,7 +56,20 @@ public class EditMemberController {
 		// 驗證資料
 		// 轉換資料(為了存回資料庫)
 		int mOrF = Integer.parseInt(gender);// 轉字串為數字
-
+		int mHeight;
+		int mWeight;
+		
+		if(member_height.trim().length() == 0) {
+			mHeight = 0;
+		}else {
+			mHeight = Integer.parseInt(member_height);// 轉字串為數字			
+		}
+		if(member_weight.trim().length() == 0) {
+			mWeight = 0;
+		}else {
+			mWeight = Integer.parseInt(member_weight);// 轉字串為數字
+		}
+		
 		Date sqlDate = null;// 轉字串為java.sql.Date
 		java.util.Date bday = null;
 		if (birth != null && birth.length() != 0) {
@@ -78,7 +93,7 @@ public class EditMemberController {
 
 		// 呼叫Model
 		memberService.selectByMember_id(member_id);
-		MemberBean newinfo = memberService.updateMemberInfo(member_id, password, username, mobile, mOrF, sqlDate,
+		MemberBean newinfo = memberService.updateMemberInfo(member_id, password, username, mHeight, mWeight, mobile, mOrF, sqlDate,
 				address, facebook_account, google_account, detail);
 
 		//根據Model執行結果呼叫View
@@ -90,6 +105,8 @@ public class EditMemberController {
 			session.setAttribute("member_id", newinfo.getMember_id());
 			session.setAttribute("password", newinfo.getPassword());
 			session.setAttribute("username", newinfo.getUsername());
+			session.setAttribute("member_height", newinfo.getMember_height());
+			session.setAttribute("member_weight", newinfo.getMember_weight());
 			session.setAttribute("mobile", newinfo.getMobile());
 			session.setAttribute("gender", newinfo.getGender());
 			session.setAttribute("birth", newinfo.getBirth());

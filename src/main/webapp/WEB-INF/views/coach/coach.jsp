@@ -95,7 +95,7 @@
 							</ul>
 						</div>
 						<div class="widget widget-popular">
-							<h5 class="widget-title">學員評分</h5>
+							<h5 class="widget-title">教練評分</h5>
 							<div>${coach.coachRating}/5</div>
 							<div class="ratings">
 								<div class="empty_star">★★★★★</div>
@@ -108,6 +108,7 @@
 			</div>
 		</div>
 	</div>
+	<h2 align="center" >教練課價格(小時):${coach.coachPrice}點</h2>
 	<div align="center" style="width:1200px; margin:0 auto ">
 	<jsp:include page="coachClander.jsp" />
 	</div>

@@ -6,6 +6,7 @@ import java.util.LinkedHashSet;
 import java.util.Set;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -14,18 +15,27 @@ import javax.persistence.Table;
 import javax.persistence.Transient;
 
 import org.springframework.web.multipart.MultipartFile;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.google.gson.annotations.Expose;
 // 本類別封裝單筆教練資料
 @Entity
 @Table(name="Coach")
 public class CoachBean implements Serializable {
 	private static final long serialVersionUID = 1L;
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)	
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Expose
 	private Integer 	coachId ;
+	@Expose
 	private String  	coachName;
+	@Expose
 	private String  	coachExpertise;
+	@Expose
 	private String  	coachGender;
+	@Expose
 	private Double  	coachRating;
+	@JsonIgnore
 	private Blob    	coachPhoto;
 	private String      coachIntroduction;
 	private String  	coachExpertiseOne;
@@ -33,8 +43,15 @@ public class CoachBean implements Serializable {
 	private String  	coachExpertiseThree;
 	private Integer 	coachHeight ;
 	private Integer 	coachWeight ;
-	@OneToMany(mappedBy="coachBean")
-	private Set<CoachOrderBean> coachOrder = new LinkedHashSet<>();
+	@Expose
+	private Integer		coachPrice;
+	private String  	fileName;
+	@Transient
+	private MultipartFile	coachImage;
+	
+	@JsonIgnore
+	@OneToMany(mappedBy="coachBean",fetch = FetchType.EAGER)
+	private  transient Set<CoachOrderBean> coachOrder = new LinkedHashSet<>();
 	
 	public String getCoachExpertiseOne() {
 		return coachExpertiseOne;
@@ -92,9 +109,7 @@ public class CoachBean implements Serializable {
 		this.coachExpertise = coachExpertise;
 	}
 
-	private String  	fileName;
-	@Transient
-	private MultipartFile	coachImage;
+
 
 	public CoachBean() {}
 
@@ -160,6 +175,14 @@ public class CoachBean implements Serializable {
 
 	public void setCoachOrder(Set<CoachOrderBean> coachOrder) {
 		this.coachOrder = coachOrder;
+	}
+
+	public Integer getCoachPrice() {
+		return coachPrice;
+	}
+
+	public void setCoachPrice(Integer coachPrice) {
+		this.coachPrice = coachPrice;
 	}
 	
 }

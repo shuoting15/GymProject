@@ -16,4 +16,10 @@ public interface CoachService {
 	int deleteCoach(int coachId);
 	
 	List<String> getAllExpertise();
+	
+	void updateCoachRating(CoachBean coachBean);
+	
+	List<CoachBean> getCoachsByExpertise(String expertise);
+	
+	List<CoachBean> getCoachsByFuzzySearch(String any);
 }

@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
@@ -75,6 +74,24 @@
 									<div class="memberBasicFormInput">
 										<input type="text" id="username" name="username" value="${username}" /> 
 										<span>${errors.usernamex}</span>
+									</div>
+								</div>
+								<div class="memberBasicFormBox">
+									<div class="memberBasicFormText">
+										<label for="member_height">◆ 身高 (CM)</label>
+									</div>
+									<div class="memberBasicFormInput">
+										<input type="text" id="member_height" name="member_height" value="${member_height}" style="width: 28%" /> 
+										<span>${errors.member_heightx}</span>
+									</div>
+								</div>
+								<div class="memberBasicFormBox">
+									<div class="memberBasicFormText">
+										<label for="member_weight">◆ 體重 (KG)</label>
+									</div>
+									<div class="memberBasicFormInput">
+										<input type="text" id="member_weight" name="member_weight" value="${member_weight}" style="width: 28%" />
+										<span>${errors.member_weightx}</span>
 									</div>
 								</div>
 								<div class="memberBasicFormBox">
@@ -191,6 +208,12 @@
 							required : true,
 							equalTo : "#password"
 						},
+						member_height : {
+							digits:true
+						},
+						member_weight : {
+							digits:true
+						},
 						mobile : {
 							digits : true
 						},
@@ -209,6 +232,12 @@
 						confirmpw : {
 							required : "必填",
 							equalTo : "請輸入相同密碼"
+						},
+						member_height : {
+							digits : "請輸入正整數"
+						},
+						member_weight : {
+							digits : "請輸入正整數"
 						},
 						mobile : {
 							digits : "請輸入正確電話號碼"

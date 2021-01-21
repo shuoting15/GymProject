@@ -29,10 +29,13 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.gym.coach.model.CoachBean;
 import com.gym.coach.service.CoachService;
 import com.gym.coach.validator.CoachValidator;
@@ -51,10 +54,7 @@ public class CoachController {
 	// 教練展示
 	@GetMapping("/coachs")
 	public String list(Model model) {
-		MemberBean memberBean =   (MemberBean) model.getAttribute("LoginOK");
-		if (memberBean == null ) {
-			return "member/login";
-		}
+
 		model.addAttribute("coachs", service.getAllCoachs());
 		return "coach/coachs";
 	}
@@ -62,32 +62,31 @@ public class CoachController {
 	// 後臺教練展示
 	@GetMapping("/coachMaintain")
 	public String Maintainlist(Model model) {
-		MemberBean memberBean =   (MemberBean) model.getAttribute("LoginOK");
-		if (memberBean == null ) {
-			return "member/login";
-		}else {
-			if(memberBean.getMember_type() != 1 ) {
-				return "member/login";
-			}
-			
-		}
+
 		
 		model.addAttribute("coachs", service.getAllCoachs());
 		return "coach/coachsMaintain";
 	}
 
 	@GetMapping(value = "/coach")
-	public String getCoachById(@RequestParam("id") int id, Model model) {
-		MemberBean memberBean =   (MemberBean) model.getAttribute("LoginOK");
-		if (memberBean == null ) {
-			return "member/login";
-		}
+	public String getCoachById(Model model,@RequestParam("id") int id ) {
+
 		model.addAttribute("coach", service.getCoachById(id));
 		return "coach/coach";
 	}
 
 	@PostMapping("/coachs/add")
 	public String processAddNewProductForm(@ModelAttribute("coachBean") CoachBean bb, BindingResult result) {
+		
+		CoachValidator  validator = new CoachValidator();
+		validator.validate(bb, result);
+		if (result.hasErrors()) {
+			SystemUtils2018.showErrors(result);
+			return "coach/addCoach";
+		}
+		
+		
+		
 		String[] suppressedFields = result.getSuppressedFields();
 		if (suppressedFields.length > 0) {
 			throw new RuntimeException("嘗試輸入不允許的欄位:" + StringUtils.arrayToCommaDelimitedString(suppressedFields));
@@ -128,7 +127,7 @@ public class CoachController {
 			e.printStackTrace();
 			throw new RuntimeException("檔案上傳發生異常" + e.getMessage());
 		}
-		return "redirect:/coachs";
+		return "redirect:/coachMaintain";
 	}
 
 	@GetMapping("/coachs/add")
@@ -170,7 +169,6 @@ public class CoachController {
 		headers.setCacheControl(CacheControl.noCache().getHeaderValue());
 		String mimeType = context.getMimeType(filename); // getMimeType 會抓出副檔名的mimetype
 		MediaType mediaType = MediaType.valueOf(mimeType);
-		System.out.println("mimeType = " + mimeType + "   mediaType = " + mediaType);
 		headers.setContentType(mediaType);
 		ResponseEntity<byte[]> responseEntity = new ResponseEntity<>(media, headers, HttpStatus.OK);
 		return responseEntity;
@@ -202,8 +200,8 @@ public class CoachController {
 		return "coach/coachUpdate";
 	}
 
-	@PostMapping("/coachDelete/{coachId}")
-	public String deleteBook(@PathVariable Integer coachId) {
+	@PostMapping("/coachDelete")
+	public String deleteBook(@RequestParam Integer coachId) {
 		service.deleteCoach(coachId);
 		return "redirect:/coachMaintain";
 	}
@@ -243,5 +241,19 @@ public class CoachController {
 	@ModelAttribute("expertiseList")
 	public List<String> getExpertiseList() {
 		return service.getAllExpertise();
+	}
+	@PostMapping(value="/getCoachsByExpertise",produces="text/html;charset=UTF-8")
+	@ResponseBody
+	public String getCoachsByExpertise(@RequestParam("coachExpertise") String coachExpertise){
+		Gson gson = new GsonBuilder().disableHtmlEscaping().excludeFieldsWithoutExposeAnnotation().create();
+		return gson.toJson(service.getCoachsByExpertise(coachExpertise));
+		
+	}
+	@PostMapping(value="/getCoachsByFuzzySearch",produces="text/html;charset=UTF-8")
+	@ResponseBody
+	public String getCoachsByFuzzySearch(@RequestParam("any") String any){
+		Gson gson = new GsonBuilder().disableHtmlEscaping().excludeFieldsWithoutExposeAnnotation().create();
+		return gson.toJson(service.getCoachsByFuzzySearch(any));
+		
 	}
 }

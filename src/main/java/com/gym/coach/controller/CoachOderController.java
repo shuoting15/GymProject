@@ -25,9 +25,12 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.gym.coach.model.CoachBean;
 import com.gym.coach.model.CoachOrderBean;
+import com.gym.coach.model.CoachRatingBean;
 import com.gym.coach.service.CoachOrderService;
+import com.gym.coach.service.CoachRatingService;
 import com.gym.coach.service.CoachService;
 import com.gym.member.model.MemberBean;
+import com.gym.member.service.MemberService;
 
 @Controller
 @SessionAttributes({"LoginOK"}) 
@@ -36,7 +39,10 @@ public class CoachOderController  {
 	CoachService coachService;
 	@Autowired
 	CoachOrderService coachOrderService;
-	
+	@Autowired
+	CoachRatingService coachRatingService;
+	@Autowired
+	MemberService memberService;
 	//日歷JSON
 	@GetMapping(value="findall/{coachId}",produces="text/html;charset=UTF-8")
 	@ResponseBody
@@ -48,7 +54,7 @@ public class CoachOderController  {
 	//進入教練時間輸入表
 	@GetMapping(value="/addCoachTime/{coachId}",produces="text/html;charset=UTF-8")
 	public String addCoachTimesForm(Model model, @PathVariable Integer coachId){
-		model.addAttribute("coachBean", coachService.getCoachById(coachId));
+		model.addAttribute("coach", coachService.getCoachById(coachId));
 		return "coach/addCoachTime";
 		
 	}
@@ -63,7 +69,9 @@ public class CoachOderController  {
 		CoachOrderBean coachOrderBean = new CoachOrderBean();
 		SimpleDateFormat sd =   new SimpleDateFormat( "yyyy-MM-dd" );
 		SimpleDateFormat sdf =   new SimpleDateFormat( "yyyy-MM-dd HH:mm:ss" );
-		
+		if (orderTime == null) {
+			return "redirect:/coachTimeMaintain?id="+coachId;
+		}
 		for (int i = 0; i < orderTime.length; i++) {
 			coachOrderBean.setCoachId(coachId);
 			coachOrderBean.setOrderTitle(orderTitle);
@@ -95,7 +103,8 @@ public class CoachOderController  {
 		}
 		CoachOrderBean coachOrderBean = coachOrderService.getCoachTimeById(orderId);
 		coachOrderBean.setOrderTitle("已被預約");
-//		coachOrderBean.setMemberId("wei@gmail.com");
+		CoachBean coachBean = coachService.getCoachById(coachId);
+		memberBean.setPoint(memberBean.getPoint()-coachBean.getCoachPrice());
 		coachOrderBean.setMemberBean(memberBean);
 		coachOrderBean.setOrderStatus("x");
 		coachOrderBean.setOrderColor("");
@@ -103,10 +112,80 @@ public class CoachOderController  {
 		return "redirect:/coach/?id="+coachId  ;
 	}
 	//刪除預約時間
-	@PostMapping("/coachDelete")
+	@PostMapping("/coachTimeDelete")
 	public String deleteBook(@RequestParam int orderId,@RequestParam int coachId) {
 		coachOrderService.deleteCoachTime(orderId);
 		findTimeByCoachId(coachId);
 		return "coach/coachTimeMaintain";
 	}
+	//顧客預定查詢
+	@RequestMapping("/showBookingList")
+	public String findBookingByMemberId(Model model) {
+		MemberBean memberBean =   (MemberBean) model.getAttribute("LoginOK");
+		if (memberBean  != null) {
+			String memberId = memberBean.getMember_id();
+			model.addAttribute("Booking",coachOrderService.findBookingByMemberId(memberId));
+		}
+		
+		
+		return "coach/showBookingList";
+	}
+	//取消預約
+	@PostMapping(value = "/cancelBooking")
+	public String cancelBooking(@RequestParam int orderId,Model model ) {
+		MemberBean memberBean =   (MemberBean) model.getAttribute("LoginOK");
+		if (memberBean == null ) {
+			return "member/login";
+		}
+		CoachOrderBean coachOrderBean = coachOrderService.getCoachTimeById(orderId);
+		CoachBean coachBean = coachService.getCoachById(coachOrderBean.getCoachBean().getCoachId());
+		memberBean.setPoint(memberBean.getPoint()+coachBean.getCoachPrice());
+		memberService.updatePoint(memberBean);
+		coachOrderBean.setOrderTitle("可預約");
+		coachOrderBean.setMemberBean(null);
+		coachOrderBean.setOrderStatus("o");
+		coachOrderBean.setOrderColor("blue");
+		coachOrderService.cancelBooking(coachOrderBean);
+		return "redirect:/showBookingList"  ;
+	}
+	@PostMapping(value = "/finishBooking")
+	public String finishBooking(Model model,
+			@RequestParam("orderId") int orderId,
+			@RequestParam("rating") int rating,
+			@RequestParam("coachId") int coachId,
+			@RequestParam("memberId") String memberId
+			) {
+		CoachOrderBean coachOrderBean = coachOrderService.getCoachTimeById(orderId);
+		coachOrderBean.setOrderStatus("f");
+		coachOrderService.finishBooking(coachOrderBean);
+		//加入評分
+		CoachRatingBean coachRatingBean = new CoachRatingBean();
+		coachRatingBean.setRating(rating);
+		coachRatingBean.setCoachId(coachId);
+		coachRatingBean.setMemberId(memberId);
+		coachRatingService.addRating(coachRatingBean);
+		double avgRating = coachRatingService.countAvgRating(coachId);
+		CoachBean coachBean = coachService.getCoachById(coachId);
+		coachBean.setCoachRating(avgRating);
+		coachService.updateCoachRating(coachBean);
+		return "redirect:/showBookingList"  ;
+	}
+	@RequestMapping("/showWorkingList")
+	public String findBookingBycoachId(@RequestParam int coachId,Model model) {
+		model.addAttribute("Booking",coachOrderService.findBookingByCoachId(coachId));
+		
+		return "coach/showWorkingList";
+	}
+	
+	@PostMapping(value="/checkEmptyTime",produces="text/html;charset=UTF-8")
+	@ResponseBody
+	public String checkEmptyTime(@RequestParam("coachId") int coachId,@RequestParam("orderDate") String orderDate) throws ParseException{
+//		 List<CoachOrderBean> list = coachOrderService.checkEmptyTime(coachId, orderDate);
+		Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd HH:mm:ss").disableHtmlEscaping().create();
+		SimpleDateFormat sd =   new SimpleDateFormat( "yyyy-MM-dd" );
+		return gson.toJson(coachOrderService.checkEmptyTime(coachId, sd.parse(orderDate)));
+		
+	}
+	
+	
 }

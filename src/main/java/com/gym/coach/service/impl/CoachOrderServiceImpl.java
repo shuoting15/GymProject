@@ -1,5 +1,6 @@
 package com.gym.coach.service.impl;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,6 +47,36 @@ public class CoachOrderServiceImpl implements CoachOrderService {
 	public void deleteCoachTime(int coachId) {
 		dao.deleteCoachTime(coachId);
 		
+	}
+	@Transactional
+	@Override
+	public List<CoachOrderBean> findBookingByMemberId(String memberId) {
+		
+		return dao.findBookingByMemberId(memberId);
+	}
+	@Transactional
+	@Override
+	public void cancelBooking(CoachOrderBean coachOrderBean) {
+		dao.cancelBooking(coachOrderBean);
+		
+	}
+	@Transactional
+	@Override
+	public void finishBooking(CoachOrderBean coachOrderBean) {
+		dao.finishBooking(coachOrderBean);
+		
+	}
+	@Transactional
+	@Override
+	public List<CoachOrderBean> findBookingByCoachId(int coachId) {
+		// TODO Auto-generated method stub
+		return dao.findBookingByCoachId(coachId);
+	}
+	@Transactional
+	@Override
+	public List<CoachOrderBean> checkEmptyTime(int coachid, Date OrderDate) {
+		// TODO Auto-generated method stub
+		return dao.checkEmptyTime(coachid, OrderDate);
 	}
 
 }

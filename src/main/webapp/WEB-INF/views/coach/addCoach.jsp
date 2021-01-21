@@ -5,7 +5,13 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <html>
 <head>
-
+<style type="text/css">
+   span.error {
+	color: red;
+	display: inline-block;
+	font-size: 12pt;
+}
+</style>
 <meta charset="UTF-8">
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
@@ -51,6 +57,7 @@ fieldset {
 					</label>
 					<form:input id="coachName" path="coachName" type='text'
 						class='form:input-large' />
+					<form:errors path="coachName" cssClass="error"/>
 				</div>
 				<div class="form-group col-md-6">
 					<label for="coachGender"> <spring:message
@@ -58,6 +65,7 @@ fieldset {
 					</label>
 					<form:input id="coachGender" path="coachGender" type='text'
 						class='form:input-large' />
+					<form:errors path="coachGender" cssClass="error"/>
 				</div>
 			</div>
 
@@ -68,6 +76,7 @@ fieldset {
 					</label>
 					<form:input id="coachHeight" path="coachHeight" type='text'
 						class='form:input-large' />
+					<form:errors path="coachHeight" cssClass="error"/>
 				</div>
 				<div class="form-group col-md-6">
 					<label for='coachWeight'> <spring:message
@@ -75,6 +84,7 @@ fieldset {
 					</label>
 					<form:input id="coachWeight" path="coachWeight" type='text'
 						class='form:input-large' />
+					<form:errors path="coachWeight" cssClass="error"/>
 				</div>
 			</div>
 
@@ -87,6 +97,7 @@ fieldset {
 						<form:option value="0" label="請挑選" />
 						<form:options items="${expertiseList}" />
 					</form:select>
+					<form:errors path="coachExpertise" cssClass="error"/>
 				</div>
 
 				<div class="form-group col-md-6">
@@ -95,6 +106,7 @@ fieldset {
 					</label>
 					<form:input id="coachExpertiseOne" path="coachExpertiseOne"
 						type='text' class='form:input-large' />
+					<form:errors path="coachExpertiseOne" cssClass="error"/>
 				</div>
 			</div>
 			<div class="form-row">
@@ -104,6 +116,7 @@ fieldset {
 					</label>
 					<form:input id="coachExpertiseTwo" path="coachExpertiseTwo"
 						type='text' class='form:input-large' />
+					<form:errors path="coachExpertiseTwo" cssClass="error"/>
 				</div>
 				<div class="form-group col-md-6">
 					<label for="coachExpertiseThree"> <spring:message
@@ -111,13 +124,25 @@ fieldset {
 					</label>
 					<form:input id="coachExpertiseThree" path="coachExpertiseThree"
 						type='text' class='form:input-large' />
+					<form:errors path="coachExpertiseThree" cssClass="error"/>
 				</div>
 			</div>
+			<div class="form-row">
+				<div class="form-group col-md-6" align="right">
+					<label for="coachPrice"> 教練課價格(小時)*
+					</label>
+					<form:input id="coachPrice" path="coachPrice"
+						type='text' class='form:input-large' />
+					<form:errors path="coachPrice" cssClass="error"/>
+				</div>
+			</div>
+			
 			<div class="form-group" align="center">
 				<label for="exampleFormControlTextarea1"><spring:message
 						code='spring.addCoach.form.coachIntroduction.label' /></label>
 				<form:textarea style="width: 450px" class="form-control"
 					id="coachIntroduction" rows="7" path="coachIntroduction" />
+				<form:errors path="coachIntroduction" cssClass="error"/>
 			</div>
 			<div class="form-group" align="center">
 				<label class='control-label col-lg-2 col-lg-2' for="coachImage">
@@ -126,12 +151,14 @@ fieldset {
 				<div class='col-lg-10'>
 					<form:input id="coachImage" path="coachImage" type='file'
 						class='form:input-large' />
+					<form:errors path="coachImage"  cssClass="error" />
 				</div>
 			</div>
 			<div class="form-group" align="center">
 				<div class='col-lg-offset-2 col-lg-10'>
 					<input id="btnAdd" type='submit' class='btn btn-primary'
 						value="<spring:message code='spring.addCoach.form.submit.label' />" />
+					<button type="button" class="btn btn-danger" onclick="history.back()">取消</button>
 				</div>
 			</div>
 		</form:form>

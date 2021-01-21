@@ -7,6 +7,7 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.web.jsf.FacesContextUtils;
 
 import com.gym.coach.dao.CoachDao;
 import com.gym.coach.model.CoachBean;
@@ -83,5 +84,28 @@ public class CoachDaoImpl implements CoachDao {
 		String hql = "SELECT DISTINCT coachExpertise FROM CoachBean";
 		Session session = sessionFactory.getCurrentSession();
 		return session.createQuery(hql).getResultList();
+	}
+
+
+	@Override
+	public void updateCoachRating(CoachBean coachBean) {
+		Session session = sessionFactory.getCurrentSession();
+		session.saveOrUpdate(coachBean);
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<CoachBean> getCoachsByExpertise(String expertise) {
+		Session session = sessionFactory.getCurrentSession();
+		String hql = "FROM CoachBean cb WHERE cb.coachExpertise = :expertise ";
+		return session.createQuery(hql).setParameter("expertise", expertise).getResultList();
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<CoachBean> getCoachsByFuzzySearch(String any) {
+		Session session = sessionFactory.getCurrentSession();
+		String hql = "FROM CoachBean cb WHERE (cb.coachName like :any) or (cb.coachExpertise like :any) or (coachGender like :any)";
+		return session.createQuery(hql).setParameter("any","%" + any + "%").getResultList();
 	}
 }

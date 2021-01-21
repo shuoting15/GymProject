@@ -8,6 +8,7 @@
 <meta charset='utf-8' />
 <link href='css/mainclander.css' rel='stylesheet' />
 <script src='js/mainclander.js'></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 <script>
 		//建立今天日期
 		var fullDate = new Date();
@@ -74,27 +75,39 @@
             // 點擊某事件後...
             eventClick: function(info) {
             	if(info.event.title=="可預約"){
-            		console.log(info.event.start);
-            	if(confirm("確定預約此時段?"+info.event.start)){
-            		
-             	$.ajax({
-            		url : "<c:url value='/addOrderTime'/>",
-            		type : "POST",
-            		dataType : "JSON",
-            		data : {"orderId":info.event.id, "coachId":${coach.coachId} }, 
-            		success : function (data) {},
-            		})
-            		
-            		
-            		
-            		
-            		alert("成功預約");
-             		calendar.refetchEvents();
+            		Swal.fire({
+            			  title: '確定預約此時段?<br>價格'+${coach.coachPrice}+' 點<br>'+info.event.start.toLocaleString(),
+            			  text: "",
+            			  icon: 'question',
+            			  showCancelButton: true,
+            			  confirmButtonColor: '#3085d6',
+            			  cancelButtonColor: '#d33',
+            			  confirmButtonText: '確定',
+            			  cancelButtonText:'取消'
+            			}).then((result) => {
+            			  if (result.isConfirmed) {
+            	             	$.ajax({
+            	            		url : "<c:url value='/addOrderTime'/>",
+            	            		type : "POST",
+            	            		dataType : "JSON",
+            	            		data : {"orderId":info.event.id, "coachId":${coach.coachId} }, 
+            	            		success : function (data) {},
+            	            		})
+            				  
+            				  
+            				  
+            				  
+            	            		Swal.fire('Good job!','預約成功','success');
+            	             	
+            	             		
+            	            		setTimeout(function(){
+            	            			calendar.refetchEvents();//刷新当前页面.
+            		            		},0500)
+            			  }
+            			})
             	
-            	
-            	}else{}
-            		      }
-            	else{alert("此時段已經被預約 "); }
+            	}
+            	else{Swal.fire('Opps!','此時段已被預約','error'); }
             	
    
             },
