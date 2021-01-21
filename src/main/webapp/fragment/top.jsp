@@ -33,7 +33,7 @@
 						<a href="login" class="headerButton" id="toplogin">會員登入</a> 
 						<a href="logout" class="headerButton logout" id="toplogout">會員登出</a>
 						</li>
-							 <li><span style='color:#336666;font-weight:bold'>${point}</span><a href="memberarea"><img src="images/point.png" alt=""></a></li>
+							 <li><span style='color:#336666;font-weight:bold'>${LoginOK.point}</span><a href="memberarea"><img src="images/point.png" alt=""></a></li>
 						     <li><a href="#"><i class="fa fa-heart"></i> <span>1</span></a></li>
 						<c:choose>
 							<c:when test="${ShoppingCart.itemNumber > 0}">
