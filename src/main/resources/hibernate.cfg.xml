@@ -27,5 +27,6 @@
 		<mapping class="com.gym.coach.model.CoachBean"></mapping>
 				<mapping class="com.gym.coach.model.CoachBean"></mapping>
 		<mapping class="com.gym.member.model.MemberBean"></mapping>	
+		<mapping class="com.gym.product.model.ProductBean"></mapping>
 	</session-factory>
 </hibernate-configuration>
