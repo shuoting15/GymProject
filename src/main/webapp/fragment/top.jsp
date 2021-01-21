@@ -86,10 +86,10 @@
 								<li><a href="./shoping-cart.html">線上直播</a></li>
 							</ul></li>
 						<li><a href="./blog.html">健身餐</a></li>
-						<li><a href="./blog.html">教學區</a>
+						<li><a href="<c:url value='/news'/>">教學區</a>
 							<ul class="header__menu__dropdown">
-								<li><a href="./shop-details.html">文章</a></li>
-								<li><a href="./shoping-cart.html">影片</a></li>
+<!-- 								<li><a href="./shop-details.html">文章</a></li> -->
+								<li><a href=<c:url value='/news'/>>影片教學區</a></li>
 							</ul></li>
 						<li><a href="./blog.html">健身論壇</a></li>
 						<li><a href="./contact.html" style='display: none' id="topBackstage">後台管理</a>
@@ -100,7 +100,7 @@
 								<li><a href="<c:url value='/coachMaintain' />">教練</a></li>
 								<li><a href="./shoping-cart.html">團課</a></li>
 								<li><a href="./shoping-cart.html">健身餐</a></li>
-								<li><a href="./shoping-cart.html">教學區</a></li>
+								<li><a href="<c:url value='/newsmodify'/>">教學區</a></li>
 								<li><a href="./shoping-cart.html">論壇</a></li>
 
 							</ul></li>
