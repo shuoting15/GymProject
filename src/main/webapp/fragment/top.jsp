@@ -33,7 +33,7 @@
 						<a href="login" class="headerButton" id="toplogin">會員登入</a> 
 						<a href="logout" class="headerButton logout" id="toplogout">會員登出</a>
 						</li>
-							 <li><a href="memberarea"><h5><i class="fa fa-user"></i></h5></a></li>
+							 <li><span style='color:#336666;font-weight:bold'>${point}</span><a href="memberarea"><img src="images/point.png" alt=""></a></li>
 						     <li><a href="#"><i class="fa fa-heart"></i> <span>1</span></a></li>
 						<c:choose>
 							<c:when test="${ShoppingCart.itemNumber > 0}">
@@ -54,14 +54,12 @@
 			</div>
 		</div>
 	</div>
-	</div>
-	</div>
-	</div>
+	
 	<div class="container">
 		<div class="row">
 			<div class="col-lg-2">
 				<div class="header__logo">
-					<a href="./index.html"><img src="images/logo5.png" alt=""></a>
+					<a href="<c:url value='/' />"><img src="images/logo5.png" alt=""></a>
 				</div>
 			</div>
 			<div class="col-lg-10">
@@ -148,7 +146,7 @@
 			if (checkLogin != "") {
 				$("#topregister").remove();
 				$("#toplogin").remove();
-				$("#headerBoxTop").prepend("<span style='color:#336666;font-weight:bold'>Welcome♥ ${LoginOK.username} 點數:${LoginOK.point}</span>")
+				$("#headerBoxTop").prepend("<span style='color:#336666;font-weight:bold'>Welcome♥ ${LoginOK.username}</span>")
 				$("#toplogout").css("display", "initial")
 			} else {	
 			};
