@@ -102,7 +102,7 @@ function fuzzySearch(any){
 		<jsp:include page="/fragment/top.jsp" />
 	</div>
 	<section class="page-header bg_img"
-		data-background="./assets/images/banner/banner.jpg">
+		data-background="images/banner.jpg">
 		<div class="container">
 			<h3 class="title">
 				<span class="shape-wrapper"><span class="shape"></span>Trainers<span
@@ -154,12 +154,12 @@ function fuzzySearch(any){
 
 				<c:forEach var='coach' items='${coachs}'>
 					<div class="expert-item">
-						<div class="expert-thumb">
+						<div class="expert-thumb" align="center">
 							<a href="<c:url value='coach?id=${coach.coachId}'/>"> <img
 								src="<c:url value='/getPicture/${coach.coachId}'/>"
-								alt="trainers"></a>
+								alt="trainers" ></a>
 						</div>
-						<div class="expert-content">
+						<div class="expert-content" align="left">
 							<div class="expert-info">
 								<h4 class="sub-title">
 									<a href="<c:url value='coach?id=${coach.coachId}'/>">${coach.coachName}</a>
