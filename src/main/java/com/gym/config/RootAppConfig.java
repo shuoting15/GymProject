@@ -45,7 +45,7 @@ public class RootAppConfig {
 	}
 	private Properties additionalProperties() {
 		Properties properties = new Properties();
-		properties.put("hibernate.dialect", org.hibernate.dialect.SQLServer2012Dialect.class);
+		properties.put("hibernate.dialect", org.hibernate.dialect.SQLServer2008Dialect.class);
 		properties.put("hibernate.showsql",Boolean.TRUE);
 		properties.put("hibernate.formate",Boolean.TRUE);
 		properties.put("default_batch_fetch_size",10);

@@ -39,7 +39,7 @@ public class ChangePhotoController {
 //			}
 
 			// 將上傳檔案儲存到一個目標檔案當中 TODO 上傳路徑可能要改
-			changePhotoFormBean.getFile().transferTo(new File("C:/GymSource/workspace/GymProject/src/main/webapp/WEB-INF/views/images" + File.separator + filename));
+			changePhotoFormBean.getFile().transferTo(new File("C:/Users/student/Documents/GitHub/GymProject/src/main/webapp/WEB-INF/views/images" + File.separator + filename));
 
 			// 接收資料
 			HttpSession session = request.getSession();

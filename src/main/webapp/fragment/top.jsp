@@ -33,7 +33,7 @@
 						<a href="login" class="headerButton" id="toplogin">會員登入</a> 
 						<a href="logout" class="headerButton logout" id="toplogout">會員登出</a>
 						</li>
-							 <li><a href="memberarea"><h5><i class="fa fa-user"></i></h5></a></li>
+							 <li><span style='color:#336666;font-weight:bold'>${LoginOK.point}</span><a href="memberarea"><img src="images/point.png" alt=""></a></li>
 						     <li><a href="#"><i class="fa fa-heart"></i> <span>1</span></a></li>
 						<c:choose>
 							<c:when test="${ShoppingCart.itemNumber > 0}">
@@ -54,14 +54,12 @@
 			</div>
 		</div>
 	</div>
-	</div>
-	</div>
-	</div>
+	
 	<div class="container">
 		<div class="row">
 			<div class="col-lg-2">
 				<div class="header__logo">
-					<a href="./index.html"><img src="images/logo5.png" alt=""></a>
+					<a href="<c:url value='/' />"><img src="images/logo5.png" alt=""></a>
 				</div>
 			</div>
 			<div class="col-lg-10">
@@ -88,10 +86,10 @@
 								<li><a href="./shoping-cart.html">線上直播</a></li>
 							</ul></li>
 						<li><a href="./blog.html">健身餐</a></li>
-						<li><a href="./blog.html">教學區</a>
+						<li><a href="<c:url value='/news'/>">教學區</a>
 							<ul class="header__menu__dropdown">
-								<li><a href="./shop-details.html">文章</a></li>
-								<li><a href="./shoping-cart.html">影片</a></li>
+<!-- 								<li><a href="./shop-details.html">文章</a></li> -->
+								<li><a href=<c:url value='/news'/>>影片教學區</a></li>
 							</ul></li>
 						<li><a href="./blog.html">健身論壇</a></li>
 						<li><a href="./contact.html" style='display: none' id="topBackstage">後台管理</a>
@@ -102,7 +100,7 @@
 								<li><a href="<c:url value='/coachMaintain' />">教練</a></li>
 								<li><a href="./shoping-cart.html">團課</a></li>
 								<li><a href="./shoping-cart.html">健身餐</a></li>
-								<li><a href="./shoping-cart.html">教學區</a></li>
+								<li><a href="<c:url value='/newsmodify'/>">教學區</a></li>
 								<li><a href="./shoping-cart.html">論壇</a></li>
 
 							</ul></li>
@@ -148,7 +146,7 @@
 			if (checkLogin != "") {
 				$("#topregister").remove();
 				$("#toplogin").remove();
-				$("#headerBoxTop").prepend("<span style='color:#336666;font-weight:bold'>Welcome♥ ${LoginOK.username} 點數:${LoginOK.point}</span>")
+				$("#headerBoxTop").prepend("<span style='color:#336666;font-weight:bold'>Welcome♥ ${LoginOK.username}</span>")
 				$("#toplogout").css("display", "initial")
 			} else {	
 			};

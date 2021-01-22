@@ -40,6 +40,7 @@ public class GmailSendMail {
 		props.put("mail.smtp.starttls.enable", "true");
 		props.put("mail.smtp.host", host);
 		props.put("mail.smtp.port", port);
+		props.put("mail.smtp.ssl.trust", "smtp.gmail.com");
 
 		// Get the Session object.
 		Session session = Session.getInstance(props, new Authenticator() {
@@ -75,7 +76,7 @@ public class GmailSendMail {
 			MimeBodyPart picturePart = new MimeBodyPart();
 			// TODO-----------------下面圖片位置可能要換----------------------------------------------------------------
 			FileDataSource fds = new FileDataSource(
-					"C:/GymSource/workspace/GymProject/src/main/webapp/WEB-INF/views/images/logo5.png");
+					"C:/Users/student/Documents/GitHub/GymProject/src/main/webapp/WEB-INF/views/images/logo5.png");
 			// ---------------------上面圖片位置可能要換----------------------------------------------------------------
 			picturePart.setDataHandler(new DataHandler(fds));
 			picturePart.setFileName(fds.getName());
@@ -120,6 +121,7 @@ public class GmailSendMail {
 		props.put("mail.smtp.starttls.enable", "true");
 		props.put("mail.smtp.host", host);
 		props.put("mail.smtp.port", port);
+		props.put("mail.smtp.ssl.trust", "smtp.gmail.com");
 
 		// Get the Session object.
 		Session session = Session.getInstance(props, new Authenticator() {
@@ -161,7 +163,7 @@ public class GmailSendMail {
 			// TODO-----------------下面圖片位置可能要換----------------------------------------------------------------
 			
 			FileDataSource fds = new FileDataSource(
-					"C:/Users/user/Documents/GitHub/GymProject/src/main/webapp/WEB-INF/views/images/logo5.png");
+					"C:/Users/student/Documents/GitHub/GymProject/src/main/webapp/WEB-INF/views/images/logo5.png");
 			// ---------------------上面圖片位置可能要換----------------------------------------------------------------
 			picturePart.setDataHandler(new DataHandler(fds));
 			picturePart.setFileName(fds.getName());
