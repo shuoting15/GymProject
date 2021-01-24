@@ -71,7 +71,7 @@ public class ProcessOrderController {
 		OrderBean ob = new OrderBean(null, "200", totalAmount, shippingAddress, 
 				bNO, invoiceTitle, today, payment,note,"付款成功",null);
 		
-		// 取出存放在購物車內的商品，放入Map型態的變數cart，準備將其內的商品一個一個轉換為OrderItemBean，	
+	
 		Map<Integer, OrderItemBean> content = sc.getContent();
         
 		Integer point=null;
@@ -88,8 +88,8 @@ public class ProcessOrderController {
 				point=(int)(oib.getUnitPrice()*oib.getDiscount()*oib.getQuantity());
 			}
 		}
-		// 執行到此，購物車內所有購買的商品已經全部轉換為為OrderItemBean物件，並放在Items內
-		ob.setItems(items);  
+		ob.setItems(items); 
+		
 		try {
 			orderService.persistOrder(ob);
 			//===點數加值===
