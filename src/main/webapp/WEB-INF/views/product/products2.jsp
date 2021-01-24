@@ -43,11 +43,11 @@
 
 	var pageNo = 0;
 	var totalPage = 0;
-	// 本網頁一開始時先向後端發出非同步請求：/ch04/_07/pagingBookData.json，要求第一頁
 	fetch("<c:url value='/productMaintain/pageProductList' />").then(
 			function(response) {
 				return response.text();
-			}).then(function(data) {				
+			}).then(function(data) {
+				console.log(data)
 				displayPageProducts(data);				
 	})
 	//當使用者按下『第一頁』、『前一頁』、『下一頁』、『最末頁』的連結時，由本方法發出非同步請求。

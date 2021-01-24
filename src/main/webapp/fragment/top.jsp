@@ -70,8 +70,8 @@
 				<div class="header__cart col-lg-6" id="headerBoxTop">
 					<ul>
 						<li><a href="<c:url value="/register"/>" class="headerButton" id="topregister">加入會員</a>
-							<a href="login" class="headerButton" id="toplogin">會員登入</a> <a
-							href="logout" class="headerButton logout" id="toplogout">會員登出</a>
+							<a href="<c:url value="/login"/>" class="headerButton" id="toplogin">會員登入</a> <a
+							href="<c:url value="/logout"/>" class="headerButton logout" id="toplogout">會員登出</a>
 						</li>
 						<li><span style='color: #336666; font-weight: bold'>${LoginOK.point}</span><a
 							href="memberarea"><img src="images/point.png" alt=""></a></li>
@@ -123,9 +123,6 @@
 						<li><a href="<c:url value='/showFavorite' />"><i
 								class="fa fa-heart"></i> <span id='heartContent'>${heartContent}</span></a></li>
 						<li><div></div></li>
-
-
-
 
 					</ul>
 				</div>
