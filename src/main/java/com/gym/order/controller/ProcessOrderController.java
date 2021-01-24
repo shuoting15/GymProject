@@ -128,7 +128,7 @@ public class ProcessOrderController {
 			@RequestParam("ResponseCode") String ResponseCode,
 			@RequestParam("ResponseMsg") String ResponseMsg
 			) {
-		System.out.println(TransAmt);
+		
 		model.addAttribute("MerchantID",MerchantID );
 		model.addAttribute("TerminalID",TerminalID);
 		model.addAttribute("OrderID",OrderID );

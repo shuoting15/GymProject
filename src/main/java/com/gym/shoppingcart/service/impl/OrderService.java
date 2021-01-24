@@ -56,9 +56,8 @@ public class OrderService implements IOrderService {
 	public void persistOrder(OrderBean ob) {
 		// 檢查並更新會員的未付款餘額
 		//mdao.updateUnpaidOrderAmount(ob);
-		// 檢查每筆訂單明細所訂購之商品的庫存數量是否足夠
-		checkStock(ob);
-		// 儲存該筆訂單
+		
+		checkStock(ob);		
 		odao.insertOrder(ob);
 	}
 
@@ -78,6 +77,10 @@ public class OrderService implements IOrderService {
 	public void updateOrderStatus(int orderNo, String status) {
 		odao.updateOrderStatus(orderNo, status);
 		
+	}
+	@Override @Transactional
+	public List<OrderBean> getOrderByNo(int orderNo) {
+		return odao.getOrderByNo(orderNo);
 	}
 
 }

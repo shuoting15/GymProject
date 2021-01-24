@@ -184,7 +184,7 @@ body {
 
 					<div class="sidebar__item" style="margin-top: 35px">
 						<div class="blog__sidebar__search">
-							<form action="/mvcExercise/productDisplay/productFuzzy"
+							<form action="<c:url value="/productDisplay/productFuzzy" />"
 								method="post">
 								<input type="text" placeholder="Search..." name="keyword">
 								<button type="submit">
