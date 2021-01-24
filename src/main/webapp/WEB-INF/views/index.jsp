@@ -124,7 +124,7 @@
 								為何要選擇我們GYM
                             </h2>
                         </div>
-                        <p>我們擁有最好的教練團隊，最齊全的商品資訊，以及最好的場地</p>
+                        <p>我們擁有豐富專業的教練團隊，最齊全的商品包含健身器材、營養補充品，以及最好的場地</p>
                         <ul>
                             <li>交通方便</li>
                             <li>器材充足</li>
@@ -289,7 +289,7 @@
                     <div class="swiper-slide">
                         <div class="expert-item">
                             <div class="expert-thumb">
-                                <a href="trainers.html"><img src="<c:url value='/getPicture/${coachList.coachId}'/>"  style="width: 500px;height: 450px"  alt="trainers"></a>
+                                <a href="<c:url value='coach?id=${coachList.coachId}'/>"><img src="<c:url value='/getPicture/${coachList.coachId}'/>"  style="width: 500px;height: 450px"  alt="trainers"></a>
                             </div>
                             <div class="expert-content">
                                 <div class="expert-info">
