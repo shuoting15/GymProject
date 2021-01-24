@@ -90,7 +90,7 @@ public class BuyProductController {
 		return "redirect:/productDisplay/productAll"; //在master加入購物車，再回到master
 	}
 	
-	@GetMapping("/buy")  
+	@GetMapping("/buyProduct")  
 		public @ResponseBody Map<String,Object> buyProduct2(Model model, @RequestParam("productId") Integer productId,
 				@RequestParam("qty") Integer qty,HttpServletRequest request) {
 			// =======之後整合============
@@ -103,7 +103,7 @@ public class BuyProductController {
 //			if (session == null) {
 //				return "redirect:/_02_login/login";
 //			}
-
+			
 			// 取出存放在session物件內的ShoppingCart物件
 			ShoppingCart cart = (ShoppingCart) model.getAttribute("ShoppingCart");
 			// 如果找不到ShoppingCart物件
@@ -114,7 +114,7 @@ public class BuyProductController {
 				model.addAttribute("ShoppingCart", cart);
 			}
 			
-
+			
 			@SuppressWarnings("unchecked")
 			Map<Integer, ProductBean> productMap = (Map<Integer, ProductBean>) session.getAttribute("products");
 			ProductBean bean = productMap.get(productId);
@@ -126,17 +126,11 @@ public class BuyProductController {
 				}
 			}
 			ProductBean bean2 =productService.getProductById(productId);
-			System.out.println(productId);
-			System.out.println(qty);
-			System.out.println(bean2.getProductPrice());
-			System.out.println(bean2.getDiscount());
-			System.out.println(bean2.getProductName());
 			
 			// 將訂單資料(價格，數量，折扣與BookBean)封裝到OrderItemBean物件內
 			OrderItemBean oib = new OrderItemBean(null, productId, qty, bean2.getProductPrice(),
 					bean2.getDiscount(), bean2.getProductName());
 			
-			System.out.println(oib);
 			// 將OrderItem物件內加入ShoppingCart的物件內
 			int newqty;
 			Integer stock=productService.getStockById(productId);
@@ -157,6 +151,7 @@ public class BuyProductController {
 				map.put("cartSubtotal",String. valueOf(cart.getSubtotal()));
 				map.put("cart",cart.getContent());
 			}
+			System.out.println(map);
 			return map;		
 		}
 

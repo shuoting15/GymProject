@@ -37,7 +37,7 @@ function addToCart(id){
 	var id=document.getElementById(i).value;
 	var qty=document.getElementById(q).value;
 	var xhr = new XMLHttpRequest();
-	xhr.open("GET", "<c:url value='/buy'/>"+"?productId="+id+"&qty="+qty,true);
+	xhr.open("GET", "<c:url value='/buyProduct'/>"+"?productId="+id+"&qty="+qty,true);
 	xhr.send();
 	
 	xhr.onreadystatechange=function(){

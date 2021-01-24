@@ -23,8 +23,6 @@ import com.gym.product.model.MyFavorite;
 import com.gym.product.model.ProductBean;
 import com.gym.product.service.IProductService;
 
-
-
 @Controller
 @SessionAttributes({ "LoginOK", "ShoppingCart", "MyFavorite" })
 public class FavoriteController {
