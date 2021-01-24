@@ -40,14 +40,13 @@
 }
 </style>
 <script type="text/javascript">
-
+window.onload = function() {
 	var pageNo = 0;
 	var totalPage = 0;
 	fetch("<c:url value='/productMaintain/pageProductList' />").then(
 			function(response) {
 				return response.text();
 			}).then(function(data) {
-				console.log(data)
 				displayPageProducts(data);				
 	})
 	//當使用者按下『第一頁』、『前一頁』、『下一頁』、『最末頁』的連結時，由本方法發出非同步請求。
@@ -186,6 +185,7 @@
 		} else {
 		}
 	}
+}
 </script>
 
 </head>
