@@ -74,6 +74,21 @@
 			},
             // 點擊某事件後...
             eventClick: function(info) {
+            	var Mypoint = ${LoginOK.point};
+            	var Price = ${coach.coachPrice};
+            	console.log(Mypoint>Price);
+            	
+            	if(Mypoint<Price)
+            	{
+            		Swal.fire('Opps!','您的點數不足請儲值','error');
+            		
+            		setTimeout(function(){
+            			window.location.href="<c:url value='/productDisplay/product?id=30' />";
+	            		},1500)
+            	
+            		
+            	}else{
+
             	if(info.event.title=="可預約"){
             		Swal.fire({
             			  title: '確定預約此時段?<br>價格'+${coach.coachPrice}+' 點<br>'+info.event.start.toLocaleString(),
@@ -99,7 +114,7 @@
             				  
             	            		Swal.fire('Good job!','預約成功','success');
             	             	
-            	             		
+            	             	
             	            		setTimeout(function(){
             	            			calendar.refetchEvents();//刷新当前页面.
             		            		},0500)
@@ -110,7 +125,8 @@
             	else{Swal.fire('Opps!','此時段已被預約','error'); }
             	
    
-            },
+            }
+            	},
 
             // 日曆上的事件
             events: 'http://localhost:8080/GymProject/findall/${coach.coachId}.html'
