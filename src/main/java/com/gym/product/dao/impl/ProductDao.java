@@ -22,7 +22,7 @@ public class ProductDao implements IProductDao {
 	//=============pageNo=================================
 	private int recordsPerPage =9;
 	private int totalPages = -1;
-	// 計算販售的商品總共有幾頁
+	
 		@Override
 		public int getTotalPages() {
 			// 注意下一列敘述的每一個型態轉換
@@ -75,16 +75,13 @@ public class ProductDao implements IProductDao {
 		}
 	
 		
-	//============新刪修============================================
-	//新增 
+	//============新刪修============================================ 
 	@Override  
 	public void insertProduct(ProductBean pBean) {
 		Session session = factory.getCurrentSession();
 		session.save(pBean);
 	}
 	
-	//修改(看要不要回傳modal訊息)全部欄位
-	//比較saveOrUpdate和executeUpdate
 	@Override  
 	public void updateProduct(ProductBean pBean,long sizeInBytes){
 		if (sizeInBytes == -1) { // 不修改圖片
@@ -106,8 +103,6 @@ public class ProductDao implements IProductDao {
         session.saveOrUpdate(bean);
 	}
 	
-	
-	//刪除某項商品 "delete From Product Where productid=?"
 	@Override 
 	public void deleteProduct(int id){
 		Session session = factory.getCurrentSession();
@@ -118,8 +113,6 @@ public class ProductDao implements IProductDao {
 	
 	
 	//====================Query=====================================
-	//用productId取得一筆資料=>為了修改一筆資料，先搜出該本書的資料給修改
-	//"Select * From Product where productId=?"
 	@Override   
 	public ProductBean getProductById(int productId) {
 		Session session = factory.getCurrentSession();
@@ -194,7 +187,6 @@ public class ProductDao implements IProductDao {
 		return pBeanLst;
 	}
 	
-	//商品模糊搜尋Select * From Product where productName like \'%"+keyword+"%\
 	@SuppressWarnings("unchecked")
 	@Override  
 	public List<ProductBean> queryFuzzyProduct(String keyword) {
@@ -204,7 +196,7 @@ public class ProductDao implements IProductDao {
 		return pBeanLst;
 	}
 	
-	//後台編輯陳列所有商品資訊"Select * From Product
+
 	@Override   
 	public List<ProductBean> queryAllProduct(){
 		Session session = factory.getCurrentSession();

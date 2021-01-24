@@ -38,9 +38,8 @@ public class FavoriteController {
 //			return "redirect:/login/login";
 //		}
 
-		// 取出存放在session物件內的ShoppingCart物件
+	
 		MyFavorite favorite = (MyFavorite) model.getAttribute("MyFavorite");
-		// 如果找不到ShoppingCart物件
 		if (favorite == null) {
 			model.addAttribute("noFavMsg", "目前還沒有收藏喔！趕緊買起來～");
 		}
@@ -63,11 +62,9 @@ public class FavoriteController {
 
 		// 取出存放在session物件內的ShoppingCart物件
 		MyFavorite favorite = (MyFavorite) model.getAttribute("MyFavorite");
-		// 如果找不到ShoppingCart物件
+		
 		if (favorite == null) {
-			// 就新建ShoppingCart物件
 			favorite = new MyFavorite();
-			// 並將此新建ShoppingCart的物件放到session物件內，成為它的屬性物件
 			model.addAttribute("MyFavorite", favorite);
 		}
 		
@@ -86,7 +83,7 @@ public class FavoriteController {
 			Model model,  RedirectAttributes ra,
 			HttpSession session, SessionStatus status) {
 		MyFavorite f = (MyFavorite) model.getAttribute("MyFavorite");
-		f.deleteProduct(productId); // 刪除購物車內的某項商品
+		f.deleteProduct(productId); 
 		return "product/myFavorite";
 	}
 

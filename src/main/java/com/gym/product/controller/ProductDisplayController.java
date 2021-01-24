@@ -39,7 +39,7 @@ public class ProductDisplayController {
 	@Autowired
 	IProductService productService;
 	
-	//顯示一項商品詳細資料
+
 	@RequestMapping("product")
 	public String getProductByID(@RequestParam("id") Integer id,Model model) {
 		model.addAttribute("product",productService.getProductById(id));
@@ -140,7 +140,7 @@ public class ProductDisplayController {
 //		return products;
 //	}
 	
-	//Fuzzy
+	
 	@RequestMapping(value="productFuzzy",method=RequestMethod.POST)
 	public String getFuzzyProduct(Model model,@RequestParam("keyword") String keyword) {
 		List<ProductBean> products;

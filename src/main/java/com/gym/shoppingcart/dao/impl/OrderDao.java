@@ -11,10 +11,6 @@ import com.gym.shoppingcart.dao.IOrderDao;
 import com.gym.shoppingcart.model.OrderBean;
 
 
-
-//1.新增一筆訂單到orders表格
-//2.查詢orders表格內的單筆訂單
-//3.查詢orders表格內的所有訂單
 @Repository
 public class OrderDao implements IOrderDao {
 	private String memberId = null;

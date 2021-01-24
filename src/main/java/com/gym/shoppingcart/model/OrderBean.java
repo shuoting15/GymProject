@@ -15,7 +15,7 @@ import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-//存放訂單資料
+
 @Entity
 @Table(name="Orders")
 public class OrderBean {
