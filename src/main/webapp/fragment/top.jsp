@@ -65,11 +65,11 @@
 <header class="header">
 	<div class="header__top">
 		<div class="container">
-			<div class="row">
+			<div class="row" style='margin-right:30px'>
 				<div class="header__top__right__auth col-lg-6"></div>
 				<div class="header__cart col-lg-6" id="headerBoxTop">
 					<ul>
-						<li><a href="register" class="headerButton" id="topregister">加入會員</a>
+						<li><a href="<c:url value="/register"/>" class="headerButton" id="topregister">加入會員</a>
 							<a href="login" class="headerButton" id="toplogin">會員登入</a> <a
 							href="logout" class="headerButton logout" id="toplogout">會員登出</a>
 						</li>
@@ -146,7 +146,7 @@
 				<nav class="header__menu">
 					<ul>
 
-						<li><a href="memberarea">會員</a></li>
+						<li><a href="<c:url value="/memberarea"/>">會員</a></li>
 						<li><a href="<c:url value='/productDisplay/productAll' />">商城</a>
 							<ul class="header__menu__dropdown">
 								<li><a href="<c:url value='/productDisplay/productAll' />">所有商品</a></li>

@@ -111,12 +111,8 @@ body {
 		xhr.send();
 		
 		xhr.onreadystatechange=function(){
-			if(xhr.readyState==4 &&(xhr.status==200)){
-				alert(xhr.responseText)
-				console.log(xhr.responseText))
-				
+			if(xhr.readyState==4 &&(xhr.status==200)){			
 				var result=JSON.parse(xhr.responseText)
-				alert(result)
 				alert(result.msg);
 				
 				if(Object.keys(result).length>1){
