@@ -18,7 +18,48 @@
 <link rel="stylesheet" href="css/style.css" type="text/css">
 <link rel="stylesheet" href="css/stylemember.css" type="text/css">
 
+<style>
+.dropdown:hover .dropdown-content {
+	display: block;
+}
 
+.dropbtn {
+	font-size: 16px;
+	border: none;
+}
+
+.dropdown {
+	/* 	position: relative; */
+	display: inline-block;
+}
+
+.dropdown-content {
+	display: none;
+	position: absolute;
+	/* 	background-color: #f1f1f1; */
+	background-color: #3C3C3C;
+	min-width: 300px;
+	box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+	z-index: 1;
+}
+
+.dropdown-content a {
+	color: white;
+	padding: 8px 12px;
+	text-decoration: none;
+	display: block;
+	min-height: 60px;
+}
+
+.dropdown-content a:hover {
+	background-color: #6C6C6C;
+	color: #7fad39;
+}
+
+/* .dropdown:hover .dropbtn { */
+/* 	background-color: #3e8e41; */
+/* } */
+</style>
 
 <!-- Header Section Begin -->
 <header class="header">
@@ -28,13 +69,13 @@
 				<div class="header__top__right__auth col-lg-6"></div>
 				<div class="header__cart col-lg-6" id="headerBoxTop">
 					<ul>
-						<li>
-						<a href="register" class="headerButton" id="topregister">加入會員</a> 
-						<a href="login" class="headerButton" id="toplogin">會員登入</a> 
-						<a href="logout" class="headerButton logout" id="toplogout">會員登出</a>
+						<li><a href="register" class="headerButton" id="topregister">加入會員</a>
+							<a href="login" class="headerButton" id="toplogin">會員登入</a> <a
+							href="logout" class="headerButton logout" id="toplogout">會員登出</a>
 						</li>
-							 <li><span style='color:#336666;font-weight:bold'>${LoginOK.point}</span><a href="memberarea"><img src="images/point.png" alt=""></a></li>
-						     <li><a href="#"><i class="fa fa-heart"></i> <span>1</span></a></li>
+						<li><span style='color: #336666; font-weight: bold'>${LoginOK.point}</span><a
+							href="memberarea"><img src="images/point.png" alt=""></a></li>
+
 						<c:choose>
 							<c:when test="${ShoppingCart.itemNumber > 0}">
 								<c:set var="cartContent" value="${ShoppingCart.itemNumber}" />
@@ -45,21 +86,60 @@
 								<c:set var="cartSubtotal" value="0" />
 							</c:otherwise>
 						</c:choose>
-						<li><a href="<c:url value='/shoppingCart/showCartContent'/>"><i
-								class="fa fa-shopping-bag"></i> <span>${cartContent}</span></a></li>
-						<li style="font-weight: 400px; color: red;">$ ${cartSubtotal}</li>
+						<li style="font-weight: 400px; color: red;" id='cartSubtotal'>$
+							${cartSubtotal}</li>
+						<li>
+							<div class="dropdown">
+								<a href="<c:url value='/shoppingCart/showCartContent'/>"> <i
+									class="fa fa-shopping-bag dropbtn"></i><span id='cartContent'>${cartContent}</span>
+								</a>
+								<div class="dropdown-content" id='showCart'>
+									<c:forEach var="cart" items="${ShoppingCart.content}">
+										<a
+											href="<spring:url value='/productDisplay/product?id=${cart.value.productId}' />">
+											<table>
+												<tr>
+													<td width='80'><img width='70'
+														src="<c:url value='/productMaintain/getBookImage?id=${cart.value.productId}' />"></td>
+													<td><div style='padding-left: 3px'>
+															${cart.value.productName} <br>價格：${cart.value.unitPrice}<br>數量：${cart.value.quantity}
+														</div></td>
+												</tr>
+											</table>
+										</a>
+									</c:forEach>
+								</div>
+						</li>
+
+						<c:choose>
+							<c:when test="${MyFavorite.itemNumber > 0}">
+								<c:set var="heartContent" value="${MyFavorite.itemNumber}" />
+							</c:when>
+							<c:otherwise>
+								<c:set var="heartContent" value="0" />
+							</c:otherwise>
+						</c:choose>
+
+						<li><a href="<c:url value='/showFavorite' />"><i
+								class="fa fa-heart"></i> <span id='heartContent'>${heartContent}</span></a></li>
+						<li><div></div></li>
+
+
+
+
 					</ul>
 				</div>
 
 			</div>
 		</div>
 	</div>
-	
+
 	<div class="container">
 		<div class="row">
 			<div class="col-lg-2">
 				<div class="header__logo">
-					<a href="<c:url value='/' />"><img src="images/logo5.png" alt=""></a>
+					<a href="<c:url value='/' />"><img src="images/logo5.png"
+						alt=""></a>
 				</div>
 			</div>
 			<div class="col-lg-10">
@@ -72,12 +152,12 @@
 								<li><a href="<c:url value='/productDisplay/productAll' />">所有商品</a></li>
 								<li><a
 									href="<c:url value='/shoppingCart/showCartContent' />">我的購物車</a></li>
-								<li><a href="./checkout.html">我的訂單</a></li>
-								<li><a href="./blog-details.html">Blog Details</a></li>
+								<li><a href="<c:url value='/orderProcess/orderList' />">我的訂單</a></li>
+								<li><a href="<c:url value='/showFavorite' />">我的收藏</a></li>
 							</ul></li>
 
 						<li><a href="<c:url value="/coachs" />">個人教練預約</a>
-							<ul class="header__menu__dropdown"> 
+							<ul class="header__menu__dropdown">
 								<li><a href="<c:url value="/showBookingList" />">預約查詢</a></li>
 							</ul></li>
 						<li><a href="./blog.html">團體課程</a>
@@ -88,15 +168,16 @@
 						<li><a href="./blog.html">健身餐</a></li>
 						<li><a href="<c:url value='/news'/>">教學區</a>
 							<ul class="header__menu__dropdown">
-<!-- 								<li><a href="./shop-details.html">文章</a></li> -->
+								<!-- 								<li><a href="./shop-details.html">文章</a></li> -->
 								<li><a href=<c:url value='/news'/>>影片教學區</a></li>
 							</ul></li>
 						<li><a href="<c:url value="/messages" />">健身論壇</a></li>
-						<li><a href="./contact.html" style='display: none' id="topBackstage">後台管理</a>
+						<li><a href="./contact.html" style='display: none'
+							id="topBackstage">後台管理</a>
 							<ul class="header__menu__dropdown">
 								<li><a href="./shop-details.html">會員</a></li>
 								<li><a href="<c:url value='/productMaintain/productAll' />">商品</a></li>
-								<li><a href="<c:url value='/productMaintain/productAll' />">訂單</a></li>
+								<li><a href="<c:url value='/orderProcess/orderListAll' />">訂單</a></li>
 								<li><a href="<c:url value='/coachMaintain' />">教練</a></li>
 								<li><a href="./shoping-cart.html">團課</a></li>
 								<li><a href="./shoping-cart.html">健身餐</a></li>
@@ -134,27 +215,32 @@
 <!-- 		</div> -->
 <!-- 	</div> -->
 <!-- </div> -->
- <script src="https://code.jquery.com/jquery-3.5.1.js" 
-   integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" 
-   crossorigin="anonymous">
-   </script>
-   <script type="text/javascript">
-		//======jQuery開始===========================
-		$(function() {
-			checkLogin = "${LoginOK}";
-			console.log("${LoginOK}");
-			if (checkLogin != "") {
-				$("#topregister").remove();
-				$("#toplogin").remove();
-				$("#headerBoxTop").prepend("<span style='color:#336666;font-weight:bold'>Welcome♥ ${LoginOK.username}</span>")
-				$("#toplogout").css("display", "initial")
-			} else {	
-			};
-		   //下一個jQuery事件可以加在這後面=======================================================
-			checkBackstage = "${member_type}";
-			if (checkBackstage == 1) {				
-				$("#topBackstage").css("display", "initial")				
-			} else {	
-			};	
-		})
-	</script>
+<script src="https://code.jquery.com/jquery-3.5.1.js"
+	integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
+	crossorigin="anonymous">
+	
+</script>
+<script type="text/javascript">
+	//======jQuery開始===========================
+	$(function() {
+		checkLogin = "${LoginOK}";
+		console.log("${LoginOK}");
+		if (checkLogin != "") {
+			$("#topregister").remove();
+			$("#toplogin").remove();
+			$("#headerBoxTop")
+					.prepend(
+							"<span style='color:#336666;font-weight:bold'>Welcome♥ ${LoginOK.username}</span>")
+			$("#toplogout").css("display", "initial")
+		} else {
+		}
+		;
+		//下一個jQuery事件可以加在這後面=======================================================
+		checkBackstage = "${member_type}";
+		if (checkBackstage == 1) {
+			$("#topBackstage").css("display", "initial")
+		} else {
+		}
+		;
+	})
+</script>
