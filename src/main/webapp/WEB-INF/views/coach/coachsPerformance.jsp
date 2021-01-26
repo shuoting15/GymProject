@@ -47,6 +47,10 @@
 				title : {
 					text : "當月業績:${allmonthrevenue}$"
 				},
+				legend: {
+					verticalAlign: "center",
+					horizontalAlign: "left"
+				},
 				data : [ {
 					type : "pie",
 					startAngle : 25,
@@ -61,11 +65,15 @@
 
 			var totalRevenueData = [];
 			var chart2 = new CanvasJS.Chart("totalRevenue", {
-				theme : "light2", // "light1", "light2", "dark1", "dark2"
+				theme : "light1", // "light1", "light2", "dark1", "dark2"
 				exportEnabled : true,
 				animationEnabled : true,
 				title : {
 					text : "總業績:${alltotalrevenue}$"
+				},
+				legend: {
+					verticalAlign: "center",
+					horizontalAlign: "left"
 				},
 				data : [ {
 					type : "pie",
@@ -141,9 +149,9 @@
 		<script type="text/javascript"
 			src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
 		<div id="monthRevenue"
-			style="width: 45%; height: 300px; display: inline-block; margin-left: 100px"></div>
+			style="width: 45%; height: 400px; display: inline-block; margin-left: 100px"></div>
 		<div id="totalRevenue"
-			style="width: 45%; height: 300px; display: inline-block;"></div>
+			style="width: 45%; height: 400px; display: inline-block;"></div>
 
 		<div class="container">
 

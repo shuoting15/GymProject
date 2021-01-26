@@ -17,7 +17,7 @@
 <link rel="stylesheet" href="css/slicknav.min.css" type="text/css">
 <link rel="stylesheet" href="css/style.css" type="text/css">
 <link rel="stylesheet" href="css/stylemember.css" type="text/css">
-<link rel="stylesheet" href="css/stylecourses.css" type="text/css">
+<link rel="stylesheet" href="css/stylecoach.css" type="text/css">
 
 <style>
 .dropdown:hover .dropdown-content {
@@ -66,14 +66,15 @@
 <header class="header">
 	<div class="header__top">
 		<div class="container">
-			<div class="row" style='margin-right:30px'>
+			<div class="row" style='margin-right: 30px'>
 				<div class="header__top__right__auth col-lg-6"></div>
 				<div class="header__cart col-lg-6" id="headerBoxTop">
 					<ul>
-						<li><a href="<c:url value="/register"/>" class="headerButton" id="topregister">加入會員</a>
-							<a href="<c:url value="/login"/>" class="headerButton" id="toplogin">會員登入</a> <a
-							href="<c:url value="/logout"/>" class="headerButton logout" id="toplogout">會員登出</a>
-						</li>
+						<li><a href="<c:url value="/register"/>" class="headerButton"
+							id="topregister">加入會員</a> <a href="<c:url value="/login"/>"
+							class="headerButton" id="toplogin">會員登入</a> <a
+							href="<c:url value="/logout"/>" class="headerButton logout"
+							id="toplogout">會員登出</a></li>
 						<li><span style='color: #336666; font-weight: bold'>${LoginOK.point}</span><a
 							href="memberarea"><img src="images/point.png" alt=""></a></li>
 
