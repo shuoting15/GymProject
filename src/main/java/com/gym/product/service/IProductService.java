@@ -33,6 +33,8 @@ public interface IProductService {
 		List<ProductBean> getProductsByIdDesc();
 		//latest top 6
 		List<ProductBean> queryNewestProducts();
+		
+		public List<ProductBean> filterProductsByPriceDesc(Double min,Double max);
 
 		//商品模糊搜尋
 		List<ProductBean> queryFuzzyProduct(String keyword);

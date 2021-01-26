@@ -18,10 +18,14 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.context.request.WebRequest;
 
+import com.gym.member.model.MemberBean;
+import com.gym.member.service.MemberService;
 import com.gym.shoppingcart.model.OrderBean;
 import com.gym.shoppingcart.model.OrderItemBean;
 import com.gym.shoppingcart.model.ShoppingCart;
+import com.gym.shoppingcart.orderMail.OrderMail;
 import com.gym.shoppingcart.service.IOrderService;
+
 
 
 
@@ -33,12 +37,14 @@ public class ProcessOrderController {
 	ServletContext context;	
 	@Autowired
 	IOrderService orderService;
+	@Autowired
+	MemberService mService;
 	
 	@PostMapping("processOrder")
 	protected String processOrder(Model model, 
 //			@RequestParam("memberName") String memberName,
 //			@RequestParam("memberPhone") String memberPhone,
-//			@RequestParam("memberMail") String memberMail,
+			@RequestParam("memberMail") String memberMail,
 			@RequestParam("total") String total,
 			@RequestParam("ShippingAddress") String shippingAddress,
 			@RequestParam("BNO") String bNO,
@@ -48,33 +54,33 @@ public class ProcessOrderController {
 			WebRequest webRequest, SessionStatus status
 			) {
 		
-//		MemberBean memberBean = (MemberBean) model.getAttribute("LoginOK");
-//		if (memberBean == null) {
-//			return "redirect:/_02_login/login";
-//		}
+		MemberBean memberBean = (MemberBean) model.getAttribute("LoginOK");
+		if (memberBean == null) {
+			return "redirect:/login";
+		}
 		
 		ShoppingCart sc = (ShoppingCart) model.getAttribute("ShoppingCart");
 		if (sc == null) {		
 			// 處理訂單時如果找不到購物車(通常是Session逾時)，沒有必要往下執行
 			// 導向首頁
-			return "redirect:/_02_login/login";
+			return "redirect:/login";
 		}
 	
 		//==================================
-//		String memberId = memberBean.getMemberId();   		// 取出會員代號
+		String memberId = memberBean.getMember_id();   		// 取出會員代號
 		double totalAmount = Double.parseDouble(total);  	// 計算訂單總金額 
 		Date today = new Date();   							// 新增訂單的時間
 		// 新建訂單物件。OrderBean:封裝一筆訂單資料的容器，包含訂單主檔與訂單明細檔的資料。目前只存放訂單主檔的資料。
 //		OrderBean ob = new OrderBean(null, memberId, totalAmount, shippingAddress, 
 //				bNO, invoiceTitle, today, null, null);
 		//先塞假memberId
-		OrderBean ob = new OrderBean(null, "200", totalAmount, shippingAddress, 
+		OrderBean ob = new OrderBean(null, memberId, totalAmount, shippingAddress, 
 				bNO, invoiceTitle, today, payment,note,"付款成功",null);
 		
 	
 		Map<Integer, OrderItemBean> content = sc.getContent();
         
-		Integer point=null;
+		Double point=null;
 		Set<OrderItemBean> items = new LinkedHashSet<>();
 		Set<Integer> set = content.keySet();
 		for(Integer i : set) {		
@@ -85,7 +91,7 @@ public class ProcessOrderController {
 			//查看是否為點數加值，呼叫mDao
 			if(oib.getProductId()==202029 ||oib.getProductId()==202030||oib.getProductId()==202031) {
 				System.out.println("點數加值共："+oib.getUnitPrice()*oib.getDiscount()*oib.getQuantity());
-				point=(int)(oib.getUnitPrice()*oib.getDiscount()*oib.getQuantity());
+				point=(oib.getUnitPrice()*oib.getDiscount()*oib.getQuantity());
 			}
 		}
 		ob.setItems(items); 
@@ -93,14 +99,16 @@ public class ProcessOrderController {
 		try {
 			orderService.persistOrder(ob);
 			//===點數加值===
-//			if(point!=null) {
-//				mDao.addPoint(point);
-//			}
+			if(point!=null) {
+				mService.addPoint(memberId,point);
+			}
 			
 			//這邊之後改掉 
 			  List<OrderBean> orderLst = orderService.getAllOrders();
-			  model.addAttribute("orderNo",orderLst.get(orderLst.size()-1).getOrderNo() );
-			  model.addAttribute("memberId",orderLst.get(orderLst.size()-1).getMemberId());
+			  int orderNo=orderLst.get(0).getOrderNo();
+			  //model.addAttribute("orderNo",orderLst.get(0).getOrderNo());
+			  //model.addAttribute("memberId",orderLst.get(orderLst.size()-1).getMemberId());
+			  OrderMail.sendOrderFinishMail(memberMail,orderNo);
 			  
 			System.out.println("Order Process OK");		
 			//加入ＮＣＣＣ
