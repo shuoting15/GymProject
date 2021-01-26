@@ -7,6 +7,8 @@ import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.context.ApplicationContext;
@@ -36,7 +38,10 @@ public class MemberBean implements Serializable {
 	private String memberphoto;
 	private int activate;
 	private String register_num;
-
+	@Transient
+	private Integer totalConsumeInCoach;
+	@Transient
+	private Integer monthConsumeInCoach;
 	public MemberBean() {
 	}
 
@@ -223,5 +228,23 @@ public class MemberBean implements Serializable {
 		((ConfigurableApplicationContext) context).close();
 
 	}
+
+	public Integer getTotalConsumeInCoach() {
+		return totalConsumeInCoach;
+	}
+
+	public void setTotalConsumeInCoach(Integer totalConsumeInCoach) {
+		this.totalConsumeInCoach = totalConsumeInCoach;
+	}
+
+	public Integer getMonthConsumeInCoach() {
+		return monthConsumeInCoach;
+	}
+
+	public void setMonthConsumeInCoach(Integer monthConsumeInCoach) {
+		this.monthConsumeInCoach = monthConsumeInCoach;
+	}
+
+
 
 }
