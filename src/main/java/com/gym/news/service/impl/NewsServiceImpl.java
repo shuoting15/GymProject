@@ -7,9 +7,11 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.gym.coach.model.CoachBean;
 import com.gym.news.dao.NewsDao;
 import com.gym.news.model.AuthorBean;
 import com.gym.news.model.NewsBean;
+import com.gym.news.model.NewsMessageBean;
 import com.gym.news.service.NewsService;
 
 
@@ -42,6 +44,7 @@ public class NewsServiceImpl implements NewsService {
 	@Transactional
 	@Override
 	public NewsBean getNewsById(int newsproductId) {
+		System.out.println();
 		return dao.getNewsById(newsproductId);
 	}
 	
@@ -52,20 +55,40 @@ public class NewsServiceImpl implements NewsService {
 	}
 	@Transactional
 	@Override
-	public AuthorBean getAuthorById(int authorId) {
+	public CoachBean getAuthorById(int authorId) {
 		return dao.getAuthorById(authorId);
 	}
 	@Transactional
 	@Override
-	public List<AuthorBean> getAuthorList() {
+	public List<CoachBean> getAuthorList() {
 		return dao.getAuthorList();
 	}
 
-
+	@Transactional
 	@Override
-	public void deleteNewsById(int id) {
-		dao.deleteNewsById(id);
+	public void deleteNewsById(int newsId) {
+		dao.deleteNewsById(newsId);
+		
+	}
+	
+	@Transactional
+	@Override
+	public List<NewsBean> getNewsByViews() {
+		return dao.getNewsByViews();
+	}
+
+	@Transactional
+	@Override
+	public void update(NewsBean newsbean) {
+		dao.update(newsbean);
 		
 	}
 
+	@Transactional
+	@Override
+	public void newsmessage(NewsMessageBean newsmessagebean) {
+		dao.newsmessage(newsmessagebean);
+		
+	}
+	
 }

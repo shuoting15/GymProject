@@ -24,9 +24,11 @@
 <link rel="stylesheet" href="css/lightcase.css">
 <link rel="stylesheet" href="css/flaticon.css">
 <link rel="stylesheet" href="css/swiper.min.css">
-<link rel="stylesheet" href="css/news.css">
+
 <link rel="shortcut icon" href="images/favicon.png" type="image/x-icon">
 <link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/news.css">
+
 
 <title>Video</title>
 
@@ -59,47 +61,45 @@
 <!-- 			</div> -->
 <!-- 		</div> -->
 <!-- 	</div> -->
-	<td width="350"><p align="center" /> <a href='newsadd'>新增news資料</a><BR>
-	</td>
+
 	<div class="blog-section-area padding-top padding-bottom">
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-8 mb-5 mb-lg-0">
+
 					<article>
-					<c:forEach var='news' items='${news}'>
-						<div>
-							<img src="<c:url value='/getNewsPicture/${news.newsId}' />" class="article_photo" alt="...">
-							<div class="article_area">
-								<p class="article_title" style="color:red;">
-									<a href="<spring:url value='/newsone?id=${news.newsId}' />">${news.newsTitle}</a>
-								</p>
-								<p class="article_content">Content</p>
-							</div>
-							<div class="article_info">
-								<div class="writer_info">${news.newsUploadTime} /${news.coachBean.coachName} / 50
-									${news.newsViews}</div>
-							</div>
-						</div>
+						<c:forEach var='newsCategory' items='${newscategoryList}'>
+                            <div class="card-columns">
+                                <a href='news${newsCategory}' >
+                                    <div class="card text-white text-center p-2 category-card">
+                                        ${newsCategory}
+                                    </div>
+                                </a>
+                            </div>
 						</c:forEach>
 					</article>
 				</div>
+				
 				<div class="col-lg-4">
 					<aside class="sidebar">
-						<div class="widget widget-search">
-							<form class="widget-form">
-								<input type="text" placeholder="Search in here"> <label
-									for="w1"><i class="fas fa-search"></i></label> <input
-									type="submit" value="Search" id="w1">
-							</form>
-						</div>
+						<div class="input-group mb-3">
+                            <input type="text" class="form-control" placeholder="Search in here" aria-label="Search in here" aria-describedby="sidebar-search">
+                            <div class="input-group-append">
+                              <button class="btn btn-outline-secondary" type="button" id="sidebar-search">Search</button>
+                        	</div>
+                        </div>
+
 						<div class="widget widget-category">
-							<h5 class="widget-title">news categories</h5>
-							<ul>
-								<li><a href="<c:url value='/news'/>"><span>全部文章</span></a></li>
-								<li><a href="<c:url value='/newsviews'/>">熱門排行<span></span></a></li>
-								<li><a href="<c:url value='/queryNewsByCategory'/>"><span>分類查詢</span></a></li>
-												
-							</ul>
+                            <div class="card category-sidebar">
+                                <div class="card-header">
+                                    News categories
+                                </div>
+                                <ul class="list-group list-group-flush">
+                                  <li class="list-group-item"><a href="<c:url value='/news'/>">全部文章</a></li>
+                                  <li class="list-group-item"><a href="<c:url value='/newsviews'/>">熱門排行</a></li>
+                                  <li class="list-group-item"><a href="<c:url value='/queryNewsByCategory'/>">分類查詢</a></li>
+                                </ul>
+                            </div>
 						</div>
 
 

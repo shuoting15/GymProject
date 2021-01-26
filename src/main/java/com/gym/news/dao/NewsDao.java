@@ -2,8 +2,10 @@ package com.gym.news.dao;
 
 import java.util.List;
 
+import com.gym.coach.model.CoachBean;
 import com.gym.news.model.AuthorBean;
 import com.gym.news.model.NewsBean;
+import com.gym.news.model.NewsMessageBean;
 
 
 public interface NewsDao {
@@ -18,10 +20,15 @@ public interface NewsDao {
 
 	void  addNewsone(NewsBean newsone);
 	
-	AuthorBean  getAuthorById(int authorId);
+	CoachBean  getAuthorById(int authorId);
 	
-	List<AuthorBean>  getAuthorList();
+	List<CoachBean>  getAuthorList();
 
-	void deleteNewsById(int id);
+	void deleteNewsById(int newsId);
 
+	List<NewsBean> getNewsByViews();
+	
+	void update(NewsBean newsbean);
+
+	void newsmessage(NewsMessageBean newsmessagebean);
 }
