@@ -28,5 +28,8 @@ public interface MemberDao{
 	public List<MemberBean> selectAll();
 	
 	public void updatePoint(MemberBean bean);
+	
+	//點數加值
+	public void addPoint(String memberId,Double point); 
 
 }

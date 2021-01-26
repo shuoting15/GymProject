@@ -190,4 +190,9 @@ public class MemberServiceImpl implements MemberService {
 		memberDao.updatePoint(bean);
 		
 	}
+
+	@Override
+	public void addPoint(String memberId, Double point) {
+		memberDao.addPoint(memberId, point);	
+	}
 }
