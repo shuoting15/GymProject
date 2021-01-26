@@ -179,6 +179,15 @@ public class ProductDao implements IProductDao {
 		return pBeanLst;	
 	}
 	
+	@Override
+	public List<ProductBean> filterProductsByPriceDesc(Double min,Double max){
+		Session session = factory.getCurrentSession();
+		Map<Integer, ProductBean> map = new LinkedHashMap<>();
+		String hql = "From ProductBean as pb where pb.productPrice between :min and :max ORDER BY pb.productPrice DESC";
+		List<ProductBean> pBeanLst = session.createQuery(hql).setParameter("min", min).setParameter("max", max).getResultList();
+		return pBeanLst;	
+	}
+	
 	@Override  
 	public List<ProductBean> queryNewestProducts() {
 		Session session = factory.getCurrentSession();
