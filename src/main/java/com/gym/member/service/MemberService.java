@@ -30,10 +30,10 @@ public interface MemberService {
 	public boolean activateMember(String member_id);
 	
 	public void updatePoint(MemberBean bean);
-<<<<<<< HEAD
+
 	public void addPoint(String memberId,Double point);
-=======
+
 	
 	public List<MemberBean> selectAll();
->>>>>>> e4361f682cc3694df73ff112d7b5aa14a20ebf2a
+
 }

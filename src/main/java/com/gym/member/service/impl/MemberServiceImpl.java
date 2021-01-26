@@ -195,13 +195,12 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 	@Override
-<<<<<<< HEAD
 	public void addPoint(String memberId, Double point) {
-		memberDao.addPoint(memberId, point);	
-=======
+		memberDao.addPoint(memberId, point);
+	}
+
 	public List<MemberBean> selectAll() {
 		// TODO Auto-generated method stub
 		return memberDao.selectAll();
->>>>>>> e4361f682cc3694df73ff112d7b5aa14a20ebf2a
 	}
 }
