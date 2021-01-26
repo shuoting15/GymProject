@@ -230,9 +230,6 @@ function confirmDelete(orderId,startTime) {
 									<c:when test="${Booking.orderStatus =='f'}">
 										<td role="cell" data-input="Note">課程已完成</td>
 									</c:when>
-									<c:otherwise>
-										<td role="cell" data-input="Note">123 ${Booking.orderStatus}</td>
-									</c:otherwise>
 								</c:choose>
 								<td role="cell" data-input="Note">
  									<fmt:formatDate value="${Booking.orderStartTime}" 

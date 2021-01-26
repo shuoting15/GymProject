@@ -177,6 +177,7 @@
 								<li><a href="<c:url value='/productMaintain/productAll' />">商品</a></li>
 								<li><a href="<c:url value='/orderProcess/orderListAll' />">訂單</a></li>
 								<li><a href="<c:url value='/coachMaintain' />">教練</a></li>
+								<li><a href="<c:url value='/coachPerformance' />">教練業績</a></li>
 								<li><a href="<c:url value="/courseManage" />">團課</a></li>
 								<li><a href="./shoping-cart.html">健身餐</a></li>
 								<li><a href="<c:url value='/newsmodify'/>">教學區</a></li>

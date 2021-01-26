@@ -49,6 +49,16 @@ public class CoachBean implements Serializable {
 	@Transient
 	private MultipartFile	coachImage;
 	
+	@Transient
+	private Integer totalrevenue;
+	@Transient
+	private Integer monthrevenue;
+	
+	@Transient
+	private Integer totalrevenuePercent;
+	@Transient
+	private Integer monthrevenuePercent;
+	
 	@JsonIgnore
 	@OneToMany(mappedBy="coachBean",fetch = FetchType.EAGER)
 	private  transient Set<CoachOrderBean> coachOrder = new LinkedHashSet<>();
@@ -183,6 +193,38 @@ public class CoachBean implements Serializable {
 
 	public void setCoachPrice(Integer coachPrice) {
 		this.coachPrice = coachPrice;
+	}
+
+	public Integer getTotalrevenue() {
+		return totalrevenue;
+	}
+
+	public void setTotalrevenue(Integer totalrevenue) {
+		this.totalrevenue = totalrevenue;
+	}
+
+	public Integer getMonthrevenue() {
+		return monthrevenue;
+	}
+
+	public void setMonthrevenue(Integer monthrevenue) {
+		this.monthrevenue = monthrevenue;
+	}
+
+	public Integer getTotalrevenuePercent() {
+		return totalrevenuePercent;
+	}
+
+	public void setTotalrevenuePercent(Integer totalrevenuePercent) {
+		this.totalrevenuePercent = totalrevenuePercent;
+	}
+
+	public Integer getMonthrevenuePercent() {
+		return monthrevenuePercent;
+	}
+
+	public void setMonthrevenuePercent(Integer monthrevenuePercent) {
+		this.monthrevenuePercent = monthrevenuePercent;
 	}
 	
 }

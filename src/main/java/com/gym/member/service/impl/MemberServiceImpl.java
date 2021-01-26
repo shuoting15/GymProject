@@ -2,11 +2,14 @@ package com.gym.member.service.impl;
 
 import java.sql.Blob;
 import java.sql.Date;
+import java.util.List;
+
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.dao.support.DaoSupport;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -192,7 +195,13 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 	@Override
+<<<<<<< HEAD
 	public void addPoint(String memberId, Double point) {
 		memberDao.addPoint(memberId, point);	
+=======
+	public List<MemberBean> selectAll() {
+		// TODO Auto-generated method stub
+		return memberDao.selectAll();
+>>>>>>> e4361f682cc3694df73ff112d7b5aa14a20ebf2a
 	}
 }

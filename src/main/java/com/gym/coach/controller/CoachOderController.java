@@ -103,9 +103,6 @@ public class CoachOderController {
 	@PostMapping(value = "/addOrderTime")
 	public String OrderCoachTime(@RequestParam int orderId, @RequestParam int coachId, Model model) {
 		MemberBean memberBean = (MemberBean) model.getAttribute("LoginOK");
-		if (memberBean == null) {
-			return "member/login";
-		}
 		CoachOrderBean coachOrderBean = coachOrderService.getCoachTimeById(orderId);
 		coachOrderBean.setOrderTitle("已被預約");
 		CoachBean coachBean = coachService.getCoachById(coachId);
@@ -116,6 +113,7 @@ public class CoachOderController {
 		coachOrderBean.setMemberBean(memberBean);
 		coachOrderBean.setOrderStatus("x");
 		coachOrderBean.setOrderColor("");
+		coachOrderBean.setOrderPrice(coachBean.getCoachPrice());
 		coachOrderService.orderCoachTime(coachOrderBean);
 		return "redirect:/coach/?id=" + coachId;
 	}
