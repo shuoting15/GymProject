@@ -23,7 +23,9 @@ import com.gym.member.service.MemberService;
 import com.gym.shoppingcart.model.OrderBean;
 import com.gym.shoppingcart.model.OrderItemBean;
 import com.gym.shoppingcart.model.ShoppingCart;
+import com.gym.shoppingcart.orderMail.OrderMail;
 import com.gym.shoppingcart.service.IOrderService;
+
 
 
 
@@ -103,8 +105,10 @@ public class ProcessOrderController {
 			
 			//這邊之後改掉 
 			  List<OrderBean> orderLst = orderService.getAllOrders();
-			  model.addAttribute("orderNo",orderLst.get(orderLst.size()-1).getOrderNo() );
-			  model.addAttribute("memberId",orderLst.get(orderLst.size()-1).getMemberId());
+			  int orderNo=orderLst.get(0).getOrderNo();
+			  //model.addAttribute("orderNo",orderLst.get(0).getOrderNo());
+			  //model.addAttribute("memberId",orderLst.get(orderLst.size()-1).getMemberId());
+			  OrderMail.sendOrderFinishMail(memberMail,orderNo);
 			  
 			System.out.println("Order Process OK");		
 			//加入ＮＣＣＣ
