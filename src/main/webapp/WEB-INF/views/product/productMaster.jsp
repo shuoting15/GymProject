@@ -107,11 +107,11 @@ body {
 		var id=document.getElementById(i).value;
 		var qty=document.getElementById(q).value;
 		var xhr = new XMLHttpRequest();
-		xhr.open("GET", "<c:url value='/buy'/>"+"?productId="+id+"&qty="+qty,true);
+		xhr.open("GET", "<c:url value='/buyProduct'/>"+"?productId="+id+"&qty="+qty,true);
 		xhr.send();
 		
 		xhr.onreadystatechange=function(){
-			if(xhr.readyState==4 &&(xhr.status==200)){	
+			if(xhr.readyState==4 &&(xhr.status==200)){			
 				var result=JSON.parse(xhr.responseText)
 				alert(result.msg);
 				
@@ -184,7 +184,7 @@ body {
 
 					<div class="sidebar__item" style="margin-top: 35px">
 						<div class="blog__sidebar__search">
-							<form action="/mvcExercise/productDisplay/productFuzzy"
+							<form action="<c:url value="/productDisplay/productFuzzy" />"
 								method="post">
 								<input type="text" placeholder="Search..." name="keyword">
 								<button type="submit">

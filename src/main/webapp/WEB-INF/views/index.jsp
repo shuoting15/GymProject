@@ -124,7 +124,7 @@
 								為何要選擇我們GYM
                             </h2>
                         </div>
-                        <p>我們擁有豐富專業的教練團隊，最齊全的商品包含健身器材、營養補充品，以及最好的場地</p>
+                        <p>我們擁有最好的教練團隊，最齊全的商品資訊，以及最好的場地</p>
                         <ul>
                             <li>交通方便</li>
                             <li>器材充足</li>
@@ -185,81 +185,32 @@
             </div>
             <div class="feature-slider">
                 <div class="swiper-wrapper">
+                <c:forEach var='courseList' items='${courseList}'>
                     <div class="swiper-slide">
                         <div class="feature-item">
                             <div class="feature-thumb">
-                                <a href="classes.html"><img src="assets/images/feature/01.jpg" alt="feature"></a>
+                                <a href="classes.html"><img src="<c:url value='/getCPicture/${courseList.courseId}'/>" alt="feature"></a>
                             </div>
                             <div class="feature-content">
                                 <div class="feature-header">
-                                    <h4 class="title"><a href="classes.html">Weight Losing</a></h4>
-                                    <p>Faucibus faucibus magna mrieaproine sit metus massa magna.</p>
+                                    <h4 class="title"><a href="<c:url value='/course?id=${courses.courseId}'/>" target="_blank">${courseList.title}</a></h4>
+                                    <p>${courseList.description}</p>
                                 </div>
                                 <div class="feature-footer d-flex flex-wrap align-items-center justify-content-between">
                                     <div class="d-flex flex-wrap">
                                         <div class="feature-author-thumb">
-                                            <a href="trainer-details.html"><img src="assets/images/feature/01.png" alt="feature"></a>
+<!--                                             <a href="trainer-details.html"><img src="assets/images/feature/01.png" alt="feature"></a> -->
                                         </div>
                                         <div class="feature-author-content">
-                                            <h6 class="sub-title"><a href="trainer-details.html">likana koo</a></h6>
-                                            <span>Trainer</span>
+                                            <h6 class="sub-title">${courseList.courseCoachBean.name}</h6>
                                         </div>
                                     </div>
-                                    <a href="login.html" class="join-now-button">join now</a>
+                                    <a href="<c:url value='/course?id=${courses.courseId}'/>" class="join-now-button">join now</a>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="swiper-slide">
-                        <div class="feature-item">
-                            <div class="feature-thumb">
-                                <a href="classes.html"><img src="assets/images/feature/02.jpg" alt="feature"></a>
-                            </div>
-                            <div class="feature-content">
-                                <div class="feature-header">
-                                    <h4 class="title"><a href="classes.html">meditation</a></h4>
-                                    <p>Faucibus faucibus magna mrieaproine sit metus massa magna.</p>
-                                </div>
-                                <div class="feature-footer d-flex flex-wrap align-items-center justify-content-between">
-                                    <div class="d-flex flex-wrap">
-                                        <div class="feature-author-thumb">
-                                            <a href="trainer-details.html"><img src="assets/images/feature/02.png" alt="feature"></a>
-                                        </div>
-                                        <div class="feature-author-content">
-                                            <h6 class="sub-title"><a href="trainer-details.html">devit winer</a></h6>
-                                            <span>Trainer</span>
-                                        </div>
-                                    </div>
-                                    <a href="login.html" class="join-now-button">join now</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="swiper-slide">
-                        <div class="feature-item">
-                            <div class="feature-thumb">
-                                <a href="classes.html"><img src="assets/images/feature/03.jpg" alt="feature"></a>
-                            </div>
-                            <div class="feature-content">
-                                <div class="feature-header">
-                                    <h4 class="title"><a href="classes.html">cycling</a></h4>
-                                    <p>Faucibus faucibus magna mrieaproine sit metus massa magna.</p>
-                                </div>
-                                <div class="feature-footer d-flex flex-wrap align-items-center justify-content-between">
-                                    <div class="d-flex flex-wrap">
-                                        <div class="feature-author-thumb">
-                                            <a href="trainer-details.html"><img src="assets/images/feature/03.png" alt="feature"></a>
-                                        </div>
-                                        <div class="feature-author-content">
-                                            <h6 class="sub-title"><a href="trainer-details.html">himu mama</a></h6>
-                                            <span>Trainer</span>
-                                        </div>
-                                    </div>
-                                    <a href="login.html" class="join-now-button">join now</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    </c:forEach>
                 </div>
             </div>
         </div>
@@ -289,7 +240,7 @@
                     <div class="swiper-slide">
                         <div class="expert-item">
                             <div class="expert-thumb">
-                                <a href="<c:url value='coach?id=${coachList.coachId}'/>"><img src="<c:url value='/getPicture/${coachList.coachId}'/>"  style="width: 500px;height: 450px"  alt="trainers"></a>
+                                <a href="trainers.html"><img src="<c:url value='/getPicture/${coachList.coachId}'/>"  style="width: 500px;height: 450px"  alt="trainers"></a>
                             </div>
                             <div class="expert-content">
                                 <div class="expert-info">

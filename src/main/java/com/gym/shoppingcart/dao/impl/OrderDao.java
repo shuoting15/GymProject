@@ -11,10 +11,6 @@ import com.gym.shoppingcart.dao.IOrderDao;
 import com.gym.shoppingcart.model.OrderBean;
 
 
-
-//1.新增一筆訂單到orders表格
-//2.查詢orders表格內的單筆訂單
-//3.查詢orders表格內的所有訂單
 @Repository
 public class OrderDao implements IOrderDao {
 	private String memberId = null;
@@ -34,13 +30,25 @@ public class OrderDao implements IOrderDao {
 		return list;
 	}
 	@SuppressWarnings("unchecked")
-	@Override  //查某會員所有訂單
+	@Override  
 	public List<OrderBean> getMemberOrders(String memberId) {
 		List<OrderBean> list = null;
         Session session = factory.getCurrentSession();
         String hql = "FROM OrderBean ob WHERE ob.memberId = :mid ORDER BY ob.orderNo DESC";
         list = session.createQuery(hql)
         			  .setParameter("mid", memberId)
+        			  .getResultList();
+        return list;
+	}
+	
+	@SuppressWarnings("unchecked")
+	@Override  
+	public List<OrderBean> getOrderByNo(int orderNo) {
+		List<OrderBean> list = null;
+        Session session = factory.getCurrentSession();
+        String hql = "FROM OrderBean ob WHERE ob.orderNo = :no";
+        list = session.createQuery(hql)
+        			  .setParameter("no", orderNo)
         			  .getResultList();
         return list;
 	}

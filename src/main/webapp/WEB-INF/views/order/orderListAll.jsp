@@ -142,15 +142,25 @@ function submitStatus(no){
 
 	<div class='container'>
 
-		<!-- 搜尋 -->
-		<div class="blog__sidebar__search" style="margin-bottom: 20px">
-			<form action="/mvcExercise/productMaintain/productFuzzy"
-				method="post">
-				<input type="text" placeholder="Search..." name="keyword">
-				<button type="submit">
-					<span class="icon_search"></span>
-				</button>
-			</form>
+		<div class="row">
+			<div class="col-lg-12">
+				<div class="hero__search">
+					<div class="hero__search__form">
+						<form action="<c:url value='/orderProcess/findOrder'/>"
+							method="post">
+							<div class="hero__search__categories">
+								以 <select name='searchBy'>
+									<option value="byOrder">訂單編號</option>
+									<option value="byMember">會員編號</option>
+								</select> 搜尋
+							</div>
+							<input type="text" name="keyword" placeholder="請輸入編號">
+							<button type="submit" class="site-btn">SEARCH</button>
+						</form>
+					</div>
+				</div>
+				
+			</div>
 		</div>
 
 

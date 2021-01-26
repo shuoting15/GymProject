@@ -75,7 +75,6 @@ public class OrderListController {
 		return "order/orderListAll";
 	}
 
-	// 修改訂單狀態
 	@GetMapping(value = "updateOrder", produces = { "text/plain; charset=UTF-8" })
 	public @ResponseBody String updateOrder(@RequestParam("orderNo") Integer orderNo,@RequestParam("orderStatus")String orderStatus, Model model) {
 		// model.addAttribute("orderBean", ob);
@@ -91,5 +90,26 @@ public class OrderListController {
 //			redirectAttributes.addFlashAttribute("SUCCESS", "修改成功!");
 //			return "redirect:/productMaintain/productAll";
 //		}
+	
+	@PostMapping("findOrder")
+	protected String searchOrder(@RequestParam("searchBy")String searchBy,@RequestParam("keyword")String keyword,Model model) {
+//		MemberBean memberBean = (MemberBean) model.getAttribute("LoginOK");
+//		if (memberBean == null) {
+//			return "redirect:/login/login";
+//		}
+		List<OrderBean> allOrders=null;
+		if(searchBy.equals("byMember")) {
+			//orderService.getMemberOrders(memberBean.getMemberId());
+			allOrders = orderService.getMemberOrders("200");
+		}else {
+			allOrders = orderService.getOrderByNo(Integer.parseInt(keyword));
+		}
+
+		//List<OrderBean> allOrders = orderService.getAllOrders();
+		model.addAttribute("allOrders", allOrders);
+		return "order/orderListAll";
+	}
+	
+	
 
 }

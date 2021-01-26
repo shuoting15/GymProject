@@ -10,7 +10,7 @@ import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-//本類別封裝單筆訂單資料
+
 @Entity
 @Table(name="OrderItem")
 public class OrderItemBean {

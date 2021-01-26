@@ -38,9 +38,9 @@ public class CouponController {
 		if (cBean != null) {
 			try {
 				int cdn = Integer.parseInt(cBean.getCondition());
-				if (a != false && subtotal > cdn) {   //判斷消費金額是否符合
+				if (a != false && subtotal > cdn) {   
 					double discode = 0;
-					discode = Double.parseDouble(cBean.getAmount());  //取得折扣的金額
+					discode = Double.parseDouble(cBean.getAmount());  
 						
 					Double newtotal = cart.getSubtotal()-discode;  
 					model.addAttribute("newsubtotal", newtotal);  

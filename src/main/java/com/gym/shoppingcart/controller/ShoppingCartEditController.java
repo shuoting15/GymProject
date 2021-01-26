@@ -71,7 +71,7 @@ public class ShoppingCartEditController {
 		
 		
 		if (cmd.equalsIgnoreCase("DEL")) {
-			sc.deleteProduct(productId); // 刪除購物車內的某項商品
+			sc.deleteProduct(productId); 
 			return "shoppingcart/showCartContent";
 		} else if (cmd.equalsIgnoreCase("MOD")) {
 			Integer stock=productService.getStockById(productId);
@@ -79,7 +79,7 @@ public class ShoppingCartEditController {
 				model.addAttribute("errorMsg","庫存數量不足，剩餘 : "+stock+" ，請重新調整訂購量 !");
 				return "shoppingcart/showCartContent";
 			}
-			sc.modifyQty(productId, newQty); // 修改某項商品的數項
+			sc.modifyQty(productId, newQty); 
 			return "shoppingcart/showCartContent";
 		} else {
 			return "shoppingcart/showCartContent";

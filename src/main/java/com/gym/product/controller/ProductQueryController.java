@@ -30,7 +30,7 @@ import com.gym.product.model.ProductBean;
 import com.gym.product.service.IProductService;
 
 
-//之後要做換頁功能
+
 @Controller
 @RequestMapping("/productMaintain")
 public class ProductQueryController {
@@ -40,7 +40,7 @@ public class ProductQueryController {
 	@Autowired
 	IProductService productService;
 	
-	//陳列後台所有商品 管理維護
+
 	@RequestMapping("productAll")
 	public String getAllProduct(Model model) {
 		List<ProductBean> products;
@@ -49,7 +49,7 @@ public class ProductQueryController {
 		return "product/products2";
 	}
 	
-	//模糊搜尋
+	
 	@RequestMapping(value="productFuzzy",method=RequestMethod.POST)
 	public String getFuzzyProduct(Model model,@RequestParam("keyword") String keyword) {
 		List<ProductBean> products;

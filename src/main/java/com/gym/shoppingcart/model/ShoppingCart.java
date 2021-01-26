@@ -21,10 +21,7 @@ public class ShoppingCart {
 		if ( cart.get(productId) == null ) {
 		    cart.put(productId, oib);
 		} else {
-	        // 如果客戶在伺服器端已有此項商品的資料，則客戶『加購』此項商品
-			OrderItemBean oiBean = cart.get(productId);
-			// 加購的數量：bean.getQuantity()
-			// 原有的數量：oBean.getQuantity()			
+			OrderItemBean oiBean = cart.get(productId);		
 			oiBean.setQuantity(oib.getQuantity() + oiBean.getQuantity());
 		}
 	}
@@ -38,10 +35,10 @@ public class ShoppingCart {
 		   return false;
 		}
 	}
-	// 刪除某項商品
+	
 	public int deleteProduct(int productId) {
 		if ( cart.get(productId) != null ) {
-	       cart.remove(productId);  // Map介面的remove()方法
+	       cart.remove(productId);  
 	       return 1;
 		} else {
 		   return 0;
@@ -50,7 +47,7 @@ public class ShoppingCart {
 	public int getItemNumber(){   // ShoppingCart.itemNumber
 		return cart.size();
 	}
-	//計算購物車內所有商品的合計金額(每項商品的單價*數量的總和)
+	
 	public double getSubtotal(){
 		double subTotal = 0 ;
 		Set<Integer> set = cart.keySet();
