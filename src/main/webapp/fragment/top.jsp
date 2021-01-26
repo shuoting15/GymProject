@@ -17,6 +17,7 @@
 <link rel="stylesheet" href="css/slicknav.min.css" type="text/css">
 <link rel="stylesheet" href="css/style.css" type="text/css">
 <link rel="stylesheet" href="css/stylemember.css" type="text/css">
+<link rel="stylesheet" href="css/stylecourses.css" type="text/css">
 
 <style>
 .dropdown:hover .dropdown-content {
@@ -157,7 +158,7 @@
 							<ul class="header__menu__dropdown">
 								<li><a href="<c:url value="/showBookingList" />">預約查詢</a></li>
 							</ul></li>
-						<li><a href="./blog.html">團體課程</a>
+						<li><a href="<c:url value="/courses" />">團體課程</a>
 							<ul class="header__menu__dropdown">
 								<li><a href="./shop-details.html">實體</a></li>
 								<li><a href="./shoping-cart.html">線上直播</a></li>
@@ -176,7 +177,7 @@
 								<li><a href="<c:url value='/productMaintain/productAll' />">商品</a></li>
 								<li><a href="<c:url value='/orderProcess/orderListAll' />">訂單</a></li>
 								<li><a href="<c:url value='/coachMaintain' />">教練</a></li>
-								<li><a href="./shoping-cart.html">團課</a></li>
+								<li><a href="<c:url value="/courseManage" />">團課</a></li>
 								<li><a href="./shoping-cart.html">健身餐</a></li>
 								<li><a href="<c:url value='/newsmodify'/>">教學區</a></li>
 								<li><a href="./shoping-cart.html">論壇</a></li>
