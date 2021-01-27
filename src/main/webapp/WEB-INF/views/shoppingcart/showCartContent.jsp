@@ -116,14 +116,14 @@ function isNumberKey(evt)
 
 	<!-- Breadcrumb Section Begin -->
 	<section class="breadcrumb-section set-bg"
-		data-setbg="../images/shop-setBack.png" style="height: 320px;">
+		data-setbg="../images/shop.png" style="height: 320px;">
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-12 text-center">
 					<div class="breadcrumb__text">
-						<h2>Organi Shop</h2>
+						<h2>GYM SHOP</h2>
 						<div class="breadcrumb__option">
-							<a href="./index.html">Home</a> <span>Shop</span>
+							<span>滿三千折100，限時活動中</span>
 						</div>
 					</div>
 				</div>
