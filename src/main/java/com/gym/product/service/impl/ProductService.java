@@ -107,6 +107,11 @@ public class ProductService implements IProductService {
 		return productDao.getProductsByIdDesc();
 	}
 
+	@Override @Transactional
+	public List<ProductBean> filterProductsByPriceDesc(Double min, Double max) {
+		return productDao.filterProductsByPriceDesc(min, max);
+	}
+
 	
 
 	

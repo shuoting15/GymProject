@@ -17,6 +17,7 @@
 <link rel="stylesheet" href="css/slicknav.min.css" type="text/css">
 <link rel="stylesheet" href="css/style.css" type="text/css">
 <link rel="stylesheet" href="css/stylemember.css" type="text/css">
+<link rel="stylesheet" href="css/stylecoach.css" type="text/css">
 
 <style>
 .dropdown:hover .dropdown-content {
@@ -65,14 +66,15 @@
 <header class="header">
 	<div class="header__top">
 		<div class="container">
-			<div class="row" style='margin-right:30px'>
+			<div class="row" style='margin-right: 30px'>
 				<div class="header__top__right__auth col-lg-6"></div>
 				<div class="header__cart col-lg-6" id="headerBoxTop">
 					<ul>
-						<li><a href="<c:url value="/register"/>" class="headerButton" id="topregister">加入會員</a>
-							<a href="<c:url value="/login"/>" class="headerButton" id="toplogin">會員登入</a> <a
-							href="<c:url value="/logout"/>" class="headerButton logout" id="toplogout">會員登出</a>
-						</li>
+						<li><a href="<c:url value="/register"/>" class="headerButton"
+							id="topregister">加入會員</a> <a href="<c:url value="/login"/>"
+							class="headerButton" id="toplogin">會員登入</a> <a
+							href="<c:url value="/logout"/>" class="headerButton logout"
+							id="toplogout">會員登出</a></li>
 						<li><span style='color: #336666; font-weight: bold'>${LoginOK.point}</span><a
 							href="memberarea"><img src="images/point.png" alt=""></a></li>
 
@@ -135,8 +137,7 @@
 		<div class="row">
 			<div class="col-lg-2">
 				<div class="header__logo">
-					<a href="<c:url value='/' />"><img src="images/logo5.png"
-						alt=""></a>
+					<a href="<c:url value='/' />"><img src="<c:url value="/images/logo5.png"/>" alt=""></a>
 				</div>
 			</div>
 			<div class="col-lg-10">
@@ -157,7 +158,7 @@
 							<ul class="header__menu__dropdown">
 								<li><a href="<c:url value="/showBookingList" />">預約查詢</a></li>
 							</ul></li>
-						<li><a href="./blog.html">團體課程</a>
+						<li><a href="<c:url value="/courses" />">團體課程</a>
 							<ul class="header__menu__dropdown">
 								<li><a href="./shop-details.html">實體</a></li>
 								<li><a href="./shoping-cart.html">線上直播</a></li>
@@ -176,7 +177,8 @@
 								<li><a href="<c:url value='/productMaintain/productAll' />">商品</a></li>
 								<li><a href="<c:url value='/orderProcess/orderListAll' />">訂單</a></li>
 								<li><a href="<c:url value='/coachMaintain' />">教練</a></li>
-								<li><a href="./shoping-cart.html">團課</a></li>
+								<li><a href="<c:url value='/coachPerformance' />">教練業績</a></li>
+								<li><a href="<c:url value="/courseManage" />">團課</a></li>
 								<li><a href="./shoping-cart.html">健身餐</a></li>
 								<li><a href="<c:url value='/newsmodify'/>">教學區</a></li>
 								<li><a href="reports">論壇</a></li>

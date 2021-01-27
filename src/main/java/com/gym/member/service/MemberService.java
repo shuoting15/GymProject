@@ -1,6 +1,8 @@
 package com.gym.member.service;
 
 import java.sql.Date;
+import java.util.List;
+
 import com.gym.member.model.MemberBean;
 
 public interface MemberService {
@@ -28,4 +30,10 @@ public interface MemberService {
 	public boolean activateMember(String member_id);
 	
 	public void updatePoint(MemberBean bean);
+
+	public void addPoint(String memberId,Double point);
+
+	
+	public List<MemberBean> selectAll();
+
 }

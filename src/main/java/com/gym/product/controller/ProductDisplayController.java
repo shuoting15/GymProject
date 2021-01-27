@@ -211,6 +211,25 @@ public class ProductDisplayController {
 		return map;
 	}
 	
+	@GetMapping(value = "/pricefilter", produces = { "application/json; charset=UTF-8" })
+	public @ResponseBody Map<String, Object> filterProductsByPrice(
+			@RequestParam("min") String min,@RequestParam("max") String max,
+			@RequestParam(value="pageNo", required = false, defaultValue = "1") Integer pageNo,
+			@RequestParam(value="totalPage", required = false) Integer totalPage) {
+		
+		if (totalPage == null) {
+			totalPage = productService.getTotalPages();
+		}
+		
+		List<ProductBean> sortLst= productService.filterProductsByPriceDesc(Double.parseDouble(min), Double.parseDouble(max));
+
+		Map<String, Object> map =new LinkedHashMap<String, Object>();		
+		map.put("sort", sortLst);
+		map.put("totalPage", totalPage);
+		map.put("currPage", pageNo);	
+		return map;
+	}
+	
 	//========@ModelAttribute===============================
 	@ModelAttribute("categoryLst")
 	public List<String> getCategoryList() {

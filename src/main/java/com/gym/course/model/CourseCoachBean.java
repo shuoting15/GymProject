@@ -1,4 +1,4 @@
-package com.gym.news.model;
+package com.gym.course.model;
 
 import java.io.Serializable;
 import java.util.LinkedHashSet;
@@ -11,23 +11,26 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
-@Table(name="NewsAuthor")
-public class AuthorBean implements Serializable {
+@Table(name="CourseCoach")
+public class CourseCoachBean implements Serializable {
 	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer id ;
 	private String  name;
-	@OneToMany(mappedBy="authorBean")
-	private Set<NewsBean> news = new LinkedHashSet<>();
+
+	@OneToMany(mappedBy="courseCoachBean")
+	@JsonIgnore
+	private Set<CourseBean> courses = new LinkedHashSet<>();
 	
-	public AuthorBean(Integer id, String name) {
+	public CourseCoachBean(Integer id, String name) {
 		this.id = id;
 		this.name = name;
-
 	}
-	public AuthorBean() {
+	public CourseCoachBean() {
 	}
 	
 	public Integer getId() {
@@ -38,11 +41,11 @@ public class AuthorBean implements Serializable {
 		this.id = id;
 	}
 	
-	public Set<NewsBean> getNews() {
-		return news;
+	public Set<CourseBean> getCourses() {
+		return courses;
 	}
-	public void setNews(Set<NewsBean> news) {
-		this.news = news;
+	public void setCourses(Set<CourseBean> courses) {
+		this.courses = courses;
 	}
 	public String getName() {
 		return name;
@@ -51,5 +54,5 @@ public class AuthorBean implements Serializable {
 	public void setName(String name) {
 		this.name = name;
 	}
-
+	
 }

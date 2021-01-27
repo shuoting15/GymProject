@@ -24,9 +24,10 @@
 <link rel="stylesheet" href="css/lightcase.css">
 <link rel="stylesheet" href="css/flaticon.css">
 <link rel="stylesheet" href="css/swiper.min.css">
-
 <link rel="shortcut icon" href="images/favicon.png" type="image/x-icon">
 <link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/news.css">
+
 
 <title>Video</title>
 
@@ -47,172 +48,70 @@
 		</div>
 	</section>
 
-	<div class="breadcrumb-section">
-		<div class="container">
-			<div class="breadcrumb-wrapper">
-				<div class="breadcrumb-title">
-					<h6 class="title"></h6>
-				</div>
-				<ul class="breadcrumb">
-					<li>影片區</li>
-				</ul>
-			</div>
-		</div>
-	</div>
+<!-- 	<div class="breadcrumb-section"> -->
+<!-- 		<div class="container"> -->
+<!-- 			<div class="breadcrumb-wrapper"> -->
+<!-- 				<div class="breadcrumb-title"> -->
+<!-- 					<h6 class="title"></h6> -->
+<!-- 				</div> -->
+<!-- 				<ul class="breadcrumb"> -->
+<!-- 					<li>影片區</li> -->
+<!-- 				</ul> -->
+<!-- 			</div> -->
+<!-- 		</div> -->
+<!-- 	</div> -->
 
 	<div class="blog-section-area padding-top padding-bottom">
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-8 mb-5 mb-lg-0">
+<!-- 					<article> -->
+<!-- 						<div class="blog-wrapper"> -->
+<%-- 							<c:forEach var='news' items='${news}'> --%>
+<!-- 								<div class="col-sm-6 col-md-3" -->
+<!-- 									style="width: 360px; height: 500px"> -->
+<!-- 									<div class="thumbnail" style="width: 320px; height: 340px"> -->
+<!-- 										<img width='100' height='200' -->
+<%-- 											src="<c:url value='/getNewsPicture/${news.newsId}' />" /> --%>
+<!-- 										<div class="caption"> -->
+<!-- 											<p> -->
+<%-- 												<b style='font-size: 16px;'>標題${news.newsTitle}</b> --%>
+<!-- 											</p> -->
+
+<%-- 											<p>作者${news.coachBean.coachName}</p> --%>
+<%-- 											<p>日期${news.newsUploadTime}</p> --%>
+<%-- 											<p>瀏覽數${news.newsViews}</p> --%>
+<!-- 											<p></p> -->
+<!-- 											<p> -->
+<%-- 												<a href="<spring:url value='/newsone?id=${news.newsId}' />" --%>
+<!-- 													class="btn btn-primary"> <span class="glyphicon-info-sigh glyphicon">內文</span> -->
+<!-- 												</a> -->
+<!-- 											</p> -->
+<!-- 										</div> -->
+<!-- 									</div> -->
+<!-- 								</div> -->
+<%-- 							</c:forEach> --%>
+<!-- 					</article> -->
+
 					<article>
-						<div class="blog-wrapper">
-							<c:forEach var='news' items='${news}'>
-								<div class="col-sm-6 col-md-3"
-									style="width: 360px; height: 500px">
-									<div class="thumbnail" style="width: 320px; height: 340px">
-										<img width='100' height='200'
-											src="<c:url value='/getNewsPicture/${news.newsId}' />" />
-										<div class="caption">
-											<p>
-												<b style='font-size: 16px;'>標題${news.newsTitle}</b>
-											</p>
-
-											<p>作者${news.authorBean.name}</p>
-											<p>日期${news.newsUploadTime}</p>
-											<p>瀏覽數${news.newsViews}</p>
-											<p></p>
-											<p>
-												<a href="<spring:url value='/newsone?id=${news.newsId}' />"
-													class="btn btn-primary"> <span class="glyphicon-info-sigh glyphicon">內文</span>
-												</a>
-											</p>
-										</div>
-									</div>
-								</div>
-							</c:forEach>
-
-
-
-
-
-
-<!-- 							<div class="post-item style-two regular-item"> -->
-<!-- 								<div class="post-thumb"> -->
-<!-- 									<a href="blog-details.html"><img -->
-<!-- 										src="assets/images/blog/04.jpg" alt="blog"></a> -->
-<!-- 								</div> -->
-<!-- 								<div class="post-content"> -->
-<!-- 									<div class="post-header"> -->
-<!-- 										<h4 class="title"> -->
-<!-- 											<a href="blog-details.html"> AA -->
-<!-- 												</p> -->
-<!-- 									</div> -->
-<!-- 									<div class="meta-post d-flex flex-wrap justify-content-between"> -->
-<!-- 										<div class="meta-date"> -->
-<!-- 											<a href="#"><i class="far fa-calendar-alt"></i> <span>BB</span></a> -->
-<!-- 										</div> -->
-<!-- 										<div class="meta-comment"> -->
-<!-- 											<a href="#"><i class="far fa-comment"></i> <span>CC</span></a> -->
-<!-- 										</div> -->
-<!-- 									</div> -->
-<!-- 								</div> -->
-<!-- 							</div> -->
-							<!--                             <div class="post-item blog-video style-two"> -->
-							<!--                                 <div class="post-thumb"> -->
-							<!--                                     <a href="blog-details.html"><img src="assets/images/blog/05.jpg" alt="blog"></a> -->
-							<!--                                     <div class="blog-video-icon-wrapper"> -->
-							<!--                                         <a href="https://www.youtube.com/embed/GT6-H4BRyqQ" -->
-							<!--                                             data-rel="lightcase:myCollection"><img -->
-							<!--                                                 src="assets/images/blog/video-button.png" alt="blog-button"></a> -->
-							<!--                                     </div> -->
-							<!--                                 </div> -->
-							<!--                                 <div class="post-content"> -->
-							<!--                                     <div class="post-header"> -->
-							<!--                                         <h4 class="title"><a href="blog-details.html">Sent to Prison by a Software Program’s Secret Algorithms</a></h4> -->
-							<!--                                         <p>Euismod hendrerit, metus ac rem sagittis justo velit. Volutpat ut, est sed et -->
-							<!--                                             tincidunqusum consectetuer blandit eros. Vestibulum diam nec. Ridiculus -->
-							<!--                                             justo -->
-							<!--                                             volutpat dictueget odiulus gravida arcu aliquam pede fringilla. Ante et -->
-							<!--                                             vestibulum sed. Eros felis mollis pharetrsper id ac, mus et posuere proin -->
-							<!--                                             mauris -->
-							<!--                                             donec vivamus. Aliqueaquam, odio sodales dapibus -->
-							<!--                                             over the wold choose </p> -->
-							<!--                                     </div> -->
-							<!--                                     <div class="meta-post d-flex flex-wrap justify-content-between"> -->
-							<!--                                         <div class="meta-date"> -->
-							<!--                                             <a href="#"><i class="far fa-calendar-alt"></i> <span>29 May 2019</span></a> -->
-							<!--                                         </div> -->
-							<!--                                         <div class="meta-comment"> -->
-							<!--                                             <a href="#"><i class="far fa-comment"></i> <span>Comment</span></a> -->
-							<!--                                         </div> -->
-							<!--                                     </div> -->
-							<!--                                 </div> -->
-							<!--                             </div> -->
-							<!--                             <div class="post-item blockquote-item style-two"> -->
-							<!--                                 <blockquote class="blog-blockquote"> -->
-							<!--                                     Lorem ipsum dolor sit amet, luctus odio odio magna pquatus. In pellentesque ipsum -->
-							<!--                                     nulla, -->
-							<!--                                     lectus at faucibus quis ac tortor. Cras cies, purus dolor -->
-							<!--                                     <span class="title">admo nuna</span> -->
-							<!--                                 </blockquote> -->
-							<!--                             </div> -->
-							<!--                             <div class="post-item style-two"> -->
-							<!--                                 <div class="post-thumb blog-slider"> -->
-							<!--                                     <div class="swiper-wrapper"> -->
-							<!--                                         <div class="swiper-slide"> -->
-							<!--                                             <div class="post-thumb"> -->
-							<!--                                                 <a href="blog-details.html"><img src="assets/images/blog/06.jpg" -->
-							<!--                                                         alt="blog"></a> -->
-							<!--                                             </div> -->
-							<!--                                         </div> -->
-							<!--                                         <div class="swiper-slide"> -->
-							<!--                                             <div class="post-thumb"> -->
-							<!--                                                 <a href="blog-details.html"><img src="assets/images/blog/05.jpg" -->
-							<!--                                                         alt="blog"></a> -->
-							<!--                                             </div> -->
-							<!--                                         </div> -->
-							<!--                                         <div class="swiper-slide"> -->
-							<!--                                             <div class="post-thumb"> -->
-							<!--                                                 <a href="blog-details.html"><img src="assets/images/blog/04.jpg" -->
-							<!--                                                         alt="blog"></a> -->
-							<!--                                             </div> -->
-							<!--                                         </div> -->
-							<!--                                     </div> -->
-							<!--                                     <div class="blog-next"><i class="fas fa-angle-left"></i></div> -->
-							<!--                                     <div class="blog-prev"><i class="fas fa-angle-right"></i></div> -->
-							<!--                                 </div> -->
-							<!--                                 <div class="post-content"> -->
-							<!--                                     <div class="post-header"> -->
-							<!--                                         <h4 class="title"><a href="blog-details.html">Why Instagram Is Becoming Blazeon’s Next Blazeon</a></h4> -->
-							<!--                                         <p>Euismod hendrerit, metus ac rem sagittis justo velit. Volutpat ut, est sed et -->
-							<!--                                             tincidunqusum consectetuer blandit eros. Vestibulum diam nec. Ridiculus -->
-							<!--                                             justo -->
-							<!--                                             volutpat dictueget odiulus gravida arcu aliquam pede fringilla. Ante et -->
-							<!--                                             vestibulum sed. Eros felis mollis pharetrsper id ac, mus et posuere proin -->
-							<!--                                             mauris -->
-							<!--                                             donec vivamus. Aliqueaquam, odio sodales dapibus -->
-							<!--                                             over the wold choose </p> -->
-							<!--                                     </div> -->
-							<!--                                     <div class="meta-post d-flex flex-wrap justify-content-between"> -->
-							<!--                                         <div class="meta-date"> -->
-							<!--                                             <a href="#"><i class="far fa-calendar-alt"></i> <span>29 May 2019</span></a> -->
-							<!--                                         </div> -->
-							<!--                                         <div class="meta-comment"> -->
-							<!--                                             <a href="#"><i class="far fa-comment"></i> <span>Comment</span></a> -->
-							<!--                                         </div> -->
-							<!--                                     </div> -->
-							<!--                                 </div> -->
-							<!--                             </div> -->
-							<!--                         </div> -->
-							<!--                         <div class="inner-pagination-wrapper d-flex flex-wrap"> -->
-							<!--                             <a href="blog.html"><i class="fas fa-angle-left"></i></a> -->
-							<!--                             <a href="blog.html">03</a> -->
-							<!--                             <a href="blog.html" class="active">04</a> -->
-							<!--                             <a href="blog.html">05</a> -->
-							<!--                             <a href="blog.html"><i class="fas fa-angle-right"></i></a> -->
-							<!--                         </div> -->
+					<c:forEach var='news' items='${news}'>
+						<div>
+							<img src="<c:url value='/getNewsPicture/${news.newsId}' />" class="article_photo" alt="...">
+							<div class="article_area">
+								<p class="article_title">
+									<a href="<spring:url value='/newsone?id=${news.newsId}' />" >${news.newsTitle}</a>
+								</p>
+								<p class="article_content">教練:${news.coachBean.coachName}</p>
+							</div>
+							<div class="article_info">
+								<div class="writer_info">日期${news.newsUploadTime}/瀏覽次數 50
+									${news.newsViews}</div>
+							</div>
+						</div>
+						</c:forEach>
 					</article>
 				</div>
+				
 				<div class="col-lg-4">
 					<aside class="sidebar">
 						<div class="widget widget-search">
@@ -225,69 +124,14 @@
 						<div class="widget widget-category">
 							<h5 class="widget-title">news categories</h5>
 							<ul>
-								<li><a href="#">gym<span>32</span></a></li>
-								<li><a href="#">body building<span>55</span></a></li>
-								<li><a href="#">yoga<span>77</span></a></li>
-								<li><a href="#">boxing<span>90</span></a></li>
-								<li><a href="#">fitness<span>09</span></a></li>
-								<li><a href="#">class<span>34</span></a></li>
+								<li><a href="<c:url value='/news'/>"><span>全部文章</span></a></li>
+								<li><a href="<c:url value='/newsviews'/>">熱門排行<span></span></a></li>
+								<li><a href="<c:url value='/queryNewsByCategory'/>"><span>分類查詢</span></a></li>
+												
 							</ul>
 						</div>
-						<div class="widget widget-post">
-							<h5 class="widget-title">popular news</h5>
-							<ul>
-								<li><a href="#" class="post-title">Daily Report: More
-										Self-Driving Cars Take to the Streets</a>
-									<div class="meta-post">
-										<div class="meta-date">
-											<a href="#"><i class="far fa-calendar-alt"></i> <span>29
-													May 2019</span></a>
-										</div>
-										<div class="meta-comment">
-											<a href="#"><i class="far fa-comment"></i> <span>Comment</span></a>
-										</div>
-									</div></li>
-								<li><a href="#" class="post-title">Daily Report: More
-										Self-Driving Cars Take to the Streets</a>
-									<div class="meta-post">
-										<div class="meta-date">
-											<a href="#"><i class="far fa-calendar-alt"></i> <span>29
-													May 2019</span></a>
-										</div>
-										<div class="meta-comment">
-											<a href="#"><i class="far fa-comment"></i> <span>Comment</span></a>
-										</div>
-									</div></li>
-								<li><a href="#" class="post-title">Daily Report: More
-										Self-Driving Cars Take to the Streets</a>
-									<div class="meta-post">
-										<div class="meta-date">
-											<a href="#"><i class="far fa-calendar-alt"></i> <span>29
-													May 2019</span></a>
-										</div>
-										<div class="meta-comment">
-											<a href="#"><i class="far fa-comment"></i> <span>Comment</span></a>
-										</div>
-									</div></li>
-							</ul>
-						</div>
-						<div class="widget widget-tags">
-							<h5 class="widget-title">tags</h5>
-							<div class="tag-item-wrapper">
-								<a href="#" class="tag-item active">boxing</a> <a href="#"
-									class="tag-item">Fitness</a> <a href="#" class="tag-item">class
-									offers</a> <a href="#" class="tag-item">build</a>
-							</div>
-						</div>
-						<div class="widget widget-banner">
-							<div class="widget-banner-thumb">
-								<img src="assets/images/blog/07.jpg" alt="blog-banner">
-							</div>
-							<div class="widget-banner-content">
-								<h4>add banner</h4>
-								<a href="#" class="custom-button">buy now</a>
-							</div>
-						</div>
+
+
 					</aside>
 				</div>
 			</div>
@@ -296,77 +140,77 @@
 	<!-- Blog Section Starts Here -->
 	<!--Blog Section Ends Here -->
 	<!-- Footer Section Starts Here -->
-	<footer class="footer-section">
-		<div class="footer-top">
-			<div class="container">
-				<div class="row mb-45-none">
-					<div class="col-lg-4 col-md-6">
-						<div class="footer-widget widget-about">
-							<h5 class="widget-title">About Us</h5>
-							<p>Lorem ipsum dolor sit amet, mauris libero congue eget
-								pulvinar, cras ut mus tempus dolor, ante tortor ornare ante arcu
-								nam</p>
-							<h6 class="sub-title">Subscribe</h6>
-							<form class="footer-form">
-								<input type="text" placeholder="Your Email" class="footer-input">
-								<label for="f1"><i class="fas fa-arrow-right"></i></label> <input
-									type="submit" value="" id="f1">
-							</form>
-							<div class="social-icons">
-								<a href="#"><i class="fab fa-facebook-f"></i></a> <a href="#"><i
-									class="fab fa-twitter"></i></a> <a href="#"><i
-									class="fab fa-linkedin-in"></i></a> <a href="#"><i
-									class="fab fa-google-plus-g"></i></a>
-							</div>
-						</div>
-					</div>
-					<div class="col-lg-2 col-md-6">
-						<div class="footer-widget widget-link">
-							<h5 class="widget-title">Useful Link</h5>
-							<ul>
-								<li><a href="#">Weight Loss</a></li>
-								<li><a href="#">Pakckages</a></li>
-								<li><a href="#">Class Time</a></li>
-								<li><a href="#">About Us</a></li>
-								<li><a href="#">Offer</a></li>
-							</ul>
-						</div>
-					</div>
-					<div class="col-lg-3 col-md-6">
-						<div class="footer-widget widget-post">
-							<h5 class="widget-title">Our Blog post</h5>
-							<ul>
-								<li><a class="post-title" href="#">Ullamco est amet
-										quis tullam cursus, metus.</a> <span>05 may 2017</span></li>
-								<li><a class="post-title" href="#">Ullamco est amet
-										quis tullam cursus, metus.</a> <span>05 may 2017</span></li>
-							</ul>
-						</div>
-					</div>
-					<div class="col-lg-3 col-md-6">
-						<div class="footer-widget widget-form">
-							<h5 class="widget-title">Contact Form</h5>
-							<form class="footer-contact-form">
-								<input type="text" placeholder="Name"> <input
-									type="text" placeholder="Email">
-								<textarea name="footer-message" id="f2" class="footer-textarea"
-									placeholder="Message"></textarea>
-								<input type="submit" value="submit Now">
-							</form>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		<div class="footer-bottom align-items-center d-flex">
-			<div class="container">
-				<p class="m-0">
-					&copy; Copyright <a href="http://www.bootstrapmb.com/">Gymio</a> -
-					2019
-				</p>
-			</div>
-		</div>
-	</footer>
+<!-- 	<footer class="footer-section"> -->
+<!-- 		<div class="footer-top"> -->
+<!-- 			<div class="container"> -->
+<!-- 				<div class="row mb-45-none"> -->
+<!-- 					<div class="col-lg-4 col-md-6"> -->
+<!-- 						<div class="footer-widget widget-about"> -->
+<!-- 							<h5 class="widget-title">About Us</h5> -->
+<!-- 							<p>Lorem ipsum dolor sit amet, mauris libero congue eget -->
+<!-- 								pulvinar, cras ut mus tempus dolor, ante tortor ornare ante arcu -->
+<!-- 								nam</p> -->
+<!-- 							<h6 class="sub-title">Subscribe</h6> -->
+<!-- 							<form class="footer-form"> -->
+<!-- 								<input type="text" placeholder="Your Email" class="footer-input"> -->
+<!-- 								<label for="f1"><i class="fas fa-arrow-right"></i></label> <input -->
+<!-- 									type="submit" value="" id="f1"> -->
+<!-- 							</form> -->
+<!-- 							<div class="social-icons"> -->
+<!-- 								<a href="#"><i class="fab fa-facebook-f"></i></a> <a href="#"><i -->
+<!-- 									class="fab fa-twitter"></i></a> <a href="#"><i -->
+<!-- 									class="fab fa-linkedin-in"></i></a> <a href="#"><i -->
+<!-- 									class="fab fa-google-plus-g"></i></a> -->
+<!-- 							</div> -->
+<!-- 						</div> -->
+<!-- 					</div> -->
+<!-- 					<div class="col-lg-2 col-md-6"> -->
+<!-- 						<div class="footer-widget widget-link"> -->
+<!-- 							<h5 class="widget-title">Useful Link</h5> -->
+<!-- 							<ul> -->
+<!-- 								<li><a href="#">Weight Loss</a></li> -->
+<!-- 								<li><a href="#">Pakckages</a></li> -->
+<!-- 								<li><a href="#">Class Time</a></li> -->
+<!-- 								<li><a href="#">About Us</a></li> -->
+<!-- 								<li><a href="#">Offer</a></li> -->
+<!-- 							</ul> -->
+<!-- 						</div> -->
+<!-- 					</div> -->
+<!-- 					<div class="col-lg-3 col-md-6"> -->
+<!-- 						<div class="footer-widget widget-post"> -->
+<!-- 							<h5 class="widget-title">Our Blog post</h5> -->
+<!-- 							<ul> -->
+<!-- 								<li><a class="post-title" href="#">Ullamco est amet -->
+<!-- 										quis tullam cursus, metus.</a> <span>05 may 2017</span></li> -->
+<!-- 								<li><a class="post-title" href="#">Ullamco est amet -->
+<!-- 										quis tullam cursus, metus.</a> <span>05 may 2017</span></li> -->
+<!-- 							</ul> -->
+<!-- 						</div> -->
+<!-- 					</div> -->
+<!-- 					<div class="col-lg-3 col-md-6"> -->
+<!-- 						<div class="footer-widget widget-form"> -->
+<!-- 							<h5 class="widget-title">Contact Form</h5> -->
+<!-- 							<form class="footer-contact-form"> -->
+<!-- 								<input type="text" placeholder="Name"> <input -->
+<!-- 									type="text" placeholder="Email"> -->
+<!-- 								<textarea name="footer-message" id="f2" class="footer-textarea" -->
+<!-- 									placeholder="Message"></textarea> -->
+<!-- 								<input type="submit" value="submit Now"> -->
+<!-- 							</form> -->
+<!-- 						</div> -->
+<!-- 					</div> -->
+<!-- 				</div> -->
+<!-- 			</div> -->
+<!-- 		</div> -->
+<!-- 		<div class="footer-bottom align-items-center d-flex"> -->
+<!-- 			<div class="container"> -->
+<!-- 				<p class="m-0"> -->
+<!-- 					&copy; Copyright <a href="http://www.bootstrapmb.com/">Gymio</a> - -->
+<!-- 					2019 -->
+<!-- 				</p> -->
+<!-- 			</div> -->
+<!-- 		</div> -->
+<!-- 	</footer> -->
 	<!-- Footer Section Ends Here -->
 	<!-- JavaScript File Links -->
 	<!--     <script src="assets/js/jquery-3.3.1.min.js"></script> -->
@@ -380,6 +224,8 @@
 	<!--     <script src="assets/js/lightcase.js"></script> -->
 	<!--     <script src="assets/js/wow.min.js"></script> -->
 	<!--     <script src="assets/js/main.js"></script> -->
+
+	
 
 </body>
 

@@ -178,6 +178,7 @@ function fuzzySearch(any){
 	<!-- Blog Section End -->
 
 	<!-- Js Plugins -->
+	
 	<script src="js/jquery-3.3.1.min.js"></script>
 	<script src="js/modernizr-3.6.0.min.js"></script>
 	<script src="js/plugins.js"></script>

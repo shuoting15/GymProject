@@ -12,6 +12,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Repository;
 import com.gym.member.dao.MemberDao;
 import com.gym.member.model.MemberBean;
+import com.gym.product.model.ProductBean;
 
 
 @Repository
@@ -132,8 +133,16 @@ public class MemberDaoImpl implements MemberDao {
 	@Override
 	public void updatePoint(MemberBean bean) {
 		Session session = sessionFactory.getCurrentSession();
-		session.saveOrUpdate(bean);
-		
+		session.saveOrUpdate(bean);	
+	}
+	
+	@Override
+	public void addPoint(String memberId,Double point) {
+		Session session = sessionFactory.getCurrentSession();
+		MemberBean bean=session.get(MemberBean.class, memberId);
+		double totalPoint = bean.getPoint()+point;
+		bean.setPoint(totalPoint);
+		session.saveOrUpdate(bean);	
 	}
 
 }

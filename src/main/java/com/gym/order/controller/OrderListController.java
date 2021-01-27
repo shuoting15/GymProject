@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.gym.member.model.MemberBean;
 import com.gym.shoppingcart.model.OrderBean;
 import com.gym.shoppingcart.model.OrderItemBean;
 import com.gym.shoppingcart.service.IOrderService;
@@ -37,14 +38,15 @@ public class OrderListController {
 
 	@GetMapping("orderList")
 	protected String orderList(Model model) {
-//		MemberBean memberBean = (MemberBean) model.getAttribute("LoginOK");
-//		if (memberBean == null) {
-//			return "redirect:/login/login";
-//		}
+		MemberBean memberBean = (MemberBean) model.getAttribute("LoginOK");
+		if (memberBean == null) {
+			return "redirect:/login";
+		}
 
 		// List<OrderBean> memberOrders =
 		// orderService.getMemberOrders(memberBean.getMemberId());
-		List<OrderBean> memberOrders = orderService.getMemberOrders("200");
+		//List<OrderBean> memberOrders = orderService.getMemberOrders("200");
+		List<OrderBean> memberOrders =orderService.getMemberOrders(memberBean.getMember_id());
 		model.addAttribute("memberOrders", memberOrders);
 		return "order/orderList";
 	}
@@ -93,14 +95,14 @@ public class OrderListController {
 	
 	@PostMapping("findOrder")
 	protected String searchOrder(@RequestParam("searchBy")String searchBy,@RequestParam("keyword")String keyword,Model model) {
-//		MemberBean memberBean = (MemberBean) model.getAttribute("LoginOK");
-//		if (memberBean == null) {
-//			return "redirect:/login/login";
-//		}
+		MemberBean memberBean = (MemberBean) model.getAttribute("LoginOK");
+		if (memberBean == null) {
+			return "redirect:/login";
+		}
 		List<OrderBean> allOrders=null;
 		if(searchBy.equals("byMember")) {
-			//orderService.getMemberOrders(memberBean.getMemberId());
-			allOrders = orderService.getMemberOrders("200");
+			//allOrders = orderService.getMemberOrders("200");
+			allOrders =orderService.getMemberOrders(memberBean.getMember_id());
 		}else {
 			allOrders = orderService.getOrderByNo(Integer.parseInt(keyword));
 		}
