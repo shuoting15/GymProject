@@ -106,7 +106,7 @@ public class ProcessOrderController {
 			//這邊之後改掉 
 			  List<OrderBean> orderLst = orderService.getAllOrders();
 			  int orderNo=orderLst.get(0).getOrderNo();
-			  //model.addAttribute("orderNo",orderLst.get(0).getOrderNo());
+			  model.addAttribute("orderNo",orderNo);
 			  //model.addAttribute("memberId",orderLst.get(orderLst.size()-1).getMemberId());
 			  OrderMail.sendOrderFinishMail(memberMail,orderNo);
 			  

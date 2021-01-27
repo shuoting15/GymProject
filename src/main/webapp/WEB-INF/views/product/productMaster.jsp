@@ -122,7 +122,7 @@ body {
 // 					cart+="<a href='#'><div class='container'><div class='row'>"
 // 					cart+="<div><img width='70' src='<c:url value='/productMaintain/getBookImage?id="+result.cart[keyset[i]].productId+"' />'></div>"		
 // 					cart+="<div style='padding-left:3px'> "+result.cart[keyset[i]].productName+" <br>價格："+ result.cart[keyset[i]].unitPrice+"<br>數量："+ result.cart[keyset[i]].quantity+"</div></div></div></a>"
-					cart+="<a href='#'><table><tr>"
+					cart+="<a href='<spring:url value='/productDisplay/product?id="+result.cart[keyset[i]].productId+"' />'><table><tr>"
 					cart+="<td width='80'><img width='70' src='<c:url value='/productMaintain/getBookImage?id="+result.cart[keyset[i]].productId+"' />'><td>"
 					cart+="<td><div style='padding-left: 3px'>"+result.cart[keyset[i]].productName+" <br>價格："+ result.cart[keyset[i]].unitPrice+"<br>數量："+ result.cart[keyset[i]].quantity+"</div></td>"
 					cart+="</tr></table></a>"
@@ -212,14 +212,14 @@ body {
 
 	<!-- Breadcrumb Section Begin -->
 	<section class="breadcrumb-section set-bg"
-		data-setbg="../images/shop-setBack.png" style="height: 320px;">
+		data-setbg="../images/shop.png" style="height: 320px;">
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-12 text-center">
 					<div class="breadcrumb__text">
-						<h2>Organi Shop</h2>
+						<h2>GYM SHOP</h2>
 						<div class="breadcrumb__option">
-							<a href="./index.html">Home</a> <span>Shop</span>
+							<span>滿三千折100，限時活動中</span>
 						</div>
 					</div>
 				</div>
@@ -263,7 +263,7 @@ body {
 						<div class="price-range-wrap" onmouseup="priceFilter()">
 							<div
 								class="price-range ui-slider ui-corner-all ui-slider-horizontal ui-widget ui-widget-content"
-								data-min="10" data-max="540">
+								data-min="10" data-max="27000">
 								<div class="ui-slider-range ui-corner-all ui-widget-header"></div>
 								<span tabindex="0"
 									class="ui-slider-handle ui-corner-all ui-state-default"></span>
@@ -272,8 +272,8 @@ body {
 							</div>
 							<div class="range-slider">
 								<div class="price-input">
-									<input type="text" id="minamount" style='max-width: 30%'> <input type="text"
-										id="maxamount" style='max-width: 30%'>
+									<input type="text" id="minamount" style='max-width: 30%'>
+									<input type="text" id="maxamount" style='max-width: 30%'>
 								</div>
 							</div>
 						</div>
@@ -342,12 +342,11 @@ body {
 				</div>
 			</div>
 			<div class="col-lg-9 col-md-7">
- 				<div class="filter__item"> 
+				<div class="filter__item">
 					<div class="row">
 						<div class="col-lg-6 col-md-6">
-							<div class="filter__sort"> 
-								<span>Sort By</span> 
-								<select id="sort">
+							<div class="filter__sort">
+								<span>Sort By</span> <select id="sort">
 									<option value="0">預設</option>
 									<option value="priceAsc">價格(低到高)</option>
 									<option value="priceDesc">價格(高到低)</option>
@@ -377,8 +376,8 @@ body {
 								<div class="product__item__pic set-bg"
 									data-setbg="<c:url value='/productMaintain/getBookImage?id=${product.value.productId}' />">
 									<ul class="product__item__pic__hover">
-										<li><a><i
-												class="fa fa-heart" onclick="addToFav(${product.value.productId})"></i></a></li>
+										<li><a><i class="fa fa-heart"
+												onclick="addToFav(${product.value.productId})"></i></a></li>
 
 									</ul>
 								</div>
@@ -401,31 +400,33 @@ body {
 								</div>
 								<div class="container">
 									<%-- 									<FORM method="post" action="<c:url value='/buy'/>"> --%>
-<%-- 									<FORM id="form${product.value.productId}"> --%>
-										<div class="row justify-content-center">
-											<select name='qty' id="qty${product.value.productId}">
-												<option value="1">1</option>
-												<option value="2">2</option>
-												<option value="3">3</option>
-												<option value="4">4</option>
-												<option value="5">5</option>
-											</select>
-											<!-- 這些隱藏欄位都會送到後端 -->
-											<Input type='hidden' name='productId' id="id${product.value.productId}"
-												value='${product.value.productId}'> <Input
-												type='hidden' name='pageNo' value='${param.pageNo}'>
+									<%-- 									<FORM id="form${product.value.productId}"> --%>
+									<div class="row justify-content-center">
+										<select name='qty' id="qty${product.value.productId}">
+											<option value="1">1</option>
+											<option value="2">2</option>
+											<option value="3">3</option>
+											<option value="4">4</option>
+											<option value="5">5</option>
+										</select>
+										<!-- 這些隱藏欄位都會送到後端 -->
+										<Input type='hidden' name='productId'
+											id="id${product.value.productId}"
+											value='${product.value.productId}'> <Input
+											type='hidden' name='pageNo' value='${param.pageNo}'>
 
-											<button class="primary-btn" onclick="addToCart(${product.value.productId})"
-												style="margin-left: 8px;border-radius: 30px">
-												<i class="fa fa-shopping-cart"></i>
-											</button>
+										<button class="primary-btn"
+											onclick="addToCart(${product.value.productId})"
+											style="margin-left: 8px; border-radius: 30px">
+											<i class="fa fa-shopping-cart"></i>
+										</button>
 
-										</div>
-<!-- 									</FORM> -->
+									</div>
+									<!-- 									</FORM> -->
 								</div>
 							</div>
-						
-				</div>
+
+						</div>
 
 					</c:forEach>
 

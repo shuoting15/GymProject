@@ -3,7 +3,6 @@ package com.gym.news.dao;
 import java.util.List;
 
 import com.gym.coach.model.CoachBean;
-import com.gym.news.model.AuthorBean;
 import com.gym.news.model.NewsBean;
 import com.gym.news.model.NewsMessageBean;
 
