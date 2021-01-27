@@ -144,6 +144,16 @@ public class MessageDaoImpl implements MessageDao {
 		return list;
 	}
 
+	@Override
+	public MessageBean getMemberidById(int articleId) {
+		Session session = factory.getCurrentSession();
+		MessageBean mb = session.get(MessageBean.class, articleId);
+		if (mb == null) {
+			throw new ProductNotFoundException(articleId + "找不到");
+		}
+		return mb;
+	}
+
 	
 	
 }

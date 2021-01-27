@@ -24,5 +24,7 @@ public interface MessageDao {
 	
 	int updateMessage(MessageBean mbean, long sizeInBytes) ;
 	
+	public MessageBean getMemberidById(int articleId);
+	
 	List<MessageBean> SearchmessageById(String keyword);
 }

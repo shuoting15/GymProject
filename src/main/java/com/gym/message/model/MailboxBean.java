@@ -1,6 +1,5 @@
 package com.gym.message.model;
 
-import java.sql.Blob;
 import java.sql.Timestamp;
 
 import javax.persistence.CascadeType;
@@ -15,6 +14,8 @@ import javax.persistence.Transient;
 
 import org.springframework.web.multipart.MultipartFile;
 
+import com.gym.member.model.MemberBean;
+
 @Entity
 @Table(name="mailbox")
 public class MailboxBean {
@@ -23,15 +24,14 @@ public class MailboxBean {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer mailboxId;
 	private String mailboxContent;
-	
-
-	private Blob images;
-	private String  fileName;
 	private Timestamp time;
 	private Integer repliesCount;
 	
 	@Transient
 	private Integer articleId;
+	
+	@Transient
+	private String member_id;
 	
 	@Transient
 	private MultipartFile productImage;
@@ -40,6 +40,16 @@ public class MailboxBean {
 	@JoinColumn(name="articleId")
 	private MessageBean messageBean;
 	
+	@ManyToOne(cascade=CascadeType.REFRESH)
+	@JoinColumn(name="member_id")
+	private MemberBean memberbean;
+	
+public String getMember_id() {
+		return member_id;
+	}
+	public void setMember_id(String member_id) {
+		this.member_id = member_id;
+	}
 public MailboxBean(String mailboxContent, MessageBean messageBean) {
 		
 		this.mailboxContent = mailboxContent;
@@ -75,21 +85,7 @@ public MailboxBean(String mailboxContent, MessageBean messageBean) {
 		this.messageBean = messageBean;
 	}
 
-	public Blob getImages() {
-		return images;
-	}
-
-	public void setImages(Blob images) {
-		this.images = images;
-	}
-
-	public String getFileName() {
-		return fileName;
-	}
-
-	public void setFileName(String fileName) {
-		this.fileName = fileName;
-	}
+	
 
 	public MultipartFile getProductImage() {
 		return productImage;
@@ -126,6 +122,12 @@ public MailboxBean(String mailboxContent, MessageBean messageBean) {
 
 	public MailboxBean(Integer articleId) {
 	
+	}
+	public MemberBean getMemberbean() {
+		return memberbean;
+	}
+	public void setMemberbean(MemberBean memberbean) {
+		this.memberbean = memberbean;
 	}
 	
 	

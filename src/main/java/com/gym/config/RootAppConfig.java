@@ -49,7 +49,7 @@ public class RootAppConfig {
 		properties.put("hibernate.showsql",Boolean.TRUE);
 		properties.put("hibernate.formate",Boolean.TRUE);
 		properties.put("default_batch_fetch_size",10);
-		properties.put("hibernate.hbm2ddl.auto","update");
+//		properties.put("hibernate.hbm2ddl.auto","update");
 		return properties;
 	}
 	@Bean(name = "transactionManager")

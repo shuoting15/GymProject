@@ -179,7 +179,7 @@
 								<li><a href="./shoping-cart.html">團課</a></li>
 								<li><a href="./shoping-cart.html">健身餐</a></li>
 								<li><a href="<c:url value='/newsmodify'/>">教學區</a></li>
-								<li><a href="./shoping-cart.html">論壇</a></li>
+								<li><a href="reports">論壇</a></li>
 
 							</ul></li>
 

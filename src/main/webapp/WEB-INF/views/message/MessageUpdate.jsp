@@ -12,7 +12,7 @@
 <script type="text/javascript">
 	function confirmDelete(id) {
 		if (confirm("確定刪除此文章(${messageBean.articleId})?")) {
-			document.forms[0].action ="<c:url value='/MessageDelete/${messageBean.articleId}'  />";
+			document.forms[0].action ="<c:url value='/MessageDelete${messageBean.articleId}'  />";
 			document.forms[0].method ="POST";
 			document.forms[0].submit();
 		} else {
@@ -71,6 +71,8 @@ span.error {
 	width: 50px;
 }
 </style>
+
+
 <!-- Css Styles -->
 <link rel="stylesheet" href="../css/bootstrap.min.css" type="text/css">
 <link rel="stylesheet" href="../css/font-awesome.min.css" type="text/css">

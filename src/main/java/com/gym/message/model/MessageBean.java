@@ -6,11 +6,14 @@ import java.sql.Timestamp;
 import java.util.LinkedList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Transient;
@@ -18,6 +21,7 @@ import javax.persistence.Transient;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.gym.member.model.MemberBean;
 @Entity
 @Table(name="messaget1")
 public class MessageBean implements Serializable {
@@ -33,12 +37,38 @@ public class MessageBean implements Serializable {
 	private Integer repliseCount;
 	private Timestamp time;
 	private String  fileName;
+	
+	@Transient
+	private String member_id;
+	
 	@Transient
 	private MultipartFile productImage;
 	@OneToMany(mappedBy="messageBean",fetch=FetchType.EAGER)
 	@JsonIgnore
 	private List<MailboxBean> mailbox=new LinkedList<>();
 	
+	@ManyToOne(cascade=CascadeType.REFRESH)
+	@JoinColumn(name="member_id")
+	private MemberBean memberbean;
+	
+	
+	
+	public String getMember_id() {
+		return member_id;
+	}
+
+	public void setMember_id(String member_id) {
+		this.member_id = member_id;
+	}
+
+	public MemberBean getMemberbean() {
+		return memberbean;
+	}
+
+	public void setMemberbean(MemberBean memberbean) {
+		this.memberbean = memberbean;
+	}
+
 	public MessageBean(Integer articleId,String title,String content,Blob images,
 			String kanbanName,Integer repliseCount,Timestamp time) {
 			this.articleId=articleId;
