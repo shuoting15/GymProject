@@ -108,7 +108,7 @@
 			</div>
 			<br>
 			<article style="display: flex; justify-content: center;">
-				<a class="bmi-calculator" type="submit"><img width='300' onclick="confirmOrder(${anEntry.key})"
+				<a class="bmi-calculator" type="submit"><img width='200' onclick="confirmOrder(${anEntry.key})"
 								src="<c:url value='images/meal/orderOK.png' />" alt="feature"></a>
 			</article>
 		</div>
