@@ -111,8 +111,8 @@
 	// 		}
 	// 	}
 	function setInput() {
-		document.getElementsByName("memberMail")[0].value = "test@gmail.com"
-		document.getElementsByName("ShippingAddress")[0].value = "台北市大安區復興南路一段390號2樓"
+		document.getElementsByName("memberMail")[0].value = "pantone110304@gmail.com"
+// 		document.getElementsByName("ShippingAddress")[0].value = "台北市大安區復興南路一段390號2樓"
 		document.getElementsByName("note")[0].value = "宅配送貨前請先聯繫"
 	}
 </script>
@@ -166,7 +166,7 @@
 										<p>
 											姓名<span>*</span>
 										</p>
-										<input type="text" name="memberName">
+										<input type="text" name="memberName" value="${LoginOK.username}">
 										<%-- 之後用${loginOK.member} --%>
 									</div>
 								</div>
@@ -175,7 +175,7 @@
 										<p>
 											手機<span>*</span>
 										</p>
-										<input type="text" name="memberPhone">
+										<input type="text" name="memberPhone" value="${LoginOK.mobile}">
 									</div>
 								</div>
 
@@ -215,7 +215,7 @@
 								<p>
 									出貨地址<span>*</span>
 								</p>
-								<input type="text" name="ShippingAddress" id="ShippingAddress">
+								<input type="text" name="ShippingAddress" id="ShippingAddress" value="${LoginOK.address}">
 							</div>
 
 							<div class="row">

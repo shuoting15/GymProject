@@ -28,6 +28,7 @@ public class CoachOrderBean  implements Serializable {
 	private Date   orderDate;
 	private Date   orderStartTime;
 	private Date   orderEndTime;
+	private int orderPrice;
 	@Transient
 	private String memberId;
 	@Transient
@@ -127,6 +128,14 @@ public class CoachOrderBean  implements Serializable {
 
 	public void setMemberBean(MemberBean memberBean) {
 		this.memberBean = memberBean;
+	}
+
+	public int getOrderPrice() {
+		return orderPrice;
+	}
+
+	public void setOrderPrice(int orderPrice) {
+		this.orderPrice = orderPrice;
 	}
 	
 	

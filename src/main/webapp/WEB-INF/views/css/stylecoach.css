@@ -6761,3 +6761,9 @@ scale
 	color: #D56A16; /*前景星星顏色*/
 }
 /*# sourceMappingURL=style.css.map */
+a:hover,
+a:focus {
+	text-decoration: none;
+	outline: none;
+	color: black;
+}

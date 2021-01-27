@@ -32,6 +32,8 @@ public interface IProductDao {
 	public List<ProductBean> getProductsByPriceDesc();
 	List<ProductBean> getProductsByIdDesc();
 	public List<ProductBean> queryNewestProducts();
+	
+	public List<ProductBean> filterProductsByPriceDesc(Double min,Double max);
 
 	//商品模糊搜尋
 	List<ProductBean> queryFuzzyProduct(String keyword);

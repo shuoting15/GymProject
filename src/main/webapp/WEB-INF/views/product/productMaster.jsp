@@ -107,11 +107,11 @@ body {
 		var id=document.getElementById(i).value;
 		var qty=document.getElementById(q).value;
 		var xhr = new XMLHttpRequest();
-		xhr.open("GET", "<c:url value='/buy'/>"+"?productId="+id+"&qty="+qty,true);
+		xhr.open("GET", "<c:url value='/buyProduct'/>"+"?productId="+id+"&qty="+qty,true);
 		xhr.send();
 		
 		xhr.onreadystatechange=function(){
-			if(xhr.readyState==4 &&(xhr.status==200)){	
+			if(xhr.readyState==4 &&(xhr.status==200)){			
 				var result=JSON.parse(xhr.responseText)
 				alert(result.msg);
 				
@@ -150,6 +150,58 @@ body {
 			}
 		}		
 	}
+	
+	function priceFilter(){
+		let min=document.getElementById('minamount').value.substring(1)
+		let max=document.getElementById('maxamount').value.substring(1)
+		fetch("<c:url value='/productDisplay/pricefilter?min=" + min + "&max="+max+"'/>")
+						.then(function(response) {
+							console.log(response);
+							return response.json();
+						}).then(function(data) {
+							console.log(data);
+							displayfilter(data);
+						})
+		
+	}
+	
+	function displayfilter(data) {
+		var product = data.sort
+		var content = ""
+		var imageURL = "<c:url value='/productMaintain/getBookImage' />";
+		for (var i = 0; i < product.length; i++) {
+			content += "<div class='col-lg-4 col-md-6 col-sm-6'><div class='product__item'><div class='product__item__pic set-bg'"
+			content += "data-setbg='" + imageURL + "?id="
+					+ product[i].productId + "'>"
+			content += "<img  width='70' height='260' " + " src='"
+					+ imageURL + "?id=" + product[i].productId + "'>"
+			content += "<ul class='product__item__pic__hover'>"
+			content += "<li><a><i class='fa fa-heart' onclick='addToFav("+product[i].productId+")'></i></a></li></ul></div>"
+			content += "<div class='product__item__text'>"
+			content += "<h6><a href='<spring:url value='/productDisplay/product?id="
+					+ product[i].productId
+					+ "' />'>"
+					+ product[i].productName + "</a></h6>"
+			if (product[i].discount !== 1) {
+				content += "<h5><span style='text-decoration: line-through; color: gray'> $"
+						+ product[i].productPrice + "</span>"
+				content += "<span style='color: red;'> $"
+						+ product[i].productPrice * product[i].discount
+						+ "</span></h5>"
+			} else {
+				content += "<h5> $" + product[i].productPrice + "</h5>"
+			}
+			content += "</div>"
+
+			content += "<div class='container'><div class='row justify-content-center'>"
+			content += "<select name='qty' id='qty"+product[i].productId+"'><option value='1'>1</option><option value='2'>2</option><option value='3'>3</option><option value='4'>4</option><option value='5'>5</option></select>"
+			content += "<Input type='hidden' name='productId' id='id"+product[i].productId+"' value='"+product[i].productId+"'>"
+			content += "<Input type='hidden' name='pageNo' value='param.pageNo'>"
+			content += "<button class='primary-btn' onclick='addToCart("+product[i].productId+")' style='margin-left: 8px;border-radius:30px'><i class='fa fa-shopping-cart'></i></button>"
+			content += "</div></div></div></div>"
+		}
+		document.getElementById("display").innerHTML = content
+	}
 </script>
 
 </head>
@@ -184,7 +236,7 @@ body {
 
 					<div class="sidebar__item" style="margin-top: 35px">
 						<div class="blog__sidebar__search">
-							<form action="/mvcExercise/productDisplay/productFuzzy"
+							<form action="<c:url value="/productDisplay/productFuzzy" />"
 								method="post">
 								<input type="text" placeholder="Search..." name="keyword">
 								<button type="submit">
@@ -208,7 +260,7 @@ body {
 					</div>
 					<div class="sidebar__item">
 						<h4>Price</h4>
-						<div class="price-range-wrap">
+						<div class="price-range-wrap" onmouseup="priceFilter()">
 							<div
 								class="price-range ui-slider ui-corner-all ui-slider-horizontal ui-widget ui-widget-content"
 								data-min="10" data-max="540">
@@ -220,8 +272,8 @@ body {
 							</div>
 							<div class="range-slider">
 								<div class="price-input">
-									<input type="text" id="minamount"> <input type="text"
-										id="maxamount">
+									<input type="text" id="minamount" style='max-width: 30%'> <input type="text"
+										id="maxamount" style='max-width: 30%'>
 								</div>
 							</div>
 						</div>

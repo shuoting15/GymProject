@@ -37,10 +37,13 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.gym.coach.model.CoachBean;
+import com.gym.coach.service.CoachCustomerManageService;
 import com.gym.coach.service.CoachService;
+import com.gym.coach.service.CoachsPerFormanceService;
 import com.gym.coach.validator.CoachValidator;
 import com.gym.init.util.SystemUtils2018;
 import com.gym.member.model.MemberBean;
+import com.gym.member.service.MemberService;
 
 @Controller
 @SessionAttributes({"LoginOK"}) 
@@ -50,6 +53,15 @@ public class CoachController {
 
 	@Autowired
 	ServletContext context;
+	
+	@Autowired
+	CoachsPerFormanceService pfservice;
+	
+	@Autowired
+	MemberService memberService;
+	
+	@Autowired
+	CoachCustomerManageService customerService;
 
 	// 教練展示
 	@GetMapping("/coachs")
@@ -58,7 +70,70 @@ public class CoachController {
 		model.addAttribute("coachs", service.getAllCoachs());
 		return "coach/coachs";
 	}
+	// 教練業績
+	@GetMapping("/coachPerformance")
+	public String coachsPerformance(Model model) {
+		List<CoachBean> list = service.getAllCoachs();
+		int coachId;
+		int totalrevenue;
+		int monthrevenue;
+		int allmonthrevenue = pfservice.monthAllCoachRevenue();
+		int alltotalrevenue = pfservice.totalAllCoachRevenue();
+		for (CoachBean i:list) {
+			 coachId = i.getCoachId();
+			 totalrevenue = pfservice.totalCoachRevenue(coachId);
+			 monthrevenue = pfservice.monthCoachRevenue(coachId);
+			 i.setTotalrevenue(totalrevenue);
+			 i.setTotalrevenuePercent(totalrevenue*100/alltotalrevenue);
+			 i.setMonthrevenue(monthrevenue);
+			 i.setMonthrevenuePercent(monthrevenue*100/allmonthrevenue);
+		}
+		
+		
+		
+		
+		
+		
+		model.addAttribute("coachs", list);
+		model.addAttribute("allmonthrevenue", allmonthrevenue);
+		model.addAttribute("alltotalrevenue", alltotalrevenue);
+		return "coach/coachsPerformance";
+	}
+	
+	//教練顧客管理
+	@GetMapping("/customerManage")
+	public String costomerManage(Model model,@RequestParam("id") int coachId) {
 
+		List<MemberBean> list = memberService.selectAll();
+		String memberId;
+		int  totalConsumeInCoach;
+		int  monthConsumeInCoach;
+		for (MemberBean i: list) {
+			memberId = i.getMember_id();
+			totalConsumeInCoach = customerService.totalCaochConsumeByMemberId(memberId,coachId);
+			i.setTotalConsumeInCoach(totalConsumeInCoach);
+			monthConsumeInCoach = customerService.monthCaochConsumeByMemberId(memberId,coachId);
+			i.setMonthConsumeInCoach(monthConsumeInCoach);
+		}
+		
+		
+		
+		
+		
+		
+		
+		model.addAttribute("members", list);
+		model.addAttribute("coach", service.getCoachById(coachId));
+		
+		
+		
+		
+		
+		
+		
+		
+		return "coach/customerManage";
+	}
 	// 後臺教練展示
 	@GetMapping("/coachMaintain")
 	public String Maintainlist(Model model) {
@@ -256,4 +331,6 @@ public class CoachController {
 		return gson.toJson(service.getCoachsByFuzzySearch(any));
 		
 	}
+	
+	
 }

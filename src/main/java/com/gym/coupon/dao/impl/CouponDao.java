@@ -29,7 +29,7 @@ public class CouponDao implements ICouponDao {
 		}
 		return cBean;
 	}
-	public CouponBean insert(CouponBean cBean) { // 新增折扣代碼
+	public CouponBean insert(CouponBean cBean) { 
 		Session session = factory.getCurrentSession();
 		if (cBean != null) {
 			session.save(cBean);
@@ -38,19 +38,19 @@ public class CouponDao implements ICouponDao {
 		return null;
 	}
 
-	public CouponBean selectbyId(Integer dicountId) { // 依ID折扣代碼
+	public CouponBean selectbyId(Integer dicountId) { 
 		Session session = factory.getCurrentSession();
 		CouponBean dBean = session.get(CouponBean.class, dicountId);
 		return dBean;
 	}
 
-	public List<CouponBean> selectAll() { // 查詢全部
+	public List<CouponBean> selectAll() { 
 		Session session = factory.getCurrentSession();
 		Query<CouponBean> query = session.createQuery("from CouponBean", CouponBean.class);
 		return query.list();
 	}
 
-	public boolean delete(int dicountId) { // 依ID刪除
+	public boolean delete(int dicountId) { 
 		Session session = factory.getCurrentSession();
 		CouponBean cBean = session.get(CouponBean.class, dicountId);
 		if (cBean != null) {

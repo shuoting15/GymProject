@@ -39,7 +39,7 @@ public class ProductDisplayController {
 	@Autowired
 	IProductService productService;
 	
-	//顯示一項商品詳細資料
+
 	@RequestMapping("product")
 	public String getProductByID(@RequestParam("id") Integer id,Model model) {
 		model.addAttribute("product",productService.getProductById(id));
@@ -140,7 +140,7 @@ public class ProductDisplayController {
 //		return products;
 //	}
 	
-	//Fuzzy
+	
 	@RequestMapping(value="productFuzzy",method=RequestMethod.POST)
 	public String getFuzzyProduct(Model model,@RequestParam("keyword") String keyword) {
 		List<ProductBean> products;
@@ -203,6 +203,25 @@ public class ProductDisplayController {
 		}else {
 			sortLst=productService.getProductsByIdDesc();
 		}
+
+		Map<String, Object> map =new LinkedHashMap<String, Object>();		
+		map.put("sort", sortLst);
+		map.put("totalPage", totalPage);
+		map.put("currPage", pageNo);	
+		return map;
+	}
+	
+	@GetMapping(value = "/pricefilter", produces = { "application/json; charset=UTF-8" })
+	public @ResponseBody Map<String, Object> filterProductsByPrice(
+			@RequestParam("min") String min,@RequestParam("max") String max,
+			@RequestParam(value="pageNo", required = false, defaultValue = "1") Integer pageNo,
+			@RequestParam(value="totalPage", required = false) Integer totalPage) {
+		
+		if (totalPage == null) {
+			totalPage = productService.getTotalPages();
+		}
+		
+		List<ProductBean> sortLst= productService.filterProductsByPriceDesc(Double.parseDouble(min), Double.parseDouble(max));
 
 		Map<String, Object> map =new LinkedHashMap<String, Object>();		
 		map.put("sort", sortLst);

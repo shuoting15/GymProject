@@ -37,7 +37,7 @@
 	<!-- Page Header EndsHere -->
 	<!-- Breadcrumb Section Starts Here -->
 	<section class="page-header bg_img"
-		data-background="./assets/images/banner/banner.jpg">
+		data-background="images/banner.jpg">
 		<div class="container">
 			<h3 class="title">
 				<span class="shape-wrapper"><span class="shape"></span>Trainers<span

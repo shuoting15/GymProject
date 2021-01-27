@@ -14,5 +14,6 @@ public interface IOrderDao {
 	
 	public OrderBean getOrder(int orderNo);
 	public void updateOrderStatus(int orderNo,String status);
+	public List<OrderBean> getOrderByNo(int orderNo);
 
 }

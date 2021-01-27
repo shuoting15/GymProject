@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.gym.member.model.MemberBean;
 import com.gym.shoppingcart.model.OrderBean;
 import com.gym.shoppingcart.model.OrderItemBean;
 import com.gym.shoppingcart.service.IOrderService;
@@ -37,14 +38,15 @@ public class OrderListController {
 
 	@GetMapping("orderList")
 	protected String orderList(Model model) {
-//		MemberBean memberBean = (MemberBean) model.getAttribute("LoginOK");
-//		if (memberBean == null) {
-//			return "redirect:/login/login";
-//		}
+		MemberBean memberBean = (MemberBean) model.getAttribute("LoginOK");
+		if (memberBean == null) {
+			return "redirect:/login";
+		}
 
 		// List<OrderBean> memberOrders =
 		// orderService.getMemberOrders(memberBean.getMemberId());
-		List<OrderBean> memberOrders = orderService.getMemberOrders("200");
+		//List<OrderBean> memberOrders = orderService.getMemberOrders("200");
+		List<OrderBean> memberOrders =orderService.getMemberOrders(memberBean.getMember_id());
 		model.addAttribute("memberOrders", memberOrders);
 		return "order/orderList";
 	}
@@ -75,7 +77,6 @@ public class OrderListController {
 		return "order/orderListAll";
 	}
 
-	// 修改訂單狀態
 	@GetMapping(value = "updateOrder", produces = { "text/plain; charset=UTF-8" })
 	public @ResponseBody String updateOrder(@RequestParam("orderNo") Integer orderNo,@RequestParam("orderStatus")String orderStatus, Model model) {
 		// model.addAttribute("orderBean", ob);
@@ -91,5 +92,26 @@ public class OrderListController {
 //			redirectAttributes.addFlashAttribute("SUCCESS", "修改成功!");
 //			return "redirect:/productMaintain/productAll";
 //		}
+	
+	@PostMapping("findOrder")
+	protected String searchOrder(@RequestParam("searchBy")String searchBy,@RequestParam("keyword")String keyword,Model model) {
+		MemberBean memberBean = (MemberBean) model.getAttribute("LoginOK");
+		if (memberBean == null) {
+			return "redirect:/login";
+		}
+		List<OrderBean> allOrders=null;
+		if(searchBy.equals("byMember")) {
+			//allOrders = orderService.getMemberOrders("200");
+			allOrders =orderService.getMemberOrders(memberBean.getMember_id());
+		}else {
+			allOrders = orderService.getOrderByNo(Integer.parseInt(keyword));
+		}
+
+		//List<OrderBean> allOrders = orderService.getAllOrders();
+		model.addAttribute("allOrders", allOrders);
+		return "order/orderListAll";
+	}
+	
+	
 
 }
