@@ -163,7 +163,10 @@
 								<li><a href="./shop-details.html">實體</a></li>
 								<li><a href="./shoping-cart.html">線上直播</a></li>
 							</ul></li>
-						<li><a href="./blog.html">健身餐</a></li>
+						<li><a href="<c:url value="showAllMealList" />">健身餐點</a>
+							<ul class="header__menu__dropdown">
+								<li><a href="<c:url value="showOrderList" />">我的餐點</a></li>
+							</ul></li>
 						<li><a href="<c:url value='/news'/>">教學區</a>
 							<ul class="header__menu__dropdown">
 								<!-- 								<li><a href="./shop-details.html">文章</a></li> -->
@@ -179,9 +182,9 @@
 								<li><a href="<c:url value='/coachMaintain' />">教練</a></li>
 								<li><a href="<c:url value='/coachPerformance' />">教練業績</a></li>
 								<li><a href="<c:url value="/courseManage" />">團課</a></li>
-								<li><a href="./shoping-cart.html">健身餐</a></li>
+								<li><a href="updateShowAllMealList">健身餐</a></li>
 								<li><a href="<c:url value='/newsmodify'/>">教學區</a></li>
-								<li><a href="./shoping-cart.html">論壇</a></li>
+								<li><a href="reports">論壇</a></li>
 
 							</ul></li>
 

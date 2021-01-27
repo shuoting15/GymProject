@@ -458,7 +458,7 @@ function classChangeDate(d){
 	<script src="js/counterup.min.js"></script>
 	<script src="js/lightcase.js"></script>
 	<script src="js/wow.min.js"></script>
-	<script src="js/maincoursesdetail.js"></script>
+	<script src="js/maincoach.js"></script>
     
 </body>
 </html>

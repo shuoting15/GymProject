@@ -33,6 +33,9 @@ background-color:white;
 	text-align:center;
 
 }
+#cmcolor{
+color:#C0C0C0;
+}
 </style>
 <meta charset="UTF-8">
 <title>文章</title>
@@ -103,10 +106,15 @@ background-color:white;
 							<div class="blog__item">
 								<div class="blog__item__pic">
 									<div class="blog__item__text">
-										<a href="<c:url value='/messages/add'/>" class="blog__btn">新增文章</a>
+										<a href="<c:url value='messagesadd'/>" class="blog__btn">發表文章</a>
+										<c:if test="${message.memberbean.member_id != memname.member_id}">
+										<a href="<c:url value='messagereport'/>" class="blog__btn">檢舉文章</a>
+										</c:if>
+										<c:if test="${message.memberbean.member_id == memname.member_id}">
 										<a
-											href="<spring:url value='/MessageUpdate/${message.articleId}' />"
+											href="<spring:url value='/MessageUpdate${message.articleId}' />"
 											class="blog__btn">編輯文章 </a>
+											</c:if>
 									</div>
 								</div>
 							</div>
@@ -174,12 +182,12 @@ background-color:white;
 								<div class="col-lg-6">
 									<div class="blog__details__author">
 										<div class="blog__details__author__pic">
-											<img src="images/details-author.jpg" alt="">
+											<img src="${message.memberbean.memberphoto}" alt="">
 										</div>
 
 										<div class="blog__details__author__text">
-											<h6>Michael Scofield</h6>
-											<span>Admin</span>
+											<h6>${message.memberbean.username}</h6>
+											
 										</div>
 										<div>
 											<span>主題:</span>${message.kanbanName}
@@ -210,10 +218,14 @@ background-color:white;
 					</div>
 					<c:forEach var='comments' items='${comments}'>
 						<div class="blog__item__text">
-							<p>${comments.mailboxContent}</p>
+							<p id="ppp"><div class="blog__details__author__pic"><img id="imggg" src="${comments.memberbean.memberphoto}" alt=""></div>${comments.memberbean.username}:${comments.mailboxContent}</p>
+							<i class="fa fa-calendar-o" id="cmcolor">發表時間:${comments.time}</i>
 							<div style="text-align: right">
+							<c:if test="${comments.memberbean.member_id == memname.member_id}">
 								<a href="<c:url value='/MailboxDelete/${comments.mailboxId}'/>" class="blog__btn">刪除</a>
+							</c:if>
 							</div>
+							
 							<hr>
 						</div>
 					</c:forEach>
@@ -228,6 +240,7 @@ background-color:white;
 						<br/>	
 						<br/>
 						<script type="text/javascript">
+					var m =document.getElementById("ppp")
  			$("#insertmailbox").click(function(){ 
  				$.ajax({ 
 					url: 'mailbox/add', 
@@ -237,6 +250,8 @@ background-color:white;
  				},
  				success: function(nd){ 
  					$("#fku").append(nd);
+// 						console.log(nd)
+ 					
  				} 
  			} 
  		)} 
@@ -259,9 +274,5 @@ background-color:white;
 	<script src="js/owl.carousel.min.js"></script>
 	<script src="js/main.js"></script>
 
-
-
-
 </body>
-
 </html>

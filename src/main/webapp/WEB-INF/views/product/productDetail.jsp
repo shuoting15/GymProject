@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"  %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -87,14 +88,14 @@ function addToFav(id){
 
 	<!-- Breadcrumb Section Begin -->
 	<section class="breadcrumb-section set-bg"
-		data-setbg="../images/shop-setBack.png" style="height: 320px;">
+		data-setbg="../images/shop.png" style="height: 320px;">
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-12 text-center">
 					<div class="breadcrumb__text">
-						<h2>Organi Shop</h2>
+						<h2>GYM SHOP</h2>
 						<div class="breadcrumb__option">
-							<a href="./index.html">Home</a> <span>Shop</span>
+							<span>滿三千折100，限時活動中</span>
 						</div>
 					</div>
 				</div>
@@ -141,15 +142,15 @@ function addToFav(id){
 
 						<c:if test="${product.discount != 1}">
 							<div class="product__details__price">
-								<span style="text-decoration: line-through; color: gray">${product.productPrice}</span>
-								<span> ${product.productPrice*product.discount} </span> <span
+								<span style="text-decoration: line-through; color: gray">$<fmt:formatNumber value="${product.productPrice}" pattern="####" /></span>
+								<span> $<fmt:formatNumber value="${product.productPrice*product.discount} "  pattern="####" /></span> <span
 									style="color: red; font-size: 15px">
 									打${product.discount}折</span>
 							</div>
 						</c:if>
 						<c:if test="${product.discount == 1}">
 							<div class="product__details__price">$
-								${product.productPrice}</div>
+								<fmt:formatNumber value="${product.productPrice}"  pattern="####" /></div>
 						</c:if>
 
 						<p>${product.productDescription}</p>

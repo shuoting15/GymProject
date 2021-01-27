@@ -114,7 +114,7 @@ function setConf(){
 <input type="hidden" name="TravelEndDate"     id="TravelEndDate" value="">
 <input type="hidden" name="TransAmt"   id="TransAmt" value="${transAmt}">
 <!-- <input type="hidden" name="NotifyURL"  id="NotifyURL" value="http://localhost:8080/JoYouProject/NcccResponsePage.jsp"> -->
-<input type="hidden" name="NotifyURL"  id="NotifyURL" value="http://localhost:8081/mvcExercise/shoppingCart/ncccProcess">
+<input type="hidden" name="NotifyURL"  id="NotifyURL" value="http://eda9356fdbc4.ngrok.io/GymProject/shoppingCart/ncccProcess">
 <input type="hidden" name="Signature"  id="Signature" value="">
 <iframe name="HPPFrame" id="mainFrame" height="600" width="800" Frameborder="0"/>
 </form>

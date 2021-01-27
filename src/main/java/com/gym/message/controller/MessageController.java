@@ -11,6 +11,7 @@ import java.util.List;
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import javax.sql.rowset.serial.SerialBlob;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,27 +36,39 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.gym.member.model.MemberBean;
+import com.gym.member.service.MemberService;
 import com.gym.message.model.MessageBean;
-import com.gym.message.service.MailboxService;
 import com.gym.message.service.MessageService;
 
 @Controller
-@SessionAttributes({"message"})
+@SessionAttributes({"message","LoginOK"})
 public class MessageController {
 	@Autowired
 	MessageService messageservice;
 	
-	
 	@Autowired
 	ServletContext context;
+	
+	@Autowired
+	MemberService mservice;
 
 	@RequestMapping("/messages")
-	public String list(Model model) {
-		List<MessageBean> list=messageservice.getAllMessage();
-		List<String> list1 = messageservice.getAllKanbanName();
-		model.addAttribute("kanbanNameList", list1);
-		model.addAttribute("messages",list);
-		return "message/messages";
+	public String list(Model model,HttpSession session) {
+		MemberBean mbssss = (MemberBean) model.getAttribute("LoginOK");
+		if(mbssss!=null) {
+			System.out.println(mbssss.getUsername());
+			List<MessageBean> list=messageservice.getAllMessage();
+			List<String> list1 = messageservice.getAllKanbanName();
+			MessageBean mb = new MessageBean();
+			model.addAttribute("kanbanNameList", list1);
+			model.addAttribute("messages",list);
+			session.setAttribute("comments",mb.getMailbox());
+			return "message/messages";
+		}else {
+			return "member/login";
+		}
+		
 	}
 	
 	@RequestMapping("/allmessages")
@@ -69,7 +82,9 @@ public class MessageController {
 	
 	@RequestMapping("/message")
 	public String getMessageById(@RequestParam("articleId") Integer articleId, Model model) {
+		MemberBean mbssss = (MemberBean) model.getAttribute("LoginOK");
 		MessageBean mb = messageservice.getMessageById(articleId);
+		model.addAttribute("memname",mbssss);
 		model.addAttribute("message", messageservice.getMessageById(articleId));
 		model.addAttribute("comments",mb.getMailbox());
 		return "message/message";
@@ -85,7 +100,7 @@ public class MessageController {
 		return "message/messages";
 	}
 	
-	@GetMapping("MessageUpdate/{articleId}")
+	@GetMapping("MessageUpdate{articleId}")
 	public String getUpdateMessageForm(Model model ,
 			@PathVariable String articleId) {
 		MessageBean messageBean = messageservice.getMessageById(Integer.valueOf(articleId));
@@ -93,7 +108,7 @@ public class MessageController {
 		return "message/MessageUpdate";
 	}
 	
-	@PostMapping("MessageUpdate/{articleId}")
+	@PostMapping("MessageUpdate{articleId}")
 	public String updateForm(@ModelAttribute MessageBean mbean,  
 			Model model,
 			RedirectAttributes redirectAttributes
@@ -127,17 +142,18 @@ public class MessageController {
 	
 	
 	
-	@GetMapping("/messages/add")
+	@GetMapping("messagesadd")
 	public String getAddNewMessageForm(Model model) {
 		MessageBean messageBean = new MessageBean();
 		model.addAttribute("messageBean", messageBean);
 		return "message/MessageForm";
 	}
 	
-	@PostMapping("/messages/add")
-	public String processAddNewProductForm(@ModelAttribute("messageBean") MessageBean mb) {
+	@PostMapping("messagesadd")
+	public String processAddNewProductForm(@ModelAttribute("messageBean") MessageBean mb,Model m) {
+		MemberBean mbssss = (MemberBean) m.getAttribute("LoginOK");
+		System.out.println(mbssss.getMember_id());
 		mb.setTime(new Timestamp(System.currentTimeMillis()));
-		
 		MultipartFile productImage = mb.getProductImage();
 		String originalFilename = productImage.getOriginalFilename();
 		mb.setFileName(originalFilename);
@@ -152,7 +168,7 @@ public class MessageController {
 				throw new RuntimeException("檔案上傳發生異常"+e.getMessage());
 			}
 		}
-		
+		mb.setMemberbean(mbssss);
 		messageservice.addMessage(mb);
 		
 		String ext = originalFilename.substring(originalFilename.lastIndexOf("."));  //看起來像是拿取副檔名
@@ -173,7 +189,7 @@ public class MessageController {
 		return "redirect:/messages";
 
 	}
-	@PostMapping(value="/MessageDelete/{articleId}")
+	@PostMapping(value="/MessageDelete{articleId}")
 	public String deleteMessage(@PathVariable Integer articleId,
 			RedirectAttributes redirectAttributes
 		) {

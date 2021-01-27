@@ -72,8 +72,8 @@ public class MailboxDaoImpl implements MailboxDao {
 		b0 = session.get(MailboxBean.class, mbean.getMailboxId());
 //        bean.setStock(b0.getStock());
 //        bean.setPriceStr(b0.getPriceStr());
-		mbean.setImages(b0.getImages());
-		mbean.setFileName(b0.getFileName());
+//		mbean.setImages(b0.getImages());
+//		mbean.setFileName(b0.getFileName());
 		session.evict(b0);
 		session.saveOrUpdate(mbean);
 		n++;

@@ -33,13 +33,15 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.gym.member.model.MemberBean;
+import com.gym.member.service.MemberService;
 import com.gym.message.model.MailboxBean;
 import com.gym.message.model.MessageBean;
 import com.gym.message.service.MailboxService;
 import com.gym.message.service.MessageService;
 
 @Controller
-@SessionAttributes({ "message" })
+@SessionAttributes({ "message","LoginOK" })
 public class MailboxController {
 
 	@Autowired
@@ -50,9 +52,14 @@ public class MailboxController {
 
 	@Autowired
 	ServletContext context;
+	
+	@Autowired
+	MemberService mservice;
 
 	@RequestMapping("/mailboxes")
 	public String list(Model model) {
+		MemberBean mbssss = (MemberBean) model.getAttribute("LoginOK");
+		model.addAttribute("memname",mbssss);
 		List<MailboxBean> list = mailboxservice.getAllMailboxContent();
 		model.addAttribute("mailbox", list);
 		return "mailboxes";
@@ -65,56 +72,20 @@ public class MailboxController {
 		return "mailbox";
 	}
 
-	@GetMapping("MailboxUpdate/{mailboxId}")
-	public String getUpdateMailboxForm(Model model, @PathVariable String mailboxId) {
-		MailboxBean mailboxBean = mailboxservice.getMailboxContentById(Integer.valueOf(mailboxId));
-		model.addAttribute("mailboxBean", mailboxBean);
-		return "MailboxUpdate";
-	}
-
-	@PostMapping("MailboxUpdate/{mailboxId}")
-	public String updateForm(@ModelAttribute MailboxBean mb, Model model, RedirectAttributes redirectAttributes) {
-
-		mb.setTime(new Timestamp(System.currentTimeMillis()));
-		System.out.println(System.currentTimeMillis());
-		long sizeInBytes = -1;
-
-		if (mb.getProductImage().getSize() == 0) {
-			sizeInBytes = -1;
-		} else {
-			sizeInBytes = mb.getProductImage().getSize();
-			// Step1
-			String imageOriginalFilename = mb.getProductImage().getOriginalFilename();
-			mb.setFileName(imageOriginalFilename);
-			// Step2
-			Blob Images = null;
-			try {
-				Images = convertMultipartFileToBlob(mb.getProductImage());
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-			mb.setImages(Images);
-		}
-		mailboxservice.updateMailbox(mb);
-		redirectAttributes.addFlashAttribute("SUCCESS", "修改成功!!!");
-		return "";
-	}
 
 	@PostMapping(value="/mailbox/add",produces="text/html;charset=UTF-8")
 	public @ResponseBody String processAddNewMailboxForm(Model m, @ModelAttribute("message") MessageBean mb,
 			@RequestParam("nd") String mbstring) {
-		
 		MailboxBean mbb = new MailboxBean(mbstring, mb);
+		MemberBean mbssss = (MemberBean) m.getAttribute("LoginOK");
+		mbb.setTime(new Timestamp(System.currentTimeMillis()));
 		System.out.println(mbb.getMailboxContent());
 		System.out.println(mb.getArticleId());
 		mb.getMailbox().add(mbb);
+		mbb.setMemberbean(mbssss);
 		mailboxservice.addMailbox(mbb);
-//		String rtn="redirect:/message?articleId="+mb.getArticleId();
 		return mbstring;
-
-		// mb.setTime(new Timestamp(System.currentTimeMillis()));
-
-//		
+		
 	}
 
 	@GetMapping(value = "/MailboxDelete/{mailboxId}")
@@ -128,46 +99,7 @@ public class MailboxController {
 		return abc;
 	}
 
-	@SuppressWarnings("unused")
-	@RequestMapping(value = "/getpicture/{mailboxId}", method = RequestMethod.GET)
-	public ResponseEntity<byte[]> getPicture(HttpServletResponse resp, @PathVariable Integer mailboxId) {
-		String filePath = "/resources/images/NoImage.jpg";
-
-		byte[] media = null;
-		HttpHeaders headers = new HttpHeaders();
-		String filename = "";
-		int len = 0;
-		MailboxBean mbean = mailboxservice.getMailboxContentById(mailboxId);
-		if (mbean != null) {
-			Blob blob = mbean.getImages();
-			filename = mbean.getFileName();
-			if (blob != null) {
-				try {
-					len = (int) blob.length();
-//					System.out.println(len);
-					media = blob.getBytes(1, len);
-//					System.out.println(media);
-				} catch (SQLException e) {
-					throw new RuntimeException("ProductController的getPicture()發生SQLException: " + e.getMessage());
-				}
-			} else {
-				media = toByteArray(filePath);
-				filename = filePath;
-			}
-		} else {
-			media = toByteArray(filePath);
-			filename = filePath;
-		}
-		headers.setCacheControl(CacheControl.noCache().getHeaderValue());
-		System.out.println("media" + media);
-		String mimeType = context.getMimeType(filename); // getMimeType 會抓出副檔名的mimetype
-		System.out.println("123--------" + filename);
-		MediaType mediaType = MediaType.valueOf(mimeType);
-		System.out.println("mimeType = " + mimeType + "   mediaType = " + mediaType);
-		headers.setContentType(mediaType);
-		ResponseEntity<byte[]> responseEntity = new ResponseEntity<>(media, headers, HttpStatus.OK);
-		return responseEntity;
-	}
+//
 
 	private byte[] toByteArray(String filepath) {
 		byte[] b = null;
@@ -193,9 +125,6 @@ public class MailboxController {
 		byte[] b = productImage.getBytes();
 		return new SerialBlob(b);
 	}
-//	@ModelAttribute("message")
-//	public Integer getmessageId(MessageBean mb) {
-//			return mb.getArticleId();
-//	}
+
 
 }

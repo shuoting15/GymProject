@@ -23,6 +23,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
 import org.springframework.validation.BindingResult;
@@ -37,12 +38,17 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.gym.news.model.AuthorBean;
+import com.gym.coach.model.CoachBean;
+import com.gym.coach.validator.CoachValidator;
+import com.gym.init.util.SystemUtils2018;
+//import com.gym.news.model.AuthorBean;
 import com.gym.news.model.NewsBean;
+import com.gym.news.model.NewsMessageBean;
 import com.gym.news.service.NewsService;
 //import com.web.store.exception.ProductNotFoundException;
 
@@ -60,30 +66,70 @@ public class NewsController {
 	ServletContext context;
 
 	@RequestMapping("/news")
-	public String list(Model model) {
+	public String newslist(Model model) {
 		List<NewsBean> list = newsservice.getAllNews();
 		model.addAttribute("news", list);
 		return "news/news";// 視圖邏輯名稱
 	}
 
+	@RequestMapping("/newsviews")
+	public String viewslist(Model model) {
+		List<NewsBean> list = newsservice.getNewsByViews();
+		model.addAttribute("news", list);
+		return "news/news";// 視圖邏輯名稱
+	}
 
 	@RequestMapping("/queryNewsByCategory")///queryByCategory
 	public String getNewsCategoryList(Model model) {
 		List<String> list = newsservice.getAllNewsCategories();
 		model.addAttribute("newscategoryList", list);//categoryList
-		return "types/newscategory";//types/category
+		return "news/newscategory";//types/category
 	}
 
 	@GetMapping("/newsmodify")
-	public String newsmodify(){
+	public String newsmodify(Model model){
+		List<NewsBean> list = newsservice.getAllNews();
+		model.addAttribute("news", list);
 		return "news/newsmodify";
 	}
 	
-	@RequestMapping("/news/{newscategory}")//products/{category}
+//	public String updateCoach(@ModelAttribute CoachBean bean, Model model, BindingResult result,
+//			RedirectAttributes redirectAttributes) {
+//		long sizeInBytes = -1;
+//		CoachValidator validator = new CoachValidator(false);
+//		validator.validate(bean, result);
+//		if (result.hasErrors()) {
+//			SystemUtils2018.showErrors(result);
+//			return "coach/coachUpdate";
+//		}
+//
+//		if (bean.getCoachImage().getSize() == 0) {
+//			sizeInBytes = -1;
+//		} else {
+//			sizeInBytes = bean.getCoachImage().getSize();
+//			// Step1
+//			String imageOriginalFilename = bean.getCoachImage().getOriginalFilename();
+//			bean.setFileName(imageOriginalFilename);
+//			// Step2
+//			Blob coachImage = null;
+//			try {
+//				coachImage = SystemUtils2018.convertMultipartFileToBlob(bean.getCoachImage());
+//			} catch (Exception e) {
+//				e.printStackTrace();
+//			}
+//			bean.setCoachPhoto(coachImage);
+//		}
+//		service.updateCoach(bean, sizeInBytes);
+//		redirectAttributes.addFlashAttribute("SUCCESS", "修改成功!!!");
+//		return "redirect:/coachMaintain";
+//	}
+
+	
+	@RequestMapping("/news{newscategory}")//products/{category}
 	public String getProductsByCategory(@PathVariable("newscategory") String newsCategory, Model model) {
 		List<NewsBean> news = newsservice.getNewsByCategory(newsCategory);
 		model.addAttribute("news", news);
-		return "news/news";
+		return "news/newsmodify";
 	}
 
 //	@DeleteMapping("/deleteNews/{newsId}")
@@ -92,28 +138,51 @@ public class NewsController {
 //		newsservice.deleteNewsById(id);	
 //		return "news";
 //	}
-	@RequestMapping("/deleteNews/newsId")
-	public String deleteNews(@RequestParam("id") Integer id) {
-		System.out.println(id);
-		newsservice.deleteNewsById(id);	
-		return "news/news";
+	@RequestMapping("/deletenewsbyId")
+	public String deleteNewsById(@RequestParam("id") int newsId) {
+		System.out.println("delete"+newsId);
+		newsservice.deleteNewsById(newsId);	
+//		return "news/news";
+		return "redirect:/newsmodify";
 	}
-
+	
 	@RequestMapping("/newsone")
 	public String getNewsById(@RequestParam("id") Integer id, Model model) {
+		
+		NewsBean bean = newsservice.getNewsById(id);
+		Integer nv = bean.getNewsViews();
+		nv++;
+		System.out.println("nv="+nv);
+		bean.setNewsViews(nv);
+		newsservice.update(bean);
+		
 		model.addAttribute("newsone", newsservice.getNewsById(id));
+
 		return "news/newsone";
 	}
 
-	@GetMapping("/news/add")
+	@GetMapping("/newsadd")
 	public String getAddNewNewsForm(Model model) {
 		NewsBean bb = new NewsBean();
 		model.addAttribute("newsBean", bb);
 		return "news/addNewsone";
 	}
+	
+//	@GetMapping("/testNew")
+//	@ResponseBody
+//	public String testNew() {
+//		File f = new File(".");
+//		
+//		System.out.println(f.getAbsolutePath());
+//		System.out.println(f.getPath());
+//		System.out.println(context.getRealPath("."));
+//		System.out.println(context.getContextPath());
+//		return "TestStringdddd";
+//		}
 
-	@PostMapping("/news/add")
-	public String processAddNewNewsForm(@ModelAttribute("newsBean") NewsBean bb, BindingResult result, @RequestParam("videofile") MultipartFile videofile) {
+	@PostMapping("/newsadd")
+	public String processAddNewNewsForm(@ModelAttribute("newsBean") NewsBean bb, BindingResult result) {
+		System.out.println("newsaddcontroller");
 		String[] suppressedFields = result.getSuppressedFields();
 		if (suppressedFields.length > 0) {
 			throw new RuntimeException("嘗試傳入不允許的欄位: " + StringUtils.arrayToCommaDelimitedString(suppressedFields));
@@ -123,9 +192,9 @@ public class NewsController {
 		}
 		MultipartFile newsproductImage = bb.getNewsproductImage();
 		String originalFilename = newsproductImage.getOriginalFilename();
-		String originalVideoname = videofile.getOriginalFilename();
+//		String originalVideoname = videofile.getOriginalFilename();
 		bb.setNewsFileName(originalFilename);
-		bb.setNewsVideoName(originalVideoname);
+//		bb.setNewsVideoName(originalVideoname);
 		//  建立Blob物件，交由 Hibernate 寫入資料庫
 		if (newsproductImage != null && !newsproductImage.isEmpty() ) {
 			try {
@@ -145,36 +214,41 @@ public class NewsController {
 			if (!imageFolder.exists()) imageFolder.mkdirs();//建資料夾
 			File file = new File(imageFolder, bb.getNewsId() + ext);
 			newsproductImage.transferTo(file);
+			System.out.println("You successfully uploaded file=" +imageFolder+ bb.getNewsId() + ext);
+		     
 		} catch(Exception e) {
 			e.printStackTrace();
 			throw new RuntimeException("檔案上傳發生異常: " + e.getMessage());
 		}		
 		
-				if (!videofile.isEmpty()) {
-            try {
-                // 檔案存放服務端的位置
-//                String rootPath = "c:/tmp123";
-//                File dir = new File(rootPath + File.separator + "tmpFiles");
-            	File dir = new File(rootDirectory,"video");
-                if (!dir.exists())
-                    dir.mkdirs();
-                // 寫檔案到伺服器
-                File serverFile = new File(dir.getAbsolutePath() + File.separator + videofile.getOriginalFilename());
-                videofile.transferTo(serverFile);
-//                return "You successfully uploaded file=" +  file.getOriginalFilename();
-            } catch (Exception e) {
-                
-            }
-		}
-		return "redirect:/news/news";
+//		if (!videofile.isEmpty()) {
+//			try {
+//				// 檔案存放服務端的位置
+////                String rootPath = "c:/tmp123";
+////                File dir = new File(rootPath + File.separator + "tmpFiles");
+//				File dir = new File(rootDirectory, "video");
+//				if (!dir.exists())
+//					dir.mkdirs();
+//				// 寫檔案到伺服器
+//				File serverFile = new File(dir.getAbsolutePath() + File.separator + videofile.getOriginalFilename());
+//				videofile.transferTo(serverFile);
+//				System.out.println("You successfully uploaded file=" + dir.getAbsolutePath() + File.separator
+//						+ videofile.getOriginalFilename());
+//			} catch (Exception e) {
+//				e.printStackTrace();
+//				throw new RuntimeException("檔案上傳發生異常: " + e.getMessage());
+//			}
+//		}
+//		return "redirect:/news/newsmodify";
+		return "redirect:/newsmodify";
 	}
-
+//
 	@ModelAttribute("authorList")
 	public Map<Integer, String> getAuthorList() {
 		Map<Integer, String> authorMap = new HashMap<>();
-		List<AuthorBean> list = newsservice.getAuthorList();
-		for (AuthorBean cb : list) {
-			authorMap.put(cb.getId(), cb.getName());
+		List<CoachBean> list = newsservice.getAuthorList();
+		for (CoachBean cb : list) {
+			authorMap.put(cb.getCoachId(), cb.getCoachName());
 		}
 		return authorMap;
 	}
@@ -311,4 +385,35 @@ public class NewsController {
 //		mv.setViewName("productNotFound");
 //		return mv;
 //	}
+	
+	
+	@PostMapping(value="/messageadd",produces="text/html;charset=UTF-8")
+	public @ResponseBody String processAddNewsMessageForm(Model m, @ModelAttribute("newsmessage") NewsMessageBean nb,
+	@RequestParam("nd") String mbstring) {
+//	MailboxBean mbb = new MailboxBean(mbstring, mb);
+//		mbb.setTime(new Timestamp(System.currentTimeMillis()));
+//	System.out.println(mbb.getMailboxContent());
+//	System.out.println(mb.getArticleId());
+//	mb.getMailbox().add(mbb);
+//	mbb.setMemberbean(mbssss);
+//	mailboxservice.addMailbox(mbb);
+	return mbstring;
+	}
+	
+//	@PostMapping(value="/mailbox/add",produces="text/html;charset=UTF-8")
+//	public @ResponseBody String processAddNewMailboxForm(Model m, @ModelAttribute("message") MessageBean mb,
+//	@RequestParam("nd") String mbstring) {
+//	MailboxBean mbb = new MailboxBean(mbstring, mb);
+//	MemberBean mbssss = (MemberBean) m.getAttribute("LoginOK");
+//	mbb.setTime(new Timestamp(System.currentTimeMillis()));
+//	System.out.println(mbb.getMailboxContent());
+//	System.out.println(mb.getArticleId());
+//	mb.getMailbox().add(mbb);
+//	mbb.setMemberbean(mbssss);
+//	mailboxservice.addMailbox(mbb);
+//	return mbstring;
+//
+//	}
+	
+	
 }
