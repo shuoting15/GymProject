@@ -9,7 +9,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.gym.coach.model.CoachBean;
 import com.gym.news.dao.NewsDao;
-import com.gym.news.model.AuthorBean;
 import com.gym.news.model.NewsBean;
 import com.gym.news.model.NewsMessageBean;
 import com.gym.news.service.NewsService;
