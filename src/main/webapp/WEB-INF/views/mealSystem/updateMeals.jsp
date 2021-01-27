@@ -61,11 +61,7 @@
 
 
 	<!-- Feature Section Starts Here -->
-	<section class="feature-section padding-bottom padding-top" 
-	style="background-image: url(images/meal/banner.jpg);
-			background-size: 100% 100%;
-            background-repeat: no-repeat;
-            background-attachment: fixed;">
+	<section class="feature-section padding-bottom padding-top" >
 
 		<aside class="sidebar"
 			style="width: 300px; float: left; margin-left: 400px">
@@ -90,7 +86,7 @@
 							<a href="<spring:url value='/updateMealList?id=${mealList.mealId}' />"><img
 								src="<c:url value='/meal/picture/${mealList.mealId}' />" alt="feature"></a>
 						</div>
-						<div class="feature-content" style="background-color: white ;">
+						<div class="feature-content">
 							<div class="feature-header">
 								<h4 class="title">
 								<a href="<c:url value='/updateMealList?id=${mealList.mealId}'/>">${mealList.mealName}</a>

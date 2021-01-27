@@ -63,8 +63,7 @@
 	<!-- SIDE BAR -->
 	<br>
 	<!-- BMI Calculate Section Starts here -->
-	<section
-		style="background-image: url(images/meal/banner.jpg); background-size: 100% 100%; background-repeat: no-repeat; background-attachment: fixed;">
+	<section>
 		<!-- Package Section Two Ends Here -->
 		<br>
 
@@ -72,7 +71,7 @@
 			<div class="row mb-30-none justify-content-center">
 				<c:forEach var="orderList" items="${orderList}">
 					<div class="col-lg-4 col-md-6">
-						<div class="package-item" style="background-color: white;">
+						<div class="package-item">
 							<div class="package-header">
 								<h2 class="title">訂單ID： ${orderList.orderNo}</h2>
 								<img src="css/img/plane.png" />

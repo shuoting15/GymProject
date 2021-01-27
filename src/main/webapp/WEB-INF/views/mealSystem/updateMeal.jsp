@@ -66,8 +66,7 @@
 
 
 	<!-- 	Trainer Section Starts Here -->
-	<section
-		style="background-image: url(images/meal/banner03.jpg); background-size: 100% 100%; background-repeat: no-repeat; background-attachment: fixed;">
+	<section>
 		<br>
 		<article style="display: flex; justify-content: center;">
 			<img width='800'
@@ -83,13 +82,13 @@
 							<div class="trainer-area">
 								<div class="trainer-item">
 									<div class="trainer-content">
-										<h1 class="title" style="color: white">${mealList.mealName}</h1>
+										<h1 class="title">${mealList.mealName}</h1>
 										<br>
 										<h5>
 											<span>餐點價格：TWD$${mealList.mealPrice}</span>
 										</h5>
-										<h6 style="text-align: center; color: white">餐點介紹</h6>
-										<p style="text-align: center; color: white">${mealList.mealContent}</p>
+										<h6 style="text-align: center">餐點介紹</h6>
+										<p style="text-align: center">${mealList.mealContent}</p>
 									</div>
 								</div>
 							</div>
@@ -99,12 +98,12 @@
 					<div class="col-lg-4">
 						<aside class="sidebar">
 							<div class=" widget-category">
-								<h5 class="widget-title" style="color: white">餐點資訊</h5>
-								<ul style="color: white">
-									<li><a style="color: white">餐點價格：TWD$${mealList.mealPrice}</a></li>
-									<li><a style="color: white">${mealList.mealKcal}Kcal</a></li>
-									<li><a style="color: white">餐點分類：${mealList.mealCategoryBean.categoryName}</a></li>
-									<li><a style="color: white">餐點編號：${mealList.mealId}</a></li>
+								<h5 class="widget-title">餐點資訊</h5>
+								<ul>
+									<li><a>餐點價格：TWD$${mealList.mealPrice}</a></li>
+									<li><a>${mealList.mealKcal}Kcal</a></li>
+									<li><a>餐點分類：${mealList.mealCategoryBean.categoryName}</a></li>
+									<li><a>餐點編號：${mealList.mealId}</a></li>
 								</ul>
 							</div>
 						</aside>
@@ -124,7 +123,7 @@
 		<div class="container">
 			<div class="row mb-30-none justify-content-center">
 				<div class="col-lg-4 col-md-6">
-					<div class="package-item" style="background-color: white;">
+					<div class="package-item">
 						<div class="package-header">
 							<h2 class="title">我要修改</h2>
 							<img src="css/img/plane.png" />

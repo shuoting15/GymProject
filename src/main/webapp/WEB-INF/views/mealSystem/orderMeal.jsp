@@ -63,8 +63,7 @@
 	<br>
 	<!-- BMI Calculate Section Starts here -->
 	<form method='POST'>
-	<section class="bmi-section bg_img padding-bottom padding-top"
-		data-background="images/meal/banner.jpg">
+	<section>
 		<div class="container">
 			<div class="row align-items-center justify-content-between">
 				<div class="col-lg-6 bmi-mb">
