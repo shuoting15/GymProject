@@ -46,66 +46,19 @@ function bookfunction(){
                         class="shape"></span></span></h3>
         </div>
     </section>
-	<div align="right">
-		<p>
-			<a href="<c:url value='/courses'/>" class="btn btn-dark"> <span
-				class="glyphicon-info-sigh glyphicon"></span>返回課程列表
-			</a>
-		</p>
-	</div>
-	<section>
-        <div>
-            <div class="container" style="text-align: center" >
-                <h3>已預約課程</h3>
-                <h3 style="color: red;">${message}</h3>
-            </div>
-        </div>
-    </section>
-    <hr style="height:1px;border:none;color:#333;background-color:#333;">
-    <section class="container">
-        <div class="row">
-        <c:forEach var='course' items='${mycourses}'>
-            <div class="col-sm-6 col-md-3" style="width: 360px; height: 360px">
-                <div class="thumbnail" style="width: 320px; height: 330px">
-<%--                 <img  width='100' height='200' src="<c:url value='/getPicture/${course.courseId}'/>" /> --%>
-                    <div class="caption">
-                    <img width='264px' src="<c:url value='/getCPicture/${course.courseBean.courseId}'/>" />
-                        <p>
-                        <a href="<c:url value='/course?id=${course.courseBean.courseId}'/>"><b style='font-size: 20px;'> ${course.courseBean.title}</b></a>
-<%--                         <a href="<c:url value='/course?id=${course.courseBean.courseId}'/>">he</a> --%>
-<%--                             <b style='font-size: 20px;'>${course.courseBean.title}</b> --%>
-                        </p>
-                        <p>日期: ${course.courseBean.date}</p>
-                        <p>時段: ${course.courseBean.starttime} ~ ${course.courseBean.endtime}</p>
-                        <p>教室: ${course.courseBean.location}</p>
-<%--                         <p>教練:${course.c_id}</p> --%>
-<%--                         <p>分類:${course.c_category}</p> --%>
-                        <p><a href="<c:url value='/unbooking/course?id=${course.id}'/>" class="btn btn-dark" onclick="return bookfunction()">
-                        <span class="glyphicon-info-sigh glyphicon"></span>取消預約
-                        </a>
-                        
-<%--                         <a href="<c:url value='course?id=${course.courseId}'/>" class="btn btn-primary"> --%>
-<!--                         <span class="glyphicon-info-sigh glyphicon"></span>詳細資訊 -->
-<!--                         </a></p> -->
-<%--                         <a href="<spring:url value='product.json?id=${product.bookId}' />"    --%>
-<!-- 								class="btn btn-primary">  -->
-<!-- 								<span class="glyphicon-info-sigh glyphicon"></span>JSON -->
-<!-- 							</a> -->
-<!--                         </p> -->
-                    </div>
-                </div>
-            </div>
-            </c:forEach>
-        </div>
-        
-        
-    </section>
-    
-    <section>
+<!-- 	<div align="right"> -->
+<!-- 		<p> -->
+<%-- 			<a href="<c:url value='/courses'/>" class="btn btn-dark"> <span --%>
+<!-- 				class="glyphicon-info-sigh glyphicon"></span>返回課程列表 -->
+<!-- 			</a> -->
+<!-- 		</p> -->
+<!-- 	</div> -->
+
+<section>
         <div>
             <div class="container" style="text-align: center" >
                 <h3>進行中課程</h3>
-<%--                 <h3 style="color: red;">${message}</h3> --%>
+                <h3 style="color: red;">${messages}</h3>
             </div>
         </div>
     </section>
@@ -154,6 +107,56 @@ function bookfunction(){
         
         
     </section>
+
+	<section>
+        <div>
+            <div class="container" style="text-align: center" >
+                <h3>已預約課程</h3>
+<%--                 <h3 style="color: red;">${messages}</h3> --%>
+            </div>
+        </div>
+    </section>
+    <hr style="height:1px;border:none;color:#333;background-color:#333;">
+    <section class="container">
+        <div class="row">
+        <c:forEach var='course' items='${mycourses}'>
+            <div class="col-sm-6 col-md-3" style="width: 360px; height: 360px">
+                <div class="thumbnail" style="width: 320px; height: 330px">
+<%--                 <img  width='100' height='200' src="<c:url value='/getPicture/${course.courseId}'/>" /> --%>
+                    <div class="caption">
+                    <img width='264px' src="<c:url value='/getCPicture/${course.courseBean.courseId}'/>" />
+                        <p>
+                        <a href="<c:url value='/course?id=${course.courseBean.courseId}'/>"><b style='font-size: 20px;'> ${course.courseBean.title}</b></a>
+<%--                         <a href="<c:url value='/course?id=${course.courseBean.courseId}'/>">he</a> --%>
+<%--                             <b style='font-size: 20px;'>${course.courseBean.title}</b> --%>
+                        </p>
+                        <p>日期: ${course.courseBean.date}</p>
+                        <p>時段: ${course.courseBean.starttime} ~ ${course.courseBean.endtime}</p>
+                        <p>教室: ${course.courseBean.location}</p>
+<%--                         <p>教練:${course.c_id}</p> --%>
+<%--                         <p>分類:${course.c_category}</p> --%>
+                        <p><a href="<c:url value='/unbooking/course?id=${course.id}'/>" class="btn btn-dark" onclick="return bookfunction()">
+                        <span class="glyphicon-info-sigh glyphicon"></span>取消預約
+                        </a>
+                        
+<%--                         <a href="<c:url value='course?id=${course.courseId}'/>" class="btn btn-primary"> --%>
+<!--                         <span class="glyphicon-info-sigh glyphicon"></span>詳細資訊 -->
+<!--                         </a></p> -->
+<%--                         <a href="<spring:url value='product.json?id=${product.bookId}' />"    --%>
+<!-- 								class="btn btn-primary">  -->
+<!-- 								<span class="glyphicon-info-sigh glyphicon"></span>JSON -->
+<!-- 							</a> -->
+<!--                         </p> -->
+                    </div>
+                </div>
+            </div>
+            </c:forEach>
+        </div>
+        
+        
+    </section>
+    
+    
     
     <section>
         <div>

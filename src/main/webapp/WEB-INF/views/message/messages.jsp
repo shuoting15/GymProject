@@ -61,7 +61,7 @@ $("#btn1").click(function () {
 						<div class="blog__item__text">
 							<ul>
 								<li><i class="fa fa-calendar-o"></i>發表時間:\${messages.time}</li>
-								<li><i class="fa fa-comment-o"></i> 5</li>
+								<li><i class="fa fa-comment-o"></i>\${messages.repliseCount}</li>
 							</ul>
 							<h5>
 								<a
@@ -110,12 +110,12 @@ $("#btn1").click(function () {
 	<section class="blog spad">
 		<div class="container">
 			<div class="row">
-				<div class="col-lg-4 col-md-5">
-					<div class="blog__sidebar">
+				<div class="col-lg-3 col-md-5">
+					<div class="sidebar">
 						<div class="blog__sidebar__search">
 						<form>
-								<input id="ipt1" type="text" placeholder="Search...">
-								<button type="button" id="btn1">
+								<input style="background-color:white" id="ipt1" type="text" placeholder="Search...">
+								<button type="button" id="btn1" style="width:40px">
 									<span class="icon_search"></span>
 								</button>
 						</form>
@@ -186,7 +186,7 @@ $("#btn1").click(function () {
 <!-- 						</div> -->
 					</div>
 				</div>
-				<div class="col-lg-8 col-md-7">
+				<div style="margin-left:80px" class="col-lg-8 col-md-7">
 					<div id="dv1" class="row">
 					
 						<c:forEach  var='messages' items='${messages}'>
@@ -198,16 +198,24 @@ $("#btn1").click(function () {
 									<div class="blog__item__text">
 										<ul>
 											<li><i class="fa fa-calendar-o"></i>發表時間:${messages.time}</li>
-											<li><i class="fa fa-comment-o"></i> 5</li>
+											<li><i class="fa fa-comment-o"></i>${messages.repliseCount}</li>
 										</ul>
 										<h5>
 											<a
 												href="<c:url value='message?articleId=${messages.articleId}'/>">${messages.title}</a>
 										</h5>
 										<p class="hidetext">${messages.content}</p>
+										<c:choose>
+										<c:when test="${messages.reportText <10 }">
 										<a
 											href="<c:url value='message?articleId=${messages.articleId}'/>"
 											class="blog__btn">READ MORE <span class="arrow_right"></span></a>
+										</c:when>
+										<c:otherwise>
+										<p>編號:${messages.articleId}文章已遭鎖定</p>
+										</c:otherwise>
+										
+										</c:choose>
 									</div>
 								</div>
 							</div>

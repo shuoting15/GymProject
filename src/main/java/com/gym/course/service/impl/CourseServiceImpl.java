@@ -80,6 +80,7 @@ public class CourseServiceImpl implements CourseService{
 				ci.setM_name(memberBean.getUsername() );
 				ci.setStatus(true);
 				ci.setC_location(course.getLocation());
+				ci.setC_price(course.getPrice());
 				ci.setMemberBean(memberBean);
 				cdao.insert(ci);
 				

@@ -158,7 +158,7 @@ $("#re").click(function () {
         <div>
             <div class="container" style="text-align: center" >
 <!--                 <h1>課程列表</h1> -->
-                <h3 style="color: red;">${message}</h3>
+                <h3 style="color: red;">${messages}</h3>
             </div>
         </div>
     </section>

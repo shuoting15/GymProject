@@ -21,11 +21,13 @@ color:#C0C0C0;
 </style>
 
 <title>論壇後臺管理</title>
+
+
 <!-- Bootstrap -->
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
-	integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
-	crossorigin="anonymous">
+	data-integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+	data-crossorigin="anonymous">
 
 <!-- Google Font -->
 <link
@@ -33,7 +35,7 @@ color:#C0C0C0;
 	rel="stylesheet">
 
 <!-- Css Styles -->
-<link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
+<!-- <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css"> -->
 <link rel="stylesheet" href="css/font-awesome.min.css" type="text/css">
 <link rel="stylesheet" href="css/elegant-icons.css" type="text/css">
 <link rel="stylesheet" href="css/nice-select.css" type="text/css">
@@ -42,8 +44,22 @@ color:#C0C0C0;
 <link rel="stylesheet" href="css/slicknav.min.css" type="text/css">
 <link rel="stylesheet" href="css/style.css" type="text/css">
 <link rel="stylesheet" href="css/stylemember.css" type="text/css">
+
 </head>
 <body>
+
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+  integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+  crossorigin="anonymous"></script>
+  
+  <link rel="stylesheet"
+  href="<c:url value='https://cdn.datatables.net/1.10.23/css/jquery.dataTables.min.css' />">
+ <script defer
+  src="<c:url value='https://cdn.datatables.net/1.10.23/js/jquery.dataTables.min.js' />"></script>
+
+
+
+  
 	<!-- 引入共同的頁首 -->
 	<jsp:include page="/fragment/top.jsp" />
 	<!-- Breadcrumb Section Begin -->
@@ -53,9 +69,9 @@ color:#C0C0C0;
 			<div class="row">
 				<div class="col-lg-12 text-center">
 					<div class="breadcrumb__text">
-						<h2>Organi Shop</h2>
+						<h2>Gym forum</h2>
 						<div class="breadcrumb__option">
-							<a href="./index.html">Home</a> <span>Shop</span>
+							<a href="<c:url value='/messages'/>">Home</a> <span>Message</span>
 						</div>
 					</div>
 				</div>
@@ -70,84 +86,67 @@ color:#C0C0C0;
 			<div class="row">
 				<div class="col-lg-4 col-md-5">
 					<div class="blog__sidebar">
-						<div class="blog__sidebar__search">
-							<form action="#">
-								<input type="text" placeholder="Search...">
-								<button type="submit">
-									<span class="icon_search"></span>
-								</button>
-							</form>
-						</div>
+					
+<!-- 						<div class="blog__sidebar__item"> -->
+							
+<!-- 							<div class="blog__sidebar__recent"> -->
+<!-- 								<a href="#" class="blog__sidebar__recent__item"> -->
+<!-- 									<div class="blog__sidebar__recent__item__pic"> -->
+										
+<!-- 									</div> -->
+<!-- 									<div class="blog__sidebar__recent__item__text"> -->
+										
+<!-- 									</div> -->
+<!-- 								</a> <a href="#" class="blog__sidebar__recent__item"> -->
+<!-- 									<div class="blog__sidebar__recent__item__pic"> -->
+<!-- 										<img src="img/blog/sidebar/sr-2.jpg" alt=""> -->
+<!-- 									</div> -->
+<!-- 									<div class="blog__sidebar__recent__item__text"> -->
+										
+<!-- 									</div> -->
+<!-- 								</a> <a href="#" class="blog__sidebar__recent__item"> -->
+<!-- 									<div class="blog__sidebar__recent__item__pic"> -->
+<!-- 										<img src="img/blog/sidebar/sr-3.jpg" alt=""> -->
+<!-- 									</div> -->
+<!-- 									<div class="blog__sidebar__recent__item__text"> -->
+										
+<!-- 									</div> -->
+<!-- 								</a> -->
+<!-- 							</div> -->
+<!-- 						</div> -->
 						<div class="blog__sidebar__item">
-							<h4>Categories</h4>
+							<h4>後臺管理</h4>
 							<ul>
-								<li><a href="#">All</a></li>
-								<li><a href="#">Beauty (20)</a></li>
-								<li><a href="#">Food (5)</a></li>
-								<li><a href="#">Life Style (9)</a></li>
-								<li><a href="#">Travel (10)</a></li>
+								<li><a href="<c:url value='/allmessages'/>">前往論壇</a></li>
 							</ul>
-						</div>
-						<div class="blog__sidebar__item">
-							<h4>Recent News</h4>
-							<div class="blog__sidebar__recent">
-								<a href="#" class="blog__sidebar__recent__item">
-									<div class="blog__sidebar__recent__item__pic">
-										<img src="img/blog/sidebar/sr-1.jpg" alt="">
-									</div>
-									<div class="blog__sidebar__recent__item__text">
-										<h6>
-											09 Kinds Of Vegetables<br /> Protect The Liver
-										</h6>
-										<span>MAR 05, 2019</span>
-									</div>
-								</a> <a href="#" class="blog__sidebar__recent__item">
-									<div class="blog__sidebar__recent__item__pic">
-										<img src="img/blog/sidebar/sr-2.jpg" alt="">
-									</div>
-									<div class="blog__sidebar__recent__item__text">
-										<h6>
-											Tips You To Balance<br /> Nutrition Meal Day
-										</h6>
-										<span>MAR 05, 2019</span>
-									</div>
-								</a> <a href="#" class="blog__sidebar__recent__item">
-									<div class="blog__sidebar__recent__item__pic">
-										<img src="img/blog/sidebar/sr-3.jpg" alt="">
-									</div>
-									<div class="blog__sidebar__recent__item__text">
-										<h6>
-											4 Principles Help You Lose <br />Weight With Vegetables
-										</h6>
-										<span>MAR 05, 2019</span>
-									</div>
-								</a>
-							</div>
-						</div>
-						<div class="blog__sidebar__item">
-							<h4>Search By</h4>
 							<div class="blog__sidebar__item__tags">
-								<a href="#">Apple</a> <a href="#">Beauty</a> <a href="#">Vegetables</a>
-								<a href="#">Fruit</a> <a href="#">Healthy Food</a> <a href="#">Lifestyle</a>
+									
 							</div>
 						</div>
 					</div>
 				</div>
 				<div class="col-lg-8 col-md-7">
 					<div class="row">
+					<table id="myreport" border="1">
+					<thead>
+					<tr>
+					<th style="text-align:center">文章ID</th>
+					<th style="text-align:center">舉報原因</th>
+					<th style="text-align:center">舉報者</th>
+					<th style="text-align:center">舉報時間</th>
+					</tr>
+					</thead>
+					<tbody>
 							<c:forEach var='reports' items='${reports}'>
-							<div class="blog__item__text" id="read">
-							<h5>文章標題:${reports.messageBean.title}</h5>
-							<p id="ppp">檢舉內容:${reports.reportContent}</p>
-							<i class="fa fa-calendar-o" id="cmcolor">檢舉時間: 檢舉人:${reports.memberbean.username}</i>
-							<i id="reportid">檢舉人:${reports.memberbean.username}</i>
-							<div style="text-align: right">
-								<a href="#" class="blog__btn">READ MORE <span
-									class="arrow_right"></span></a>
-							</div>
-							<hr>
-							</div>
+							<tr>
+							<td style="text-align:center;width:80px;">${reports.messageBean.articleId}</td>
+							<td style="text-align:center;width:700px;">${reports.reportContent}</td>
+							<td style="text-align:center;width:80px;">${reports.memberbean.username}</td>
+							<td style="text-align:center;width:400px;">${reports.time}</td>
+							</tr>
 							</c:forEach>
+							</tbody>
+							</table>
 						</div>
 						
 					</div>
@@ -155,15 +154,22 @@ color:#C0C0C0;
 
 
 			</div>
-		</div>
-		</div>
-		</div>
-		</div>
+	
+	 <script>
+  $(document).ready(function() {
+   $('#myreport').DataTable();
+  });
+ </script>
+	
+	
+	
+ 
+	
+	
 	</section>
 	<!-- Blog Section End -->
 
 	<!-- Js Plugins -->
-	<script src="js/jquery-3.3.1.min.js"></script>
 	<script src="js/bootstrap.min.js"></script>
 	<script src="js/jquery.nice-select.min.js"></script>
 	<script src="js/jquery-ui.min.js"></script>

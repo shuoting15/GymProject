@@ -452,7 +452,14 @@
                     最新教學&文章
                 </h2>
                 <p> </p>
+                <div class="common-navigation d-flex ">
+                    <div class="common-prev navigation"><i class="fas fa-angle-left"></i></div>
+                    <div class="common-next active navigation"><i class="fas fa-angle-right"></i></div>
+                </div>
             </div>
+            
+                
+                
             <div class="row mb-30-none justify-content-center blog-section-wrapper">
                 <div class="col-xl-4 col-md-6">
                     <div class="post-item">
