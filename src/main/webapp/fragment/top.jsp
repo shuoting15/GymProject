@@ -160,8 +160,8 @@
 							</ul></li>
 						<li><a href="<c:url value="/courses" />">團體課程</a>
 							<ul class="header__menu__dropdown">
-								<li><a href="./shop-details.html">實體</a></li>
-								<li><a href="./shoping-cart.html">線上直播</a></li>
+								<li><a href="<c:url value="/courses" />">課程列表</a></li>
+								<li><a href="<c:url value="/mycourses" />">預約查詢</a></li>
 							</ul></li>
 						<li><a href="<c:url value="showAllMealList" />">健身餐點</a>
 							<ul class="header__menu__dropdown">
@@ -182,6 +182,7 @@
 								<li><a href="<c:url value='/coachMaintain' />">教練</a></li>
 								<li><a href="<c:url value='/coachPerformance' />">教練業績</a></li>
 								<li><a href="<c:url value="/courseManage" />">團課</a></li>
+								<li><a href="<c:url value='/coursesPerformance' />">團課業績</a></li>
 								<li><a href="updateShowAllMealList">健身餐</a></li>
 								<li><a href="<c:url value='/newsmodify'/>">教學區</a></li>
 								<li><a href="reports">論壇</a></li>

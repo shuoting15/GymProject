@@ -35,6 +35,7 @@ public class CourseInfoBean implements Serializable {
 	private Timestamp 	c_start;
 	private Timestamp 	c_end;
 	private String 		c_location;
+	private Integer		c_price;
 	
 	@ManyToOne(cascade=CascadeType.ALL)
 	@JoinColumn(name="FK_CourseBean_Id") 
@@ -153,6 +154,14 @@ public class CourseInfoBean implements Serializable {
 
 	public void setMemberBean(MemberBean memberBean) {
 		this.memberBean = memberBean;
+	}
+
+	public Integer getC_price() {
+		return c_price;
+	}
+
+	public void setC_price(Integer c_price) {
+		this.c_price = c_price;
 	}
 
 
