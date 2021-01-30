@@ -1,10 +1,12 @@
 package com.gym.message.model;
 
 import java.io.Serializable;
+import java.sql.Date;
 import java.sql.Timestamp;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -33,7 +35,7 @@ public class ReportBean implements Serializable{
 	
 
 	
-	@ManyToOne(cascade=CascadeType.REFRESH)
+	@ManyToOne(cascade=CascadeType.REFRESH )
 	@JoinColumn(name="articleId")
 	private MessageBean messageBean;
 	
@@ -48,8 +50,9 @@ public class ReportBean implements Serializable{
 		
 	}
 	
-	public ReportBean(String reportContent) {
+	public ReportBean(String reportContent,MessageBean messageBean ) {
 		this.reportContent=reportContent;
+		this.messageBean = messageBean;
 	}
 	
 	public ReportBean(Integer articleId) {
@@ -81,8 +84,8 @@ public class ReportBean implements Serializable{
 	}
 
 
-	public void setTime(Timestamp time) {
-		this.time = time;
+	public void setTime(Timestamp str) {
+		this.time = str;
 	}
 
 

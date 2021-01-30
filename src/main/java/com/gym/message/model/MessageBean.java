@@ -37,7 +37,10 @@ public class MessageBean implements Serializable {
 	private Integer repliseCount;
 	private Timestamp time;
 	private String  fileName;
+	private Integer reportText;
 	
+	
+
 	@Transient
 	private String member_id;
 	
@@ -45,7 +48,8 @@ public class MessageBean implements Serializable {
 	private MultipartFile productImage;
 	@OneToMany(mappedBy="messageBean",fetch=FetchType.EAGER)
 	@JsonIgnore
-	private List<MailboxBean> mailbox=new LinkedList<>();
+	private List<MailboxBean> mailbox;
+	
 	
 	@ManyToOne(cascade=CascadeType.REFRESH)
 	@JoinColumn(name="member_id")
@@ -53,6 +57,7 @@ public class MessageBean implements Serializable {
 	
 	
 	
+
 	public String getMember_id() {
 		return member_id;
 	}
@@ -76,7 +81,7 @@ public class MessageBean implements Serializable {
 			this.content=content;
 			this.images=images;
 			this.kanbanName=kanbanName;
-			this.repliseCount=repliseCount;
+			this.repliseCount=0;
 			this.time=time;
 	}
 	
@@ -86,7 +91,7 @@ public class MessageBean implements Serializable {
 			this.content=content;
 			this.images=images;
 			this.kanbanName=kanbanName;
-			this.repliseCount=repliseCount;
+			this.repliseCount=0;
 			this.time=time;
 	}
 	
@@ -159,6 +164,12 @@ public class MessageBean implements Serializable {
 	public void setFileName(String fileName) {
 		this.fileName = fileName;
 	}
+	public Integer getReportText() {
+		return reportText;
+	}
 
+	public void setReportText(Integer reportText) {
+		this.reportText = reportText;
+	}
 	
 }

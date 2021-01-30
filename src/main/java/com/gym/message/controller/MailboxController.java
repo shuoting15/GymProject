@@ -7,7 +7,9 @@ import java.io.InputStream;
 import java.sql.Blob;
 import java.sql.SQLException;
 import java.sql.Timestamp;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletResponse;
@@ -76,6 +78,7 @@ public class MailboxController {
 	@PostMapping(value="/mailbox/add",produces="text/html;charset=UTF-8")
 	public @ResponseBody String processAddNewMailboxForm(Model m, @ModelAttribute("message") MessageBean mb,
 			@RequestParam("nd") String mbstring) {
+		Map<String,MailboxBean> putMap=new HashMap<String, MailboxBean>();
 		MailboxBean mbb = new MailboxBean(mbstring, mb);
 		MemberBean mbssss = (MemberBean) m.getAttribute("LoginOK");
 		mbb.setTime(new Timestamp(System.currentTimeMillis()));
@@ -84,7 +87,9 @@ public class MailboxController {
 		mb.getMailbox().add(mbb);
 		mbb.setMemberbean(mbssss);
 		mailboxservice.addMailbox(mbb);
-		return mbstring;
+		putMap.put(mbssss.getMember_id(), mbb);
+		System.out.println(mbb.getMemberbean().getUsername());
+		return mbb.getMemberbean().getMemberphoto()+","+mbb.getMemberbean().getUsername()+":"+mbb.getMailboxContent();
 		
 	}
 

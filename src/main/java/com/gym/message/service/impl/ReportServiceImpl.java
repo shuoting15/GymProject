@@ -19,8 +19,8 @@ public class ReportServiceImpl implements com.gym.message.service.ReportService 
 	
 	@Transactional
 	@Override
-	public void addReportContent(String rb) {
-		rbdao.addReportContent(rb);
+	public void addReportContent(ReportBean reportbean) {
+		rbdao.addReportContent(reportbean);
 
 	}
 	@Transactional
@@ -46,6 +46,11 @@ public class ReportServiceImpl implements com.gym.message.service.ReportService 
 	@Override
 	public List<ReportBean> getAllReport() {
 		return rbdao.getAllReport();
+	}
+	@Transactional
+	@Override
+	public ReportBean getReportContentById(int reportId) {
+		return rbdao.getReportContentById(reportId);
 	}
 
 }

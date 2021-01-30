@@ -212,7 +212,7 @@ span.error {
 									<tr class="test1">
 										<td style="display: inline; width: 40px">標題:<br />
 											<p>
-												<form:input class="tt1" path="title" placeholder="請輸入標題...." />
+												<form:input style="background-color:white" class="tt1" path="title" placeholder="請輸入標題...." />
 												<br>&nbsp;
 											</p>
 										</td>
@@ -233,7 +233,7 @@ span.error {
 												<img id="blah"
 													src="<c:url value='/getimage/${messageBean.articleId}'/>">
 											<p>
-												<form:input runat="server" id="imgInp" path="productImage"
+												<form:input style="background-color:white" runat="server" id="imgInp" path="productImage"
 													type='file' class='form:input-large' />
 											</p>
 									
@@ -244,10 +244,10 @@ span.error {
 									</tr>
 									<tr style="width: 30px">
 										<td align='center' class="blog__item__text"><input
-											class="blog__btn" type='submit' value='修改'
+											class="blog__btn" style="background-color:white" type='submit' value='修改'
 											onclick='updateBook()'></td>
 										<td align='center' class="blog__item__text"><input
-											class="blog__btn" type='submit' value='刪除'
+											class="blog__btn" style="background-color:white" type='submit' value='刪除'
 											onclick='confirmDelete(${messageBean.articleId})'></td>
 									</tr>
 

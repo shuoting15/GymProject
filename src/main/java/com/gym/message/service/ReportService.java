@@ -6,9 +6,11 @@ import com.gym.message.model.ReportBean;
 
 public interface ReportService {
 
-	void addReportContent(String rb);
+	void addReportContent(ReportBean reportbean);
 	
 	int deleteMessageReport(int no);
 	
 	List<ReportBean>  getAllReport();
+	
+	public ReportBean getReportContentById(int reportId);
 }

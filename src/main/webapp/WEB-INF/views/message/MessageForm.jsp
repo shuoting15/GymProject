@@ -51,6 +51,10 @@ span.error {
 .test1 {
 	width: 50px;
 }
+
+#smt {
+	background-color: white;
+}
 </style>
 <!-- Css Styles -->
 <link rel="stylesheet" href="../css/bootstrap.min.css" type="text/css">
@@ -175,7 +179,7 @@ span.error {
 									</tr>
 								<tr class="test1"> 
 										<td style="display:inline;">標題:</td>
-										<td><form:input class="tt1" path="title" placeholder="請輸入標題...." /><br>&nbsp;</td>
+										<td><form:input style="background-color:white" class="tt1" path="title" placeholder="請輸入標題...." /><br>&nbsp;</td>
 									</tr>
 									<tr>
 										<td style="display:inline;">內容:<br>&nbsp;
@@ -184,12 +188,13 @@ span.error {
 									</tr>
 									<tr>
 										<td style="display:inline;">圖片:</td>
-										<td><form:input id="productImage" path="productImage"
+										<td><form:input style="background-color:white" id="productImage" path="productImage"
 												type='file' /></td>
 									</tr>
 									<tr>
-										<td colspan='2' align='center' class="blog__item__text"><input class="blog__btn" type='submit'
-											value='發表'></td>
+									<div id="smt">
+										<td colspan='2' align='center' class="blog__item__text"><input style="background-color:white;" class="blog__btn" type='submit'
+											value='發表'></td></div>
 									</tr>
 								</table>
 							</fieldset>

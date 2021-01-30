@@ -72,18 +72,32 @@ public class MessageController {
 	}
 	
 	@RequestMapping("/allmessages")
-	public String Alllist(Model model) {
-		List<MessageBean> list=messageservice.getAllMessage();
-		List<String> list1 = messageservice.getAllKanbanName();
-		model.addAttribute("kanbanNameList", list1);
-		model.addAttribute("messages",list);
-		return "message/messages";
+	public String Alllist(Model model,HttpSession session) {
+		MemberBean mbssss = (MemberBean) model.getAttribute("LoginOK");
+		if(mbssss!=null) {
+			System.out.println(mbssss.getUsername());
+			List<MessageBean> list=messageservice.getAllMessage();
+			List<String> list1 = messageservice.getAllKanbanName();
+			MessageBean mb = new MessageBean();
+			model.addAttribute("kanbanNameList", list1);
+			model.addAttribute("messages",list);
+			session.setAttribute("comments",mb.getMailbox());
+			return "message/messages";
+		}else {
+			return "member/login";
+		}
 	}
 	
 	@RequestMapping("/message")
 	public String getMessageById(@RequestParam("articleId") Integer articleId, Model model) {
 		MemberBean mbssss = (MemberBean) model.getAttribute("LoginOK");
 		MessageBean mb = messageservice.getMessageById(articleId);
+		System.out.println("reeeeeeeeee:"+mb);
+		Integer nv = mb.getRepliseCount();
+		nv++;
+		System.out.println("nv="+nv);
+		mb.setRepliseCount(nv);
+		messageservice.updateMessage(mb, 0);
 		model.addAttribute("memname",mbssss);
 		model.addAttribute("message", messageservice.getMessageById(articleId));
 		model.addAttribute("comments",mb.getMailbox());
@@ -113,7 +127,9 @@ public class MessageController {
 			Model model,
 			RedirectAttributes redirectAttributes
 			) {
-		
+		MemberBean mbssss = (MemberBean) model.getAttribute("LoginOK");
+		mbean.setReportText(0);
+			mbean.setRepliseCount(0);
 		mbean.setTime(new Timestamp(System.currentTimeMillis()));
 		System.out.println(System.currentTimeMillis());
 		long sizeInBytes = -1;
@@ -135,6 +151,7 @@ public class MessageController {
 			}
 			mbean.setImages(Images);
 		}
+		mbean.setMemberbean(mbssss);
 		messageservice.updateMessage(mbean, sizeInBytes);
 		redirectAttributes.addFlashAttribute("SUCCESS", "修改成功!!!");
 		return "redirect:/messages";
@@ -153,6 +170,9 @@ public class MessageController {
 	public String processAddNewProductForm(@ModelAttribute("messageBean") MessageBean mb,Model m) {
 		MemberBean mbssss = (MemberBean) m.getAttribute("LoginOK");
 		System.out.println(mbssss.getMember_id());
+			mb.setReportText(0);
+			mb.setRepliseCount(0);
+			
 		mb.setTime(new Timestamp(System.currentTimeMillis()));
 		MultipartFile productImage = mb.getProductImage();
 		String originalFilename = productImage.getOriginalFilename();

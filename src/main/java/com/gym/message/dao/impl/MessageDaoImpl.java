@@ -27,7 +27,7 @@ public class MessageDaoImpl implements MessageDao {
 	@Override
 	public List<MessageBean> getAllMessage() {
 		Session session = factory.getCurrentSession();
-		String hql = "From MessageBean";
+		String hql = "From MessageBean order by repliseCount desc";
 		return session.createQuery(hql).getResultList();
 	}
 

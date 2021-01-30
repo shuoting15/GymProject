@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.gym.message.dao.ReportDao;
+import com.gym.message.exception.ProductNotFoundException;
 import com.gym.message.model.MailboxBean;
 import com.gym.message.model.ReportBean;
 @Repository
@@ -17,10 +18,9 @@ public class ReportDaoImpl implements ReportDao {
 	SessionFactory factory;
 	
 	@Override
-	public void addReportContent(String rb) {
+	public void addReportContent(ReportBean reportbean) {
 		Session session = factory.getCurrentSession();
-		ReportBean rb1 = new ReportBean(rb);
-		session.save(rb1);
+		session.save(reportbean);
 	}
 
 	@Override
@@ -41,6 +41,18 @@ public class ReportDaoImpl implements ReportDao {
 		Session session = factory.getCurrentSession();
 		String hql = "From ReportBean";
 		return session.createQuery(hql).getResultList();
+	}
+	
+	
+
+	@Override
+	public ReportBean getReportContentById(int reportId) {
+		Session session = factory.getCurrentSession();
+		ReportBean rb = session.get(ReportBean.class, reportId);
+		if (rb == null) {
+			throw new ProductNotFoundException(reportId + "找不到");
+		}
+		return rb;
 	}
 
 }
