@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.gym.course.dao.CoursesPerformanceDao;
+import com.gym.course.model.CourseBean;
 import com.gym.course.service.CoursesPerFormanceService;
 @Service
 @Transactional
@@ -37,6 +38,11 @@ public class CoursesPerFormanceServiceImpl implements CoursesPerFormanceService 
 	@Override
 	public int monthAllCategoriesRevenue() {
 		return dao.monthAllCategoriesRevenue();
+	}
+
+	@Override
+	public List<CourseBean> getCoursesCountsByCategory(String category) {
+		return dao.getCoursesCountsByCategory(category);
 	}
 
 }

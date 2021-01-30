@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
+import com.gym.course.model.CourseBean;
 import com.gym.course.model.CourseCategoryBean;
 import com.gym.course.service.CoursesPerFormanceService;
 
@@ -22,7 +23,7 @@ public class CoursesPerformanceController {
 	@Autowired
 	ServletContext context;
 	
-	// 課程類別業績
+	// 課程業績
 	@GetMapping("/coursesPerformance")
 	public String coursesPerformance(Model model) {
 		List<CourseCategoryBean> list = cpservice.getAllCategories();
@@ -31,6 +32,7 @@ public class CoursesPerformanceController {
 		int alltotalrevenue = cpservice.totalAllCategoriesRevenue();
 		int allmonthrevenue = cpservice.monthAllCategoriesRevenue();
 		for(CourseCategoryBean category : list) {
+			//業績
 			totalrevenue = cpservice.totalCategoryRevenue(category.getCategoryName());
 			monthrevenue = cpservice.monthCategoryRevenue(category.getCategoryName());
 			
@@ -47,7 +49,12 @@ public class CoursesPerformanceController {
 			}else{
 				category.setMonthrevenuePercent(monthrevenue*100/allmonthrevenue);
 			}
+			
+			//開課數量
+//			List<CourseBean> clist = cpservice.getCoursesCountsByCategory(category.getCategoryName());
 		}
+		
+		
 		model.addAttribute("category", list);
 		model.addAttribute("allmonthrevenue", allmonthrevenue);
 		model.addAttribute("alltotalrevenue", alltotalrevenue);

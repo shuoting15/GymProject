@@ -99,6 +99,8 @@ public class CourseController {
 	@GetMapping("/courseUpdate")
 	public String getUpdateCourseForm(@RequestParam("id") Integer courseId, Model model) {
 		CourseBean bean = service.getCourseById(courseId);
+//		System.out.println(bean.getCourseCoachBean().getId());
+		bean.setCoachId(bean.getCourseCoachBean().getId());
 		model.addAttribute("courseBean", bean);
 		return "course/addCourse";
 	}
@@ -298,12 +300,12 @@ public class CourseController {
 		Timestamp ts = new Timestamp(System.currentTimeMillis());
 		String newStartTime = info.getC_date() + " " + info.getC_start() + ":00";
 		Timestamp chStart = Timestamp.valueOf(newStartTime);
-		System.out.println(ts);
-		System.out.println(chStart);
+//		System.out.println(ts);
+//		System.out.println(chStart);
 		String nowtime = ts.toString().split(" ")[1].substring(0,2);
 		String ctime = chStart.toString().split(" ")[1].substring(0,2);
-		System.out.println(ts.getTime() / (1000*60*60));
-		System.out.println(chStart.getTime() / (1000*60*60));
+//		System.out.println(ts.getTime() / (1000*60*60));
+//		System.out.println(chStart.getTime() / (1000*60*60));
 //		int nT = Integer.parseInt(nowtime);
 //		int cT = Integer.parseInt(ctime);
 		long nT = ts.getTime() / (1000*60*60);
@@ -377,7 +379,7 @@ public class CourseController {
 		headers.setCacheControl(CacheControl.noCache().getHeaderValue());
 		String mimeType = context.getMimeType(filename);
 		MediaType mediaType = MediaType.valueOf(mimeType);
-		System.out.println("mediaType =" + mediaType);
+//		System.out.println("mediaType =" + mediaType);
 		headers.setContentType(mediaType);
 		ResponseEntity<byte[]> responseEntity = new ResponseEntity<>(media, headers, HttpStatus.OK);
 		return responseEntity;

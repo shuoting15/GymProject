@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.gym.course.dao.CoursesPerformanceDao;
+import com.gym.course.model.CourseBean;
 
 @Repository
 public class CoursesPerformanceDaoImpl implements CoursesPerformanceDao {
@@ -64,6 +65,13 @@ public class CoursesPerformanceDaoImpl implements CoursesPerformanceDao {
 			return (int)(long)result;
 		}
 		return 0;
+	}
+
+	@Override
+	public List<CourseBean> getCoursesCountsByCategory(String category) {
+		String hql = "from CourseBean c where c.category = :category";
+		Session session = factory.getCurrentSession();
+		return session.createQuery(hql).setParameter("category", category).getResultList();
 	}
 
 }
