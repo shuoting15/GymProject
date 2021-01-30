@@ -509,6 +509,7 @@
             </div>
         </div>
     </section>
+    <jsp:include page="/fragment/footer.jsp" />
     <!-- Blog Section Ends Here -->
     <!-- Sponsor Slider Section Starts Here -->
     <!-- Sponsor Slider Section Ends Here -->

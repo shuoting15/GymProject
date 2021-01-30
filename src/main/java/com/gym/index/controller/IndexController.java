@@ -41,4 +41,10 @@ CourseService courseService;
 	public String memberarea() {
 		return "member/memberarea";
 	}
+	
+		@GetMapping("/mealSystem")
+	public String mealSystem() {
+//		return "mealSystem/index";
+		return "redirect:/showAllMealList";
+	}
 }

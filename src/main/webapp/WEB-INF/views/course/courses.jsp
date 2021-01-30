@@ -30,7 +30,7 @@
  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick-theme.css" />
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
-<link rel="stylesheet" href="css/stylecourses.css">
+<link rel="stylesheet" href="css/stylecoach.css">
 <title>Courses</title>
 <%-- <link rel="stylesheet" href='${pageContext.request.contextPath}/css/styles.css' type="text/css"> --%>
   <style>
@@ -385,7 +385,7 @@ function classChangeDate(d){
       // console.log(retArr); // 或可換為return ret;
       for(i in retArr){
           // console.log(retArr[i]);
-          $(".slider").append("<li id='da'><a onClick=\"classChangeDate('"+retArr[i]+"\')\" id='d"+i+"' >" + retArr[i].substring(5,10) + "</a></li>");
+          $(".slider").append("<li id='da'><a onClick=\"classChangeDate('"+retArr[i]+"\')\" id='d"+i+"'>" + retArr[i].substring(5,10) + "</a></li>");
       }
   }
 
@@ -458,7 +458,7 @@ function classChangeDate(d){
 	<script src="js/counterup.min.js"></script>
 	<script src="js/lightcase.js"></script>
 	<script src="js/wow.min.js"></script>
-	<script src="js/maincoursesdetail.js"></script>
+	<script src="js/maincoach.js"></script>
     
 </body>
 </html>

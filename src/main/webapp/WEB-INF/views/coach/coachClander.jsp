@@ -83,7 +83,7 @@
             		Swal.fire('Opps!','您的點數不足請儲值','error');
             		
             		setTimeout(function(){
-            			window.location.href="<c:url value='/productDisplay/product?id=30' />";
+            			window.location.href="<c:url value='/productDisplay/product?id=202030' />";
 	            		},1500)
             	
             		
