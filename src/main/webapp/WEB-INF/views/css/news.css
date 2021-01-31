@@ -147,3 +147,16 @@ text-align: center;
 /*   -ms-transform: translate(-50%, -50%); */
 /*   transform: translate(-50%, -50%); */
 }
+.expert-infonews{
+	width: 600px;
+	padding: 5px;
+	background: #03c2fc;
+}
+.expert-contentnews{
+		display: flex;
+	flex-wrap: wrap;
+	-webkit-transform: translateY(-50%);
+	-ms-transform: translateY(-50%);
+	transform: translateY(-50%);
+	margin: 0 25px -58px;
+}
