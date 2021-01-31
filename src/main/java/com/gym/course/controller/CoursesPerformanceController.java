@@ -1,5 +1,6 @@
 package com.gym.course.controller;
 
+import java.util.LinkedList;
 import java.util.List;
 
 import javax.servlet.ServletContext;
@@ -31,6 +32,11 @@ public class CoursesPerformanceController {
 		int monthrevenue;
 		int alltotalrevenue = cpservice.totalAllCategoriesRevenue();
 		int allmonthrevenue = cpservice.monthAllCategoriesRevenue();
+		List<CourseBean> c1 = new LinkedList<CourseBean>();
+		List<CourseBean> c2 = new LinkedList<CourseBean>();
+		List<CourseBean> c3 = new LinkedList<CourseBean>();
+		List<CourseBean> c4 = new LinkedList<CourseBean>();
+		List<CourseBean> c5 = new LinkedList<CourseBean>();
 		for(CourseCategoryBean category : list) {
 			//業績
 			totalrevenue = cpservice.totalCategoryRevenue(category.getCategoryName());
@@ -51,7 +57,11 @@ public class CoursesPerformanceController {
 			}
 			
 			//開課數量
-//			List<CourseBean> clist = cpservice.getCoursesCountsByCategory(category.getCategoryName());
+			List<CourseBean> alist = cpservice.getCoursesCountsByCategory(category.getCategoryName());
+			List<CourseBean> blist = cpservice.getMonthCoursesCountsByCategory(category.getCategoryName());
+//			System.out.println(alist.size());
+			category.setTotalCoursesCounts(alist.size());
+			category.setMonthCoursesCounts(blist.size());
 		}
 		
 		

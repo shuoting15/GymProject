@@ -12,4 +12,5 @@ public interface CoursesPerFormanceService {
 	public int monthAllCategoriesRevenue();
 	public List<CourseCategoryBean> getAllCategories();
 	public List<CourseBean> getCoursesCountsByCategory(String category);
+	public List<CourseBean> getMonthCoursesCountsByCategory(String category);
 }

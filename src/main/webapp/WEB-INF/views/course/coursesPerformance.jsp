@@ -23,6 +23,19 @@
 	href="https://cdn.datatables.net/1.10.23/css/jquery.dataTables.min.css">
 <script src="js/jquery-3.3.1.min.js"></script>
 
+<style media="screen">
+      /** 展开按钮 **/
+      td.details-control {
+        background: url('./details_open.png') no-repeat center center;
+        cursor: pointer;
+      }
+ 
+      /** 收起按钮 **/
+      tr.shown td.details-control {
+        background: url('./details_close.png') no-repeat center center;
+      }
+    </style>
+
 <title>Insert title here</title>
 </head>
 <body>
@@ -30,13 +43,30 @@
  		$(document).ready(function() {
  			$('#category').DataTable({
  				searching: true,
- 				columnDefs: [{
- 				      targets: [2,3,4,5],
- 				       orderable: false,
- 				}],
+//  				columnDefs: [{
+//  				      targets: [2,3,4,5],
+//  				       orderable: false,
+//  				}],
  				paging: false,
  				
  			});
+ 			
+ 			//
+//  			$('#category tbody').on('click', 'td.details-control', function () {
+//             var tr = $(this).closest('tr');
+//             var row = table.row( tr );
+ 
+//             if ( row.child.isShown() ) {
+//                 //如果该行已经打开，则关闭
+//                 row.child.hide();
+//                 tr.removeClass('shown');
+//             }
+//             else {
+//                 //关闭这已行
+//                 row.child( format(row.data()) ).show();
+//                 tr.addClass('shown');
+//             }
+//         } );
 
  			var monthRevenueData = [];
  			var chart = new CanvasJS.Chart("monthRevenue", {
@@ -161,8 +191,8 @@
 						<th>編號</th>
 						<th>類別</th>
 						<th></th>
-						<th></th>
-						<th></th>
+						<th>本月開課堂數</th>
+						<th>總開課堂數</th>
 						<th>本月業績</th>
 						<th>總業績</th>
 					</tr>
@@ -173,8 +203,8 @@
 							<td>${category.categoryId}</td>
 							<td>${category.categoryName}</td>
 							<td></td>
-							<td></td>
-							<td></td>
+							<td>${category.monthCoursesCounts}</td>
+							<td>${category.totalCoursesCounts}</td>
 							<td>${category.monthrevenue}</td>
 							<td>${category.totalrevenue}</td>
 
@@ -189,8 +219,8 @@
 						<th>編號</th>
 						<th>類別</th>
 						<th></th>
-						<th></th>
-						<th></th>
+						<th>本月開課堂數</th>
+						<th>總開課堂數</th>
 						<th>本月業績</th>
 						<th>總業績</th>
 					</tr>

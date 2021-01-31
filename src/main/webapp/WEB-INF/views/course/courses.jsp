@@ -441,6 +441,10 @@ function classChangeDate(d){
         </div>
     </section>
     <!-- Feature Section Ends Here -->
+    
+    <!--     頁尾 -->
+    <jsp:include page="/fragment/footer.jsp" />
+    
     <!-- JavaScript File Links -->
 	<script src="js/jquery-3.3.1.min.js"></script>
 	<script src="js/modernizr-3.6.0.min.js"></script>
