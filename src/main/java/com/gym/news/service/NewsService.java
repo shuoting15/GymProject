@@ -5,7 +5,7 @@ import java.util.List;
 import com.gym.coach.model.CoachBean;
 
 import com.gym.news.model.NewsBean;
-import com.gym.news.model.NewsMessageBean;
+import com.gym.news.model.NewsPlaylistBean;
 
 
 public interface NewsService {
@@ -21,5 +21,10 @@ public interface NewsService {
 	
 	public void update(NewsBean newsbean);
 
-	public void newsmessage(NewsMessageBean newsmessagebean);
+	
+	public List<NewsBean> getSearchNews(String newskw);
+	
+	public List<NewsBean> getplaylistNews(String memberid);
+	
+	void saveintoplaylist(NewsPlaylistBean nb);
 }
