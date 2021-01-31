@@ -22,22 +22,7 @@
 
     <link rel="shortcut icon" href="images/favicon.png" type="image/x-icon">
     <link rel="stylesheet" href="css/stylecourses.css">
-<!--     <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
-<!--     <meta http-equiv="X-UA-Compatible" content="ie=edge"> -->
 
-<!--     <link href="https://fonts.googleapis.com/css?family=Rajdhani:300,400,500,600,700&display=swap" rel="stylesheet"> -->
-<!--     <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,600,600i,700,700i&display=swap" -->
-<!--         rel="stylesheet"> -->
-
-<!--     <link rel="stylesheet" href="http://cdn.bootstrapmb.com/bootstrap/4.3.1/css/bootstrap.min.css"> -->
-<!--     <link rel="stylesheet" href="assets/css/all.min.css"> -->
-<!--     <link rel="stylesheet" href="assets/css/animate.css"> -->
-<!--     <link rel="stylesheet" href="assets/css/lightcase.css"> -->
-<!--     <link rel="stylesheet" href="assets/css/flaticon.css"> -->
-<!--     <link rel="stylesheet" href="assets/css/swiper.min.css"> -->
-
-<!--     <link rel="shortcut icon" href="assets/images/favicon.png" type="image/x-icon"> -->
-<!--     <link rel="stylesheet" href="assets/css/style.css"> -->
 <link rel="stylesheet"
 	href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
 <style type="text/css">
@@ -58,6 +43,31 @@ span.error {
 <title>Course</title>
 <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
 <script type="text/javascript">
+
+function readURL(input) {
+	if (input.files && input.files[0]) {
+		var imageTagID = input.getAttribute("targetID");
+		var reader = new FileReader();
+		reader.onload = function(e) {
+			var img = document.getElementById(imageTagID);
+			img.setAttribute("src", e.target.result)
+		}
+		reader.readAsDataURL(input.files[0]);
+	}
+}
+
+function setInput(){
+	document.getElementById("title").value="拳擊有氧"
+	document.getElementById("price").value=350;
+	document.getElementById("max").value=40;
+	document.getElementById("description").value="有氧(Aerobics)運動一詞，是美國Dr. Cooper於一九六八年所提出來的，意思是指在運動時隨時在體內充份攝取的氧氣，而自從蘇瑞珊(Tackj Sorensen)利用步行、跑步、跳躍，以各種不同於手臂擺動和踢腿動作配合輕快緊湊的音樂節奏與全身的大肌肉活動一起實施的健身運動。";
+	document.getElementById('date').value = "2021-02-06";
+	document.getElementById('st').value = "07:00:00";
+	document.getElementById('et').value = "09:00:00";
+	document.getElementById('category').value = "肌力訓練";
+	document.getElementById('coachId').value = 3;	
+}
+
 $(document).ready(function () {
 // 	var selectText = "請選擇";
 //     var selectVal = "--select--";
@@ -128,6 +138,7 @@ $("#checkroom").click(function () {
 	<hr
 		style="height: 1px; border: none; color: #333; background-color: #333;">
 	<section class="container">
+	<button type="button" onclick="setInput()">✎ </button>
 		<!--       三個地方要完全一樣 -->
 		<form:form method='POST' modelAttribute="courseBean"
 			class='form-horizontal' enctype="multipart/form-data">
@@ -144,7 +155,7 @@ $("#checkroom").click(function () {
 					名稱
 					</label>
 					<div class="col-lg-10">
-						<form:input id="title" path="title" type='text'
+						<form:input id="title" name="title" path="title" type='text'
 							class='form:input-large' required="required" />
 					</div>
 				</div>
@@ -439,19 +450,24 @@ $("#checkroom").click(function () {
 				</div>
 				
 				<div class="form-group">
+<!-- 				<p style="color:black">商品圖片</p>  -->
+<!-- 							<div class="product__details__pic__item"> -->
+<!-- 							<img class="product__details__pic__item--large" -->
+<!-- 								id="preview_progressbarTW_img" src="#" /> -->
+<!-- 								</div> -->
 					<label class='control-label col-lg-2 col-lg-2' for="productImage" style="font-size:18px">
 <%-- 						<spring:message code='spring.addProduct.form.image.label' /> --%>
 					圖片
 					</label>
 					<div class='col-lg-10'>
 						<form:input id="productImage" path="productImage" type='file'
-							class='form:input-large' />
+							class='form:input-large' onchange="readURL(this)" targetID="preview_progressbarTW_img" />
 					</div>
 				</div>
 				<input type='hidden' name='status' value='True'>
 				<div class="form-group">
 					<div class='col-lg-offset-2 col-lg-10'>
-						<input id="btnAdd" type='submit' class='btn btn-primary'
+						<input id="btnAdd" type='submit' style="background-color:black;" class='btn btn-primary'
 							value="送出" />
 <%-- 							<spring:message code='spring.addProduct.form.submit.label' /> --%>
 					</div>

@@ -73,8 +73,8 @@ public class CourseSearchController {
 		String newEndTime = date + " " + et;
 		Timestamp chStart = Timestamp.valueOf(newStartTime);
 		Timestamp chEnd = Timestamp.valueOf(newEndTime);
-		System.out.println(chStart);
-		System.out.println(chEnd);
+//		System.out.println(chStart);
+//		System.out.println(chEnd);
 		
 		List<String> use = service.checkRoomTime(date, chStart, chEnd);
 //			List datelist = service.getSelect();

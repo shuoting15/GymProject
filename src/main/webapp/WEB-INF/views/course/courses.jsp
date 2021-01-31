@@ -324,7 +324,7 @@ function classChangeDate(d){
                                 </div>
                                 <div class="feature-content">
                                     <div class="feature-header">
-                                        <h4 class="title"><a id="bbb" href="<c:url value='/course?id=\${courses.courseId}'/>" onmouseover="document.getElementById('bbb').style.color='orange'" onmouseout="this.style.color='red'" target="_blank">\${courses.title}</a></h4>
+                                        <h4 class="title"><a href="<c:url value='/course?id=\${courses.courseId}'/>" onmouseover="this.style.color='orange'" onmouseout="this.style.color='black'" target="_blank">\${courses.title}</a></h4>
                                         <p> \${courses.date} \${courses.starttime}~\${courses.endtime}</p>
                                         <p>教室: \${courses.location}</p>
                                         <p>人數: \${courses.selected} / \${courses.max}</p>

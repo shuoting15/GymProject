@@ -29,11 +29,13 @@
  	<script type="text/javascript"> 
  		$(document).ready(function() {
  			$('#category').DataTable({
- 				searching: false,
+ 				searching: true,
  				columnDefs: [{
  				      targets: [2,3,4,5],
  				       orderable: false,
- 				}]
+ 				}],
+ 				paging: false,
+ 				
  			});
 
  			var monthRevenueData = [];
