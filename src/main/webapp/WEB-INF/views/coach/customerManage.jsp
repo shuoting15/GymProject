@@ -21,15 +21,86 @@
 <link rel="stylesheet" href="css/stylecoach.css">
 <link rel="stylesheet" type="text/css"
 	href="https://cdn.datatables.net/1.10.23/css/jquery.dataTables.min.css">
-<script src="js/jquery-3.3.1.min.js"></script>
-
-<title>Insert title here</title>
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script
+	src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.min.js"></script>
+<link rel="stylesheet" type="text/css"
+	href="css/customerdetail.css">
+<title>教練顧客維護</title>
 </head>
 <body>
 	<script type="text/javascript">
-		$(document).ready(function() {
-			$('#customers').DataTable();
-		});
+	/* Formatting function for row details - modify as you need */
+	function format ( d ) {
+	    // `d` is the original data object for the row
+	    return '<table cellpadding="5" cellspacing="0" border="0" style="padding-left:50px;">'+
+	        '<tr>'+
+	            '<td>電話:</td>'+
+	            '<td>'+d.mobile+'</td>'+
+	        '</tr>'+
+	        '<tr>'+
+	            '<td>Email:</td>'+
+	            '<td>'+d.member_id+'</td>'+
+	        '</tr>'+
+	        '<tr>'+
+	            '<td>Extra info:</td>'+
+	            '<td><img src='+d.memberphoto+' alt="schedule" style="width: 150px; height: 150px;" ></td>'+
+	        '</tr>'+
+	    '</table>';
+	}
+	 
+	$(document).ready(function() {
+	    var table = $('#customers').DataTable( {
+            "ajax": {
+                url :"<c:url value='/customerManageapi?coachId=${coach.coachId}'/>",             
+                type: 'POST',
+ 				dataSrc: "",
+  
+            },
+	        "columns": [
+	            {
+	                "className":      'details-control',
+	                "orderable":      false,
+	                "data":           null,
+	                "defaultContent": ''
+	            },
+	            { "data": "username" },
+	            { "data": "gender",
+	               "render":function(data){
+	            	   if(data == 1){
+	            		   
+	            		   return "男";
+	            	   }else{
+	            		   return "女";
+	            	   }	   
+	               }
+	            },
+	            { "data": "birth" },
+	            { "data": "member_height" },
+	            { "data": "member_weight" },
+	            { "data": "monthConsumeInCoach" },
+	            { "data": "totalConsumeInCoach" }
+	        ],
+	        "order": [[1, 'asc']]
+	    } );
+	     
+	    // Add event listener for opening and closing details
+	    $('#customers tbody').on('click', 'td.details-control', function () {
+	        var tr = $(this).closest('tr');
+	        var row = table.row( tr );
+	 
+	        if ( row.child.isShown() ) {
+	            // This row is already open - close it
+	            row.child.hide();
+	            tr.removeClass('shown');
+	        }
+	        else {
+	            // Open this row
+	            row.child( format(row.data()) ).show();
+	            tr.addClass('shown');
+	        }
+	    } );
+	} );
 	</script>
 
 
@@ -76,55 +147,24 @@
 			<table id="customers" class="display" style="width: 100%">
 				<thead>
 					<tr>
+						<th></th>
 						<th>會員姓名</th>
 						<th>性別</th>
 						<th>生日</th>
-						<th>Email</th>
 						<th>身高</th>
 						<th>體重</th>
-						<th>Facebook</th>
 						<th>本月消費</th>
 						<th>總消費</th>
 					</tr>
 				</thead>
-				<tbody>
-					<c:forEach var='member' items='${members}'>
-						<tr>
-							<td>${member.username}</td>
-
-							<c:choose>
-								<c:when test="${member.gender =='1'}">
-									<td>男</td>
-								</c:when>
-								<c:when test="${member.gender =='2'}">
-									<td>女</td>
-								</c:when>
-								<c:otherwise>
-									<td></td>
-								</c:otherwise>
-							</c:choose>
-							<td>${member.birth}</td>
-							<td>${member.member_id}</td>
-							<td>${member.member_height}cm</td>
-							<td>${member.member_weight}kg</td>
-							<td>${member.facebook_account}</td>
-							<td>${member.monthConsumeInCoach}</td>
-							<td>${member.totalConsumeInCoach}</td>
-
-
-
-						</tr>
-					</c:forEach>
-				</tbody>
 				<tfoot>
 					<tr>
+						<th></th>
 						<th>會員姓名</th>
 						<th>性別</th>
 						<th>生日</th>
-						<th>Email</th>
 						<th>身高</th>
 						<th>體重</th>
-						<th>Facebook</th>
 						<th>本月消費</th>
 						<th>總消費</th>
 					</tr>

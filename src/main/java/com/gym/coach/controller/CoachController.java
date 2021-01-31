@@ -88,12 +88,6 @@ public class CoachController {
 			 i.setMonthrevenue(monthrevenue);
 			 i.setMonthrevenuePercent(monthrevenue*100/allmonthrevenue);
 		}
-		
-		
-		
-		
-		
-		
 		model.addAttribute("coachs", list);
 		model.addAttribute("allmonthrevenue", allmonthrevenue);
 		model.addAttribute("alltotalrevenue", alltotalrevenue);
@@ -115,25 +109,34 @@ public class CoachController {
 			monthConsumeInCoach = customerService.monthCaochConsumeByMemberId(memberId,coachId);
 			i.setMonthConsumeInCoach(monthConsumeInCoach);
 		}
-		
-		
-		
-		
-		
-		
-		
 		model.addAttribute("members", list);
 		model.addAttribute("coach", service.getCoachById(coachId));
-		
-		
-		
-		
-		
-		
-		
-		
 		return "coach/customerManage";
 	}
+	//教練顧客管理api
+	@PostMapping(value = "/customerManageapi", produces = "text/html;charset=UTF-8")
+	@ResponseBody
+	public String customerManageapi(@RequestParam("coachId") int coachId,Model model) {
+		List<MemberBean> list = memberService.selectAll();
+		String memberId;
+		int  totalConsumeInCoach;
+		int  monthConsumeInCoach;
+		for (MemberBean i: list) {
+			memberId = i.getMember_id();
+			totalConsumeInCoach = customerService.totalCaochConsumeByMemberId(memberId,coachId);
+			i.setTotalConsumeInCoach(totalConsumeInCoach);
+			monthConsumeInCoach = customerService.monthCaochConsumeByMemberId(memberId,coachId);
+			i.setMonthConsumeInCoach(monthConsumeInCoach);
+		}
+		Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd").disableHtmlEscaping().create();
+		return gson.toJson(list);
+	}
+	
+	
+	
+	
+	
+	
 	// 後臺教練展示
 	@GetMapping("/coachMaintain")
 	public String Maintainlist(Model model) {

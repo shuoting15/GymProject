@@ -178,7 +178,7 @@ public class CoachOderController {
 		coachService.updateCoachRating(coachBean);
 		return "redirect:/showBookingList";
 	}
-	//教練上課表r
+	//教練上課表
 	@RequestMapping("/showWorkingList")
 	public String findBookingBycoachId(@RequestParam int coachId, Model model) {
 		model.addAttribute("Booking", coachOrderService.findBookingByCoachId(coachId));
