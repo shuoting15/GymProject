@@ -15,6 +15,9 @@ public interface MemberService {
 	// 新增會員 
 	public MemberBean createNewMember(String member_id, String password, String register_num);
 	
+	// 新增github會員 
+	public MemberBean createGithubMember(String member_id, String password, int activate);
+	
 	// 修改會員資料(MemberArea頁面:不含member_type,point,memberphoto,activate,register_num)
 	public MemberBean updateMemberInfo(String member_id, String password, String username, int member_height,
 			int member_weight, String mobile, int gender, Date birth, String address, String facebook_account,
