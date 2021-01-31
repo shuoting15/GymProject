@@ -43,7 +43,7 @@
 	            '<td>'+d.member_id+'</td>'+
 	        '</tr>'+
 	        '<tr>'+
-	            '<td>Extra info:</td>'+
+	            '<td>照片:</td>'+
 	            '<td><img src='+d.memberphoto+' alt="schedule" style="width: 150px; height: 150px;" ></td>'+
 	        '</tr>'+
 	    '</table>';

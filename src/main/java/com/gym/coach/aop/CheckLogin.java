@@ -22,7 +22,7 @@ import com.gym.member.model.MemberBean;
 public class CheckLogin {
 	@Before("execution(* com.gym.coach.controller.*.**(..)) && args(model,..)")
 	public void checkLogin(Model model) {
-		System.out.println("APJ測試");
+//		System.out.println("APJ測試");
 //		MemberBean memberBean =   (MemberBean) model.getAttribute("LoginOK");
 //		if (memberBean == null ) {
 //			response.sendRedirect("member/login");
