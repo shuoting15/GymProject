@@ -186,7 +186,7 @@ function bookfunction(){
     			<th class="table-header" style="width:400px;color:black;">課程</th>
     			<th class="table-header" style="width:400px;color:black;">上課日期</th>
     			<th class="table-header" style="width:400px;color:black;">上課時間</th>    			
-    			<th class="table-header" style="color:black;">教室</th>
+    			<th class="table-header" style="color:black;">價格</th>
     			<th class="table-header" style="width:100px;">教練</th>
     			<th class="table-header" style="width:100px;">狀態</th>
     		</tr>
@@ -201,7 +201,7 @@ function bookfunction(){
 					${fcourse.courseBean.endtime}</td>
 				<td class="table-body" style="width: 150px;">
 					<div width="150px">
-						${fcourse.courseBean.location}
+						${fcourse.courseBean.price}
 					</div>
 				</td>
 				<td class="table-body">${fcourse.courseBean.courseCoachBean.name}</td>
@@ -226,6 +226,10 @@ function bookfunction(){
         
         </table>
 <!--     </section> -->
+
+<!--     頁尾 -->
+    <jsp:include page="/fragment/footer.jsp" />
+
 </body>
 </html>
     

@@ -45,4 +45,9 @@ public class CoursesPerFormanceServiceImpl implements CoursesPerFormanceService 
 		return dao.getCoursesCountsByCategory(category);
 	}
 
+	@Override
+	public List<CourseBean> getMonthCoursesCountsByCategory(String category) {
+		return dao.getMonthCoursesCountsByCategory(category);
+	}
+
 }

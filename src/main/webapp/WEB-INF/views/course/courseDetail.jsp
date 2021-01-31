@@ -112,7 +112,9 @@ function bookfunction(){
     </div>
     </section>
     <!-- Trainer Section Ends Here -->
-    
+
+<!--     頁尾 -->
+    <jsp:include page="/fragment/footer.jsp" />
     
     <!-- JavaScript File Links -->
     <script src="js/jquery-3.3.1.min.js"></script>
