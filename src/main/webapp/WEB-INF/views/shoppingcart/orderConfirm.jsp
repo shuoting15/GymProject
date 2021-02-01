@@ -111,7 +111,7 @@
 	// 		}
 	// 	}
 	function setInput() {
-		document.getElementsByName("memberMail")[0].value = "pantone110304@gmail.com"
+		document.getElementsByName("memberMail")[0].value = "gymproject121@gmail.com"
  		document.getElementsByName("ShippingAddress")[0].value = "台北市大安區復興南路一段390號2樓"
 		document.getElementsByName("note")[0].value = "宅配送貨前請先聯繫"
 	}
