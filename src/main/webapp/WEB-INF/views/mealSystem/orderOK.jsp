@@ -111,7 +111,7 @@
 										</c:when>
 										<c:when test="${orderList.orderStatus =='1'}">
 											<a class="custom-button">取餐完成</a>
-											<a class="custom-button" onclick="delOrder(${anEntry.key})">刪除訂單</a>
+											
 										</c:when>
 									</c:choose>
 

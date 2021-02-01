@@ -11,6 +11,8 @@ import com.gym.coach.model.CoachBean;
 import com.gym.coach.service.CoachService;
 import com.gym.course.model.CourseBean;
 import com.gym.course.service.CourseService;
+import com.gym.mealSystem.meal.model.MealListBean;
+import com.gym.mealSystem.meal.service.MealListService;
 import com.gym.news.model.NewsBean;
 import com.gym.news.service.NewsService;
 
@@ -25,6 +27,9 @@ CourseService courseService;
 @Autowired
 NewsService newsservice;
 
+@Autowired
+MealListService mealListService;
+
 	@GetMapping("/")
 	public String home(Model model) {
 		List<CoachBean> coachList = coachservice.getAllCoachs();
@@ -36,6 +41,9 @@ NewsService newsservice;
 		
 		List<NewsBean> list = newsservice.getAllNews();
 		model.addAttribute("news", list);
+		
+		List<MealListBean> mealList = mealListService.getAllMealList();
+		model.addAttribute("mealLists", mealList);
 		
 		return "index";
 	}

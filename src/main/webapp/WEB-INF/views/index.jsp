@@ -113,6 +113,42 @@
         </div>
     </section>
     <!-- Body Building Slider Section Ends Here -->
+    
+    <!-- MealSystem start-->
+	<section class="body-building-section padding-top padding-bottom">
+		<div class="container">
+			<div class="body-building-slider">
+				<div class="swiper-wrapper">
+					<c:forEach var='mealList' items='${mealLists}'>
+						<div class="swiper-slide">
+							<div class="body-building-item">
+								<div class="body-building-inner">
+									<div class="body-building-thumb">
+										<a
+											href="<spring:url value='/mealList?id=${mealList.mealId}' />">
+											<img src="<c:url value='/meal/picture/${mealList.mealId}' />"
+											alt="feature">
+										</a>
+									</div>
+									<div class="body-building-content">
+										<div class="building-content">
+											<h4 class="title">
+												<a href="<c:url value='/mealList?id=${mealList.mealId}'/>">${mealList.mealName}</a>
+											</h4>
+											<p>${mealList.mealCategoryBean.categoryName}</p>
+											<p>TWD$${mealList.mealPrice}</p>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</c:forEach>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!-- MealSystem end -->
+    
     <!-- About Counter Section Starts Here -->
     <section class="about-counter padding-bottom">
         <div class="container">
