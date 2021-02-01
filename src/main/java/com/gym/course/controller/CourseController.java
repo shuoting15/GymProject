@@ -99,6 +99,8 @@ public class CourseController {
 	@GetMapping("/courseUpdate")
 	public String getUpdateCourseForm(@RequestParam("id") Integer courseId, Model model) {
 		CourseBean bean = service.getCourseById(courseId);
+//		System.out.println(bean.getCourseCoachBean().getId());
+		bean.setCoachId(bean.getCourseCoachBean().getId());
 		model.addAttribute("courseBean", bean);
 		return "course/addCourse";
 	}
@@ -146,7 +148,7 @@ public class CourseController {
 //			
 //		}
 		service.updateSelected(course);
-		rd.addFlashAttribute("message", "修改成功!");
+		rd.addFlashAttribute("messages", "修改成功!");
 		return "redirect:/coursesMaintain";
 	}
 	
@@ -156,11 +158,11 @@ public class CourseController {
 		if(course.getStatus() == true) {
 			course.setStatus(false);	
 			service.updateCourseStatus(course);	
-			rd.addFlashAttribute("message", "已將課程下架!");	
+			rd.addFlashAttribute("messages", "已將課程下架!");	
 		}else {
 			course.setStatus(true);
 			service.updateCourseStatus(course);	
-			rd.addFlashAttribute("message", "已將課程重新上架!");	
+			rd.addFlashAttribute("messages", "已將課程重新上架!");	
 		}
 		
 		
@@ -220,7 +222,7 @@ public class CourseController {
 			e.printStackTrace();
 			throw new RuntimeException("檔案上傳發生異常: " + e.getMessage());
 		}
-		rd.addFlashAttribute("message", "新增成功!");
+		rd.addFlashAttribute("messages", "新增成功!");
 		return "redirect:/coursesMaintain";
 	}
 
@@ -269,7 +271,7 @@ public class CourseController {
 			return "member/login";
 		}
 		if(memberBean.getPoint() < course.getPrice()) {
-			rd.addFlashAttribute("message","餘額不足");
+			rd.addFlashAttribute("messages","餘額不足");
 			return "redirect:/courses";
 		}
 		memberBean.setPoint(memberBean.getPoint()-course.getPrice());
@@ -286,7 +288,7 @@ public class CourseController {
         }
 //		service.updateMax(course.getMax(), id);
 //		model.addAttribute("max",n);
-		rd.addFlashAttribute("message", message);
+		rd.addFlashAttribute("messages", message);
 		return "redirect:/courses";
 	}
 	
@@ -298,18 +300,18 @@ public class CourseController {
 		Timestamp ts = new Timestamp(System.currentTimeMillis());
 		String newStartTime = info.getC_date() + " " + info.getC_start() + ":00";
 		Timestamp chStart = Timestamp.valueOf(newStartTime);
-		System.out.println(ts);
-		System.out.println(chStart);
+//		System.out.println(ts);
+//		System.out.println(chStart);
 		String nowtime = ts.toString().split(" ")[1].substring(0,2);
 		String ctime = chStart.toString().split(" ")[1].substring(0,2);
-		System.out.println(ts.getTime() / (1000*60*60));
-		System.out.println(chStart.getTime() / (1000*60*60));
+//		System.out.println(ts.getTime() / (1000*60*60));
+//		System.out.println(chStart.getTime() / (1000*60*60));
 //		int nT = Integer.parseInt(nowtime);
 //		int cT = Integer.parseInt(ctime);
 		long nT = ts.getTime() / (1000*60*60);
 		long cT = chStart.getTime() / (1000*60*60);
 		if(cT - nT <= 1) {
-			rd.addFlashAttribute("message", "課程開始前1小時無法取消!");
+			rd.addFlashAttribute("messages", "課程開始前1小時無法取消!");
 			return "redirect:/mycourses";
 		}
 		info.setStatus(false);
@@ -317,7 +319,7 @@ public class CourseController {
 		info.setMemberBean(memberBean);
 		service.unbookingCourse(info);
 		
-		rd.addFlashAttribute("message", "已取消預約: " + info.getC_name());
+		rd.addFlashAttribute("messages", "已取消預約: " + info.getC_name());
 		return "redirect:/mycourses";
 	}
 	
@@ -377,7 +379,7 @@ public class CourseController {
 		headers.setCacheControl(CacheControl.noCache().getHeaderValue());
 		String mimeType = context.getMimeType(filename);
 		MediaType mediaType = MediaType.valueOf(mimeType);
-		System.out.println("mediaType =" + mediaType);
+//		System.out.println("mediaType =" + mediaType);
 		headers.setContentType(mediaType);
 		ResponseEntity<byte[]> responseEntity = new ResponseEntity<>(media, headers, HttpStatus.OK);
 		return responseEntity;

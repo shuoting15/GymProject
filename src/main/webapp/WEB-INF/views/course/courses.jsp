@@ -135,7 +135,7 @@ $("#re").click(function () {
                     </div>
                     <div class="feature-content">
                         <div class="feature-header">
-                            <h4 class="title"><a href="<c:url value='/course?id=\${courses.courseId}'/>" target="_blank">\${courses.title}</a></h4>
+                            <h4 class="title"><a href="<c:url value='/course?id=\${courses.courseId}'/>"  onmouseover="this.style.color='orange'" onmouseout="this.style.color='black'" target="_blank">\${courses.title}</a></h4>
                             <p> \${courses.date} \${courses.starttime}~\${courses.endtime}</p>
                             <p>教室: \${courses.location}</p>
                             <p>人數: \${courses.selected} / \${courses.max}</p>
@@ -227,11 +227,11 @@ $("#re").click(function () {
 </head>
 <body>
 <!-- Preloader -->
-    <div class="preloader">
-        <div class="preloader-wrapper">
-            <img src="css/ajax-loader.gif" alt="preloader">
-        </div>
-    </div>
+<!--     <div class="preloader"> -->
+<!--         <div class="preloader-wrapper"> -->
+<!--             <img src="css/ajax-loader.gif" alt="preloader"> -->
+<!--         </div> -->
+<!--     </div> -->
     <!-- Preloader -->
 <!-- 引入共同的頁首 -->
 	<jsp:include page="/fragment/top.jsp" />
@@ -248,7 +248,7 @@ $("#re").click(function () {
         <div>
             <div class="container" style="text-align: center" >
 <!--                 <h1>課程列表</h1> -->
-                <h3 style="color: red;">${message}</h3>
+                <h3 style="color: red;">${messages}</h3>
             </div>
         </div>
     </section>
@@ -289,11 +289,6 @@ $("#re").click(function () {
     <section id="slick-content">
     <div class="slider" data-slick='{"slidesToShow": 7, "slidesToScroll": 1}'>
     </div>
-		<p align="right">
-			<a href="<c:url value='/mycourses'/>" class="btn btn-dark"> <span
-				class="glyphicon-info-sigh glyphicon"></span>我的課程
-			</a>
-		</p>
 	</section>
 
     <hr style="height:1px;border:none;color:#333;background-color:#333;">
@@ -329,7 +324,7 @@ function classChangeDate(d){
                                 </div>
                                 <div class="feature-content">
                                     <div class="feature-header">
-                                        <h4 class="title"><a href="<c:url value='/course?id=\${courses.courseId}'/>" target="_blank">\${courses.title}</a></h4>
+                                        <h4 class="title"><a href="<c:url value='/course?id=\${courses.courseId}'/>" onmouseover="this.style.color='orange'" onmouseout="this.style.color='black'" target="_blank">\${courses.title}</a></h4>
                                         <p> \${courses.date} \${courses.starttime}~\${courses.endtime}</p>
                                         <p>教室: \${courses.location}</p>
                                         <p>人數: \${courses.selected} / \${courses.max}</p>
@@ -385,7 +380,7 @@ function classChangeDate(d){
       // console.log(retArr); // 或可換為return ret;
       for(i in retArr){
           // console.log(retArr[i]);
-          $(".slider").append("<li id='da'><a onClick=\"classChangeDate('"+retArr[i]+"\')\" id='d"+i+"'>" + retArr[i].substring(5,10) + "</a></li>");
+    	  $(".slider").append("<li id='da'><a onClick=\"classChangeDate('"+retArr[i]+"\')\" id='d"+i+"'  onmouseover=\"this.style.color='orange';\" onmouseout=\"this.style.color='007bff';\"   >" + retArr[i].substring(5,10) + "</a></li>");
       }
   }
 
@@ -446,6 +441,10 @@ function classChangeDate(d){
         </div>
     </section>
     <!-- Feature Section Ends Here -->
+    
+    <!--     頁尾 -->
+    <jsp:include page="/fragment/footer.jsp" />
+    
     <!-- JavaScript File Links -->
 	<script src="js/jquery-3.3.1.min.js"></script>
 	<script src="js/modernizr-3.6.0.min.js"></script>

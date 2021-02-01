@@ -48,7 +48,7 @@ import com.gym.coach.validator.CoachValidator;
 import com.gym.init.util.SystemUtils2018;
 //import com.gym.news.model.AuthorBean;
 import com.gym.news.model.NewsBean;
-import com.gym.news.model.NewsMessageBean;
+import com.gym.news.model.NewsPlaylistBean;
 import com.gym.news.service.NewsService;
 //import com.web.store.exception.ProductNotFoundException;
 
@@ -93,6 +93,7 @@ public class NewsController {
 		return "news/newsmodify";
 	}
 	
+
 //	public String updateCoach(@ModelAttribute CoachBean bean, Model model, BindingResult result,
 //			RedirectAttributes redirectAttributes) {
 //		long sizeInBytes = -1;
@@ -129,7 +130,7 @@ public class NewsController {
 	public String getProductsByCategory(@PathVariable("newscategory") String newsCategory, Model model) {
 		List<NewsBean> news = newsservice.getNewsByCategory(newsCategory);
 		model.addAttribute("news", news);
-		return "news/newsmodify";
+		return "news/news";
 	}
 
 //	@DeleteMapping("/deleteNews/{newsId}")
@@ -160,7 +161,21 @@ public class NewsController {
 
 		return "news/newsone";
 	}
+	@RequestMapping("/newsonemodify")
+	public String getNewsByIdmodify(@RequestParam("id") Integer id, Model model) {
+		
+		NewsBean bean = newsservice.getNewsById(id);
+		Integer nv = bean.getNewsViews();
+		nv++;
+		System.out.println("nv="+nv);
+		bean.setNewsViews(nv);
+		newsservice.update(bean);
+		
+		model.addAttribute("newsone", newsservice.getNewsById(id));
 
+		return "news/newsonemodify";
+	}
+	
 	@GetMapping("/newsadd")
 	public String getAddNewNewsForm(Model model) {
 		NewsBean bb = new NewsBean();
@@ -168,22 +183,10 @@ public class NewsController {
 		return "news/addNewsone";
 	}
 	
-//	@GetMapping("/testNew")
-//	@ResponseBody
-//	public String testNew() {
-//		File f = new File(".");
-//		
-//		System.out.println(f.getAbsolutePath());
-//		System.out.println(f.getPath());
-//		System.out.println(context.getRealPath("."));
-//		System.out.println(context.getContextPath());
-//		return "TestStringdddd";
-//		}
 
 	@PostMapping("/newsadd")
 	public String processAddNewNewsForm(@ModelAttribute("newsBean") NewsBean bb, BindingResult result) {
-		System.out.println("newsaddcontroller");
-		String[] suppressedFields = result.getSuppressedFields();
+				String[] suppressedFields = result.getSuppressedFields();
 		if (suppressedFields.length > 0) {
 			throw new RuntimeException("嘗試傳入不允許的欄位: " + StringUtils.arrayToCommaDelimitedString(suppressedFields));
 		}
@@ -220,26 +223,7 @@ public class NewsController {
 			e.printStackTrace();
 			throw new RuntimeException("檔案上傳發生異常: " + e.getMessage());
 		}		
-		
-//		if (!videofile.isEmpty()) {
-//			try {
-//				// 檔案存放服務端的位置
-////                String rootPath = "c:/tmp123";
-////                File dir = new File(rootPath + File.separator + "tmpFiles");
-//				File dir = new File(rootDirectory, "video");
-//				if (!dir.exists())
-//					dir.mkdirs();
-//				// 寫檔案到伺服器
-//				File serverFile = new File(dir.getAbsolutePath() + File.separator + videofile.getOriginalFilename());
-//				videofile.transferTo(serverFile);
-//				System.out.println("You successfully uploaded file=" + dir.getAbsolutePath() + File.separator
-//						+ videofile.getOriginalFilename());
-//			} catch (Exception e) {
-//				e.printStackTrace();
-//				throw new RuntimeException("檔案上傳發生異常: " + e.getMessage());
-//			}
-//		}
-//		return "redirect:/news/newsmodify";
+
 		return "redirect:/newsmodify";
 	}
 //
@@ -388,7 +372,7 @@ public class NewsController {
 	
 	
 	@PostMapping(value="/messageadd",produces="text/html;charset=UTF-8")
-	public @ResponseBody String processAddNewsMessageForm(Model m, @ModelAttribute("newsmessage") NewsMessageBean nb,
+	public @ResponseBody String processAddNewsMessageForm(Model m, @ModelAttribute("newsmessage") NewsPlaylistBean nb,
 	@RequestParam("nd") String mbstring) {
 //	MailboxBean mbb = new MailboxBean(mbstring, mb);
 //		mbb.setTime(new Timestamp(System.currentTimeMillis()));
@@ -415,5 +399,93 @@ public class NewsController {
 //
 //	}
 	
+	@RequestMapping("/searchnews")
+	public String newssearchlist(Model model,@RequestParam("newskw") String newskw) {
+		List<NewsBean> list = newsservice.getSearchNews(newskw);
+		model.addAttribute("news", list);
+		return "news/news";// 視圖邏輯名稱
+	}
 	
+	@RequestMapping("/searchnewsmodify")
+	public String newssearchlistmodify(Model model,@RequestParam("newskw") String newskw) {
+		List<NewsBean> list = newsservice.getSearchNews(newskw);
+		model.addAttribute("news", list);
+		return "news/newsmodify";// 視圖邏輯名稱
+	}
+	
+	@RequestMapping("/addintoplay{member_id}{id}")
+	public String addintoplaylist(@PathVariable("id") Integer id,@PathVariable("member_id") String member_id,  Model model) {
+		System.out.println(id+member_id);
+		NewsPlaylistBean nb = new NewsPlaylistBean();
+		nb.setMember_id(member_id);
+		nb.setFK_NewsBean_newsId(id);
+		newsservice.saveintoplaylist(nb);
+		return "news/newsone";
+		
+	}
+	
+	
+//	@RequestMapping("/newsplaylist")
+//	public String newsplaylist(Model model,@RequestParam("member_id") String member_id) {
+//		System.out.println(member_id);
+//		List<NewsBean> list = newsservice.getplaylistNews(member_id);
+//		model.addAttribute("news", list);
+//		return "news/news";// 視圖邏輯名稱
+//	}
+	@RequestMapping("/newsplaylist{LoginOK.member_id}")
+	public String newsplaylist(Model model,@PathVariable("LoginOK.member_id") String memberid) {
+		System.out.println(memberid+"mail");
+		List<NewsBean> list = newsservice.getplaylistNews(memberid);
+		model.addAttribute("news", list);
+		return "news/news";// 視圖邏輯名稱
+	}
+	
+	@GetMapping("/updatenewsone")
+	public String updatenewsone(@RequestParam("id") Integer id, Model model) {
+		model.addAttribute("newsone", newsservice.getNewsById(id));
+		NewsBean bb = new NewsBean();
+		model.addAttribute("newsBean", bb);
+		return "news/updatenewsone";
+		
+	}
+	
+
+	
+	
+	@PostMapping("/updatenewsone{newsId}")
+	public String processUpdateNewNewsForm(@ModelAttribute("newsone") NewsBean bb, BindingResult result) {
+		CoachBean cb = newsservice.getAuthorById(bb.getAuthorId());
+		bb.setCoachBean(cb);
+
+		MultipartFile newsproductImage = bb.getNewsproductImage();
+		
+		String originalFilename = newsproductImage.getOriginalFilename();
+				bb.setNewsFileName(originalFilename);
+//		  建立Blob物件，交由 Hibernate 寫入資料庫	
+//				System.out.println(originalFilename);
+//				System.out.println(originalFilename);
+//				if (originalFilename.isEmpty()) {
+//					System.out.println("isEmpty");
+//					System.out.println(bb.getNewsId());
+//					Blob op=newsservice.getNewsById(bb.getNewsId()).getNewsImage();
+//					bb.setNewsImage(op);
+//				};
+			
+		if (newsproductImage != null && !newsproductImage.isEmpty() ) {
+			
+			try {
+				byte[] b = newsproductImage.getBytes();
+				Blob blob = new SerialBlob(b);
+				bb.setNewsImage(blob);
+			} catch(Exception e) {
+				e.printStackTrace();
+				throw new RuntimeException("檔案上傳發生異常: " + e.getMessage());
+			}
+		}
+		newsservice.update(bb);
+		
+//		List<NewsBean> list = newsservice.getAllNews();
+//		model.addAttribute("news", list);
+		return "redirect:/newsmodify";
+	}
 }

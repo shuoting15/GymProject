@@ -11,6 +11,8 @@ import com.gym.coach.model.CoachBean;
 import com.gym.coach.service.CoachService;
 import com.gym.course.model.CourseBean;
 import com.gym.course.service.CourseService;
+import com.gym.news.model.NewsBean;
+import com.gym.news.service.NewsService;
 
 @Controller
 public class IndexController {
@@ -20,6 +22,9 @@ CoachService coachservice;
 @Autowired
 CourseService courseService;
 
+@Autowired
+NewsService newsservice;
+
 	@GetMapping("/")
 	public String home(Model model) {
 		List<CoachBean> coachList = coachservice.getAllCoachs();
@@ -28,6 +33,9 @@ CourseService courseService;
 		
 		List<CourseBean> courseList = courseService.getAllCourses();
 		model.addAttribute("courseList", courseList);
+		
+		List<NewsBean> list = newsservice.getAllNews();
+		model.addAttribute("news", list);
 		
 		return "index";
 	}

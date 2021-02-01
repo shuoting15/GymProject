@@ -102,7 +102,7 @@ public class OrderListController {
 		List<OrderBean> allOrders=null;
 		if(searchBy.equals("byMember")) {
 			//allOrders = orderService.getMemberOrders("200");
-			allOrders =orderService.getMemberOrders(memberBean.getMember_id());
+			allOrders =orderService.getMemberOrders(keyword);
 		}else {
 			allOrders = orderService.getOrderByNo(Integer.parseInt(keyword));
 		}

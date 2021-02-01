@@ -39,67 +39,56 @@
 	<div>
 		<jsp:include page="/fragment/top.jsp" />
 	</div>
-	<section class="page-header bg_img"
-		data-background="./assets/images/banner/banner.jpg">
+	<section class="page-headernews bg_imgnews"
+		data-background="images/banner.jpg">
 		<div class="container">
-			<h3 class="title">
-				<span class="shape-wrapper"><span class="shape"></span>影片教學區<span
-					class="shape"></span></span>
-			</h3>
+			<h3 class="titlenews">Video</h3>
 		</div>
 	</section>
-
-<!-- 	<div class="breadcrumb-section"> -->
-<!-- 		<div class="container"> -->
-<!-- 			<div class="breadcrumb-wrapper"> -->
-<!-- 				<div class="breadcrumb-title"> -->
-<!-- 					<h6 class="title"></h6> -->
-<!-- 				</div> -->
-<!-- 				<ul class="breadcrumb"> -->
-<!-- 					<li>影片區</li> -->
-<!-- 				</ul> -->
-<!-- 			</div> -->
-<!-- 		</div> -->
-<!-- 	</div> -->
 
 	<div class="blog-section-area padding-top padding-bottom">
 		<div class="container">
 			<div class="row">
-				<div class="col-lg-8 mb-5 mb-lg-0">
-
-					<article>
-						<c:forEach var='newsCategory' items='${newscategoryList}'>
-                            <div class="card-columns">
-                                <a href='news${newsCategory}' >
-                                    <div class="card text-white text-center p-2 category-card">
-                                        ${newsCategory}
-                                    </div>
-                                </a>
-                            </div>
-						</c:forEach>
-					</article>
+				<div class="col-lg-8 mb-5 mb-lg-0 row">
+					<c:forEach var='newsCategory' items='${newscategoryList}'>
+						<div class="card-columns col-6">
+							<a href='news${newsCategory}'>
+								<div class="card text-white text-center p-5 category-card">
+									${newsCategory}</div>
+							</a>
+						</div>
+					</c:forEach>
 				</div>
-				
+
 				<div class="col-lg-4">
 					<aside class="sidebar">
-						<div class="input-group mb-3">
-                            <input type="text" class="form-control" placeholder="Search in here" aria-label="Search in here" aria-describedby="sidebar-search">
-                            <div class="input-group-append">
-                              <button class="btn btn-outline-secondary" type="button" id="sidebar-search">Search</button>
-                        	</div>
-                        </div>
+						<form class="widget-form" action="searchnews" id="w1"
+							placeholder="Search in here" method="post">
+							<div class="input-group mb-3">
+
+								<input type="text" placeholder="請輸入關鍵字" name="newskw"
+									class="form-control" aria-describedby="sidebar-search">
+								<div class="input-group-append">
+									<button type="submit" class="btn btn-outline-secondary"
+										id="sidebar-search">Search</button>
+								</div>
+
+
+							</div>
+						</form>
 
 						<div class="widget widget-category">
-                            <div class="card category-sidebar">
-                                <div class="card-header">
-                                    News categories
-                                </div>
-                                <ul class="list-group list-group-flush">
-                                  <li class="list-group-item"><a href="<c:url value='/news'/>">全部文章</a></li>
-                                  <li class="list-group-item"><a href="<c:url value='/newsviews'/>">熱門排行</a></li>
-                                  <li class="list-group-item"><a href="<c:url value='/queryNewsByCategory'/>">分類查詢</a></li>
-                                </ul>
-                            </div>
+							<div class="card category-sidebar">
+								<div class="card-header">News categories</div>
+								<ul class="list-group list-group-flush">
+									<li class="list-group-item"><a
+										href="<c:url value='/news'/>">全部文章</a></li>
+									<li class="list-group-item"><a
+										href="<c:url value='/newsviews'/>">熱門排行</a></li>
+									<li class="list-group-item"><a
+										href="<c:url value='/queryNewsByCategory'/>">分類查詢</a></li>
+								</ul>
+							</div>
 						</div>
 
 
@@ -111,77 +100,77 @@
 	<!-- Blog Section Starts Here -->
 	<!--Blog Section Ends Here -->
 	<!-- Footer Section Starts Here -->
-	<footer class="footer-section">
-		<div class="footer-top">
-			<div class="container">
-				<div class="row mb-45-none">
-					<div class="col-lg-4 col-md-6">
-						<div class="footer-widget widget-about">
-							<h5 class="widget-title">About Us</h5>
-							<p>Lorem ipsum dolor sit amet, mauris libero congue eget
-								pulvinar, cras ut mus tempus dolor, ante tortor ornare ante arcu
-								nam</p>
-							<h6 class="sub-title">Subscribe</h6>
-							<form class="footer-form">
-								<input type="text" placeholder="Your Email" class="footer-input">
-								<label for="f1"><i class="fas fa-arrow-right"></i></label> <input
-									type="submit" value="" id="f1">
-							</form>
-							<div class="social-icons">
-								<a href="#"><i class="fab fa-facebook-f"></i></a> <a href="#"><i
-									class="fab fa-twitter"></i></a> <a href="#"><i
-									class="fab fa-linkedin-in"></i></a> <a href="#"><i
-									class="fab fa-google-plus-g"></i></a>
-							</div>
-						</div>
-					</div>
-					<div class="col-lg-2 col-md-6">
-						<div class="footer-widget widget-link">
-							<h5 class="widget-title">Useful Link</h5>
-							<ul>
-								<li><a href="#">Weight Loss</a></li>
-								<li><a href="#">Pakckages</a></li>
-								<li><a href="#">Class Time</a></li>
-								<li><a href="#">About Us</a></li>
-								<li><a href="#">Offer</a></li>
-							</ul>
-						</div>
-					</div>
-					<div class="col-lg-3 col-md-6">
-						<div class="footer-widget widget-post">
-							<h5 class="widget-title">Our Blog post</h5>
-							<ul>
-								<li><a class="post-title" href="#">Ullamco est amet
-										quis tullam cursus, metus.</a> <span>05 may 2017</span></li>
-								<li><a class="post-title" href="#">Ullamco est amet
-										quis tullam cursus, metus.</a> <span>05 may 2017</span></li>
-							</ul>
-						</div>
-					</div>
-					<div class="col-lg-3 col-md-6">
-						<div class="footer-widget widget-form">
-							<h5 class="widget-title">Contact Form</h5>
-							<form class="footer-contact-form">
-								<input type="text" placeholder="Name"> <input
-									type="text" placeholder="Email">
-								<textarea name="footer-message" id="f2" class="footer-textarea"
-									placeholder="Message"></textarea>
-								<input type="submit" value="submit Now">
-							</form>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		<div class="footer-bottom align-items-center d-flex">
-			<div class="container">
-				<p class="m-0">
-					&copy; Copyright <a href="http://www.bootstrapmb.com/">Gymio</a> -
-					2019
-				</p>
-			</div>
-		</div>
-	</footer>
+	<!-- 	<footer class="footer-section"> -->
+	<!-- 		<div class="footer-top"> -->
+	<!-- 			<div class="container"> -->
+	<!-- 				<div class="row mb-45-none"> -->
+	<!-- 					<div class="col-lg-4 col-md-6"> -->
+	<!-- 						<div class="footer-widget widget-about"> -->
+	<!-- 							<h5 class="widget-title">About Us</h5> -->
+	<!-- 							<p>Lorem ipsum dolor sit amet, mauris libero congue eget -->
+	<!-- 								pulvinar, cras ut mus tempus dolor, ante tortor ornare ante arcu -->
+	<!-- 								nam</p> -->
+	<!-- 							<h6 class="sub-title">Subscribe</h6> -->
+	<!-- 							<form class="footer-form"> -->
+	<!-- 								<input type="text" placeholder="Your Email" class="footer-input"> -->
+	<!-- 								<label for="f1"><i class="fas fa-arrow-right"></i></label> <input -->
+	<!-- 									type="submit" value="" id="f1"> -->
+	<!-- 							</form> -->
+	<!-- 							<div class="social-icons"> -->
+	<!-- 								<a href="#"><i class="fab fa-facebook-f"></i></a> <a href="#"><i -->
+	<!-- 									class="fab fa-twitter"></i></a> <a href="#"><i -->
+	<!-- 									class="fab fa-linkedin-in"></i></a> <a href="#"><i -->
+	<!-- 									class="fab fa-google-plus-g"></i></a> -->
+	<!-- 							</div> -->
+	<!-- 						</div> -->
+	<!-- 					</div> -->
+	<!-- 					<div class="col-lg-2 col-md-6"> -->
+	<!-- 						<div class="footer-widget widget-link"> -->
+	<!-- 							<h5 class="widget-title">Useful Link</h5> -->
+	<!-- 							<ul> -->
+	<!-- 								<li><a href="#">Weight Loss</a></li> -->
+	<!-- 								<li><a href="#">Pakckages</a></li> -->
+	<!-- 								<li><a href="#">Class Time</a></li> -->
+	<!-- 								<li><a href="#">About Us</a></li> -->
+	<!-- 								<li><a href="#">Offer</a></li> -->
+	<!-- 							</ul> -->
+	<!-- 						</div> -->
+	<!-- 					</div> -->
+	<!-- 					<div class="col-lg-3 col-md-6"> -->
+	<!-- 						<div class="footer-widget widget-post"> -->
+	<!-- 							<h5 class="widget-title">Our Blog post</h5> -->
+	<!-- 							<ul> -->
+	<!-- 								<li><a class="post-title" href="#">Ullamco est amet -->
+	<!-- 										quis tullam cursus, metus.</a> <span>05 may 2017</span></li> -->
+	<!-- 								<li><a class="post-title" href="#">Ullamco est amet -->
+	<!-- 										quis tullam cursus, metus.</a> <span>05 may 2017</span></li> -->
+	<!-- 							</ul> -->
+	<!-- 						</div> -->
+	<!-- 					</div> -->
+	<!-- 					<div class="col-lg-3 col-md-6"> -->
+	<!-- 						<div class="footer-widget widget-form"> -->
+	<!-- 							<h5 class="widget-title">Contact Form</h5> -->
+	<!-- 							<form class="footer-contact-form"> -->
+	<!-- 								<input type="text" placeholder="Name"> <input -->
+	<!-- 									type="text" placeholder="Email"> -->
+	<!-- 								<textarea name="footer-message" id="f2" class="footer-textarea" -->
+	<!-- 									placeholder="Message"></textarea> -->
+	<!-- 								<input type="submit" value="submit Now"> -->
+	<!-- 							</form> -->
+	<!-- 						</div> -->
+	<!-- 					</div> -->
+	<!-- 				</div> -->
+	<!-- 			</div> -->
+	<!-- 		</div> -->
+	<!-- 		<div class="footer-bottom align-items-center d-flex"> -->
+	<!-- 			<div class="container"> -->
+	<!-- 				<p class="m-0"> -->
+	<!-- 					&copy; Copyright <a href="http://www.bootstrapmb.com/">Gymio</a> - -->
+	<!-- 					2019 -->
+	<!-- 				</p> -->
+	<!-- 			</div> -->
+	<!-- 		</div> -->
+	<!-- 	</footer> -->
 	<!-- Footer Section Ends Here -->
 	<!-- JavaScript File Links -->
 	<!--     <script src="assets/js/jquery-3.3.1.min.js"></script> -->

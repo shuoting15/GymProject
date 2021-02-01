@@ -112,7 +112,7 @@
 	// 	}
 	function setInput() {
 		document.getElementsByName("memberMail")[0].value = "pantone110304@gmail.com"
-// 		document.getElementsByName("ShippingAddress")[0].value = "台北市大安區復興南路一段390號2樓"
+ 		document.getElementsByName("ShippingAddress")[0].value = "台北市大安區復興南路一段390號2樓"
 		document.getElementsByName("note")[0].value = "宅配送貨前請先聯繫"
 	}
 </script>
@@ -132,7 +132,7 @@
 					<div class="breadcrumb__text">
 						<h2>GYM SHOP</h2>
 						<div class="breadcrumb__option">
-							<span>滿三千折100，限時活動中</span>
+							<span>折扣碼抽抽樂，限時活動中</span>
 						</div>
 					</div>
 				</div>

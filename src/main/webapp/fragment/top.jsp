@@ -18,6 +18,7 @@
 <link rel="stylesheet" href="css/style.css" type="text/css">
 <!-- <link rel="stylesheet" href="css/stylecoach.css" type="text/css"> -->
 <link rel="stylesheet" href="css/stylemember.css" type="text/css">
+<link rel="stylesheet" href="../css/stylemember.css" type="text/css">
 
 <style>
 .dropdown:hover .dropdown-content {
@@ -76,7 +77,7 @@
 							href="<c:url value="/logout"/>" class="headerButton logout"
 							id="toplogout">會員登出</a></li>
 						<li><span style='color: #336666; font-weight: bold'>${LoginOK.point}</span><a
-							href="memberarea"><img src="images/point.png" alt=""></a></li>
+							href="memberarea"><img src="<c:url value="/images/point.png"/>" alt=""></a></li>
 
 						<c:choose>
 							<c:when test="${ShoppingCart.itemNumber > 0}">
@@ -109,6 +110,28 @@
 												</tr>
 											</table>
 										</a>
+										
+										<div class="row justify-content-end"
+											style='padding-right: 30px'>
+											<div class="product__details__quantity">
+												<div class="quantity">
+													<div class="pro-qty" style='width: 120px;height:30px'>
+														<input type="text" name="qty" value="1" style='width: 30px'
+															id="qty${cart.value.productId}">
+													</div>
+												</div>
+											</div>
+											<Input type='hidden' name='productId'
+												id="id${cart.value.productId}"
+												value='${cart.value.productId}'>
+
+											<button class="primary-btn"
+												onclick="addToCart(${cart.value.productId})"
+												style="margin-left: 8px; border-radius: 30px">
+												<i class="fa fa-shopping-cart"></i>
+											</button>
+											<button style='border-radius:50px;margin-left:16px' onclick="confirmDelete(${cart.value.productId})"><i class="fa fa-trash-o"></i></button>	
+										</div>
 									</c:forEach>
 								</div>
 						</li>
@@ -160,8 +183,8 @@
 							</ul></li>
 						<li><a href="<c:url value="/courses" />">團體課程</a>
 							<ul class="header__menu__dropdown">
-								<li><a href="./shop-details.html">實體</a></li>
-								<li><a href="./shoping-cart.html">線上直播</a></li>
+								<li><a href="<c:url value="/courses" />">課程列表</a></li>
+								<li><a href="<c:url value="/mycourses" />">預約查詢</a></li>
 							</ul></li>
 						<li><a href="<c:url value="showAllMealList" />">健身餐點</a>
 							<ul class="header__menu__dropdown">
@@ -182,6 +205,7 @@
 								<li><a href="<c:url value='/coachMaintain' />">教練</a></li>
 								<li><a href="<c:url value='/coachPerformance' />">教練業績</a></li>
 								<li><a href="<c:url value="/courseManage" />">團課</a></li>
+								<li><a href="<c:url value='/coursesPerformance' />">團課業績</a></li>
 								<li><a href="updateShowAllMealList">健身餐</a></li>
 								<li><a href="<c:url value='/newsmodify'/>">教學區</a></li>
 								<li><a href="reports">論壇</a></li>

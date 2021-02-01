@@ -31,7 +31,7 @@
 <script type="text/javascript">
 
 function bookfunction(id){
-	if(confirm("確定要下架本課程:\${courses.title}嗎?")){  
+	if(confirm("確定要執行此操作嗎?")){  
 		return true;  
 	}  
 		return false;  
@@ -71,7 +71,7 @@ $("#re").click(function () {
                                 <div width="150px">\${courses.location}</div>
                                 </td>
                 				<td class="table-body" style="width:350px;">
-                                <div><a href="<c:url value='/courseMaintain?id=\${courses.courseId}'/>"><b style='font-size: 20px;'> \${courses.title}</b></a></div>
+                                <div><a href="<c:url value='/courseMaintain?id=\${courses.courseId}'/>" onmouseover="this.style.color='orange'" onmouseout="this.style.color='#007bff'"><b style='font-size: 20px;'> \${courses.title}</b></a></div>
                                 <div> \${courses.date} \${courses.starttime}~\${courses.endtime}</div>
                                 <div>教練: \${courses.courseCoachBean.name}</div>
                                 <div>人數: \${courses.selected} / \${courses.max}</div>
@@ -81,7 +81,7 @@ $("#re").click(function () {
                                 <td style="padding-right:5px;">
                                 <a href="<c:url value='/courseUpdate?id=\${courses.courseId}'/>" class="btn btn-primary">
                                 <span class="glyphicon-info-sigh glyphicon"></span>編輯</a>
-                                <a name="\${courses.status}\${courses.selected}" href="<c:url value='/courseOnOff/\${courses.courseId}'/>" onclick="return bookfunction(\${courses.title})">
+                                <a name="\${courses.status}\${courses.selected}" href="<c:url value='/courseOnOff/\${courses.courseId}'/>" onclick="return bookfunction()">
                                 <span class="glyphicon-info-sigh glyphicon"></span></a>
                                 </td>
 								</tr>`;
@@ -158,7 +158,7 @@ $("#re").click(function () {
         <div>
             <div class="container" style="text-align: center" >
 <!--                 <h1>課程列表</h1> -->
-                <h3 style="color: red;">${message}</h3>
+                <h3 style="color: red;">${messages}</h3>
             </div>
         </div>
     </section>

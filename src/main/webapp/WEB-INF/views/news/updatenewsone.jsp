@@ -63,22 +63,30 @@
 <!-- 	</div> -->
 	<section class="container">
 		<!--       三個地方要完全一樣 -->
-		<form:form method='POST' modelAttribute="newsBean"
+		<form:form method='POST' modelAttribute="newsone"
 			class='form-horizontal' enctype="multipart/form-data">
 			<fieldset>
+<!-- 				<div class="form-group row"> -->
+<!-- 					<label for="newsId" class="col-sm-2 col-form-label">Title</label> -->
+<!-- 					<div class="col-sm-10"> -->
+<%-- 					<form:input type="text" class="form-control" id="newsId" --%>
+<%-- 					path="newsId" value='${newsone.newsId}' /> --%>
+<!-- 					</div> -->
+<!-- 				</div> -->
+				
 				<div class="form-group row">
 					<label for="newsTitle" class="col-sm-2 col-form-label">Title</label>
 					<div class="col-sm-10">
-						<form:input type="text" class="form-control" id="newsTitle"
-							path="newsTitle" />
+					<form:input type="text" class="form-control" id="newsTitle"
+					path="newsTitle" value='${newsone.newsTitle}' />
 					</div>
 				</div>
 
 				<div class="form-group row">
-					<label for="newsContent" class="col-sm-2 col-form-label">Content</label>
-					<div class="col-sm-10">
-						<form:textarea class="form-control" id="newsContent"
-							path="newsContent" />
+					<label for="newsContent" class="col-sm-2 col-form-label" >Content</label>
+					<div class="col-sm-10" >
+						<form:input type="text" class="form-control" id="newsContent"
+							path="newsContent" value='${newsone.newsContent}'/>
 					</div>
 				</div>
 
@@ -86,7 +94,7 @@
 					<label for="newsUploadTime" class="col-sm-2 col-form-label">Time</label>
 					<div class="col-sm-10">
 						<form:input type="date" class="form-control" id="newsUploadTime"
-							path="newsUploadTime" />
+							path="newsUploadTime" value='${newsone.newsUploadTime}'/>
 					</div>
 				</div>
 
@@ -110,9 +118,9 @@
 					<div class="col-sm-10">
 						<form:select id="authorId" class="form-control" path="authorId">
 							<form:option value="-1">
-                                 Please select
+                                 請挑選
                               </form:option>
-							<form:options items="${authorList}" />
+							<form:options items="${authorList}"/>
 						</form:select>
 					</div>
 				</div>
@@ -122,6 +130,7 @@
 					<label class='col-sm-2 col-form-label' for="newsproductImage">
 						圖 </label>
 					<div class='col-sm-10'>
+					<img src="<c:url value='/getNewsPicture/${newsone.newsId}' />" class="article_photo" alt="...">
 						<form:input id="newsproductImage" path="newsproductImage"
 							type='file' class='form-control' />
 					</div>
@@ -132,15 +141,19 @@
 						影片 </label>
 					<div class='col-sm-10'>
 						<form:input id="newsVideoPath" path="newsVideoPath" type='text'
-							class='form-control' />
+							class='form-control' value='${newsone.newsVideoPath}'/>
 						檔案路徑
 					</div>
 				</div>
-				<div class="text-center"><button id="btnAdd" class="btn btn-primary" type="submit">送出</button>
-				
-<!-- 				<a href="<spring:url value='/newsmodify' />" class="btn btn-default"> -->
-<!-- 						<span class="glyphicon-hand-left glyphicon"></span>返回 -->
-<!-- 					</a> -->
+				<div class="text-right">
+				<td><form:hidden path='newsId'/>編碼: ${newsone.newsId}</td>
+				<td><form:hidden path='newsViews'/>瀏覽數: ${newsone.newsViews}</td>
+					</div>
+					<div class="text-center"><button id="btnAdd" class="btn btn-primary" type="submit" value=>修改</button>
+
+				<a href="<spring:url value='/newsone?id=${newsone.newsId}' />" class="btn btn-default">
+						<span class="glyphicon-hand-left glyphicon"></span>返回
+					</a>
 	</div>
 						</fieldset>
 		</form:form>

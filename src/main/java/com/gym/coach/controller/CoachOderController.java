@@ -104,6 +104,9 @@ public class CoachOderController {
 	public String OrderCoachTime(@RequestParam int orderId, @RequestParam int coachId, Model model) {
 		MemberBean memberBean = (MemberBean) model.getAttribute("LoginOK");
 		CoachOrderBean coachOrderBean = coachOrderService.getCoachTimeById(orderId);
+		if (coachOrderBean.getOrderTitle() == "已被預約") {
+			return "redirect:/coach/?id=" + coachId;
+		}
 		coachOrderBean.setOrderTitle("已被預約");
 		CoachBean coachBean = coachService.getCoachById(coachId);
 		if (memberBean.getPoint() < coachBean.getCoachPrice()) {
@@ -142,9 +145,6 @@ public class CoachOderController {
 	@PostMapping(value = "/cancelBooking")
 	public String cancelBooking(@RequestParam int orderId, Model model) {
 		MemberBean memberBean = (MemberBean) model.getAttribute("LoginOK");
-		if (memberBean == null) {
-			return "member/login";
-		}
 		CoachOrderBean coachOrderBean = coachOrderService.getCoachTimeById(orderId);
 		CoachBean coachBean = coachService.getCoachById(coachOrderBean.getCoachBean().getCoachId());
 		memberBean.setPoint(memberBean.getPoint() + coachBean.getCoachPrice());
@@ -153,10 +153,11 @@ public class CoachOderController {
 		coachOrderBean.setMemberBean(null);
 		coachOrderBean.setOrderStatus("o");
 		coachOrderBean.setOrderColor("blue");
+		coachOrderBean.setOrderPrice(0);
 		coachOrderService.cancelBooking(coachOrderBean);
 		return "redirect:/showBookingList";
 	}
-
+	//完成課程
 	@PostMapping(value = "/finishBooking")
 	public String finishBooking(Model model, @RequestParam("orderId") int orderId, @RequestParam("rating") int rating,
 			@RequestParam("coachId") int coachId, @RequestParam("memberId") String memberId) {
@@ -175,14 +176,14 @@ public class CoachOderController {
 		coachService.updateCoachRating(coachBean);
 		return "redirect:/showBookingList";
 	}
-
+	//教練上課表
 	@RequestMapping("/showWorkingList")
 	public String findBookingBycoachId(@RequestParam int coachId, Model model) {
 		model.addAttribute("Booking", coachOrderService.findBookingByCoachId(coachId));
 
 		return "coach/showWorkingList";
 	}
-
+	//傳出空的時間時間
 	@PostMapping(value = "/checkEmptyTime", produces = "text/html;charset=UTF-8")
 	@ResponseBody
 	public String checkEmptyTime(@RequestParam("coachId") int coachId, @RequestParam("orderDate") String orderDate)

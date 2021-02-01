@@ -23,7 +23,7 @@
     
     <link rel="shortcut icon" href="images/favicon.png" type="image/x-icon">
     <link rel="stylesheet" href="css/stylecoach.css">
-    
+        <link rel="stylesheet" href="css/news.css">
 
     <title>Gymio - Fitness and Gym HTML Template</title>
 
@@ -445,11 +445,47 @@
     <!-- Newslater Section Starts Here -->
     <!-- Newslater Section Ends Here -->
     <!-- Blog Section Starts Here -->
+        <section class="expert-trainers padding-bottom padding-top">
+        <div class="container">
+            <div class="section-header-wrapper">
+                <div class="section-header">
+                    <h2 class="title">
+                        最新教學
+                    </h2>
+                    <p> 各種影片教學，只怕你不看</p>
+                </div>
+                <div class="common-navigation d-flex ">
+                    <div class="common-prev navigation"><i class="fas fa-angle-left"></i></div>
+                    <div class="common-next active navigation"><i class="fas fa-angle-right"></i></div>
+                </div>
+            </div>
+            <div class="expert-slider">
+            <div class="swiper-wrapper">
+            <c:forEach var='news' items='${news}'>
+                    <div class="swiper-slide">
+                        <div class="expert-item">
+                            <div class="expert-thumb">
+                                <a href="trainers.html"><img src="<c:url value='/getNewsPicture/${news.newsId}'/>"  style="width: 500px;height: 450px"  alt="trainers"></a>
+                            </div>
+                            <div class="expert-content">
+                                <div class="expert-infonews">
+                                    <h4 class="sub-title"><a href="<c:url value='/newsone?id=${news.newsId}'/>">${news.newsTitle}</a></h4>
+                                    <span>${news.coachBean.coachName}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+               </c:forEach>
+                </div>
+            </div>
+        </div>
+    </section>
+    
     <section class="blog-section padding-bottom padding-top">
         <div class="container">
             <div class="section-header">
                 <h2 class="title">
-                    最新教學&文章
+                    
                 </h2>
                 <p> </p>
                 <div class="common-navigation d-flex ">

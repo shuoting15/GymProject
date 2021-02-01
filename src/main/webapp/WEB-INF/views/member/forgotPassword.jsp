@@ -54,6 +54,9 @@
 						<span><img id="forgotPwdSubmit" src="images/ajax-loader.gif" style="display: none"></span>
 					</p>
 				</form>
+				<p>
+					<button onclick="gymproject121()">DEMO忘記密碼</button>
+				</p>
 			</div>
 			<div class="col-sm-1"></div>
 		</div>
@@ -108,6 +111,14 @@
 			//下一個jQuery事件可以加在這後面=======================================================	
 
 		});
+	</script>
+	
+	<script type="text/javascript">
+	
+		function gymproject121() {			
+			email2uForm.member_id.value="gymproject121@gmail.com";			
+		};
+		
 	</script>
 
 </body>

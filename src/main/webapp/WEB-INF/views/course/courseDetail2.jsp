@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="UTF-8">
+<meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
@@ -20,7 +20,9 @@
     <link rel="stylesheet" href="css/swiper.min.css">
 
     <link rel="shortcut icon" href="images/favicon.png" type="image/x-icon">
-    <link rel="stylesheet" href="css/stylecourses.css">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<title>Insert title here</title>
 <script>
 function bookfunction(){
 	if(confirm("本課程確認無誤後請按確定!")){  
@@ -112,9 +114,7 @@ function bookfunction(){
     </div>
     </section>
     <!-- Trainer Section Ends Here -->
-
-<!--     頁尾 -->
-    <jsp:include page="/fragment/footer.jsp" />
+    
     
     <!-- JavaScript File Links -->
     <script src="js/jquery-3.3.1.min.js"></script>
@@ -127,6 +127,7 @@ function bookfunction(){
     <script src="js/counterup.min.js"></script>
     <script src="js/lightcase.js"></script>
     <script src="js/wow.min.js"></script>
-    <script src="js/maincoursesdetail.js"></script>
+    <script src="js/main.js"></script>
+
 </body>
 </html>
