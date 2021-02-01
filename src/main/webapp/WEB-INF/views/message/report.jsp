@@ -131,8 +131,9 @@ color:#C0C0C0;
 					<thead>
 					<tr>
 					<th style="text-align:center">文章ID</th>
+					<th style="text-align:center;width:800px">舉報種類</th>
 					<th style="text-align:center">舉報原因</th>
-					<th style="text-align:center">舉報者</th>
+					<th style="text-align:center;width:500px">舉報者</th>
 					<th style="text-align:center">舉報時間</th>
 					</tr>
 					</thead>
@@ -140,6 +141,7 @@ color:#C0C0C0;
 							<c:forEach var='reports' items='${reports}'>
 							<tr>
 							<td style="text-align:center;width:80px;">${reports.messageBean.articleId}</td>
+							<td style="text-align:center;width:130px;">${reports.reportoption}</td>
 							<td style="text-align:center;width:700px;">${reports.reportContent}</td>
 							<td style="text-align:center;width:80px;">${reports.memberbean.username}</td>
 							<td style="text-align:center;width:400px;">${reports.time}</td>

@@ -184,7 +184,6 @@
 
 		<div class="container">
 
-
 			<table id="category" class="display" style="width: 100%">
 				<thead>
 					<tr>

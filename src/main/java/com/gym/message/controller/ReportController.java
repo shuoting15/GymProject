@@ -54,9 +54,10 @@ public class ReportController {
 	}
 	
 	@PostMapping(value="/report/add",produces="text/html;charset=UTF-8")
-	public @ResponseBody String processAddNewMailboxForm(Model m, @ModelAttribute("message") MessageBean mb,
-			@RequestParam("rd") String rbstring,HttpSession session) {
-		ReportBean rbb = new ReportBean(rbstring, mb);
+	public @ResponseBody String processAddNewMailboxForm(Model m, @ModelAttribute("message") MessageBean mb,@ModelAttribute("report") ReportBean rb,
+			@RequestParam("rd") String rbstring,HttpSession session,@RequestParam("haha") String rt) {
+		System.out.println(rt+"..........................................");
+		ReportBean rbb = new ReportBean(rbstring, mb,rt);
 		MemberBean mbssss = (MemberBean) m.getAttribute("LoginOK");
 //		MessageBean mbvv =(MessageBean) m.getAttribute("message");
 		rbb.setTime(new Timestamp(System.currentTimeMillis()));
@@ -82,4 +83,5 @@ public class ReportController {
 		String abc="redirect:/message?articleId="+art;
 		return abc;
 	}
+	
 }
