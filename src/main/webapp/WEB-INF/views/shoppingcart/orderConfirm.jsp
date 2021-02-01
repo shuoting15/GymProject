@@ -132,7 +132,7 @@
 					<div class="breadcrumb__text">
 						<h2>GYM SHOP</h2>
 						<div class="breadcrumb__option">
-							<span>滿三千折100，限時活動中</span>
+							<span>折扣碼抽抽樂，限時活動中</span>
 						</div>
 					</div>
 				</div>
