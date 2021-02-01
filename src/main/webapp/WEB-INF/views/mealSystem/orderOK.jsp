@@ -69,12 +69,12 @@
 			<br>
 			<div class="container">
 				<div class="row mb-30-none justify-content-center">
-					<c:forEach var="orderList" items="${orderList}">
+					<c:forEach var="orderList" items="${orderList}" varStatus="odNo">
 						<div class="col-lg-4 col-md-6">
 							<div class="package-item">
 								<div class="package-header">
 									<h2 class="title">訂單ID： ${orderList.orderNo}</h2>
-									<input type="hidden" value="${orderList.orderNo}" id="odNo" />
+									<input type="hidden" value="${orderList.orderNo}" id="${odNO}" />
 									<img src="css/img/plane.png" />
 									<p>
 										可取餐時間<br>
@@ -105,13 +105,11 @@
 									</ul>
 									<c:choose>
 										<c:when test="${orderList.orderStatus =='0'}">
-											<a
-												href="<spring:url value='updateOrderStatus?id=${orderList.orderNo}' />"
-												class="custom-button">我要取餐</a>
+											<a class="custom-button" onclick="updateOrder(${orderList.orderNo})">我要取餐</a>
 										</c:when>
 										<c:when test="${orderList.orderStatus =='1'}">
 											<a class="custom-button">取餐完成</a>
-											
+											<a class="custom-button" onclick="delOrder(${orderList.orderNo})">刪除訂單</a>
 										</c:when>
 									</c:choose>
 
@@ -131,9 +129,17 @@
 	<script type='text/javascript'>
 	function delOrder(n) {
 		if (confirm("確定刪除訂單 ? ")) {
-			var x = $("#odNo").val();
-			xtr = x.toString();
-			document.forms[0].action = "deleteMealOrder/" + xtr;
+			document.forms[0].action = "deleteMealOrder/" + n;
+			document.forms[0].method = "POST";
+			document.forms[0].submit();
+			return;
+		} else {
+			return;
+		}
+	}
+	function updateOrder(n) {
+		if (confirm("確定取餐 ? ")) {
+			document.forms[0].action = "updateOrderStatus/" + n;
 			document.forms[0].method = "POST";
 			document.forms[0].submit();
 			return;
