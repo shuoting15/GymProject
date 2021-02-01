@@ -90,8 +90,8 @@ public class ProcessOrderController {
 			
 			//查看是否為點數加值，呼叫mDao
 			if(oib.getProductId()==202029 ||oib.getProductId()==202030||oib.getProductId()==202031) {
-				System.out.println("點數加值共："+oib.getUnitPrice()*oib.getDiscount()*oib.getQuantity());
-				point=(oib.getUnitPrice()*oib.getDiscount()*oib.getQuantity());
+				System.out.println("點數加值共："+oib.getUnitPrice()*oib.getQuantity());
+				point=(oib.getUnitPrice()*oib.getQuantity());
 			}
 		}
 		ob.setItems(items); 
@@ -100,7 +100,10 @@ public class ProcessOrderController {
 			orderService.persistOrder(ob);
 			//===點數加值===
 			if(point!=null) {
+				System.out.println("進入加值");
 				mService.addPoint(memberId,point);
+				memberBean.setPoint(memberBean.getPoint()+point);
+				System.out.println("加值完成");
 			}
 			
 			//這邊之後改掉 
