@@ -110,6 +110,28 @@
 												</tr>
 											</table>
 										</a>
+										
+										<div class="row justify-content-end"
+											style='padding-right: 30px'>
+											<div class="product__details__quantity">
+												<div class="quantity">
+													<div class="pro-qty" style='width: 120px;height:30px'>
+														<input type="text" name="qty" value="1" style='width: 30px'
+															id="qty${cart.value.productId}">
+													</div>
+												</div>
+											</div>
+											<Input type='hidden' name='productId'
+												id="id${cart.value.productId}"
+												value='${cart.value.productId}'>
+
+											<button class="primary-btn"
+												onclick="addToCart(${cart.value.productId})"
+												style="margin-left: 8px; border-radius: 30px">
+												<i class="fa fa-shopping-cart"></i>
+											</button>
+											<button style='border-radius:50px;margin-left:16px' onclick="confirmDelete(${cart.value.productId})"><i class="fa fa-trash-o"></i></button>	
+										</div>
 									</c:forEach>
 								</div>
 						</li>

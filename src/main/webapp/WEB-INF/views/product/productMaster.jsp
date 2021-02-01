@@ -127,6 +127,14 @@ body {
 					cart+="<td width='80'><img width='70' src='<c:url value='/productMaintain/getBookImage?id="+result.cart[keyset[i]].productId+"' />'><td>"
 					cart+="<td><div style='padding-left: 3px'>"+result.cart[keyset[i]].productName+" <br>價格："+ result.cart[keyset[i]].unitPrice+"<br>數量："+ result.cart[keyset[i]].quantity+"</div></td>"
 					cart+="</tr></table></a>"
+					
+						cart+="<div class='row justify-content-end' style='padding-right: 30px'>"
+							cart+="<div class='product__details__quantity'><div class='quantity'>"
+							cart+="<div class='pro-qty' style='width: 120px;height:30px'>"
+							cart+="<input type='text' name='qty' value='1' style='width: 30px' id='qty"+result.cart[keyset[i]].productId+"'></div></div></div>"
+							cart+="<Input type='hidden' name='productId' id='id"+result.cart[keyset[i]].productId+"' value='"+result.cart[keyset[i]].productId+"'>"		
+							cart+="<button class='primary-btn' onclick='addToCart("+result.cart[keyset[i]].productId+")' style='margin-left: 8px; border-radius: 30px'><i class='fa fa-shopping-cart'></i></button>"
+							cart+="<button style='border-radius:50px;margin-left:16px' onclick='confirmDelete("+result.cart[keyset[i]].productId+")'><i class='fa fa-trash-o'></i></button></div>"
 				}
 				document.getElementById('cartContent').innerHTML=result.cartContent;
 				document.getElementById('cartSubtotal').innerHTML='$'+result.cartSubtotal;
