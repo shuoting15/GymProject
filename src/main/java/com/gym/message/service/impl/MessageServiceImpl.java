@@ -100,11 +100,16 @@ public class MessageServiceImpl implements MessageService {
 		return n;
 
 	}
-
+	@Transactional
 	@Override
 	public List<MessageBean> SearchmessageById(String keyword) {
 		
 		return mdao.SearchmessageById(keyword);
+	}
+	@Transactional
+	@Override
+	public List<MessageBean> getAllMessageByTime() {
+		return mdao.getAllMessageByTime();
 	}
 
 	

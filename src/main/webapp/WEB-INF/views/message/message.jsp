@@ -133,7 +133,7 @@
 							</div>
 							<h4>主題</h4>
 							<ul>
-								<li><a href="<c:url value='/allmessages'/>">全部主題</a></li>
+								<li><a href="<c:url value='/allmessages'/>">熱門文章</a></li>
 							</ul>
 							<c:forEach var='kanbanName' items='${kanbanNameList}'>
 								<ul>
@@ -296,12 +296,12 @@
 										</button>
 									</div>
 									<div class="modal-body">
-										<input type="text" id="reportbox" placeholder="請輸入內容...."></input>
+										<input style="width:450px"  type="text" id="reportbox" placeholder="請輸入內容...."></input>
 									</div>
 									<div class="modal-footer">
-										<button type="button" class="btn btn-secondary"
+										<button  type="button" class="btn btn-secondary"
 											data-dismiss="modal">關閉</button>
-										<button style="background-color: red" id="reportbtn"
+										<button style="background-color: red;margin-right:180px" id="reportbtn"
 											type="button" class="btn btn-primary">檢舉</button>
 									</div>
 								</div>

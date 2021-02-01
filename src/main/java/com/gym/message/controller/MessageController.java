@@ -58,7 +58,7 @@ public class MessageController {
 		MemberBean mbssss = (MemberBean) model.getAttribute("LoginOK");
 		if(mbssss!=null) {
 			System.out.println(mbssss.getUsername());
-			List<MessageBean> list=messageservice.getAllMessage();
+			List<MessageBean> list=messageservice.getAllMessageByTime();
 			List<String> list1 = messageservice.getAllKanbanName();
 			MessageBean mb = new MessageBean();
 			model.addAttribute("kanbanNameList", list1);
