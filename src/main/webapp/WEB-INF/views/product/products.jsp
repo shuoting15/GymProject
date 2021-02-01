@@ -55,6 +55,9 @@ function confirmDelete(id) {
 	<jsp:include page="/fragment/top.jsp" />
 <hr/>
 	<div class="container">
+	<a class="btn btn-primary"
+			href="<c:url value='/productMaintain/productAll' />" role="button">返回編輯商品列表</a>
+		<hr>
 
 		<div class="row justify-content-between">
 			<!-- 搜尋 -->
