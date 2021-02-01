@@ -196,10 +196,10 @@
 								<li><a href=<c:url value='/news'/>>影片教學區</a></li>
 							</ul></li>
 						<li><a href="<c:url value="/messages" />">健身論壇</a></li>
-						<li><a href="./contact.html" style='display: none'
+						<li><a href="#" style='display: none'
 							id="topBackstage">後台管理</a>
 							<ul class="header__menu__dropdown">
-								<li><a href="./shop-details.html">會員</a></li>
+<!-- 								<li><a href="./shop-details.html">會員</a></li> -->
 								<li><a href="<c:url value='/productMaintain/productAll' />">商品</a></li>
 								<li><a href="<c:url value='/orderProcess/orderListAll' />">訂單</a></li>
 								<li><a href="<c:url value='/coachMaintain' />">教練</a></li>
@@ -208,7 +208,7 @@
 								<li><a href="<c:url value='/coursesPerformance' />">團課業績</a></li>
 								<li><a href="updateShowAllMealList">健身餐</a></li>
 								<li><a href="<c:url value='/newsmodify'/>">教學區</a></li>
-								<li><a href="reports">論壇</a></li>
+								<li><a href="<c:url value='/reports'/>">論壇</a></li>
 
 							</ul></li>
 
