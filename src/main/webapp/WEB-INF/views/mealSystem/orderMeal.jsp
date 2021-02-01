@@ -120,14 +120,9 @@
 	<script type='text/javascript'>
 	function confirmOrder(n) {
 		if (confirm("確定訂餐 ? ") ) {
-			
-			
 			var x=$("#hidId").val();
 			xtr = x.toString();
 			document.forms[0].action="orderAdd/"+xtr ;
-			
-			
-// 			document.forms[0].action="<c:url value='/orderAdd/${mealList.mealId}' />" ;
 			document.forms[0].method="POST";
 			document.forms[0].submit();
 			return;
