@@ -146,7 +146,6 @@ public class MealConcroller {
 	}
 
 	// 刪除一筆紀錄
-	// 由這個方法刪除記錄...
 	@PostMapping("/delete/{id}")
 	public String delete(@PathVariable("id") Integer id) {
 		mealListService.deleteMealList(id);
