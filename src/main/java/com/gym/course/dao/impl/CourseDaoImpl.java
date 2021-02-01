@@ -302,7 +302,7 @@ public class CourseDaoImpl implements CourseDao {
 			alist.add(i);
 		}
 		rlist.removeAll(alist);
-		System.out.println(rlist);
+//		System.out.println(rlist);
 		
 		return rlist;
 	}

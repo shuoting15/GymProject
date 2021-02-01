@@ -41,6 +41,11 @@
 			<div class="col-sm-1"></div>
 			<div class="col-sm-10 loginForm">
 				<h3>歡迎登入GYM 會員</h3>
+				<p>
+				<button onclick="gymproject121()">DEMO登入</button>
+				<button onclick="flora()">普通會員</button>
+				<button onclick="wei()">管理員</button>
+				</p>
 				<form action="login" method="post" id="loginForm">
 						<p>
 							<label class="loginFormLabel">帳號：</label> 
@@ -56,11 +61,10 @@
 						</p>
 						<p class="forgetPassword"><a href="forgotPassword">忘記密碼</a></p>
 						<p>
-							<a href="" class="facebookAccount"><img src="images/facebook_btn.png"></a>
-							<a href="" class="googleAccount"><img src="images/google_btn.png"></a>
-						</p>
-						<p class="forgetPassword"><a href="forgotPassword">補寄驗證信</a></p>
+							<a href="account/github/login"><img src="images/github_btn.png"></a>
+						</p>						
 					</form>
+					<p>
 			</div>
 			<div class="col-sm-1"></div>
 		</div>
@@ -133,6 +137,25 @@
 		    //下一個jQuery事件可以加在這後面======================================================
 			
 		});//此行jQuery結束
+	</script>
+	
+	<script type="text/javascript">
+	
+		function flora() {
+			loginForm.member_id.value="flora@gmail.com";
+			loginForm.password.value="eeit121";
+		};
+		
+		function wei() {
+			loginForm.member_id.value="wei@gmail.com";
+			loginForm.password.value="eeit121";
+		};
+		
+		function gymproject121() {
+			loginForm.member_id.value="gymproject121@gmail.com";
+			loginForm.password.value="eeit121";			
+		};
+	
 	</script>
 
 </body>

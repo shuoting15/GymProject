@@ -132,7 +132,7 @@ $("#btn1").click(function () {
 			</div>
 							<h4>主題</h4>
 							<ul>
-								<li><a href="<c:url value='/allmessages'/>">全部主題</a></li>
+								<li><a href="<c:url value='/allmessages'/>">熱門文章</a></li>
 							</ul>
 							<c:forEach var='kanbanName' items='${kanbanNameList}'>
 								<ul>

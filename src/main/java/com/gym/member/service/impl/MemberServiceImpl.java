@@ -73,6 +73,30 @@ public class MemberServiceImpl implements MemberService {
 		}
 		return newMember;
 	}
+	
+	// 新增Github會員(註冊)
+		@Override
+		public MemberBean createGithubMember(String member_id, String password, int activate) {
+			MemberBean alreadyMember = memberDao.selectByMember_id(member_id);
+			MemberBean newMember = new MemberBean();
+			if (alreadyMember == null) {
+				newMember.setMember_id(member_id);
+				newMember.setPassword(password);
+				newMember.setActivate(activate);
+
+				// 取@前的字當預設會員名稱
+				String beforeAt = member_id.substring(0, member_id.indexOf("@"));
+				System.out.println("預設會員名稱(username):" + beforeAt);
+				newMember.setUsername(beforeAt);
+				// 預設照片
+				newMember.setMemberphoto("images/memberDefault.png");
+				// TODO 看看還要存甚麼
+				memberDao.insert(newMember);
+			} else {
+				return null;
+			}
+			return newMember;
+		}
 
 	// 修改會員資料(MemberArea頁面:不含member_type,point,memberphoto,activate,register_num)
 	@Override

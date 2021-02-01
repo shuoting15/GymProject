@@ -145,9 +145,6 @@ public class CoachOderController {
 	@PostMapping(value = "/cancelBooking")
 	public String cancelBooking(@RequestParam int orderId, Model model) {
 		MemberBean memberBean = (MemberBean) model.getAttribute("LoginOK");
-		if (memberBean == null) {
-			return "member/login";
-		}
 		CoachOrderBean coachOrderBean = coachOrderService.getCoachTimeById(orderId);
 		CoachBean coachBean = coachService.getCoachById(coachOrderBean.getCoachBean().getCoachId());
 		memberBean.setPoint(memberBean.getPoint() + coachBean.getCoachPrice());
@@ -156,6 +153,7 @@ public class CoachOderController {
 		coachOrderBean.setMemberBean(null);
 		coachOrderBean.setOrderStatus("o");
 		coachOrderBean.setOrderColor("blue");
+		coachOrderBean.setOrderPrice(0);
 		coachOrderService.cancelBooking(coachOrderBean);
 		return "redirect:/showBookingList";
 	}
@@ -178,7 +176,7 @@ public class CoachOderController {
 		coachService.updateCoachRating(coachBean);
 		return "redirect:/showBookingList";
 	}
-	//教練上課表r
+	//教練上課表
 	@RequestMapping("/showWorkingList")
 	public String findBookingBycoachId(@RequestParam int coachId, Model model) {
 		model.addAttribute("Booking", coachOrderService.findBookingByCoachId(coachId));

@@ -150,8 +150,7 @@ function confirmDelete(orderId,startTime) {
 	<jsp:include page="/fragment/top.jsp" />
 	<!-- Page Header EndsHere -->
 	<!-- Breadcrumb Section Starts Here -->
-	<section class="page-header bg_img"
-		data-background="images/banner.jpg">
+	<section class="page-header bg_img" data-background="images/banner.jpg">
 		<div class="container">
 			<h3 class="title">
 				<span class="shape-wrapper"><span class="shape"></span>Trainers<span
@@ -199,37 +198,50 @@ function confirmDelete(orderId,startTime) {
 						<c:forEach var="Booking" items="${Booking}">
 							<tr role="row">
 								<td role="cell" data-input="會員姓名">${Booking.memberBean.username}
-								 									<c:choose>
+								<div class="instructor" style="float: left;">
+									<div class="thumb">
+										<a
+											href="#">
+											<img
+											src="${Booking.memberBean.memberphoto}"
+											alt="schedule"  >
+										</a>
+									</div>
+								</div>
+									 <c:choose>
 										<c:when test="${Booking.memberBean.gender == '1'}">
-										<br><span>性別:男</span> 
+											<br>
+											<span>性別:男</span>
 
 										</c:when>
 										<c:when test="${Booking.memberBean.gender == '2'}">
-										<br><span>性別:女</span>
+											<br>
+											<span>性別:女</span>
 										</c:when>
 									</c:choose>
-								
-								
+
+
 								</td>
 								<td role="cell" data-input="會員資訊">
-								身高:${Booking.memberBean.member_height}<br>
-								體重:${Booking.memberBean.member_weight}<br>
-								${Booking.memberBean.mobile}</td>
+									身高:${Booking.memberBean.member_height}<br>
+									體重:${Booking.memberBean.member_weight}<br>
+									${Booking.memberBean.mobile}
+								</td>
 								<td role="cell" data-input="上課日期"><fmt:formatDate
 										value="${Booking.orderDate}" pattern="yyyy/MM/dd" /></td>
 
 								<td role="cell" data-input="上課時間"><fmt:formatDate
-										value="${Booking.orderStartTime}" pattern="HH:mm" />
-										~<fmt:formatDate
-										value="${Booking.orderEndTime}" pattern="HH:mm" />
-										</td>
+										value="${Booking.orderStartTime}" pattern="HH:mm" /> ~<fmt:formatDate
+										value="${Booking.orderEndTime}" pattern="HH:mm" /></td>
 								<td role="cell" data-input="Instructor">
 									<div class="instructor">
 										<div class="thumb">
 											<a
 												href="<c:url value='coach?id=${Booking.coachBean.coachId}'/>">
-												<img src="<c:url value='/getPicture/${Booking.coachBean.coachId}'/>"
-												alt="schedule"></a>
+												<img
+												src="<c:url value='/getPicture/${Booking.coachBean.coachId}'/>"
+												alt="schedule">
+											</a>
 										</div>
 										<div class="content">
 											<a
@@ -246,40 +258,33 @@ function confirmDelete(orderId,startTime) {
 										<td role="cell" data-input="Note">課程已完成</td>
 									</c:when>
 									<c:otherwise>
-										<td role="cell" data-input="Note">123 ${Booking.orderStatus}</td>
+										<td role="cell" data-input="Note">123
+											${Booking.orderStatus}</td>
 									</c:otherwise>
 								</c:choose>
-								<td role="cell" data-input="Note">
- 									<fmt:formatDate value="${Booking.orderStartTime}" 
-									pattern="yyyy-MM-dd HH:mm:ss" var="startTime" /> 
-
- 									<c:choose>
+								<td role="cell" data-input="Note"><fmt:formatDate
+										value="${Booking.orderStartTime}"
+										pattern="yyyy-MM-dd HH:mm:ss" var="startTime" /> <c:choose>
 										<c:when test="${Booking.orderStatus =='x'}">
-<%-- 										<button type="button" class="btn btn-success" onclick="finishBooking(${Booking.orderId},'${startTime}','${Booking.coachBean.coachId}','${LoginOK.member_id}')">完成課程</button>  --%>
+											<%-- 										<button type="button" class="btn btn-success" onclick="finishBooking(${Booking.orderId},'${startTime}','${Booking.coachBean.coachId}','${LoginOK.member_id}')">完成課程</button>  --%>
 
 										</c:when>
 										<c:when test="${Booking.orderStatus eq 'f'}">
-<!-- 										<button type="button" class="btn btn-success" disabled="disabled">課程已完成</button>  -->
+											<!-- 										<button type="button" class="btn btn-success" disabled="disabled">課程已完成</button>  -->
 										</c:when>
-									</c:choose>
-							
-									 	<c:choose>
+									</c:choose> <c:choose>
 										<c:when test="${Booking.orderStatus =='x'}">
-												<button type="button" class="btn btn-danger"
-										style="margin-top: 2px"
-										onclick="confirmDelete(${Booking.orderId},'${startTime}')">取消預約</button>
+											<button type="button" class="btn btn-danger"
+												style="margin-top: 2px"
+												onclick="confirmDelete(${Booking.orderId},'${startTime}')">取消預約</button>
 
 										</c:when>
 										<c:when test="${Booking.orderStatus =='f'}">
-<!-- 										<button type="button" class="btn btn-danger" -->
-<!-- 										style="margin-top: 2px" disabled="disabled" -->
-<%-- 										onclick="confirmDelete(${Booking.orderId},'${startTime}')">取消預約</button> --%>
+											<!-- 										<button type="button" class="btn btn-danger" -->
+											<!-- 										style="margin-top: 2px" disabled="disabled" -->
+											<%-- 										onclick="confirmDelete(${Booking.orderId},'${startTime}')">取消預約</button> --%>
 										</c:when>
-									</c:choose>
-
-
-
-								</td>
+									</c:choose></td>
 
 							</tr>
 						</c:forEach>

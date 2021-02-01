@@ -6,7 +6,9 @@ import com.gym.message.model.MessageBean;
 
 public interface MessageDao {
 	
-	List<MessageBean>  getAllMessage(); 
+	List<MessageBean>  getAllMessage();
+	
+	List<MessageBean>	getAllMessageByTime();
 	
 	public MessageBean getMessageById(int articleId);
 	

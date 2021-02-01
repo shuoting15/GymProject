@@ -42,7 +42,7 @@ function bookfunction(){
 	<jsp:include page="/fragment/top.jsp" />
 	<section class="page-header bg_img" data-background="images/banner.jpg">
         <div class="container">
-            <h3 class="title"><span class="shape-wrapper"><span class="shape"></span>我的課程<span
+            <h3 class="title"><span class="shape-wrapper"><span class="shape"></span>My Courses<span
                         class="shape"></span></span></h3>
         </div>
     </section>
@@ -54,51 +54,28 @@ function bookfunction(){
 <!-- 		</p> -->
 <!-- 	</div> -->
 
+                <h3 style="color: red;text-align:center">${messages}</h3>
 <section>
         <div>
             <div class="container" style="text-align: center" >
                 <h3>進行中課程</h3>
-                <h3 style="color: red;">${messages}</h3>
             </div>
         </div>
     </section>
-<!--     <div align="right"> -->
-<%--     <p><a href="<c:url value='/courses/mycourses'/>" class="btn btn-primary"> --%>
-<!--     <span class="glyphicon-info-sigh glyphicon"></span>我的課程 -->
-<!--     </a> -->
-<%--     <a href="<c:url value='/courses'/>" class="btn btn-primary"> --%>
-<!--     <span class="glyphicon-info-sigh glyphicon"></span>課程列表 -->
-<!--     </a></p> -->
-<!--     </div> -->
     <hr style="height:1px;border:none;color:#333;background-color:#333;">
     <section class="container">
         <div class="row">
-        <c:forEach var='nowcourse' items='${mynowlist}'>
+        <c:forEach var='nowcourse' items='${mynowlist}'>							
             <div class="col-sm-6 col-md-3" style="width: 360px; height: 320px">
                 <div class="thumbnail" style="width: 320px; height: 300px">
-<%--                 <img  width='100' height='200' src="<c:url value='/getPicture/${course.courseId}'/>" /> --%>
                     <div class="caption">
                     <img width='264px' src="<c:url value='/getCPicture/${nowcourse.courseBean.courseId}'/>" />
                         <p>
-                            <b style='font-size: 20px;'>${nowcourse.courseBean.title}</b>
+                            <b style='font-size: 20px;color:black'>${nowcourse.courseBean.title}</b>
                         </p>
-                        <p>日期: ${nowcourse.courseBean.date}</p>
-                        <p>時段: ${nowcourse.courseBean.starttime} ~ ${nowcourse.courseBean.endtime}</p>
-                        <p>教室: ${nowcourse.courseBean.location}</p>
-<%--                         <p>教練:${course.c_id}</p> --%>
-<%--                         <p>分類:${course.c_category}</p> --%>
-<%--                         <p><a href="<c:url value='/unbooking/course?id=${course.id}'/>" class="btn btn-primary" onclick="return bookfunction()"> --%>
-<!--                         <span class="glyphicon-info-sigh glyphicon"></span>取消預約 -->
-<!--                         </a> -->
-                        
-<%--                         <a href="<c:url value='course?id=${course.courseId}'/>" class="btn btn-primary"> --%>
-<!--                         <span class="glyphicon-info-sigh glyphicon"></span>詳細資訊 -->
-<!--                         </a></p> -->
-<%--                         <a href="<spring:url value='product.json?id=${product.bookId}' />"    --%>
-<!-- 								class="btn btn-primary">  -->
-<!-- 								<span class="glyphicon-info-sigh glyphicon"></span>JSON -->
-<!-- 							</a> -->
-<!--                         </p> -->
+                        <p><b style='color:black'>日期: ${nowcourse.courseBean.date}</b></p>
+                        <p><b style='color:black'>時間: ${nowcourse.courseBean.starttime} ~ ${nowcourse.courseBean.endtime}</b></p>
+                        <p><b style='color:black'>教室: ${nowcourse.courseBean.location}</b></p>
                     </div>
                 </div>
             </div>
@@ -117,44 +94,77 @@ function bookfunction(){
         </div>
     </section>
     <hr style="height:1px;border:none;color:#333;background-color:#333;">
-    <section class="container">
-        <div class="row">
+<!--     <section class="container"> -->
+<!--         <div class="row"> -->
+        <table style="width:1150px;margin:30px auto;">
+    	<thead>
+    		<tr style="background-color: gray; height:30px;">
+    			<th class="table-header" style="width:200px;"></th>
+    			<th class="table-header" style="width:400px;color:black;">課程</th>
+    			<th class="table-header" style="width:400px;color:black;">上課日期</th>
+    			<th class="table-header" style="width:400px;color:black;">上課時間</th>    			
+    			<th class="table-header" style="color:black;">教室</th>
+    			<th class="table-header" style="width:100px;">教練</th>
+    			<th class="table-header" style="width:100px;">操作</th>
+    		</tr>
+    	</thead>
+       
         <c:forEach var='course' items='${mycourses}'>
-            <div class="col-sm-6 col-md-3" style="width: 360px; height: 360px">
-                <div class="thumbnail" style="width: 320px; height: 330px">
-<%--                 <img  width='100' height='200' src="<c:url value='/getPicture/${course.courseId}'/>" /> --%>
-                    <div class="caption">
-                    <img width='264px' src="<c:url value='/getCPicture/${course.courseBean.courseId}'/>" />
-                        <p>
-                        <a href="<c:url value='/course?id=${course.courseBean.courseId}'/>"><b style='font-size: 20px;'> ${course.courseBean.title}</b></a>
-<%--                         <a href="<c:url value='/course?id=${course.courseBean.courseId}'/>">he</a> --%>
-<%--                             <b style='font-size: 20px;'>${course.courseBean.title}</b> --%>
-                        </p>
-                        <p>日期: ${course.courseBean.date}</p>
-                        <p>時段: ${course.courseBean.starttime} ~ ${course.courseBean.endtime}</p>
-                        <p>教室: ${course.courseBean.location}</p>
-<%--                         <p>教練:${course.c_id}</p> --%>
-<%--                         <p>分類:${course.c_category}</p> --%>
-                        <p><a href="<c:url value='/unbooking/course?id=${course.id}'/>" class="btn btn-dark" onclick="return bookfunction()">
-                        <span class="glyphicon-info-sigh glyphicon"></span>取消預約
-                        </a>
-                        
-<%--                         <a href="<c:url value='course?id=${course.courseId}'/>" class="btn btn-primary"> --%>
-<!--                         <span class="glyphicon-info-sigh glyphicon"></span>詳細資訊 -->
-<!--                         </a></p> -->
-<%--                         <a href="<spring:url value='product.json?id=${product.bookId}' />"    --%>
-<!-- 								class="btn btn-primary">  -->
-<!-- 								<span class="glyphicon-info-sigh glyphicon"></span>JSON -->
-<!-- 							</a> -->
+			<tr>
+				<td><img width='200px'
+					src="<c:url value='/getCPicture/${course.courseBean.courseId}'/>" /></td>
+				<td class="table-body" style="width: 350px;">
+					<div>
+						<a style="color: black;"
+							href="<c:url value='/course?id=${course.courseBean.courseId}'/>"
+							onmouseover="this.style.color='orange'"
+							onmouseout="this.style.color='black'"><b
+							style='font-size: 20px;'> ${course.courseBean.title}</b></a>
+					</div>
+				</td>
+				<td><b style='font-size: 20px;'>${course.courseBean.date}</b></td>
+				<td>${course.courseBean.starttime}~
+					${course.courseBean.endtime}</td>
+				<td class="table-body" style="width: 150px;">
+					<div width="150px">
+						${course.courseBean.location}
+					</div>
+				</td>
+				<td class="table-body">${course.courseBean.courseCoachBean.name}</td>
+				<td class="table-body">
+					<div>
+						<a href="<c:url value='/unbooking/course?id=${course.id}'/>"
+							class="btn btn-dark" onclick="return bookfunction()"> <span
+							class="glyphicon-info-sigh glyphicon"></span>取消預約
+						</a>
+					</div>
+				</td>
+
+
+			</tr>
+			<!--             <div class="col-sm-6 col-md-3" style="width: 360px; height: 360px"> -->
+<!--                 <div class="thumbnail" style="width: 320px; height: 330px"> -->
+<!--                     <div class="caption"> -->
+<%--                     <img width='264px' src="<c:url value='/getCPicture/${course.courseBean.courseId}'/>" /> --%>
+<!--                         <p> -->
+<%--                         <a href="<c:url value='/course?id=${course.courseBean.courseId}'/>"><b style='font-size: 20px;'> ${course.courseBean.title}</b></a> --%>
 <!--                         </p> -->
-                    </div>
-                </div>
-            </div>
+<%--                         <p>日期: ${course.courseBean.date}</p> --%>
+<%--                         <p>時段: ${course.courseBean.starttime} ~ ${course.courseBean.endtime}</p> --%>
+<%--                         <p>教室: ${course.courseBean.location}</p> --%>
+<%--                         <p><a href="<c:url value='/unbooking/course?id=${course.id}'/>" class="btn btn-dark" onclick="return bookfunction()"> --%>
+<!--                         <span class="glyphicon-info-sigh glyphicon"></span>取消預約 -->
+<!--                         </a> -->
+                        
+<!--                     </div> -->
+<!--                 </div> -->
+<!--             </div> -->
             </c:forEach>
-        </div>
+            </table>
+<!--         </div> -->
         
         
-    </section>
+<!--     </section> -->
     
     
     
@@ -166,50 +176,60 @@ function bookfunction(){
             </div>
         </div>
     </section>
-<!--     <div align="right"> -->
-<%--     <p><a href="<c:url value='/courses/mycourses'/>" class="btn btn-primary"> --%>
-<!--     <span class="glyphicon-info-sigh glyphicon"></span>我的課程 -->
-<!--     </a> -->
-<%--     <a href="<c:url value='/courses'/>" class="btn btn-primary"> --%>
-<!--     <span class="glyphicon-info-sigh glyphicon"></span>課程列表 -->
-<!--     </a></p> -->
-<!--     </div> -->
     <hr style="height:1px;border:none;color:#333;background-color:#333;">
-    <section class="container">
-        <div class="row">
+<!--     <section class="container"> -->
+<!--         <div class="row"> -->
+<table style="width:1150px;margin:30px auto;">
+    	<thead>
+    		<tr style="background-color: gray; height:30px;">
+    			<th class="table-header" style="width:200px;"></th>
+    			<th class="table-header" style="width:400px;color:black;">課程</th>
+    			<th class="table-header" style="width:400px;color:black;">上課日期</th>
+    			<th class="table-header" style="width:400px;color:black;">上課時間</th>    			
+    			<th class="table-header" style="color:black;">價格</th>
+    			<th class="table-header" style="width:100px;">教練</th>
+    			<th class="table-header" style="width:100px;">狀態</th>
+    		</tr>
+    	</thead>
         <c:forEach var='fcourse' items='${finishedlist}'>
-            <div class="col-sm-6 col-md-3" style="width: 360px; height: 320px">
-                <div class="thumbnail" style="width: 320px; height: 300px">
-                <img  width='264' src="<c:url value='/getCPicture/${fcourse.courseBean.courseId}'/>" />
-                    <div class="caption">
-                        <p>
-                            <b style='font-size: 20px;'>${fcourse.courseBean.title}</b>
-                        </p>
-                        <p>日期: ${fcourse.courseBean.date}</p>
-                        <p>時段: ${fcourse.courseBean.starttime} ~ ${fcourse.courseBean.endtime}</p>
-                        <p>教室: ${fcourse.courseBean.location}</p>
-<%--                         <p>教練:${course.c_id}</p> --%>
-<%--                         <p>分類:${course.c_category}</p> --%>
-<%--                         <p><a href="<c:url value='/unbooking/course?id=${course.id}'/>" class="btn btn-primary" onclick="return bookfunction()"> --%>
-<!--                         <span class="glyphicon-info-sigh glyphicon"></span>取消預約 -->
-<!--                         </a> -->
-                        
-<%--                         <a href="<c:url value='course?id=${course.courseId}'/>" class="btn btn-primary"> --%>
-<!--                         <span class="glyphicon-info-sigh glyphicon"></span>詳細資訊 -->
-<!--                         </a></p> -->
-<%--                         <a href="<spring:url value='product.json?id=${product.bookId}' />"    --%>
-<!-- 								class="btn btn-primary">  -->
-<!-- 								<span class="glyphicon-info-sigh glyphicon"></span>JSON -->
-<!-- 							</a> -->
+        <tr>
+				<td><img width='200px'
+					src="<c:url value='/getCPicture/${fcourse.courseBean.courseId}'/>" /></td>
+				<td class="table-body" style="width: 350px;">${fcourse.courseBean.title}</td>
+				<td>${fcourse.courseBean.date}</td>
+				<td>${fcourse.courseBean.starttime}~
+					${fcourse.courseBean.endtime}</td>
+				<td class="table-body" style="width: 150px;">
+					<div width="150px">
+						${fcourse.courseBean.price}
+					</div>
+				</td>
+				<td class="table-body">${fcourse.courseBean.courseCoachBean.name}</td>
+				<td>已完成</td>
+
+			</tr>
+<!--             <div class="col-sm-6 col-md-3" style="width: 360px; height: 320px"> -->
+<!--                 <div class="thumbnail" style="width: 320px; height: 300px"> -->
+<%--                 <img  width='264' src="<c:url value='/getCPicture/${fcourse.courseBean.courseId}'/>" /> --%>
+<!--                     <div class="caption"> -->
+<!--                         <p> -->
+<%--                             <b style='font-size: 20px;'>${fcourse.courseBean.title}</b> --%>
 <!--                         </p> -->
-                    </div>
-                </div>
-            </div>
+<%--                         <p>日期: ${fcourse.courseBean.date}</p> --%>
+<%--                         <p>時段: ${fcourse.courseBean.starttime} ~ ${fcourse.courseBean.endtime}</p> --%>
+<%--                         <p>教室: ${fcourse.courseBean.location}</p> --%>
+<!--                     </div> -->
+<!--                 </div> -->
+<!--             </div> -->
             </c:forEach>
-        </div>
+<!--         </div> -->
         
-        
-    </section>
+        </table>
+<!--     </section> -->
+
+<!--     頁尾 -->
+    <jsp:include page="/fragment/footer.jsp" />
+
 </body>
 </html>
     

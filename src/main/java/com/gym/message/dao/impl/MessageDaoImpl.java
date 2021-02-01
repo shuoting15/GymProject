@@ -154,6 +154,15 @@ public class MessageDaoImpl implements MessageDao {
 		return mb;
 	}
 
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<MessageBean> getAllMessageByTime() {
+		Session session = factory.getCurrentSession();
+		String hql = "From MessageBean order by time desc";
+		return session.createQuery(hql).getResultList();
+		
+	}
+
 	
 	
 }

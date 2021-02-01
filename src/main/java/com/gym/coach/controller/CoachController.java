@@ -88,12 +88,6 @@ public class CoachController {
 			 i.setMonthrevenue(monthrevenue);
 			 i.setMonthrevenuePercent(monthrevenue*100/allmonthrevenue);
 		}
-		
-		
-		
-		
-		
-		
 		model.addAttribute("coachs", list);
 		model.addAttribute("allmonthrevenue", allmonthrevenue);
 		model.addAttribute("alltotalrevenue", alltotalrevenue);
@@ -115,25 +109,34 @@ public class CoachController {
 			monthConsumeInCoach = customerService.monthCaochConsumeByMemberId(memberId,coachId);
 			i.setMonthConsumeInCoach(monthConsumeInCoach);
 		}
-		
-		
-		
-		
-		
-		
-		
 		model.addAttribute("members", list);
 		model.addAttribute("coach", service.getCoachById(coachId));
-		
-		
-		
-		
-		
-		
-		
-		
 		return "coach/customerManage";
 	}
+	//教練顧客管理api
+	@PostMapping(value = "/customerManageapi", produces = "text/html;charset=UTF-8")
+	@ResponseBody
+	public String customerManageapi(@RequestParam("coachId") int coachId,Model model) {
+		List<MemberBean> list = memberService.selectAll();
+		String memberId;
+		int  totalConsumeInCoach;
+		int  monthConsumeInCoach;
+		for (MemberBean i: list) {
+			memberId = i.getMember_id();
+			totalConsumeInCoach = customerService.totalCaochConsumeByMemberId(memberId,coachId);
+			i.setTotalConsumeInCoach(totalConsumeInCoach);
+			monthConsumeInCoach = customerService.monthCaochConsumeByMemberId(memberId,coachId);
+			i.setMonthConsumeInCoach(monthConsumeInCoach);
+		}
+		Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd").disableHtmlEscaping().create();
+		return gson.toJson(list);
+	}
+	
+	
+	
+	
+	
+	
 	// 後臺教練展示
 	@GetMapping("/coachMaintain")
 	public String Maintainlist(Model model) {
@@ -142,14 +145,14 @@ public class CoachController {
 		model.addAttribute("coachs", service.getAllCoachs());
 		return "coach/coachsMaintain";
 	}
-
+	//單個教練展示
 	@GetMapping(value = "/coach")
 	public String getCoachById(Model model,@RequestParam("id") int id ) {
 
 		model.addAttribute("coach", service.getCoachById(id));
 		return "coach/coach";
 	}
-
+	//顯示新增教練表單
 	@PostMapping("/coachs/add")
 	public String processAddNewProductForm(@ModelAttribute("coachBean") CoachBean bb, BindingResult result) {
 		
@@ -204,14 +207,14 @@ public class CoachController {
 		}
 		return "redirect:/coachMaintain";
 	}
-
+	//新增教練
 	@GetMapping("/coachs/add")
 	public String getAddNewProductForm(Model model) {
 		CoachBean coachBean = new CoachBean();
 		model.addAttribute("coachBean", coachBean);
 		return "coach/addCoach";
 	}
-
+	//顯示教練照片
 	@RequestMapping(value = "/getPicture/{coachId}", method = RequestMethod.GET)
 	public ResponseEntity<byte[]> getPicture(HttpServletResponse resp, @PathVariable Integer coachId) {
 		String filePath = "/resources/images/NoImage.jpg";
@@ -268,19 +271,19 @@ public class CoachController {
 		}
 		return b;
 	}
-
+	//顯示修改教練畫面
 	@GetMapping("coachUpdate/{coachId}")
 	public String showUpdateForm(Model model, @PathVariable Integer coachId) {
 		model.addAttribute("coachBean", service.getCoachById(coachId));
 		return "coach/coachUpdate";
 	}
-
+	//刪除教練
 	@PostMapping("/coachDelete")
 	public String deleteBook(@RequestParam Integer coachId) {
 		service.deleteCoach(coachId);
 		return "redirect:/coachMaintain";
 	}
-
+	//修改教練
 	@PostMapping("coachUpdate/{coachId}")
 	public String updateCoach(@ModelAttribute CoachBean bean, Model model, BindingResult result,
 			RedirectAttributes redirectAttributes) {
@@ -312,11 +315,12 @@ public class CoachController {
 		redirectAttributes.addFlashAttribute("SUCCESS", "修改成功!!!");
 		return "redirect:/coachMaintain";
 	}
-
+	//傳出專業表
 	@ModelAttribute("expertiseList")
 	public List<String> getExpertiseList() {
 		return service.getAllExpertise();
 	}
+	//用專業分類教練
 	@PostMapping(value="/getCoachsByExpertise",produces="text/html;charset=UTF-8")
 	@ResponseBody
 	public String getCoachsByExpertise(@RequestParam("coachExpertise") String coachExpertise){
@@ -324,6 +328,7 @@ public class CoachController {
 		return gson.toJson(service.getCoachsByExpertise(coachExpertise));
 		
 	}
+	//模糊搜尋
 	@PostMapping(value="/getCoachsByFuzzySearch",produces="text/html;charset=UTF-8")
 	@ResponseBody
 	public String getCoachsByFuzzySearch(@RequestParam("any") String any){
