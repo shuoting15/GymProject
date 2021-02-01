@@ -445,106 +445,42 @@
     <!-- Newslater Section Starts Here -->
     <!-- Newslater Section Ends Here -->
     <!-- Blog Section Starts Here -->
-        <section class="expert-trainers padding-bottom padding-top">
-        <div class="container">
-            <div class="section-header-wrapper">
-                <div class="section-header">
-                    <h2 class="title">
-                        最新教學
-                    </h2>
-                    <p> 各種影片教學，只怕你不看</p>
-                </div>
-                <div class="common-navigation d-flex ">
-                    <div class="common-prev navigation"><i class="fas fa-angle-left"></i></div>
-                    <div class="common-next active navigation"><i class="fas fa-angle-right"></i></div>
-                </div>
-            </div>
-            <div class="expert-slider">
-            <div class="swiper-wrapper">
-            <c:forEach var='news' items='${news}'>
-                    <div class="swiper-slide">
-                        <div class="expert-item">
-                            <div class="expert-thumb">
-                                <a href="trainers.html"><img src="<c:url value='/getNewsPicture/${news.newsId}'/>"  style="width: 500px;height: 450px"  alt="trainers"></a>
-                            </div>
-                            <div class="expert-content">
-                                <div class="expert-infonews">
-                                    <h4 class="sub-title"><a href="<c:url value='/newsone?id=${news.newsId}'/>">${news.newsTitle}</a></h4>
-                                    <span>${news.coachBean.coachName}</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-               </c:forEach>
-                </div>
-            </div>
-        </div>
-    </section>
+
     
-    <section class="blog-section padding-bottom padding-top">
+     <section class="blog-section padding-bottom padding-top">
         <div class="container">
             <div class="section-header">
                 <h2 class="title">
-                    
+                    最新教學
                 </h2>
-                <p> </p>
-                <div class="common-navigation d-flex ">
-                    <div class="common-prev navigation"><i class="fas fa-angle-left"></i></div>
-                    <div class="common-next active navigation"><i class="fas fa-angle-right"></i></div>
-                </div>
+                <p>各種影片教學，只怕你不看</p>
             </div>
-            
-                
-                
             <div class="row mb-30-none justify-content-center blog-section-wrapper">
+                <c:forEach var='news' items='${news}' begin="0" end="2">
                 <div class="col-xl-4 col-md-6">
                     <div class="post-item">
                         <div class="post-thumb">
-                            <a href="blog-details.html"><img src="assets/images/blog/01.jpg" alt="blog"></a>
+                                    <a href="blog-details.html"><img src="<c:url value='/getNewsPicture/${news.newsId}'/>" alt="blog"></a>
                         </div>
                         <div class="post-content">
-                            <h4 class="title"><a href="blog-details.html">fringilla scelerisque over the game to industry</a></h4>
-                            <p>mauris elementum eget, ingererat donec, vestibulum felis. Ruomauris enim volutpat nec nispdonec,vlum felis. Rutrum odio</p>
+                            <h4 class="title"><a href="blog-details.html">${news.newsTitle}</a></h4>
+                            <p>${news.newsContent}</p>
                             <div class="meta-post d-flex justify-content-between">
-                                <span>Posted By <a href="#">Admin</a></span><span><a href="#">22 may 2019</a></span>
+                                <span>Posted By <a href="<c:url value='/getNewsPicture/${news.newsId}'/>">${news.coachBean.coachName}</a></span><span><a href="<c:url value='/getNewsPicture/${news.newsId}'/>">${news.newsUploadTime}</a></span>
                             </div>
                             <a href="blog.html" class="blog-button"><i class="fas fa-link"></i></a>
+                        
                         </div>
                     </div>
+                
                 </div>
-                <div class="col-xl-4 col-md-6">
-                    <div class="post-item">
-                        <div class="post-thumb">
-                            <a href="blog-details.html"><img src="assets/images/blog/02.jpg" alt="blog"></a>
-                        </div>
-                        <div class="post-content">
-                            <h4 class="title"><a href="blog-details.html">fringilla scelerisque over the game to industry</a></h4>
-                            <p>mauris elementum eget, ingererat donec, vestibulum felis. Ruomauris enim volutpat nec nispdonec,vlum felis. Rutrum odio</p>
-                            <div class="meta-post d-flex justify-content-between">
-                                <span>Posted By <a href="#">Admin</a></span><span><a href="#">22 may 2019</a></span>
-                            </div>
-                            <a href="blog.html" class="blog-button"><i class="fas fa-link"></i></a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xl-4 col-md-6">
-                    <div class="post-item">
-                        <div class="post-thumb">
-                            <a href="blog-details.html"><img src="assets/images/blog/03.jpg" alt="blog"></a>
-                        </div>
-                        <div class="post-content">
-                            <h4 class="title"><a href="blog-details.html">fringilla scelerisque over the game to industry</a></h4>
-                            <p>mauris elementum eget, ingererat donec, vestibulum felis. Ruomauris enim volutpat nec nispdonec,vlum felis. Rutrum odio</p>
-                            <div class="meta-post d-flex justify-content-between">
-                                <span>Posted By <a href="#">Admin</a></span><span><a href="#">22 may 2019</a></span>
-                            </div>
-                            <a href="blog.html" class="blog-button"><i class="fas fa-link"></i></a>
-                        </div>
-                    </div>
-                </div>
+
+                </c:forEach> 
             </div>
+           
         </div>
     </section>
+    
     <jsp:include page="/fragment/footer.jsp" />
     <!-- Blog Section Ends Here -->
     <!-- Sponsor Slider Section Starts Here -->
