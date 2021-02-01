@@ -224,14 +224,53 @@ body {
 		data-setbg="../images/shop.png" style="height: 320px;">
 		<div class="container">
 			<div class="row">
-				<div class="col-lg-12 text-center">
+<!-- 				<div class="col-lg-12 text-center"> -->
+<!-- 					<div class="breadcrumb__text"> -->
+<!-- 						<h2>GYM SHOP</h2> -->
+<!-- 						<div class="breadcrumb__option"> -->
+<!-- 							<span>滿三千折100，限時活動中</span> -->
+<!-- 						</div> -->
+<!-- 					</div> -->
+<!-- 				</div> -->
+<div class="col-lg-12 text-center">
 					<div class="breadcrumb__text">
 						<h2>GYM SHOP</h2>
 						<div class="breadcrumb__option">
-							<span>滿三千折100，限時活動中</span>
+<!-- 							<span>滿三千折100，限時活動中</span> -->
+
+							<button type="button" style="background-color:#7fad39;border-color:#7fad39" class="btn btn-primary" data-toggle="modal"
+								data-target="#exampleModalCenter">折扣碼抽抽樂</button>
 						</div>
+						<!-- Modal -->
+						<div class="modal fade" id="exampleModalCenter" tabindex="-1"
+							role="dialog" aria-labelledby="exampleModalCenterTitle"
+							aria-hidden="true">
+							<div class="modal-dialog modal-dialog-centered" role="document">
+								<div class="modal-content">
+									<div class="modal-header">
+										<h5 class="modal-title" id="exampleModalCenterTitle">折扣碼抽抽樂</h5>
+										<button type="button" class="close" data-dismiss="modal"
+											aria-label="Close">
+											<span aria-hidden="true">&times;</span>
+										</button>
+									</div>
+									<div class="modal-body">
+										<canvas id="canvas" width="400" height="400"></canvas>
+									</div>
+									<div class="modal-footer">
+										<button type="button" class="btn btn-secondary"
+											data-dismiss="modal">Close</button>
+<!-- 										<button type="button" class="btn btn-primary">Save -->
+<!-- 											changes</button> -->
+									</div>
+								</div>
+							</div>
+						</div>
+						<!-- Modal -->
 					</div>
 				</div>
+
+
 			</div>
 		</div>
 	</section>
@@ -538,6 +577,7 @@ body {
 	<script src="../js/mixitup.min.js"></script>
 	<script src="../js/owl.carousel.min.js"></script>
 	<script src="../js/main.js"></script>
+	<script src="../js/rotate.js"></script>
 
 	<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
 		integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
