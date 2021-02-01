@@ -77,7 +77,7 @@
 							href="<c:url value="/logout"/>" class="headerButton logout"
 							id="toplogout">會員登出</a></li>
 						<li><span style='color: #336666; font-weight: bold'>${LoginOK.point}</span><a
-							href="memberarea"><img src="images/point.png" alt=""></a></li>
+							href="memberarea"><img src="<c:url value="/images/point.png"/>" alt=""></a></li>
 
 						<c:choose>
 							<c:when test="${ShoppingCart.itemNumber > 0}">
