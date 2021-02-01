@@ -198,7 +198,7 @@ window.onload = function() {
 		<div class="row justify-content-between">
 			<!-- 搜尋 -->
 			<div class="blog__sidebar__search" style="margin-bottom: 20px">
-				<form action="/mvcExercise/productMaintain/productFuzzy"
+				<form action="<c:url value="/productMaintain/productFuzzy"/>"
 					method="post">
 					<input type="text" placeholder="Search..." name="keyword">
 					<button type="submit">
