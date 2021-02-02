@@ -305,7 +305,8 @@
 									<option value="內容過少">內容過少</option>
 									</select>
 									
-										<input style="width:450px"  type="text" id="reportbox" placeholder="請輸入內容...."></input>
+										<input style="width:450px"  type="text" id="reportbox" placeholder="請輸入內容...." onblur="doBlur3()"></input><span 
+											id="reportsp">  </span>
 									</div>
 									<div class="modal-footer">
 										<button  type="button" class="btn btn-secondary"
@@ -318,6 +319,24 @@
 						</div>
 						
 						<script type="text/javascript">
+						
+						function doBlur3(){
+							var theIdObj = document
+									.getElementById("reportbox");
+							var theIdObjVal = theIdObj.value;
+							var LenId = theIdObjVal.length;
+							var spanId = document.getElementById("reportsp")
+							if (theIdObjVal == "") {
+								spanId.innerHTML = "   不可空白";
+								spanId.style="color:red"
+							} else if (LenId < 5) {
+								spanId.innerHTML = "   內容最少5個字";
+								spanId.style="color:red"
+							} else {
+								spanId.innerHTML = "  符合";
+								spanId.style="color:green"
+							}
+						}
 						
 						$("#reportbtn").click(function() {
 								$.ajax({
@@ -347,6 +366,7 @@
 	<!-- Blog Section End -->
 
 	<!-- Js Plugins -->
+	
 	<script src="js/jquery-3.3.1.min.js"></script>
 	<script src="js/bootstrap.min.js"></script>
 	<script src="js/jquery.nice-select.min.js"></script>
