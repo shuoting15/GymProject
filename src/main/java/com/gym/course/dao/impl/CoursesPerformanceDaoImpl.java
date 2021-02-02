@@ -69,9 +69,18 @@ public class CoursesPerformanceDaoImpl implements CoursesPerformanceDao {
 
 	@Override
 	public List<CourseBean> getCoursesCountsByCategory(String category) {
-		String hql = "from CourseBean c where c.category = :category";
+		String hql = "from CourseBean c where c.category = :category and c.endtime < getdate()";
 		Session session = factory.getCurrentSession();
 		return session.createQuery(hql).setParameter("category", category).getResultList();
 	}
+
+	@Override
+	public List<CourseBean> getMonthCoursesCountsByCategory(String category) {
+		String hql = "from CourseBean c where c.category = :category and c.endtime < getdate() and datediff(mm,date,getdate())=0";
+		Session session = factory.getCurrentSession();
+		return session.createQuery(hql).setParameter("category", category).getResultList();
+	}
+	
+	
 
 }

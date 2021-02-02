@@ -7,6 +7,7 @@ import com.gym.message.model.MessageBean;
 public interface MessageService {
 	List<MessageBean> getAllMessage();
 
+	List<MessageBean>	getAllMessageByTime();
 
 	List<String> getAllKanbanName();
 

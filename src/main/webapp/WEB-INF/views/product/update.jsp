@@ -20,15 +20,15 @@
 
 <!-- Css Styles -->
 <link rel="stylesheet" href="../css/bootstrap.min.css" type="text/css">
-<link rel="stylesheet" href="/mvcExercise/css/font-awesome.min.css"
+<link rel="stylesheet" href="/GymProject/css/font-awesome.min.css"
 	type="text/css">
-<link rel="stylesheet" href="/mvcExercise/css/elegant-icons.css" type="text/css">
+<link rel="stylesheet" href="/GymProject/css/elegant-icons.css" type="text/css">
 <link rel="stylesheet" href="../css/nice-select.css" type="text/css">
-<link rel="stylesheet" href="/mvcExercise/css/jquery-ui.min.css" type="text/css">
+<link rel="stylesheet" href="/GymProject/css/jquery-ui.min.css" type="text/css">
 <link rel="stylesheet" href="../css/owl.carousel.min.css"
 	type="text/css">
 <link rel="stylesheet" href="../css/slicknav.min.css" type="text/css">
-<link rel="stylesheet" href="/mvcExercise/css/style.css" type="text/css">
+<link rel="stylesheet" href="/GymProject/css/style.css" type="text/css">
 
 </head>
 <body>

@@ -63,38 +63,36 @@
 								<p class="article_content_newsco">擅長項目:
 									${newsone.coachBean.coachExpertiseOne}/${newsone.coachBean.coachExpertiseTwo}/${newsone.coachBean.coachExpertiseThree}</p>
 								<p class="newslink">
-									<button class="btn btn-secondary btn-lg">
-										<a href="<spring:url value='/news' />" class="btn btn-default">
-											<span class="glyphicon-hand-left glyphicon"></span>返回
-										</a>
-									</button>
-									<button class="btn btn-lg btn-primary">
-										<a
-										
-											href="<spring:url value="/addintoplay${LoginOK.member_id}${newsone.newsId}"/>"
-											class="btn btn-default"> <span
-											class="glyphicon-hand-left glyphicon"></span>加入我的撥放清單
-										</a>
-									</button>
-
-<!-- 									<form:form method='POST' modelAttribute="newsone" -->
-<!-- 										class='form-horizontal' enctype="multipart/form-data"> -->
-<!-- 										<form:hidden path='newsViews' value= /> -->
-<!-- 									</form:form> -->
-<!-- 									<a -->
-<%-- 										href="<spring:url value='/updatenewsone?id=${newsone.newsId}'/>" --%>
+									<button class="btn btn-secondary">													
+									<a href="<spring:url value='/newsmodify' />" class="btn btn-default">
+										<span class="glyphicon-hand-left glyphicon"></span>返回
+									</a></button>&emsp; &emsp; &emsp; 
+<!-- 									<button class="btn btn-lg btn-primary">	<a -->
+<%-- 										href="<spring:url value='/addintoplaylist?id=${newsone.newsId}'/>" --%>
 <!-- 										class="btn btn-default"> <span -->
-<!-- 										class="glyphicon-hand-left glyphicon"></span>修改 -->
-<!-- 									</a> -->
-
-<!-- 																<input type='submit' value='delete' name='deleteBtn'  > -->
-<!-- 									<a -->
-<%-- 										href="<spring:url value='/deletenewsbyId?id=${newsone.newsId}'/>" --%>
-<!-- 										class="btn btn-default"> <span -->
-<!-- 										class="glyphicon-hand-left glyphicon"></span>刪除 -->
-<!-- 									</a> -->
+<!-- 										class="glyphicon-hand-left glyphicon"></span>加入我的撥放清單 -->
+<!-- 									</a></button> -->
+									
+									<form:form method='POST' modelAttribute="newsone" class='form-horizontal' enctype="multipart/form-data">
+										<form:hidden path='newsViews' value=${newsone.newsViews} />
+									</form:form>
+									<button class="btn btn-warning">
+									<a
+										href="<spring:url value='/updatenewsone?id=${newsone.newsId}'/>"
+										class="btn btn-default"> <span
+										class="glyphicon-hand-left glyphicon"></span>修改
+									</a>
+									</button>&emsp; &emsp; &emsp; 
+								
+									<!-- 							<input type='submit' value='delete' name='deleteBtn'  > -->
+									<button class="btn btn-danger">
+									<a
+										href="<spring:url value='/deletenewsbyId?id=${newsone.newsId}'/>"
+										class="btn btn-default"> <span
+										class="glyphicon-hand-left glyphicon"></span>刪除
+									</a>
 									</td>
-
+										</button>						
 								</p>
 							</div>
 							</div>
@@ -105,35 +103,35 @@
 				</div>
 				
 				
-				<div class="col-lg-4">
+<div class="col-lg-4">
 					<aside class="sidebar">
-<!-- 						<div class="input-group mb-3"> -->
-<!-- 							<form class="widget-form" action="searchnews" id="w1" placeholder="Search in here" -->
-<!-- 								method="post"> -->
-<!-- 								<input type="text" placeholder="請輸入關鍵字" name="newskw" class="form-control" aria-describedby="sidebar-search"> -->
-								
-<!-- 								<button type="submit" class="btn btn-outline-secondary" id="sidebar-search"> -->
-<!-- 								Search -->
-									
-<!-- 								</button> -->
-<!-- 							</form> -->
+					<form class="widget-form" action="searchnewsmodify" id="w1" placeholder="Search in here"
+								method="post">
+						<div class="input-group mb-3">
+							
+								<input type="text" placeholder="請輸入關鍵字" name="newskw" class="form-control" aria-describedby="sidebar-search">
+								<div class="input-group-append">
+								<button type="submit" class="btn btn-outline-secondary" id="sidebar-search" >
+								Search								
+								</button>	</div>
+							
 
-<!-- 						</div> -->
+						</div></form>
 
 						
-						<div class="widget widget-category">
-							<div class="card category-sidebar">
-								<div class="card-header">常用功能</div>
-								<ul class="list-group list-group-flush">
-									<li class="list-group-item"><a
-										href="<c:url value='/news'/>">全部文章</a></li>
-									<li class="list-group-item"><a
-										href="<c:url value='/newsviews'/>">熱門排行</a></li>
-									<li class="list-group-item"><a
-										href="<c:url value='/queryNewsByCategory'/>">分類查詢</a></li>
-								</ul>
-							</div>
-						</div>
+<!-- 						<div class="widget widget-category"> -->
+<!-- 							<div class="card category-sidebar"> -->
+<!-- 								<div class="card-header">常用功能</div> -->
+<!-- 								<ul class="list-group list-group-flush"> -->
+<!-- 									<li class="list-group-item"><a -->
+<%-- 										href="<c:url value='/news'/>">全部文章</a></li> --%>
+<!-- 									<li class="list-group-item"><a -->
+<%-- 										href="<c:url value='/newsviews'/>">熱門排行</a></li> --%>
+<!-- 									<li class="list-group-item"><a -->
+<%-- 										href="<c:url value='/queryNewsByCategory'/>">分類查詢</a></li> --%>
+<!-- 								</ul> -->
+<!-- 							</div> -->
+<!-- 						</div> -->
 
 					</aside>
 				</div>

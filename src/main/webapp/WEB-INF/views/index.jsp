@@ -23,7 +23,7 @@
     
     <link rel="shortcut icon" href="images/favicon.png" type="image/x-icon">
     <link rel="stylesheet" href="css/stylecoach.css">
-    
+        <link rel="stylesheet" href="css/news.css">
 
     <title>Gymio - Fitness and Gym HTML Template</title>
 
@@ -41,80 +41,15 @@
 			</h3>
 		</div>
 	</section>
-
-    <section class="body-building-section padding-top padding-bottom">
-        <div class="container">
-            <div class="body-building-slider">
-                <div class="swiper-wrapper">
-                    <div class="swiper-slide">
-                        <div class="body-building-item">
-                            <div class="body-building-inner">
-                                <div class="body-building-thumb">
-                                    <a href="classes.html">
-                                        <img src="assets/images/body-builder/01.jpg" alt="body-builder">
-                                    </a>
-                                </div>
-                                <div class="body-building-content">
-                                    <div class="building-content">
-                                        <h4 class="title"><a href="classes.html">Body Building</a></h4>
-                                    </div>
-                                    <div class="building-category">
-                                        <img src="assets/images/body-builder/01.png" alt="body-builder">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="swiper-slide">
-                        <div class="body-building-item">
-                            <div class="body-building-inner">
-                                <div class="body-building-thumb">
-                                    <a href="classes.html">
-                                        <img src="assets/images/body-builder/02.jpg" alt="body-builder">
-                                    </a>
-                                </div>
-                                <div class="body-building-content">
-                                    <div class="building-content">
-                                        <h4 class="title"><a href="classes.html">weight lifting</a></h4>
-                                    </div>
-                                    <div class="building-category">
-                                        <img src="assets/images/body-builder/02.png" alt="body-builder">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="swiper-slide">
-                        <div class="body-building-item">
-                            <div class="body-building-inner">
-                                <div class="body-building-thumb">
-                                    <a href="classes.html">
-                                        <img src="assets/images/body-builder/03.jpg" alt="body-builder">
-                                    </a>
-                                </div>
-                                <div class="body-building-content">
-                                    <div class="building-content">
-                                        <h4 class="title"><a href="classes.html">cycling & cardio</a></h4>
-                                    </div>
-                                    <div class="building-category">
-                                        <img src="assets/images/body-builder/03.png" alt="body-builder">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="body-building-pagination text-center">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </div>
-            </div>
-        </div>
-    </section>
     <!-- Body Building Slider Section Ends Here -->
+    
+    <!-- MealSystem start-->
+	
+	<!-- MealSystem end -->
+    
     <!-- About Counter Section Starts Here -->
-    <section class="about-counter padding-bottom">
+ 
+    <section class="about-counter padding-bottom" style="margin-top: 100px">
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-lg-6 ">
@@ -257,258 +192,72 @@
                 </div>
             </div>
         </div>
-    </section>
-    <!-- Expert Section Ends Here -->
-    <!-- Schedule Section Starts Here -->
-    <section class="schedule-section padding-bottom">
-        <div class="container">
-            <div class="schedule-wrapper bg_img" data-background="./assets/images/schedule/schedule--bg.png">
-                <div class="schedule-header text-center">
-                    <h3 class="title text-md-left">
-                        團課時間
-                    </h3>
-                    <p class="text-md-right">courses schedule will be change by instructor</p>
-                </div>
-                <table class="schedule-table" role="table">
-                    <thead role="rowgroup">
-                        <tr role="row">
-                            <th role="columnheader">Course Name</th>
-                            <th role="columnheader">Course Duration</th>
-                            <th role="columnheader">Class Time</th>
-                            <th role="columnheader">Instructor</th>
-                            <th role="columnheader">Note</th>
-                        </tr>
-                    </thead>
-                    <tbody role="rowgroup">
-                        <tr role="row">
-                            <td role="cell" data-input="Course Name">Weight Loss</td>
-                            <td role="cell" data-input="Course Duration">06 Mounth</td>
-                            <td role="cell" data-input="Course Time">
-                                <span class="class-date">Satday to Monday</span>
-                                <span class="class-time">10.00 am - 02.00 pm</span>
-                            </td>
-                            <td role="cell" data-input="Instructor">
-                                <div class="instructor">
-                                    <div class="thumb">
-                                        <a href="#"><img src="assets/images/schedule/01.png" alt="schedule"></a>
-                                    </div>
-                                    <div class="content">
-                                        <a href="#">shijika loo</a>
-                                        <span>weight loss expert</span>
-                                        <span>call - 0147854145</span>
-                                    </div>
-                                </div>
-                            </td>
-                            <td role="cell" data-input="Note">pellentesque odio qu amet ut amet morbi </td>
-                        </tr>
-                        <tr role="row">
-                            <td role="cell" data-input="Course Name">Meditation</td>
-                            <td role="cell" data-input="Course Duration">08 Mounth</td>
-                            <td role="cell" data-input="Course Time">
-                                <span class="class-date">Satday to Monday</span>
-                                <span class="class-time">10.00 am - 02.00 pm</span>
-                            </td>
-                            <td role="cell" data-input="Instructor">
-                                <div class="instructor">
-                                    <div class="thumb">
-                                        <a href="#"><img src="assets/images/schedule/02.png" alt="schedule"></a>
-                                    </div>
-                                    <div class="content">
-                                        <a href="#">shijika loo</a>
-                                        <span>weight loss expert</span>
-                                        <span>call - 0147854145</span>
-                                    </div>
-                                </div>
-                            </td>
-                            <td role="cell" data-input="Note">pellentesque odio qu amet ut amet morbi </td>
-                        </tr>
-                        <tr role="row">
-                            <td role="cell" data-input="Course Name">Weight Lifting</td>
-                            <td role="cell" data-input="Course Duration">03 Mounth</td>
-                            <td role="cell" data-input="Course Duration">
-                                <span class="class-date">Satday to Monday</span>
-                                <span class="class-time">10.00 am - 02.00 pm</span>
-                            </td>
-                            <td role="cell" data-input="Instructor">
-                                <div class="instructor">
-                                    <div class="thumb">
-                                        <a href="#"><img src="assets/images/schedule/03.png" alt="schedule"></a>
-                                    </div>
-                                    <div class="content">
-                                        <a href="#">shijika loo</a>
-                                        <span>weight loss expert</span>
-                                        <span>call - 0147854145</span>
-                                    </div>
-                                </div>
-                            </td>
-                            <td role="cell" data-input="Note">pellentesque odio qu amet ut amet morbi </td>
-                        </tr>
-                        <tr role="row">
-                            <td role="cell" data-input="Course Name">Body Building</td>
-                            <td role="cell" data-input="Course Duration">1 Year</td>
-                            <td role="cell" data-input="Course Time">
-                                <span class="class-date">Satday to Monday</span>
-                                <span class="class-time">10.00 am - 02.00 pm</span>
-                            </td>
-                            <td role="cell" data-input="Instructor">
-                                <div class="instructor">
-                                    <div class="thumb">
-                                        <a href="#"><img src="assets/images/schedule/04.png" alt="schedule"></a>
-                                    </div>
-                                    <div class="content">
-                                        <a href="#">shijika loo</a>
-                                        <span>weight loss expert</span>
-                                        <span>call - 0147854145</span>
-                                    </div>
-                                </div>
-                            </td>
-                            <td role="cell" data-input="Note">pellentesque odio qu amet ut amet morbi </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </section>
-    <!-- Schedule Section Ends Here -->
-    <!-- Overview Section Two Starts Here -->
- 
-    <!-- Overview Section Two Ends Here -->
-    <!-- Package Section Two Ends Here -->
-    <section class="package-section padding-bottom padding-top">
+    </section> 
+     <section class="blog-section padding-bottom padding-top">
         <div class="container">
             <div class="section-header">
                 <h2 class="title">
-                    our awesome packages
+                    最新教學
                 </h2>
-                <p> Augue urna molestie mi adipiscing vulputate pede sedmassa Praesquam massa, sodales velit turpis
-                    intellu.</p>
+                <p>各種影片教學，只怕你不看</p>
             </div>
-            <div class="row mb-30-none justify-content-center">
-                <div class="col-lg-4 col-md-6">
-                    <div class="package-item">
-                        <div class="package-header">
-                            <span>$239.02</span>
-                            <h3 class="title">silver pack</h3>
-                        </div>
-                        <div class="package-content">
-                            <ul>
-                                <li>free hand</li>
-                                <li>06 month subscribe</li>
-                                <li>weight loss</li>
-                                <li>body building</li>
-                                <li>12 month train</li>
-                            </ul>
-                            <a href="#0" class="custom-button">Choose Pack</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6">
-                    <div class="package-item">
-                        <div class="package-header">
-                            <span>$459.02</span>
-                            <h3 class="title">golden pack</h3>
-                        </div>
-                        <div class="package-content">
-                            <ul>
-                                <li>free hand</li>
-                                <li>06 month subscribe</li>
-                                <li>weight loss</li>
-                                <li>body building</li>
-                                <li>12 month train</li>
-                            </ul>
-                            <a href="#0" class="custom-button">Choose Pack</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6">
-                    <div class="package-item">
-                        <div class="package-header">
-                            <span>$349.02</span>
-                            <h3 class="title">diamond pack</h3>
-                        </div>
-                        <div class="package-content">
-                            <ul>
-                                <li>free hand</li>
-                                <li>06 month subscribe</li>
-                                <li>weight loss</li>
-                                <li>body building</li>
-                                <li>12 month train</li>
-                            </ul>
-                            <a href="#0" class="custom-button">Choose Pack</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- Package Section Two Ends Here -->
-    <!-- Newslater Section Starts Here -->
-    <!-- Newslater Section Ends Here -->
-    <!-- Blog Section Starts Here -->
-    <section class="blog-section padding-bottom padding-top">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="title">
-                    最新教學&文章
-                </h2>
-                <p> </p>
-                <div class="common-navigation d-flex ">
-                    <div class="common-prev navigation"><i class="fas fa-angle-left"></i></div>
-                    <div class="common-next active navigation"><i class="fas fa-angle-right"></i></div>
-                </div>
-            </div>
-            
-                
-                
             <div class="row mb-30-none justify-content-center blog-section-wrapper">
+                <c:forEach var='news' items='${news}' begin="0" end="2">
                 <div class="col-xl-4 col-md-6">
                     <div class="post-item">
                         <div class="post-thumb">
-                            <a href="blog-details.html"><img src="assets/images/blog/01.jpg" alt="blog"></a>
+                                    <a href="blog-details.html"><img src="<c:url value='/getNewsPicture/${news.newsId}'/>" alt="blog"></a>
                         </div>
                         <div class="post-content">
-                            <h4 class="title"><a href="blog-details.html">fringilla scelerisque over the game to industry</a></h4>
-                            <p>mauris elementum eget, ingererat donec, vestibulum felis. Ruomauris enim volutpat nec nispdonec,vlum felis. Rutrum odio</p>
+                            <h4 class="title"><a href="blog-details.html">${news.newsTitle}</a></h4>
+                            <p>${news.newsContent}</p>
                             <div class="meta-post d-flex justify-content-between">
-                                <span>Posted By <a href="#">Admin</a></span><span><a href="#">22 may 2019</a></span>
+                                <span>Posted By <a href="<c:url value='/getNewsPicture/${news.newsId}'/>">${news.coachBean.coachName}</a></span><span><a href="<c:url value='/getNewsPicture/${news.newsId}'/>">${news.newsUploadTime}</a></span>
                             </div>
                             <a href="blog.html" class="blog-button"><i class="fas fa-link"></i></a>
+                        
                         </div>
                     </div>
+                
                 </div>
-                <div class="col-xl-4 col-md-6">
-                    <div class="post-item">
-                        <div class="post-thumb">
-                            <a href="blog-details.html"><img src="assets/images/blog/02.jpg" alt="blog"></a>
-                        </div>
-                        <div class="post-content">
-                            <h4 class="title"><a href="blog-details.html">fringilla scelerisque over the game to industry</a></h4>
-                            <p>mauris elementum eget, ingererat donec, vestibulum felis. Ruomauris enim volutpat nec nispdonec,vlum felis. Rutrum odio</p>
-                            <div class="meta-post d-flex justify-content-between">
-                                <span>Posted By <a href="#">Admin</a></span><span><a href="#">22 may 2019</a></span>
-                            </div>
-                            <a href="blog.html" class="blog-button"><i class="fas fa-link"></i></a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xl-4 col-md-6">
-                    <div class="post-item">
-                        <div class="post-thumb">
-                            <a href="blog-details.html"><img src="assets/images/blog/03.jpg" alt="blog"></a>
-                        </div>
-                        <div class="post-content">
-                            <h4 class="title"><a href="blog-details.html">fringilla scelerisque over the game to industry</a></h4>
-                            <p>mauris elementum eget, ingererat donec, vestibulum felis. Ruomauris enim volutpat nec nispdonec,vlum felis. Rutrum odio</p>
-                            <div class="meta-post d-flex justify-content-between">
-                                <span>Posted By <a href="#">Admin</a></span><span><a href="#">22 may 2019</a></span>
-                            </div>
-                            <a href="blog.html" class="blog-button"><i class="fas fa-link"></i></a>
-                        </div>
-                    </div>
-                </div>
+
+                </c:forEach> 
             </div>
+           
         </div>
     </section>
+    <section class="body-building-section padding-top padding-bottom">
+		<div class="container">
+			<div class="body-building-slider">
+				<div class="swiper-wrapper">
+					<c:forEach var='mealList' items='${mealLists}'>
+						<div class="swiper-slide">
+							<div class="body-building-item">
+								<div class="body-building-inner">
+									<div class="body-building-thumb">
+										<a
+											href="<spring:url value='/mealList?id=${mealList.mealId}' />">
+											<img src="<c:url value='/meal/picture/${mealList.mealId}' />"
+											alt="feature">
+										</a>
+									</div>
+									<div class="body-building-content">
+										<div class="building-content">
+											<h4 class="title">
+												<a href="<c:url value='/mealList?id=${mealList.mealId}'/>">${mealList.mealName}</a>
+											</h4>
+											<p>${mealList.mealCategoryBean.categoryName}</p>
+											<p>TWD$${mealList.mealPrice}</p>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</c:forEach>
+				</div>
+			</div>
+		</div>
+	</section>
     <jsp:include page="/fragment/footer.jsp" />
     <!-- Blog Section Ends Here -->
     <!-- Sponsor Slider Section Starts Here -->

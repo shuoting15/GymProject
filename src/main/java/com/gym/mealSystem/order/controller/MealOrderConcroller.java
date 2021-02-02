@@ -1,42 +1,23 @@
 package com.gym.mealSystem.order.controller;
 
-import java.io.ByteArrayOutputStream;
-import java.io.InputStream;
-import java.sql.Blob;
-import java.sql.Date;
 import java.sql.Timestamp;
-import java.util.List;
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
-import javax.sql.rowset.serial.SerialBlob;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.CacheControl;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
-import org.springframework.web.multipart.MultipartFile;
 
-import com.gym.coach.model.CoachBean;
-import com.gym.coach.model.CoachOrderBean;
-import com.gym.mealSystem.meal.model.MealCategoryBean;
 import com.gym.mealSystem.meal.model.MealListBean;
 import com.gym.mealSystem.meal.service.MealCategoryService;
 import com.gym.mealSystem.meal.service.MealListService;
-import com.gym.mealSystem.meal.vaildators.MealListValidator;
 import com.gym.mealSystem.order.model.MealOrderBean;
 import com.gym.mealSystem.order.service.MealOrderService;
 import com.gym.member.model.MemberBean;
@@ -94,11 +75,17 @@ public class MealOrderConcroller {
 		return "mealSystem/orderOK";
 	}
 	
-	@GetMapping("/updateOrderStatus")
-	public String updateStatus(@RequestParam("id") Integer id, Model model) {
+	@PostMapping("/updateOrderStatus/{id}")
+	public String updateStatus(@PathVariable("id") Integer id, Model model) {
 		model.addAttribute("orderList", mealOrderService.getAllOrders());
 		mealOrderService.updateOrderStatus(id);
 		return "redirect:/showOrderList";
 	}
 
+	@PostMapping("/deleteMealOrder/{id}")
+	public String delete(@PathVariable("id") Integer id) {
+		mealOrderService.deleteMealOrder(id);
+		System.out.println("delGood");
+		return "redirect:/showOrderList";
+	}
 }

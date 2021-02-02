@@ -72,51 +72,41 @@
 			<img width='800'
 				src="<c:url value='meal/picture/${mealList.mealId}' />" />
 		</article>
-		<br>
-		<br>
-		<div class="trainer-details padding-bottom padding-top">
-			<div class="container">
-				<div class="row">
-					<div class="col-lg-8 mb-5 mb-lg-0">
-						<article>
-							<div class="trainer-area">
-								<div class="trainer-item">
-									<div class="trainer-content">
-										<h1 class="title">${mealList.mealName}</h1>
-										<br>
-										<h5>
-											<span>餐點價格：TWD$${mealList.mealPrice}</span>
-										</h5>
-										<h6 style="text-align: center">餐點介紹</h6>
-										<p style="text-align: center">${mealList.mealContent}</p>
-									</div>
-								</div>
-							</div>
-						</article>
-					</div>
+		<br> <br>
 
-					<div class="col-lg-4">
-						<aside class="sidebar">
-							<div class=" widget-category">
-								<h5 class="widget-title" >餐點資訊</h5>
+
+		<section class="contact-section padding-top padding-bottom">
+			<div class="container">
+<!-- 				<div class="maps"></div> -->
+				<!--Map End-->
+				<div class="branches-section-wrapper">
+					<div class="row mb-30-none justify-content-center">
+						<div class="col-lg-4 col-md-6">
+							<div class="brance-item">
+								<h5 class="title">${mealList.mealName}</h5>
 								<ul>
-									<li><a >餐點價格：TWD$${mealList.mealPrice}</a></li>
-									<li><a >${mealList.mealKcal}Kcal</a></li>
-									<li><a>餐點分類：${mealList.mealCategoryBean.categoryName}</a></li>
-									<li><a>餐點編號：${mealList.mealId}</a></li>
+									<li style="color: red">餐點價格：TWD$${mealList.mealPrice}</li>
+									<li>${mealList.mealContent}</li>
 								</ul>
 							</div>
-						</aside>
+						</div>
+						<div class="col-lg-4 col-md-6">
+							<div class="brance-item">
+								<h5 class="title">餐點資訊</h5>
+								<ul>
+									<li>餐點熱量：${mealList.mealKcal}Kcal</li>
+									<li>餐點價格：TWD$${mealList.mealPrice}</li>
+									<li>餐點分類：${mealList.mealCategoryBean.categoryName}</li>
+									<li>餐點編號：${mealList.mealId}</li>
+								</ul>
+							</div>
+						</div>
 					</div>
 				</div>
+
 			</div>
-		</div>
+		</section>
 		<!-- Trainer Section Ends Here -->
-
-
-
-
-
 
 		<!-- Package Section Two Ends Here -->
 
@@ -143,8 +133,7 @@
 								<li class="glyphicon">*不提供外送服務*</li>
 							</ul>
 							<a href="<spring:url value='/orderMeal?id=${mealList.mealId}' />"
-								class="custom-button">BUYNOW</a>
-								<br>
+								class="custom-button">BUYNOW</a> <br>
 						</div>
 					</div>
 				</div>

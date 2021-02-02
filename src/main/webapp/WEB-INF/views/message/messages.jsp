@@ -132,7 +132,7 @@ $("#btn1").click(function () {
 			</div>
 							<h4>主題</h4>
 							<ul>
-								<li><a href="<c:url value='/allmessages'/>">全部主題</a></li>
+								<li><a href="<c:url value='/allmessages'/>">熱門文章</a></li>
 							</ul>
 							<c:forEach var='kanbanName' items='${kanbanNameList}'>
 								<ul>
@@ -198,7 +198,7 @@ $("#btn1").click(function () {
 									<div class="blog__item__text">
 										<ul>
 											<li><i class="fa fa-calendar-o"></i>發表時間:${messages.time}</li>
-											<li><i class="fa fa-comment-o"></i>${messages.repliseCount}</li>
+											<li><img alt="" src="images/visibility.png">${messages.repliseCount}</li>
 										</ul>
 										<h5>
 											<a

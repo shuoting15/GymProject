@@ -10,7 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.gym.coach.model.CoachBean;
 import com.gym.news.dao.NewsDao;
 import com.gym.news.model.NewsBean;
-import com.gym.news.model.NewsMessageBean;
+import com.gym.news.model.NewsPlaylistBean;
 import com.gym.news.service.NewsService;
 
 
@@ -26,7 +26,12 @@ public class NewsServiceImpl implements NewsService {
 		return dao.getAllNews();
 	}
 
-
+	@Transactional
+	@Override
+	public List<NewsBean> getSearchNews(String newskw) {
+		return dao.getSearchNews(newskw);
+	}
+	
 	@Transactional
 	@Override
 	public List<String> getAllNewsCategories() {
@@ -83,11 +88,16 @@ public class NewsServiceImpl implements NewsService {
 		
 	}
 
+	
 	@Transactional
 	@Override
-	public void newsmessage(NewsMessageBean newsmessagebean) {
-		dao.newsmessage(newsmessagebean);
-		
+	public void saveintoplaylist(NewsPlaylistBean nb){
+		dao.saveintoplayliste(nb);
 	}
 	
+	@Transactional
+	@Override
+	public List<NewsBean> getplaylistNews(String memberid){
+		return dao.getplaylistNews(memberid);
+	}
 }

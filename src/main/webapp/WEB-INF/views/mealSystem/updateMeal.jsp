@@ -129,8 +129,7 @@
 							<img src="css/img/plane.png" />
 						</div>
 						<div class="package-content">
-							
-							<a href="<spring:url value='update/${mealList.mealId}' />"
+							<a href="<c:url value='/updateMeal?id=${mealList.mealId}' />"
 								class="custom-button">修改</a>
 								<br>
 							<a class="deletelink custom-button"
@@ -145,16 +144,7 @@
 		<br>
 	</section>
 	<!-- Package Section Two Ends Here -->
-
-	<p>
-		<a href="${pageContext.request.contextPath}/update/${mealList.mealId}">編輯</a>
-	</p>
-	<p>
-		<a class='deletelinkcustom-button'
-			href="${pageContext.request.contextPath}/delete/${mealList.mealId}">刪除</a>
-	</p>
-
-
+	
 	<script type='text/javascript'>
 		$(document).ready(function() {
 			$('.deletelink').click(function() {

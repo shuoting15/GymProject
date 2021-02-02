@@ -60,6 +60,9 @@
 					<p><input type="submit" id="submit" value="註冊"></p>
 					<span id="checkAll" style="color:#97CBFF">${errors.successYN}</span>
 				</form>
+				<p>
+				<button onclick="gymproject121()">DEMO註冊</button>
+				</p>
 			</div>
 			<div class="col-sm-1"></div>
 		</div>
@@ -184,6 +187,16 @@
 		//下一個jQuery事件可以加在這後面======================================================
 			
 	});//此行jQuery結束
+	</script>
+	
+	<script type="text/javascript">
+	
+		function gymproject121() {
+			registerForm.member_id.value="gymproject121@gmail.com";
+			registerForm.password.value="eeit121";
+			registerForm.confirmpw.value="eeit121";
+		};
+		
 	</script>
 
 </body>

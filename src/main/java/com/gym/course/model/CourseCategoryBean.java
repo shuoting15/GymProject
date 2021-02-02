@@ -28,7 +28,24 @@ public class CourseCategoryBean implements Serializable {
 	private Integer totalrevenuePercent;
 	@Transient
 	private Integer monthrevenuePercent;
+	@Transient
+	private Integer monthCoursesCounts;
+	@Transient
+	private Integer totalCoursesCounts;
 	
+	
+	public Integer getMonthCoursesCounts() {
+		return monthCoursesCounts;
+	}
+	public void setMonthCoursesCounts(Integer monthCoursesCounts) {
+		this.monthCoursesCounts = monthCoursesCounts;
+	}
+	public Integer getTotalCoursesCounts() {
+		return totalCoursesCounts;
+	}
+	public void setTotalCoursesCounts(Integer totalCoursesCounts) {
+		this.totalCoursesCounts = totalCoursesCounts;
+	}
 	public Integer getCategoryId() {
 		return categoryId;
 	}

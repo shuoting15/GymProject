@@ -137,16 +137,15 @@ public class MealConcroller {
 
 	// 當使用者需要修改時，本方法送回含有會員資料的表單，讓使用者進行修改
 	// 由這個方法送回修改記錄的表單...
-	@GetMapping("/update/{id}")
-	public String showDataForm(@PathVariable("id") Integer id, Model model) {
+	@GetMapping("/updateMeal")
+	public String showDataForm(@RequestParam("id") Integer id, Model model) {
 		MealListBean mealList = mealListService.getMealList(id);
-		model.addAttribute(mealList);
+		model.addAttribute("mealList1", mealList);
 		System.out.println("@GetMapping："+mealList);
 		return "mealSystem/updateMealList";
-	}
+	}	
 
 	// 刪除一筆紀錄
-	// 由這個方法刪除記錄...
 	@PostMapping("/delete/{id}")
 	public String delete(@PathVariable("id") Integer id) {
 		mealListService.deleteMealList(id);
@@ -154,11 +153,10 @@ public class MealConcroller {
 	}
 
 	// 當將瀏覽器送來修改過的會員資料時，由本方法負責檢核，若無誤則寫入資料庫
-	@PostMapping("/update/{id}")
 	// BindingResult 參數必須與@ModelAttribute修飾的參數連續編寫，中間不能夾其他參數
-	//
+	@PostMapping("/updateMeal")
 	public String modify(@ModelAttribute("mealListBean") MealListBean mealListBean, BindingResult result, Model model,
-			@PathVariable Integer id, HttpServletRequest request) {		
+			@RequestParam("id") Integer id, HttpServletRequest request) {		
 		System.out.println("@PostMapping前："+mealListBean);
 		// 找到對應的MealCategory物件
 		MealCategoryBean mm = mealCategoryService.getMealCategoryBean(mealListBean.getMealCategoryBean().getCategoryId());

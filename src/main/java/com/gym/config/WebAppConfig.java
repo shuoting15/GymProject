@@ -86,7 +86,8 @@ public class WebAppConfig implements WebMvcConfigurer {
 		registry.addInterceptor(loginInterceptor).addPathPatterns("/*").excludePathPatterns("/login")
 		.excludePathPatterns("/register").excludePathPatterns("/forgotPassword")
 		.excludePathPatterns("/memberCheckAjex").excludePathPatterns("/memberActivate").excludePathPatterns("/")
-		.excludePathPatterns("/registerResult").excludePathPatterns("/buyProduct").excludePathPatterns("/showFavorite").excludePathPatterns("/productDisplay");
+		.excludePathPatterns("/registerResult").excludePathPatterns("/buyProduct").excludePathPatterns("/showFavorite")
+		.excludePathPatterns("/productDisplay").excludePathPatterns("/callback");
 		
 	}
 	

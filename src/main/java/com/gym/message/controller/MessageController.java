@@ -58,7 +58,7 @@ public class MessageController {
 		MemberBean mbssss = (MemberBean) model.getAttribute("LoginOK");
 		if(mbssss!=null) {
 			System.out.println(mbssss.getUsername());
-			List<MessageBean> list=messageservice.getAllMessage();
+			List<MessageBean> list=messageservice.getAllMessageByTime();
 			List<String> list1 = messageservice.getAllKanbanName();
 			MessageBean mb = new MessageBean();
 			model.addAttribute("kanbanNameList", list1);
@@ -162,6 +162,8 @@ public class MessageController {
 	@GetMapping("messagesadd")
 	public String getAddNewMessageForm(Model model) {
 		MessageBean messageBean = new MessageBean();
+		messageBean.setTitle("健身護腕求換等值器具");
+		messageBean.setContent("全新護腕尚未拆封，求更換其他等值健身器具!!");
 		model.addAttribute("messageBean", messageBean);
 		return "message/MessageForm";
 	}

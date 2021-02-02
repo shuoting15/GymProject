@@ -162,9 +162,9 @@
 									<input type="submit" name="submit" id="submit" value="確定" /> 
 									<input class="BGCG" type="reset" name="" value="取消" /> 
 								    <div style="text-align:center;margin-top:10px;color:#46A3FF;font-weight:bold">${errors.updatex}${errors.updateok}</div>									
-								</div>
-								
+								</div>								
 							</form>
+							<button onclick="gymproject121()">DEMO修改</button>
 						</div>
 					</section>
 				</div>
@@ -290,6 +290,25 @@
 	    //下一個jQuery事件可以加在這後面======================================================
 	    
 	});//此行jQuery結束
+	</script>
+	
+	<script type="text/javascript">
+	
+		function gymproject121() {			
+			editFrom.password.value="eeit121";
+			editFrom.confirmpw.value="eeit121";
+			editFrom.username.value="gymproject121";
+			editFrom.member_height.value="180";
+			editFrom.member_weight.value="80";
+			editFrom.mobile.value="0912345678";
+			editFrom.gender.value="1";
+			editFrom.birth.value="2000-01-01";
+			editFrom.address.value="台北市大安區復興南路一段390號2樓";
+			editFrom.facebook_account.value="gymproject121@facebook.com";
+			editFrom.google_account.value="gymproject121@gmail.com";
+			editFrom.detail.value="來自需要健身的資策會員工";
+		};
+		
 	</script>
 
 </body>

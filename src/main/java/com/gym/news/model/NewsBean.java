@@ -190,7 +190,7 @@ public class NewsBean implements Serializable {
 	}
 
 	public void setFK_CoachBean_coachId(int fK_CoachBean_coachId) {
-		FK_CoachBean_coachId = fK_CoachBean_coachId;
+		this.FK_CoachBean_coachId = fK_CoachBean_coachId;
 	}
 	
 }
