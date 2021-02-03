@@ -156,8 +156,10 @@ $("#checkroom").click(function () {
 					</label>
 					<div class="col-lg-10">
 						<form:input id="title" name="title" path="title" type='text'
-							class='form:input-large' required="required" />
+							class='form:input-large' />
+						<form:errors path="title" cssClass="error"/>
 					</div>
+					
 				</div>
 				
 				<div class="form-group">
@@ -167,7 +169,7 @@ $("#checkroom").click(function () {
 					</label>
 					<div class="col-lg-10">
 						<form:input id="date" path="date" type='date'
-							class='form:input-large' required="required" />
+							class='form:input-large' />
 						<script>
 							var ddd = new Date();
 
@@ -194,7 +196,9 @@ $("#checkroom").click(function () {
 							document.getElementById('date').setAttribute("min", datew); 
 							
 						</script>
+						<form:errors path="date" cssClass="error"/>
 					</div>
+					
 				</div>
 
 				<div class="form-group">
@@ -366,13 +370,15 @@ $("#checkroom").click(function () {
 						<c:when test="${courseBean.courseId == null }">
 							<div class="col-lg-10">
 								<form:input id="price" path="price" type='text'
-									class='form:input-large' required="required" />
+									class='form:input-large' />
+								<form:errors path="price" cssClass="error"/>
 							</div>
 						</c:when>
 						<c:otherwise>
 							<div class="col-lg-10">
 								<form:input id="price" path="price" type='text'
 									class='form:input-large' readonly="readonly" />
+								<form:errors path="price" cssClass="error"/>
 							</div>
 						</c:otherwise>
 					</c:choose>
@@ -385,7 +391,7 @@ $("#checkroom").click(function () {
 					分類
 					</label>
 					<div class='col-lg-10'>
-						<form:select path="category" required="required">
+						<form:select path="category">
 							<form:option value="-1">
 <%-- 								<spring:message code='spring.addProduct.form.select.label' /> --%>
 							請選擇
@@ -417,7 +423,8 @@ $("#checkroom").click(function () {
 					</label>
 					<div class='col-lg-10'>
 						<form:input id="max" path="max" type='text'
-							class='form:input-large' required="required" />
+							class='form:input-large' />
+							<form:errors path="max" cssClass="error"/>
 					</div>
 				</div>
 
@@ -445,7 +452,7 @@ $("#checkroom").click(function () {
 					</label>
 					<div class='col-lg-10'>
 						<form:textarea id="description" path="description" type='text' cols="10" rows="3" style="resize:none;"
-							class='form:input-large' required="required" />
+							class='form:input-large' />
 					</div>
 				</div>
 				

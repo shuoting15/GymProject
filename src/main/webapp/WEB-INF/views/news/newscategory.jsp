@@ -34,7 +34,7 @@
 
 </head>
 
-<body>
+<body style="background-color:#edebeb;">
 	<!-- 引入共同的頁首 -->
 	<div>
 		<jsp:include page="/fragment/top.jsp" />
@@ -77,20 +77,23 @@
 							</div>
 						</form>
 
+
 						<div class="widget widget-category">
 							<div class="card category-sidebar">
-								<div class="card-header">News categories</div>
+								<div class="card-header">常用功能</div>
 								<ul class="list-group list-group-flush">
-									<li class="list-group-item"><a
+									<li class="list-group-item list-group-item-primary"><a
 										href="<c:url value='/news'/>">全部文章</a></li>
-									<li class="list-group-item"><a
+									<li class="list-group-item list-group-item-secondary"><a
 										href="<c:url value='/newsviews'/>">熱門排行</a></li>
-									<li class="list-group-item"><a
+									<li class="list-group-item list-group-item-warning"><a
 										href="<c:url value='/queryNewsByCategory'/>">分類查詢</a></li>
+									<li class="list-group-item list-group-item-info"><a
+										href="<c:url value='/newsplaylist${LoginOK.member_id}'/>">${LoginOK.username}的撥放清單</a>
+									</li>
 								</ul>
 							</div>
 						</div>
-
 
 					</aside>
 				</div>

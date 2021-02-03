@@ -31,6 +31,9 @@ public class CourseValidator implements Validator {
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "date", "", "日期欄不能空白");
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "st", "", "起始時間不能空白");
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "et", "", "結束時間不能空白");
+		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "price", "", "價格不能空白");
+		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "max", "", "人數不能空白");
+		
 		
 		
 //		Double price = Double.parseDouble(bean.getListPrice());
@@ -46,7 +49,7 @@ public class CourseValidator implements Validator {
 		
 		if (insertMode) {
 			if (bean.getProductImage().isEmpty()) {
-				errors.rejectValue("courseImage","", "必須挑選圖片");
+				errors.rejectValue("productImage","", "必須挑選圖片");
 			}
 		}
 		

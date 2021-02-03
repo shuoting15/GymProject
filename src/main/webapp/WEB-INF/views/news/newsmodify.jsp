@@ -59,26 +59,39 @@
 	<div class="newsbutton"><a href='newsadd'>
 	<button type="button" class="btn btn-primary btn-lg ">新增影片</button></a>
 	</div>
-	<div class="blog-section-area padding-top padding-bottom">
+<div class="blog-section-area padding-top padding-bottom">
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-8 mb-5 mb-lg-0">
 					<c:forEach var='news' items='${news}'>
 						<article>
+						<i class="fas fa-video"></i>
 							<div class="newsarticle">
+							
 								<a href="<spring:url value='/newsonemodify?id=${news.newsId}' />">
 									<img src="<c:url value='/getNewsPicture/${news.newsId}' />"
 									class="article_photo" alt="...">
 								</a>
 								<div class="article_area">
-									<p class="article_title_news">
+								
+									<p class="post-header">
 										<a href="<spring:url value='/newsonemodify?id=${news.newsId}' />">${news.newsTitle}</a>
 									</p>
-									<p class="article_content_newssub">教練:${news.coachBean.coachName}</p>
+									<p><i class="fas fa-user"></i>教練:${news.coachBean.coachName}</p>
 								</div>
-								<div class="article_info">
-									<div class="writer_info">上傳日期${news.newsUploadTime}/瀏覽次數:${news.newsViews}</div>
+								<div class="meta-post d-flex flex-wrap justify-content-between">
+								<div class="meta-date">
+											<i class="far fa-calendar-alt"></i> <span>上傳日期${news.newsUploadTime}</span>
+										</div>
+										<div class="meta-comment">
+											<i class="far fa-eye"></i> <span>瀏覽次數:${news.newsViews}</span>
 								</div>
+								</div>
+								
+<!-- 								<div class="article_info"> -->
+<!-- 									<div class="writer_info"></div> -->
+<!-- 								</div> -->
+								
 							</div>
 
 						</article>
@@ -87,33 +100,38 @@
 
 				<div class="col-lg-4">
 					<aside class="sidebar">
-					<form class="widget-form" action="searchnewsmodify" id="w1" placeholder="Search in here"
-								method="post">
-						<div class="input-group mb-3">
-							
-								<input type="text" placeholder="請輸入關鍵字" name="newskw" class="form-control" aria-describedby="sidebar-search">
+						<form class="widget-form" action="searchnews" id="w1"
+							placeholder="Search in here" method="post">
+							<div class="input-group mb-3">
+
+								<input type="text" placeholder="請輸入關鍵字" name="newskw"
+									class="form-control" aria-describedby="sidebar-search">
 								<div class="input-group-append">
-								<button type="submit" class="btn btn-outline-secondary" id="sidebar-search" >
-								Search								
-								</button>	</div>
-							
+									<button type="submit" class="btn btn-outline-secondary"
+										id="sidebar-search">Search</button>
+								</div>
 
-						</div></form>
 
-						
-<!-- 						<div class="widget widget-category"> -->
-<!-- 							<div class="card category-sidebar"> -->
-<!-- 								<div class="card-header">常用功能</div> -->
-<!-- 								<ul class="list-group list-group-flush"> -->
-<!-- 									<li class="list-group-item"><a -->
-<%-- 										href="<c:url value='/newsmodify'/>">全部文章</a></li> --%>
-<!-- 									<li class="list-group-item"><a -->
-<%-- 										href="<c:url value='/newsviews'/>">熱門排行</a></li> --%>
-<!-- 									<li class="list-group-item"><a -->
-<%-- 										href="<c:url value='/queryNewsByCategory'/>">分類查詢</a></li> --%>
-<!-- 								</ul> -->
-<!-- 							</div> -->
-<!-- 						</div> -->
+							</div>
+						</form>
+
+
+						<div class="widget widget-category">
+							<div class="card category-sidebar">
+								<div class="card-header">常用功能</div>
+								<ul class="list-group list-group-flush">
+									<li class="list-group-item list-group-item-primary"><a
+										href="<c:url value='/news'/>">全部文章</a></li>
+									<li class="list-group-item list-group-item-secondary"><a
+										href="<c:url value='/newsviews'/>">熱門排行</a></li>
+									<li class="list-group-item list-group-item-warning"><a
+										href="<c:url value='/queryNewsByCategory'/>">分類查詢</a></li>
+									<li class="list-group-item list-group-item-info"><a
+										href="<c:url value='/newsplaylist${LoginOK.member_id}'/>">${LoginOK.username}的撥放清單</a>
+									</li>
+								</ul>
+							</div>
+						</div>
 
 					</aside>
 				</div>

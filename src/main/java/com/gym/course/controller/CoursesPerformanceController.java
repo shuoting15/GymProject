@@ -1,5 +1,6 @@
 package com.gym.course.controller;
 
+import java.io.UnsupportedEncodingException;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -9,8 +10,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.gym.course.model.CourseBean;
 import com.gym.course.model.CourseCategoryBean;
 import com.gym.course.service.CoursesPerFormanceService;
@@ -37,6 +42,7 @@ public class CoursesPerformanceController {
 		List<CourseBean> c3 = new LinkedList<CourseBean>();
 		List<CourseBean> c4 = new LinkedList<CourseBean>();
 		List<CourseBean> c5 = new LinkedList<CourseBean>();
+		List<CourseBean> alist = null;
 		for(CourseCategoryBean category : list) {
 			//業績
 			totalrevenue = cpservice.totalCategoryRevenue(category.getCategoryName());
@@ -57,7 +63,7 @@ public class CoursesPerformanceController {
 			}
 			
 			//開課數量
-			List<CourseBean> alist = cpservice.getCoursesCountsByCategory(category.getCategoryName());
+			alist = cpservice.getCoursesCountsByCategory(category.getCategoryName());
 			List<CourseBean> blist = cpservice.getMonthCoursesCountsByCategory(category.getCategoryName());
 //			System.out.println(alist.size());
 			category.setTotalCoursesCounts(alist.size());
@@ -69,6 +75,14 @@ public class CoursesPerformanceController {
 		model.addAttribute("allmonthrevenue", allmonthrevenue);
 		model.addAttribute("alltotalrevenue", alltotalrevenue);
 		return "course/coursesPerformance";
+	}
+	
+	@RequestMapping("/coursesPerformanceapi")
+	public String coursesPerformanceapi(@RequestParam("category") String category, Model model) throws UnsupportedEncodingException {
+		category = java.net.URLDecoder.decode(category,"UTF-8");
+		List<CourseBean> alist = cpservice.getCoursesCountsByCategory(category);
+		model.addAttribute("alist", alist);
+		return "course/courseslist";
 	}
 	
 }

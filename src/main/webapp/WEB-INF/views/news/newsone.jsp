@@ -32,13 +32,13 @@
 
 </head>
 
-<body>
+<body style="background-color:#edebeb;">
 	<!-- 引入共同的頁首 -->
 	<div>
 		<jsp:include page="/fragment/top.jsp" />
 	</div>
 	<section class="page-headernews bg_imgnews"
-		data-background="images/banner.jpg">
+		data-background="/images/banner.jpg">
 		<div class="container">
 			<h3 class="titlenews">Video</h3>
 		</div>
@@ -53,12 +53,15 @@
 								${newsone.newsVideoPath}
 								<div >
 								<h3 class="article_title_news">${newsone.newsTitle}</h3>
-								<p class="article_content_news">${newsone.newsContent}</p>
+								<p class="article_content_news"><i class="fas fa-hand-point-right"></i>${newsone.newsContent}</p>
 								<p class="article_content_newssub">分類: ${newsone.newsCategory}</p>
 								<p>
 									<strong>No. </strong> <span class='label label-warning'>
 										${newsone.newsId} </span>
 								</p>
+																
+
+								
 								<p class="article_content_newsco">教練: ${newsone.coachBean.coachName}</p>
 								<p class="article_content_newsco">擅長項目:
 									${newsone.coachBean.coachExpertiseOne}/${newsone.coachBean.coachExpertiseTwo}/${newsone.coachBean.coachExpertiseThree}</p>
@@ -69,13 +72,15 @@
 										</a>
 									</button>
 									<button class="btn btn-lg btn-primary">
-										<a
-										
-											href="<spring:url value="/addintoplay${LoginOK.member_id}${newsone.newsId}"/>"
-											class="btn btn-default"> <span
-											class="glyphicon-hand-left glyphicon"></span>加入我的撥放清單
+										<a	href="<spring:url value='/addintoplay/${LoginOK.member_id}/${newsone.newsId}'/>"
+											class="btn btn-default"> <span	class="glyphicon-hand-left glyphicon"></span>加入我的撥放清單
 										</a>
 									</button>
+
+
+
+
+
 
 <!-- 									<form:form method='POST' modelAttribute="newsone" -->
 <!-- 										class='form-horizontal' enctype="multipart/form-data"> -->
@@ -105,32 +110,37 @@
 				</div>
 				
 				
-				<div class="col-lg-4">
+			<div class="col-lg-4">
 					<aside class="sidebar">
-<!-- 						<div class="input-group mb-3"> -->
-<!-- 							<form class="widget-form" action="searchnews" id="w1" placeholder="Search in here" -->
-<!-- 								method="post"> -->
-<!-- 								<input type="text" placeholder="請輸入關鍵字" name="newskw" class="form-control" aria-describedby="sidebar-search"> -->
-								
-<!-- 								<button type="submit" class="btn btn-outline-secondary" id="sidebar-search"> -->
-<!-- 								Search -->
-									
-<!-- 								</button> -->
-<!-- 							</form> -->
+<!-- 						<form class="widget-form" action="searchnews" id="w1" -->
+<!-- 							placeholder="Search in here" method="post"> -->
+<!-- 							<div class="input-group mb-3"> -->
 
-<!-- 						</div> -->
+<!-- 								<input type="text" placeholder="請輸入關鍵字" name="newskw" -->
+<!-- 									class="form-control" aria-describedby="sidebar-search"> -->
+<!-- 								<div class="input-group-append"> -->
+<!-- 									<button type="submit" class="btn btn-outline-secondary" -->
+<!-- 										id="sidebar-search">Search</button> -->
+<!-- 								</div> -->
 
-						
+
+<!-- 							</div> -->
+<!-- 						</form> -->
+
+
 						<div class="widget widget-category">
 							<div class="card category-sidebar">
 								<div class="card-header">常用功能</div>
 								<ul class="list-group list-group-flush">
-									<li class="list-group-item"><a
+									<li class="list-group-item list-group-item-primary"><a
 										href="<c:url value='/news'/>">全部文章</a></li>
-									<li class="list-group-item"><a
+									<li class="list-group-item list-group-item-secondary"><a
 										href="<c:url value='/newsviews'/>">熱門排行</a></li>
-									<li class="list-group-item"><a
+									<li class="list-group-item list-group-item-warning"><a
 										href="<c:url value='/queryNewsByCategory'/>">分類查詢</a></li>
+									<li class="list-group-item list-group-item-info"><a
+										href="<c:url value='/newsplaylist${LoginOK.member_id}'/>">${LoginOK.username}的撥放清單</a>
+									</li>
 								</ul>
 							</div>
 						</div>
@@ -216,17 +226,17 @@
 	<!-- 	</footer> -->
 	<!-- Footer Section Ends Here -->
 	<!-- JavaScript File Links -->
-	<!--     <script src="assets/js/jquery-3.3.1.min.js"></script> -->
-	<!--     <script src="assets/js/modernizr-3.6.0.min.js"></script> -->
-	<!--     <script src="assets/js/plugins.js"></script> -->
-	<!--     <script src="http://cdn.bootstrapmb.com/bootstrap/4.3.1/js/bootstrap.min.js"></script> -->
-	<!--     <script src="assets/js/isotope.pkgd.min.js"></script> -->
-	<!--     <script src="assets/js/swiper.min.js"></script> -->
-	<!--     <script src="assets/js/waypoint.js"></script> -->
-	<!--     <script src="assets/js/counterup.min.js"></script> -->
-	<!--     <script src="assets/js/lightcase.js"></script> -->
-	<!--     <script src="assets/js/wow.min.js"></script> -->
-	<!--     <script src="assets/js/main.js"></script> -->
+	    <script src="js/jquery-3.3.1.min.js"></script>
+	    <script src="js/modernizr-3.6.0.min.js"></script>
+	    <script src="js/plugins.js"></script>
+	    <script src="http://cdn.bootstrapmb.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+	    <script src="js/isotope.pkgd.min.js"></script>
+	    <script src="js/swiper.min.js"></script>
+	    <script src="js/waypoint.js"></script>
+	    <script src="js/counterup.min.js"></script>
+	    <script src="js/lightcase.js"></script>
+	    <script src="js/wow.min.js"></script>
+	    <script src="js/main.js"></script>
 
 </body>
 
