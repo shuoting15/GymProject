@@ -123,7 +123,7 @@ span.error {
 							<div class="blog__item">
 								<div class="blog__item__pic">
 									<div class="blog__item__text">
-										<a href="<c:url value='/messages/add'/>" class="blog__btn">新增文章</a>
+										<a href="<c:url value='/messagesadd'/>" class="blog__btn">發表文章</a>
 										<!-- 			</div> -->
 									</div>
 								</div>
