@@ -25,7 +25,7 @@
 <link rel="stylesheet" href="css/lightcase.css">
 <link rel="stylesheet" href="css/flaticon.css">
 <link rel="stylesheet" href="css/swiper.min.css">
-
+<link rel="stylesheet" href="css/news.css">
 <link rel="shortcut icon" href="images/favicon.png" type="image/x-icon">
 <link rel="stylesheet" href="css/style.css">
 
@@ -39,13 +39,10 @@
 	<div>
 		<jsp:include page="/fragment/top.jsp" />
 	</div>
-	<section class="page-header bg_img"
-		data-background="./assets/images/banner/banner.jpg">
+	<section class="page-headernews bg_imgnews"
+		data-background="images/banner.jpg">
 		<div class="container">
-			<h3 class="title">
-				<span class="shape-wrapper"><span class="shape"></span>影片教學區<span
-					class="shape"></span></span>
-			</h3>
+			<h3 class="titlenews">Video</h3>
 		</div>
 	</section>
 

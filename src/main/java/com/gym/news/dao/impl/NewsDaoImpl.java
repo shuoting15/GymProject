@@ -168,7 +168,7 @@ public class NewsDaoImpl implements NewsDao {
 	@Override
 	public void saveintoplayliste(NewsPlaylistBean nb) {
 		Session session = factory.getCurrentSession();
-	    session.save(nb);
+		session.save(nb);
 	}
 	
 	@Override

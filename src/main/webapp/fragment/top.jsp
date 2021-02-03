@@ -190,10 +190,10 @@
 							<ul class="header__menu__dropdown">
 								<li><a href="<c:url value="showOrderList" />">我的餐點</a></li>
 							</ul></li>
-						<li><a href="<c:url value='/news'/>">教學區</a>
+						<li><a href="<c:url value='/news'/>">影片教學區</a>
 							<ul class="header__menu__dropdown">
 								<!-- 								<li><a href="./shop-details.html">文章</a></li> -->
-								<li><a href=<c:url value='/news'/>>影片教學區</a></li>
+								<li><a href=<c:url value='/newsviews'/>>熱門排行</a></li>
 							</ul></li>
 						<li><a href="<c:url value="/messages" />">健身論壇</a></li>
 						<li><a href="#" style='display: none'

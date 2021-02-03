@@ -25,27 +25,29 @@
 <link rel="stylesheet" href="css/lightcase.css">
 <link rel="stylesheet" href="css/flaticon.css">
 <link rel="stylesheet" href="css/swiper.min.css">
-
+<link rel="stylesheet" href="css/news.css">
 <link rel="shortcut icon" href="images/favicon.png" type="image/x-icon">
 <link rel="stylesheet" href="css/style.css">
 
 
 <title>Video</title>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+	<script type="text/javascript">
 
+</script>
 </head>
 
 <body>
+
 	<!-- 引入共同的頁首 -->
 	<div>
 		<jsp:include page="/fragment/top.jsp" />
 	</div>
-	<section class="page-header bg_img"
-		data-background="./assets/images/banner/banner.jpg">
+	<section class="page-headernews bg_imgnews"
+		data-background="/images/banner.jpg">
 		<div class="container">
-			<h3 class="title">
-				<span class="shape-wrapper"><span class="shape"></span>影片教學區<span
-					class="shape"></span></span>
-			</h3>
+			<h3 class="titlenews">Video</h3>
 		</div>
 	</section>
 
@@ -66,33 +68,35 @@
 		<form:form method='POST' modelAttribute="newsBean"
 			class='form-horizontal' enctype="multipart/form-data">
 			<fieldset>
-				<div class="form-group row">
-					<label for="newsTitle" class="col-sm-2 col-form-label">Title</label>
+				<div class="form-group row ">
+					<label for="newsTitle" class="col-sm-2 col-form-label">影片標題</label>
 					<div class="col-sm-10">
 						<form:input type="text" class="form-control" id="newsTitle"
-							path="newsTitle" />
+							path="newsTitle" value="【館長精華】背部訓練：健身完整流程"/>
 					</div>
 				</div>
 
 				<div class="form-group row">
-					<label for="newsContent" class="col-sm-2 col-form-label">Content</label>
+					<label for="newsContent" class="col-sm-2 col-form-label">影片描述</label>
 					<div class="col-sm-10">
-						<form:textarea class="form-control" id="newsContent"
-							path="newsContent" />
+						<form:input class="form-control" id="newsContent"
+							path="newsContent" value="想要有令人稱羨的倒三角身材、想要增加新陳代謝促進脂肪燃燒、想要改善腰痠背痛的困擾，那一定要好好鍛鍊你的背。背部肌群是上半身最大的肌肉群，肌肉越多代謝也就越好囉；同時背肌也是重要的核心肌群，例如斜方肌、菱形肌、後三角肌、肩旋轉袖肌、豎脊肌等，對於臥推、深蹲及硬舉等難度較高的訓練動作都能起穩定身體與輔助的功用。訓練背肌的好處多多，很多嘗到背肌美妙之處的人都會瘋狂的愛上訓練背肌喔(像我就是，工作在忙也要練練背)。
+
+完整的背部訓練計畫包含：上背訓練、闊背肌訓練以及下背訓練，在訓練的過程中，體悟到「背部的肌肉不只種類多，而且還很耐操！」，採用多訓練動作、多組數、密集式訓練較容易充分訓練我們的背肌。很多人會喜歡去健身房，即是因為器材種類多，好安排訓練計畫，今天FWS1 全方位重量訓練機等於是把一座健身房搬回家，其提供的多樣化訓練功能，絕對能充分安排訓練計畫、滿足練背的愛好，還不用想練某個器材時，得等人家滑完手機呢！(笑)" />
 					</div>
 				</div>
 
 				<div class="form-group row">
-					<label for="newsUploadTime" class="col-sm-2 col-form-label">Time</label>
+					<label for="newsUploadTime" class="col-sm-2 col-form-label">上傳日期</label>
 					<div class="col-sm-10">
 						<form:input type="date" class="form-control" id="newsUploadTime"
-							path="newsUploadTime" />
+							path="newsUploadTime" value="2021/2/5"/>
 					</div>
 				</div>
 
 
 				<div class="form-group row">
-					<label for="newsCategory" class="col-sm-2 col-form-label">分類</label>
+					<label for="newsCategory" class="col-sm-2 col-form-label">類別</label>
 					<div class="col-sm-10">
 						<form:select id="newsCategory" class="form-control"
 							path="newsCategory">
@@ -106,7 +110,7 @@
 
 
 				<div class="form-group row">
-					<label for="authorId" class="col-sm-2 col-form-label">作者</label>
+					<label for="authorId" class="col-sm-2 col-form-label">教練</label>
 					<div class="col-sm-10">
 						<form:select id="authorId" class="form-control" path="authorId">
 							<form:option value="-1">
@@ -120,20 +124,24 @@
 
 				<div class="form-group row">
 					<label class='col-sm-2 col-form-label' for="newsproductImage">
-						圖 </label>
+						封面照片 </label>
 					<div class='col-sm-10'>
-						<form:input id="newsproductImage" path="newsproductImage"
-							type='file' class='form-control' />
+					<img id="blah" width='200' src="<c:url value='' />" />
+<%-- 						<form:input id="newsproductImage" path="newsproductImage" --%>
+<%-- 							type='file' class='form-control' /> --%>
+					<form:input runat="server" id="newsproductImage" path="newsproductImage"
+							type='file' /><br>&nbsp; <form:errors path="newsproductImage"
+							cssClass="error" />
 					</div>
 				</div>
 
 				<div class="form-group row">
 					<label class='col-sm-2 col-form-label' for="newsFilePath">
-						影片 </label>
+						影片路徑 </label>
 					<div class='col-sm-10'>
 						<form:input id="newsVideoPath" path="newsVideoPath" type='text'
-							class='form-control' />
-						檔案路徑
+							class='form-control' value='<iframe width="720" height="405" src="https://www.youtube.com/embed/LweRwABNVJo" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>'/>
+						
 					</div>
 				</div>
 				<div class="text-center"><button id="btnAdd" class="btn btn-primary" type="submit">送出</button>
@@ -144,6 +152,8 @@
 	</div>
 						</fieldset>
 		</form:form>
+		<br>
+		<br>
 	</section>
 	<!-- 							<div class="post-item style-two regular-item"> -->
 	<!-- 								<div class="post-thumb"> -->
@@ -416,19 +426,33 @@
 	<!-- 			</div> -->
 	<!-- 		</div> -->
 	<!-- 	</footer> -->
+	<script type='text/javascript'>
+		function readURL(input) {
+			if (input.files && input.files[0]) {
+				var reader = new FileReader();
+				reader.onload = function(e) {
+					$('#blah').attr('src', e.target.result);
+				}
+				reader.readAsDataURL(input.files[0]); // convert to base64 string
+			}
+		}
+		$("#newsproductImage").change(function() {
+			readURL(this);
+		});
+	</script>
 <!-- 	Footer Section Ends Here JavaScript File Links -->
-	<script src="assets/js/jquery-3.3.1.min.js"></script>
-	<script src="assets/js/modernizr-3.6.0.min.js"></script>
-	<script src="assets/js/plugins.js"></script>
+	<script src="js/jquery-3.3.1.min.js"></script>
+	<script src="js/modernizr-3.6.0.min.js"></script>
+	<script src="js/plugins.js"></script>
 	<script
 		src="http://cdn.bootstrapmb.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-	<script src="assets/js/isotope.pkgd.min.js"></script>
-	<script src="assets/js/swiper.min.js"></script>
-	<script src="assets/js/waypoint.js"></script>
-	<script src="assets/js/counterup.min.js"></script>
-	<script src="assets/js/lightcase.js"></script>
-	<script src="assets/js/wow.min.js"></script>
-	<script src="assets/js/main.js"></script>
+	<script src="js/isotope.pkgd.min.js"></script>
+	<script src="js/swiper.min.js"></script>
+	<script src="js/waypoint.js"></script>
+	<script src="js/counterup.min.js"></script>
+	<script src="js/lightcase.js"></script>
+	<script src="js/wow.min.js"></script>
+	<script src="js/main.js"></script>
 
 </body>
 
