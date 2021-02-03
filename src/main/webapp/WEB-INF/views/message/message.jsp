@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -296,7 +297,16 @@
 										</button>
 									</div>
 									<div class="modal-body">
-										<input style="width:450px"  type="text" id="reportbox" placeholder="請輸入內容...."></input>
+									
+									<select id="hey"name="reportTextoptin"  value="預設值">
+									<option value="內容不當">內容不當</option>
+									<option value="內容不實">內容不實</option>
+									<option value="圖片不雅">圖片不雅</option>
+									<option value="內容過少">內容過少</option>
+									</select>
+									
+										<input style="width:450px"  type="text" id="reportbox" placeholder="請輸入內容...." onblur="doBlur3()"></input><span 
+											id="reportsp">  </span>
 									</div>
 									<div class="modal-footer">
 										<button  type="button" class="btn btn-secondary"
@@ -310,12 +320,31 @@
 						
 						<script type="text/javascript">
 						
+						function doBlur3(){
+							var theIdObj = document
+									.getElementById("reportbox");
+							var theIdObjVal = theIdObj.value;
+							var LenId = theIdObjVal.length;
+							var spanId = document.getElementById("reportsp")
+							if (theIdObjVal == "") {
+								spanId.innerHTML = "   不可空白";
+								spanId.style="color:red"
+							} else if (LenId < 5) {
+								spanId.innerHTML = "   內容最少5個字";
+								spanId.style="color:red"
+							} else {
+								spanId.innerHTML = "  符合";
+								spanId.style="color:green"
+							}
+						}
+						
 						$("#reportbtn").click(function() {
 								$.ajax({
 									url : 'report/add',
 									type : 'POST',
 									data : {
-										rd : $("#reportbox").val()
+										rd : $("#reportbox").val(),
+										haha:$("#hey").val()
 									},
 									success : function(data) {
 										
@@ -337,6 +366,7 @@
 	<!-- Blog Section End -->
 
 	<!-- Js Plugins -->
+	
 	<script src="js/jquery-3.3.1.min.js"></script>
 	<script src="js/bootstrap.min.js"></script>
 	<script src="js/jquery.nice-select.min.js"></script>

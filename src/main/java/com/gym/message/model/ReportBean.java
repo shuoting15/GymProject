@@ -26,6 +26,7 @@ public class ReportBean implements Serializable{
 	private Integer reportId;
 	private String reportContent;
 	private Timestamp time;
+	private String reportoption;
 	
 	@Transient
 	private String member_id;
@@ -50,9 +51,10 @@ public class ReportBean implements Serializable{
 		
 	}
 	
-	public ReportBean(String reportContent,MessageBean messageBean ) {
+	public ReportBean(String reportContent,MessageBean messageBean,String reportoption ) {
 		this.reportContent=reportContent;
 		this.messageBean = messageBean;
+		this.reportoption=reportoption;
 	}
 	
 	public ReportBean(Integer articleId) {
@@ -131,6 +133,14 @@ public class ReportBean implements Serializable{
 
 	public void setMemberbean(MemberBean memberbean) {
 		this.memberbean = memberbean;
+	}
+
+	public String getReportoption() {
+		return reportoption;
+	}
+
+	public void setReportoption(String reportoption) {
+		this.reportoption = reportoption;
 	}
 	
 	

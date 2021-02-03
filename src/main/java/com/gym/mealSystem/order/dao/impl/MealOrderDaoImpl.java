@@ -28,6 +28,8 @@ public class MealOrderDaoImpl implements MealOrderDao {
 	public void deleteMealOrder(Integer orderNo) {
 		Session session = getSession();
 		MealOrderBean ml = getOrder(orderNo);
+		ml.setMemberBean(null);
+		ml.setMealListBean(null);
 		session.delete(ml);
 	}
 

@@ -50,7 +50,18 @@
  				paging: false,
  				
  			});
- 			
+ 			var table = $('#category').DataTable();
+ 			$('#category tbody').on('click', 'tr', function() {
+				var data = table.row(this).data();
+				var categoryId = data[1];
+				if(categoryId == "瑜珈 &amp; 皮拉提斯"){
+					categoryId = "瑜珈 & 皮拉提斯";
+					categoryId = encodeURIComponent(encodeURIComponent(categoryId))
+				}
+				console.log(categoryId);
+				window.location = 'coursesPerformanceapi?category='+categoryId;
+
+			});
  			//
 //  			$('#category tbody').on('click', 'td.details-control', function () {
 //             var tr = $(this).closest('tr');
@@ -58,6 +69,7 @@
  
 //             if ( row.child.isShown() ) {
 //                 //如果该行已经打开，则关闭
+//                 console.log("hi")
 //                 row.child.hide();
 //                 tr.removeClass('shown');
 //             }
@@ -183,7 +195,6 @@
 			style="width: 45%; height: 400px; display: inline-block;"></div>
 
 		<div class="container">
-
 
 			<table id="category" class="display" style="width: 100%">
 				<thead>

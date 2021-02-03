@@ -413,14 +413,15 @@ public class NewsController {
 		return "news/newsmodify";// 視圖邏輯名稱
 	}
 	
-	@RequestMapping("/addintoplay{member_id}{id}")
-	public String addintoplaylist(@PathVariable("id") Integer id,@PathVariable("member_id") String member_id,  Model model) {
+	@RequestMapping("/addintoplay/{memberid}/{id}")
+	public String addintoplaylist(@PathVariable("id") Integer id,@PathVariable("memberid") String member_id) {
 		System.out.println(id+member_id);
+		System.out.println("here");
 		NewsPlaylistBean nb = new NewsPlaylistBean();
 		nb.setMember_id(member_id);
 		nb.setFK_NewsBean_newsId(id);
 		newsservice.saveintoplaylist(nb);
-		return "news/newsone";
+		return "redirect:/news";
 		
 	}
 	

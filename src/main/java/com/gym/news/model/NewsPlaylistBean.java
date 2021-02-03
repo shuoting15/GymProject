@@ -23,7 +23,9 @@ public class NewsPlaylistBean implements Serializable {
 	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)	
-	private String  member_id ;
+	private int playlistid;
+	
+	private String  member_id;
 	private int  FK_NewsBean_newsId;
 
 		
@@ -35,6 +37,12 @@ public class NewsPlaylistBean implements Serializable {
 		
 	}
 
+	public int getPlaylistid() {
+		return playlistid;
+	}
+	public void setPlaylistid(int playlistid) {
+		this.playlistid = playlistid;
+	}
 	public String getMember_id() {
 		return member_id;
 	}

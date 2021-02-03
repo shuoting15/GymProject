@@ -274,10 +274,10 @@ public class CourseController {
 			rd.addFlashAttribute("messages","餘額不足");
 			return "redirect:/courses";
 		}
-		memberBean.setPoint(memberBean.getPoint()-course.getPrice());
 		int i = service.selectCourse(memberBean, id);
 		String message = null;
 		if(i == 0) {
+			memberBean.setPoint(memberBean.getPoint()-course.getPrice());
 			message = "已成功預約課程: " + course.getTitle();
 		} else if(i == 1){
 			message = "您已預約本課程，請勿重複預約!";
@@ -292,7 +292,7 @@ public class CourseController {
 		return "redirect:/courses";
 	}
 	
-	@GetMapping("/unbooking/course")
+	@RequestMapping("/unbooking/course")
 	public String unbookingCourse(@RequestParam("id") Integer id, RedirectAttributes rd, Model model) {
 		MemberBean memberBean =   (MemberBean) model.getAttribute("LoginOK");
 		CourseInfoBean info = service.getCourseInfoById(id);

@@ -9,8 +9,8 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
     <link href="https://fonts.googleapis.com/css?family=Rajdhani:300,400,500,600,700&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,600,600i,700,700i&display=swap"
-        rel="stylesheet">
+<!--     <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,600,600i,700,700i&display=swap" -->
+<!--         rel="stylesheet"> -->
 
     <link rel="stylesheet" href="http://cdn.bootstrapmb.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="css/all.min.css">
@@ -20,21 +20,68 @@
     <link rel="stylesheet" href="css/swiper.min.css">
 
     <link rel="shortcut icon" href="images/favicon.png" type="image/x-icon">
-    <link rel="stylesheet" href="css/stylecourses.css">
+    
 <link rel="stylesheet"
     href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
 <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
 <link rel="stylesheet"
     href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+<link rel="stylesheet" href="css/stylecoach.css">
 <title>MyCourses</title>
 <%-- <link rel="stylesheet" href='${pageContext.request.contextPath}/css/styles.css' type="text/css"> --%>
 <script type="text/javascript">
-function bookfunction(){
-	if(confirm("確定要取消嗎?")){  
-		return true;  
-	}  
-		return false;  
-	}
+	function bookfunction(price, id) {
+        Swal.fire({
+            type: 'warning', // 彈框類型
+            title: '確定要取消預約本課程嗎?', //標題
+            text: "如確定將立即退還"+ price + "點!", //顯示內容            
+            icon: 'question',
+            confirmButtonColor: '#3085d6',// 確定按鈕的 顏色
+            confirmButtonText: '確定',// 確定按鈕的 文字
+            showCancelButton: true, // 是否顯示取消按鈕
+            cancelButtonColor: '#d33', // 取消按鈕的 顏色
+            cancelButtonText: "取消", // 取消按鈕的 文字
+            focusCancel: true, // 是否聚焦 取消按鈕
+
+        }).then((isConfirm) => {
+
+            try {
+                //判斷 是否 點擊的 確定按鈕
+                if (isConfirm.value) {
+                    $.ajax({
+                        url: "<c:url value='/unbooking/course'/>",
+
+                        dataType: "JSON",
+                        data: { "id": id },
+                        success: function (data) {
+                        	console.log(data);
+                            if (data.messages == "課程開始前1小時無法取消!") {
+                                Swal.fire("Sorry!", "課程開始前1小時無法取消!", "error");
+                            } else {
+                                Swal.fire("取消成功", "請確認點數是否退還", "success");
+                            }
+                            setTimeout(function(){
+    	            			window.location.reload();//刷新
+    		            		},1500)
+                            
+                        }
+                    })
+                }
+                else {
+                    Swal.fire("取消操作", "", "error");
+
+                }
+            } catch (e) {
+                alert(e);
+            }
+
+        });
+        //      	if(confirm("確定預約本課程嗎? 確認無誤後請按確定!")){  
+        //      		return true;  
+        //      	}  
+        //      	return false;  
+    }
 </script>
 </head>
 <body>
@@ -133,10 +180,7 @@ function bookfunction(){
 				<td class="table-body">${course.courseBean.courseCoachBean.name}</td>
 				<td class="table-body">
 					<div>
-						<a href="<c:url value='/unbooking/course?id=${course.id}'/>"
-							class="btn btn-dark" onclick="return bookfunction()"> <span
-							class="glyphicon-info-sigh glyphicon"></span>取消預約
-						</a>
+						<button class="btn btn-dark" style="width:100px" onclick="bookfunction(${course.courseBean.price}, ${course.id})">取消預約</button>
 					</div>
 				</td>
 
