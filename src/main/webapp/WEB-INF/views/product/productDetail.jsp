@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>GYM|商品細節</title>
 <!-- Bootstrap -->
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
@@ -103,7 +103,7 @@ function addToFav(id){
 					<div class="breadcrumb__text">
 						<h2>GYM SHOP</h2>
 						<div class="breadcrumb__option">
-							<span>滿三千折100，限時活動中</span>
+							<span>折扣碼抽抽樂，限時活動中</span>
 						</div>
 					</div>
 				</div>
@@ -182,7 +182,7 @@ function addToFav(id){
 						<ul>
 							<li><b>庫存</b> <span>${product.productInStock}</span></li>
 							<li><b>類別</b> <span>${product.productCategory} </span></li>
-							<li><b>相關活動</b> <span>滿三千折一百<samp>Free pickup
+							<li><b>相關活動</b> <span>折扣碼抽抽樂活動中~<samp>Free pickup
 										today</samp></span></li>
 						</ul>
 					</div>

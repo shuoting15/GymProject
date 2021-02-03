@@ -1,12 +1,11 @@
 /**
  * 
  */
-
 const canvas = document.getElementById("canvas");
 const ctx = canvas.getContext("2d");
 
 const list = [
-  { name: "再來一次", pct: 0.2 },
+  { name: "五千折2百", pct: 0.2 },
   { name: "三千折百", pct: 0.2 },
   { name: "滿千折20", pct: 0.2 },
   { name: "三千折百", pct: 0.2 },
@@ -50,7 +49,7 @@ class Turntable {
     console.log(this.timer);
     if (this.rotating && this.autoStop) {
       this.timer = (this.timer + this.speed) % 1000;
-      if (this.speed > 0.1) {
+      if (this.speed > 0.2) {
         this.speed = this.speed * (0.99 + Math.random() / 100);
       } else {
         this.stop();
@@ -201,7 +200,7 @@ this.ctx.fillStyle = "#FCFCFC";
 }else if(res==="滿千折20"){
 	alert("恭喜抽中"+res+": gym20");
 }else{
-	alert(res);
+	alert("恭喜抽中"+res+": gym200");
 }
     
   }
