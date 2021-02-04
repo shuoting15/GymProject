@@ -46,7 +46,6 @@ public class MealOrderConcroller {
 			@PathVariable("mealId") Integer mealId,
 			Model model,
 			HttpServletRequest request) {
-		System.out.println("ID：" + mealId);
 		MemberBean memberBean = (MemberBean) model.getAttribute("LoginOK");
 		MealOrderBean mealOrderBean = new MealOrderBean();
 		MealListBean mealListBean = mealListService.getMealList(mealId);
@@ -60,7 +59,6 @@ public class MealOrderConcroller {
 		mealOrderBean.setOrderFinishTime(finishtime); // 取餐時間
 		mealOrderBean.setTotalAmount(mealListBean.getMealPrice()); // 訂單金額
 		mealOrderBean.setMealListBean(mealListBean);
-		System.out.println("@PostMapping後：" + mealOrderBean);
 		mealOrderService.saveMealOrder(mealOrderBean);
 		return "redirect:/showOrderList";
 	}
@@ -85,7 +83,6 @@ public class MealOrderConcroller {
 	@PostMapping("/deleteMealOrder/{id}")
 	public String delete(@PathVariable("id") Integer id) {
 		mealOrderService.deleteMealOrder(id);
-		System.out.println("delGood");
 		return "redirect:/showOrderList";
 	}
 }

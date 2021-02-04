@@ -33,7 +33,6 @@ public class CoachPerformanceDaoImpl implements CoachPerformanceDao {
 		
 		Object result = session.createQuery(hql).setParameter("coachId", coachId).getSingleResult();
 		if (result!=null) {
-			System.out.println(result);
 			return (int) (long) result;
 			
 		}
@@ -48,7 +47,6 @@ public class CoachPerformanceDaoImpl implements CoachPerformanceDao {
 		
 		Object result = session.createQuery(hql).getSingleResult();
 		if (result!=null) {
-			System.out.println(result);
 			return (int) (long) result;
 			
 		}
@@ -63,7 +61,6 @@ public class CoachPerformanceDaoImpl implements CoachPerformanceDao {
 		
 		Object result = session.createQuery(hql).getSingleResult();
 		if (result!=null) {
-			System.out.println(result);
 			return (int) (long) result;
 			
 		}

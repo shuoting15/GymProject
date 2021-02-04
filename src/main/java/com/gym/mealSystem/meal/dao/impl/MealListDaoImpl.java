@@ -98,7 +98,6 @@ public class MealListDaoImpl implements MealListDao {
 	public void saveMealList(MealListBean ml) {
 		Session session = getSession();
 		session.save(ml);
-		System.out.println(ml);
 	}
 
 	// 查詢所有MealList
@@ -116,11 +115,9 @@ public class MealListDaoImpl implements MealListDao {
 	@SuppressWarnings("unchecked")
 	public List<MealListBean> getCategoryNameByCategoryId(MealCategoryBean id) {
 		String hql = "FROM MealListBean WHERE categoryId = :categoryId";
-		System.out.println(id.getCategoryName());
 		List<MealListBean> list = new ArrayList<>();
 		Session session = factory.getCurrentSession();
 		list = session.createQuery(hql).setParameter("categoryId", id.getCategoryName()).getResultList();
-		System.out.println(id.getCategoryName());
 		return list;
 	}
 

@@ -105,7 +105,7 @@
 									</ul>
 									<c:choose>
 										<c:when test="${orderList.orderStatus =='0'}">
-											<a class="custom-button" onclick="updateOrder(${orderList.orderNo})">我要取餐</a>
+											<a class="custom-button" >我要取餐</a>
 										</c:when>
 										<c:when test="${orderList.orderStatus =='1'}">
 											<a class="custom-button">取餐完成</a>

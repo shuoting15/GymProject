@@ -56,7 +56,6 @@ public class MealOrderDaoImpl implements MealOrderDao {
 		String hql = "UPDATE MealOrderBean b SET b.orderStatus = 1 WHERE b.orderNo = :orderNo";
 		Session session = factory.getCurrentSession();
 		session.createQuery(hql).setParameter("orderNo", orderNo).executeUpdate();
-		System.out.println("ok");
 	}
 
 	// 從Orders搜尋member_Id

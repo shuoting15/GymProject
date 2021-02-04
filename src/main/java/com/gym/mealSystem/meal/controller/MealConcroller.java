@@ -61,7 +61,6 @@ public class MealConcroller {
 	// 分類查詢
 	@GetMapping("/queryByCategory")
 	public String getCategoryList(Model model) {
-		System.out.println(mealListService.getCategory());
 		model.addAttribute("categoryList", mealListService.getCategory());
 //		return "mealSystem/category";
 		return "redirect:/showAllMealList";
@@ -94,7 +93,6 @@ public class MealConcroller {
 	// BindingResult 參數必須與@ModelAttribute修飾的參數連續編寫，中間不能夾其他參數
 	public String add(@ModelAttribute("add") MealListBean ml, BindingResult result, Model model,
 			HttpServletRequest request) {
-		System.out.println("餐點資料:" + ml);
 		MealListValidator validator = new MealListValidator();
 		// 呼叫Validate進行資料檢查
 		validator.validate(ml, result);
@@ -127,7 +125,6 @@ public class MealConcroller {
 			result.rejectValue("mealName", "", "餐點已存在，請重新輸入");
 			return "mealSystem/insertMealList";
 		} catch (Exception ex) {
-			System.out.println(ex.getClass().getName() + ", ex.getMessage()=" + ex.getMessage());
 			result.rejectValue("mealName", "", "請通知系統人員...");
 			return "mealSystem/insertMealList";
 		}
@@ -141,7 +138,6 @@ public class MealConcroller {
 	public String showDataForm(@RequestParam("id") Integer id, Model model) {
 		MealListBean mealList = mealListService.getMealList(id);
 		model.addAttribute("mealList1", mealList);
-		System.out.println("@GetMapping："+mealList);
 		return "mealSystem/updateMealList";
 	}	
 
@@ -157,7 +153,6 @@ public class MealConcroller {
 	@PostMapping("/updateMeal")
 	public String modify(@ModelAttribute("mealListBean") MealListBean mealListBean, BindingResult result, Model model,
 			@RequestParam("id") Integer id, HttpServletRequest request) {		
-		System.out.println("@PostMapping前："+mealListBean);
 		// 找到對應的MealCategory物件
 		MealCategoryBean mm = mealCategoryService.getMealCategoryBean(mealListBean.getMealCategoryBean().getCategoryId());
 		mealListBean.setMealCategoryBean(mm);
@@ -187,7 +182,6 @@ public class MealConcroller {
 				}
 			}
 		}
-		System.out.println("@PostMapping後："+mealListBean);
 		mealListService.updateMealList(mealListBean);
 		return "redirect:/updateShowAllMealList";
 	}
@@ -269,7 +263,6 @@ public class MealConcroller {
 		if (id != null) {
 			MealListBean mealList = mealListService.getMealList(id);
 			model.addAttribute("mealList1", mealList);
-			System.out.println("getMember：" + mealList);
 		} 
 	}
 	

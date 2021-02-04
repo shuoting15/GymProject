@@ -12,6 +12,10 @@ public class ShoppingCart {
 	public Map<Integer, OrderItemBean>  getContent() { // ${ShoppingCart.content}
 		return cart;
 	}
+	public void  removeContent() { // ${ShoppingCart.content}
+		cart.clear();
+		System.out.println("購物車已清除");
+	}
 	
 	public void addToCart(int productId, OrderItemBean  oib) {
 		if (oib.getQuantity() <= 0 ) {

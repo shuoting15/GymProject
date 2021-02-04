@@ -191,7 +191,6 @@ public class CoachController {
 
 		String ext = originalFilename.substring(originalFilename.lastIndexOf(".")); // 看起來像是拿取副檔名
 		String rootDirectory = context.getRealPath("/");
-		System.out.println(rootDirectory);
 		try {
 			File imageFolder = new File(rootDirectory, "imagesCover"); // 在rootDirectory 創立 名為"imagesCover"的資料夾
 			if (!imageFolder.exists()) { // 如果沒有資料夾就建立
@@ -230,9 +229,7 @@ public class CoachController {
 			if (blob != null) {
 				try {
 					len = (int) blob.length();
-//					System.out.println(len);
 					media = blob.getBytes(1, len);
-//					System.out.println(media);
 				} catch (SQLException e) {
 					throw new RuntimeException("ProductController的getPicture()發生SQLException: " + e.getMessage());
 				}
